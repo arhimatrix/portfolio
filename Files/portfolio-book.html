@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=840">
 <title>Nina Velimirovic — Portfolio 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -818,23 +818,6 @@ body {
   }
 }
 
-/* ---- Mobile page wrapper styles ---- */
-.page-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  overflow: visible;
-}
-@media print {
-  .page-wrapper {
-    height: auto !important;
-    display: block !important;
-  }
-  .page {
-    transform: none !important;
-  }
-}
 </style>
 </head>
 <body>
@@ -2422,71 +2405,6 @@ if (window.location.search.includes('print=true')) {
       window.print();
     }, 2500);
   });
-}
-
-// Mobile responsive page scaling
-function adjustLayout() {
-  const pages = document.querySelectorAll('.page');
-  const viewportWidth = window.innerWidth;
-  const targetWidth = 793.7; // A4 width in pixels (210mm at 96dpi)
-  
-  if (viewportWidth < targetWidth) {
-    const scale = viewportWidth / targetWidth;
-    pages.forEach(page => {
-      // Wrap page in a wrapper if not already wrapped
-      let wrapper = page.parentElement;
-      if (!wrapper || !wrapper.classList.contains('page-wrapper')) {
-        wrapper = document.createElement('div');
-        wrapper.classList.add('page-wrapper');
-        page.parentNode.insertBefore(wrapper, page);
-        wrapper.appendChild(page);
-      }
-      
-      // Set wrapper styles
-      wrapper.style.width = '100%';
-      wrapper.style.position = 'relative';
-      wrapper.style.overflow = 'hidden';
-      wrapper.style.height = `${1122.5 * scale}px`;
-      
-      // Set page styles
-      page.style.position = 'absolute';
-      page.style.left = '50%';
-      page.style.marginLeft = '-396.85px'; // -793.7/2
-      page.style.width = '793.7px';
-      page.style.height = '1122.5px';
-      page.style.minHeight = '1122.5px';
-      page.style.transform = `scale(${scale})`;
-      page.style.transformOrigin = 'top center';
-      page.style.margin = '0';
-    });
-  } else {
-    // Desktop reset
-    pages.forEach(page => {
-      page.style.position = '';
-      page.style.left = '';
-      page.style.marginLeft = '';
-      page.style.width = '';
-      page.style.height = '';
-      page.style.minHeight = '';
-      page.style.transform = '';
-      page.style.transformOrigin = '';
-      page.style.margin = '';
-      let wrapper = page.parentElement;
-      if (wrapper && wrapper.classList.contains('page-wrapper')) {
-        wrapper.style.position = '';
-        wrapper.style.overflow = '';
-        wrapper.style.height = '';
-      }
-    });
-  }
-}
-
-// Run layout on load and on resize
-window.addEventListener('load', adjustLayout);
-window.addEventListener('resize', adjustLayout);
-// Run immediately in case load is already complete
-if (document.readyState === 'complete' || document.readyState === 'interactive') {
-  adjustLayout();
 }
 </script>
 </body>
