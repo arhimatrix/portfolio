@@ -12,79 +12,77 @@
     <title>Adaptive task planning parametric logic</title>
     <desc>Node-wire diagram of swarm task planning: input nodes wired through elect_leader and allocate_task to execute.</desc>
     <defs>
-      <pattern id="pg" width="28" height="28" patternUnits="userSpaceOnUse">
-        <path vector-effect="non-scaling-stroke" d="M 28 0 L 0 0 0 28" fill="none" stroke="rgba(13,13,13,0.15)" stroke-width="0.8"/>
-      </pattern>
+      <!-- pattern removed -->
     </defs>
-    <rect vector-effect="non-scaling-stroke" width="680" height="360" fill="url(#pg)"/>
+    <!-- grid removed -->
 
     <!-- Ghost number -->
     <text x="560" y="240" text-anchor="middle" font-family="'Inter',sans-serif" font-size="200" font-weight="600" fill="rgba(13,13,13,0.025)" dominant-baseline="central">02</text>
 
     <!-- Wires -->
-    <path vector-effect="non-scaling-stroke" d="M142 62 C192 62 196 112 238 112" fill="none" stroke="rgba(13,13,13,0.18)" stroke-width="1.0"/>
-    <path vector-effect="non-scaling-stroke" d="M142 124 C192 124 196 122 238 122" fill="none" stroke="rgba(13,13,13,0.18)" stroke-width="1.0"/>
-    <path vector-effect="non-scaling-stroke" d="M142 186 C192 186 196 132 238 132" fill="none" stroke="rgba(13,13,13,0.18)" stroke-width="1.0"/>
-    <path vector-effect="non-scaling-stroke" d="M336 117 C364 117 368 156 392 156" fill="none" stroke="rgba(13,13,13,0.18)" stroke-width="1.0"/>
-    <path vector-effect="non-scaling-stroke" d="M142 62 C270 62 308 148 392 156" fill="none" stroke="rgba(13,13,13,0.09)" stroke-width="0.8"/>
-    <path vector-effect="non-scaling-stroke" d="M142 124 C260 124 308 162 392 162" fill="none" stroke="rgba(13,13,13,0.09)" stroke-width="0.8"/>
-    <path vector-effect="non-scaling-stroke" d="M498 160 C530 160 530 228 388 238" fill="none" stroke="rgba(13,13,13,0.18)" stroke-width="1.0" stroke-dasharray="3 3"/>
-    <path vector-effect="non-scaling-stroke" d="M498 160 C532 160 532 280 436 288" fill="none" stroke="rgba(13,13,13,0.18)" stroke-width="1.0"/>
-    <path vector-effect="non-scaling-stroke" d="M474 238 C458 238 454 270 496 288" fill="none" stroke="rgba(13,13,13,0.18)" stroke-width="1.0"/>
-    <path vector-effect="non-scaling-stroke" d="M142 280 C290 280 338 296 436 296" fill="none" stroke="rgba(13,13,13,0.18)" stroke-width="1.0"/>
-    <path vector-effect="non-scaling-stroke" d="M554 292 C586 292 588 326 602 326" fill="none" stroke="rgba(13,13,13,0.18)" stroke-width="1.0"/>
-    <path vector-effect="non-scaling-stroke" d="M498 160 C574 160 588 300 602 326" fill="none" stroke="rgba(13,13,13,0.09)" stroke-width="0.8"/>
+    <path vector-effect="non-scaling-stroke" d="M142 62 C192 62 196 112 238 112" fill="none" stroke="rgba(13,13,13,0.18)" stroke-width="0.5"/>
+    <path vector-effect="non-scaling-stroke" d="M142 124 C192 124 196 122 238 122" fill="none" stroke="rgba(13,13,13,0.18)" stroke-width="0.5"/>
+    <path vector-effect="non-scaling-stroke" d="M142 186 C192 186 196 132 238 132" fill="none" stroke="rgba(13,13,13,0.18)" stroke-width="0.5"/>
+    <path vector-effect="non-scaling-stroke" d="M336 117 C364 117 368 156 392 156" fill="none" stroke="rgba(13,13,13,0.18)" stroke-width="0.5"/>
+    <path vector-effect="non-scaling-stroke" d="M142 62 C270 62 308 148 392 156" fill="none" stroke="rgba(13,13,13,0.09)" stroke-width="0.4"/>
+    <path vector-effect="non-scaling-stroke" d="M142 124 C260 124 308 162 392 162" fill="none" stroke="rgba(13,13,13,0.09)" stroke-width="0.4"/>
+    <path vector-effect="non-scaling-stroke" d="M498 160 C530 160 530 228 388 238" fill="none" stroke="rgba(13,13,13,0.18)" stroke-width="0.5" stroke-dasharray="3 3"/>
+    <path vector-effect="non-scaling-stroke" d="M498 160 C532 160 532 280 436 288" fill="none" stroke="rgba(13,13,13,0.18)" stroke-width="0.5"/>
+    <path vector-effect="non-scaling-stroke" d="M474 238 C458 238 454 270 496 288" fill="none" stroke="rgba(13,13,13,0.18)" stroke-width="0.5"/>
+    <path vector-effect="non-scaling-stroke" d="M142 280 C290 280 338 296 436 296" fill="none" stroke="rgba(13,13,13,0.18)" stroke-width="0.5"/>
+    <path vector-effect="non-scaling-stroke" d="M554 292 C586 292 588 326 602 326" fill="none" stroke="rgba(13,13,13,0.18)" stroke-width="0.5"/>
+    <path vector-effect="non-scaling-stroke" d="M498 160 C574 160 588 300 602 326" fill="none" stroke="rgba(13,13,13,0.09)" stroke-width="0.4"/>
 
     <!-- INPUT NODES -->
-    <rect vector-effect="non-scaling-stroke" x="50" y="42" width="92" height="34" rx="4" fill="#fff" stroke="rgba(13,13,13,0.18)" stroke-width="0.8"/>
+    <rect vector-effect="non-scaling-stroke" x="50" y="42" width="92" height="34" rx="4" fill="#fff" stroke="rgba(13,13,13,0.18)" stroke-width="0.4"/>
     <text x="96" y="63" text-anchor="middle" font-family="'Space Mono',monospace" font-size="9" fill="#0D0D0D">agents[ ]</text>
 
-    <rect vector-effect="non-scaling-stroke" x="50" y="106" width="92" height="34" rx="4" fill="#fff" stroke="rgba(13,13,13,0.18)" stroke-width="0.8"/>
+    <rect vector-effect="non-scaling-stroke" x="50" y="106" width="92" height="34" rx="4" fill="#fff" stroke="rgba(13,13,13,0.18)" stroke-width="0.4"/>
     <text x="96" y="127" text-anchor="middle" font-family="'Space Mono',monospace" font-size="9" fill="#0D0D0D">sensors[ ]</text>
 
-    <rect vector-effect="non-scaling-stroke" x="50" y="170" width="92" height="34" rx="4" fill="#fff" stroke="rgba(13,13,13,0.18)" stroke-width="0.8"/>
+    <rect vector-effect="non-scaling-stroke" x="50" y="170" width="92" height="34" rx="4" fill="#fff" stroke="rgba(13,13,13,0.18)" stroke-width="0.4"/>
     <text x="96" y="191" text-anchor="middle" font-family="'Space Mono',monospace" font-size="8" fill="#0D0D0D">signal_quality</text>
 
-    <rect vector-effect="non-scaling-stroke" x="50" y="234" width="92" height="34" rx="4" fill="#fff" stroke="rgba(13,13,13,0.18)" stroke-width="0.8"/>
+    <rect vector-effect="non-scaling-stroke" x="50" y="234" width="92" height="34" rx="4" fill="#fff" stroke="rgba(13,13,13,0.18)" stroke-width="0.4"/>
     <text x="96" y="255" text-anchor="middle" font-family="'Space Mono',monospace" font-size="9" fill="#0D0D0D">state[ ]</text>
 
-    <rect vector-effect="non-scaling-stroke" x="50" y="264" width="92" height="34" rx="4" fill="#fff" stroke="rgba(13,13,13,0.18)" stroke-width="0.8"/>
+    <rect vector-effect="non-scaling-stroke" x="50" y="264" width="92" height="34" rx="4" fill="#fff" stroke="rgba(13,13,13,0.18)" stroke-width="0.4"/>
     <text x="96" y="285" text-anchor="middle" font-family="'Space Mono',monospace" font-size="8" fill="#0D0D0D">human_cmd</text>
 
     <!-- elect_leader — teal = core -->
-    <rect vector-effect="non-scaling-stroke" x="238" y="96" width="98" height="48" rx="4" fill="#fff" stroke="#00B4C8" stroke-width="1.5"/>
+    <rect vector-effect="non-scaling-stroke" x="238" y="96" width="98" height="48" rx="4" fill="#fff" stroke="#00B4C8" stroke-width="0.75"/>
     <text x="287" y="112" text-anchor="middle" font-family="'Space Mono',monospace" font-size="7" fill="#00B4C8">fn</text>
     <text x="287" y="128" text-anchor="middle" font-family="'Space Mono',monospace" font-size="9" font-weight="700" fill="#0D0D0D">elect_leader</text>
     <text x="287" y="139" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6.5" fill="#888">consensus</text>
     <text x="287" y="162" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6.5" fill="rgba(0,180,200,0.45)" font-style="italic">the parametric core</text>
-    <line vector-effect="non-scaling-stroke" x1="287" y1="145" x2="287" y2="158" stroke="rgba(0,180,200,0.25)" stroke-width="0.5"/>
+    <line vector-effect="non-scaling-stroke" x1="287" y1="145" x2="287" y2="158" stroke="rgba(0,180,200,0.25)" stroke-width="0.4"/>
 
     <!-- allocate_task -->
-    <rect vector-effect="non-scaling-stroke" x="392" y="142" width="106" height="42" rx="4" fill="#fff" stroke="rgba(13,13,13,0.18)" stroke-width="0.8"/>
+    <rect vector-effect="non-scaling-stroke" x="392" y="142" width="106" height="42" rx="4" fill="#fff" stroke="rgba(13,13,13,0.18)" stroke-width="0.4"/>
     <text x="445" y="158" text-anchor="middle" font-family="'Space Mono',monospace" font-size="7" fill="#888">fn</text>
     <text x="445" y="172" text-anchor="middle" font-family="'Space Mono',monospace" font-size="9" font-weight="700" fill="#0D0D0D">allocate_task</text>
 
     <!-- human_override -->
-    <rect vector-effect="non-scaling-stroke" x="388" y="220" width="86" height="34" rx="4" fill="#fff" stroke="rgba(13,13,13,0.18)" stroke-width="0.8" stroke-dasharray="3 2"/>
+    <rect vector-effect="non-scaling-stroke" x="388" y="220" width="86" height="34" rx="4" fill="#fff" stroke="rgba(13,13,13,0.18)" stroke-width="0.4" stroke-dasharray="3 2"/>
     <text x="431" y="235" text-anchor="middle" font-family="'Space Mono',monospace" font-size="7" fill="#888">check</text>
     <text x="431" y="247" text-anchor="middle" font-family="'Space Mono',monospace" font-size="8" font-weight="700" fill="#444">human_override</text>
 
     <!-- apply_human_command -->
-    <rect vector-effect="non-scaling-stroke" x="436" y="274" width="118" height="34" rx="4" fill="#fff" stroke="rgba(13,13,13,0.18)" stroke-width="0.8"/>
+    <rect vector-effect="non-scaling-stroke" x="436" y="274" width="118" height="34" rx="4" fill="#fff" stroke="rgba(13,13,13,0.18)" stroke-width="0.4"/>
     <text x="495" y="289" text-anchor="middle" font-family="'Space Mono',monospace" font-size="7" fill="#888">fn</text>
     <text x="495" y="301" text-anchor="middle" font-family="'Space Mono',monospace" font-size="8" font-weight="700" fill="#0D0D0D">apply_human_cmd</text>
 
     <!-- execute — teal = output -->
-    <rect vector-effect="non-scaling-stroke" x="602" y="308" width="66" height="34" rx="4" fill="#fff" stroke="#00B4C8" stroke-width="1.5"/>
+    <rect vector-effect="non-scaling-stroke" x="602" y="308" width="66" height="34" rx="4" fill="#fff" stroke="#00B4C8" stroke-width="0.75"/>
     <text x="635" y="323" text-anchor="middle" font-family="'Space Mono',monospace" font-size="7" fill="#00B4C8">out</text>
     <text x="635" y="335" text-anchor="middle" font-family="'Space Mono',monospace" font-size="9" font-weight="700" fill="#0D0D0D">execute</text>
   </svg>
 
   <div style="height:0.5px;background:var(--rule);margin:6px 0 12px"></div>
   <div style="display:flex;gap:18px;flex-wrap:wrap">
-    <span style="display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:8px;color:#444"><span style="width:12px;height:12px;border:1.5px solid #00B4C8;border-radius:2px;display:inline-block"></span>core fn / output</span>
-    <span style="display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:8px;color:#444"><span style="width:12px;height:12px;border:0.8px solid rgba(13,13,13,0.18);border-radius:2px;display:inline-block"></span>processing node</span>
-    <span style="display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:8px;color:#444"><span style="width:12px;height:12px;border:0.8px dashed rgba(13,13,13,0.25);border-radius:2px;display:inline-block"></span>conditional check</span>
-    <span style="display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:8px;color:#444"><span style="width:18px;height:1px;border-top:1.0px solid rgba(13,13,13,0.18);display:inline-block"></span>data wire</span>
+    <span style="display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:8px;color:#444"><span style="width:12px;height:12px;border:0.75px solid #00B4C8;border-radius:2px;display:inline-block"></span>core fn / output</span>
+    <span style="display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:8px;color:#444"><span style="width:12px;height:12px;border:0.5px solid rgba(13,13,13,0.18);border-radius:2px;display:inline-block"></span>processing node</span>
+    <span style="display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:8px;color:#444"><span style="width:12px;height:12px;border:0.5px dashed rgba(13,13,13,0.25);border-radius:2px;display:inline-block"></span>conditional check</span>
+    <span style="display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:8px;color:#444"><span style="width:18px;height:1px;border-top:0.5px solid rgba(13,13,13,0.18);display:inline-block"></span>data wire</span>
   </div>
 </div>
