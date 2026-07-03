@@ -1178,9 +1178,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Define loop video per chapter
   const chapterLoopVideos = {
     chapter1: { file: "NEOM/portfolio_assets/grok-video-47b058fd-4d08-4561-a3c0-796c5481acb0 (5).mp4", label: "NEOM Multimodal Station — Zero-Carbon Transport Hub · Occupant Flow" },
-    chapter2: { file: "Stormcity/portfolio_assets/_users_9ab59cee-cd23-4c67-9c1a-0342e3602dda_generated_de855204-ac2a-4a84-a23a-90de118f7a7d_generated_video.mp4", label: "Storm-Resilient City — Computational Structural Simulation · X-BIM Suite" },
+    chapter2: { file: "Stormcity/portfolio_assets/_users_9ab59cee-cd23-4c67-9c1a-0342e3602dda_generated_de855204-ac2a-4a84-a23a-90de118f7a7d_orbital_assembly_sequence.mp4", label: "Storm-Resilient City — Computational Structural Simulation · X-BIM Suite" },
     chapter3: { file: "Orbital City/portfolio_assets/IMG_9641.jpg", label: "Orbital Gateway — Full Station Assembly · In-Orbit Construction" },
-    chapter4: { file: "Swarm Titan/portfolio_assets/_users_9ab59cee-cd23-4c67-9c1a-0342e3602dda_generated_57e991a2-05cc-4327-8eac-27a5b28f1450_generated_video.mp4", label: "Titan Swarm — 9-Agent Cooperative Deployment · Prebiotic Terrain Mapping" },
+    chapter4: { file: "Swarm Titan/portfolio_assets/_users_9ab59cee-cd23-4c67-9c1a-0342e3602dda_generated_57e991a2-05cc-4327-8eac-27a5b28f1450_orbital_assembly_sequence.mp4", label: "Titan Swarm — 9-Agent Cooperative Deployment · Prebiotic Terrain Mapping" },
     chapter6: { file: "Horizon Protocol/portfolio_assets/hero_lunar_structure.jpg", label: "Sentient Habitat — Parametric Lunar Structure · Horizon Protocol" }
   };
 
@@ -1190,7 +1190,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const chapterVideoSections = {
     chapter1: [
       {
-        file: "NEOM/portfolio_assets/grok-video-4fe6a0ef-73a2-43ae-82b8-80d4c19dab35.mp4",
+        file: "NEOM/portfolio_assets/neom_network_video.mp4",
         label: "Station Interior — Warm Structural Hall · NEOM Mobility Hub",
         galleryId: "gallery-ch1-beige",
         images: [
@@ -1211,7 +1211,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ],
     chapter4: [
       {
-        file: "Swarm Titan/portfolio_assets/_users_9ab59cee-cd23-4c67-9c1a-0342e3602dda_generated_b6ddb01b-c94d-4bcd-bb9f-2e074efd404f_generated_video.mp4",
+        file: "Swarm Titan/portfolio_assets/_users_9ab59cee-cd23-4c67-9c1a-0342e3602dda_generated_b6ddb01b-c94d-4bcd-bb9f-2e074efd404f_orbital_assembly_sequence.mp4",
         label: "Titan Rover-Drone — Technical Drawing Package · Design & Analysis",
         galleryId: "gallery-ch4-drawings",
         images: [
