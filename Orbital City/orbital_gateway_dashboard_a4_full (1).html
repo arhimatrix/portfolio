@@ -1,0 +1,851 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#050A0F;--navy2:#0B141C;--navy3:#101B26;--navy4:#152433;--navy5:#1A2D40;
+  --b1:rgba(42,100,160,0.18);--b2:rgba(42,100,160,0.08);
+  --cream:#D4C9A8;--cream2:#B0A88A;--cream3:#7A7260;
+  --amber:#C8820A;--ambl:#E5A020;--ambd:rgba(200,130,10,0.14);
+  --teal:#1D9E8A;--teal-l:#2EC4AC;--teal-d:rgba(29,158,138,0.14);
+  --blue:#2A7FD4;--blue-l:#4A9FE8;--blue-d:rgba(42,127,212,0.14);
+  --red:#C84B4B;--grn:#4A9E6A;
+  --t1:#E8DFC8;--t2:#9A9280;--t3:#5A5448;
+  --mono:'Space Mono',monospace;--sans:'Inter',sans-serif;
+}
+body{background:var(--navy);color:var(--t1);font-family:var(--sans);font-size:12px;line-height:1.4}
+
+.page{
+  width:100%;
+  height:1100px;
+  background:var(--navy);
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+
+/* ───── HEADER ───── */
+.hdr{
+  height:50px;min-height:50px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 18px;
+  border-bottom:0.5px solid var(--b1);
+  flex-shrink:0;
+}
+.hdr-l{display:flex;align-items:center;gap:12px}
+.logo{width:26px;height:26px;border:0.5px solid var(--amber);border-radius:4px;display:flex;align-items:center;justify-content:center}
+.logo i{font-size:13px;color:var(--amber)}
+.eyebrow{font-family:var(--mono);font-size:7.5px;letter-spacing:0.2em;color:var(--cream3)}
+.htitle{font-family:var(--mono);font-size:11px;letter-spacing:0.07em;color:var(--t1);font-weight:700}
+.hdr-r{display:flex;align-items:center;gap:14px}
+.pill{display:flex;align-items:center;gap:5px;background:var(--teal-d);border:0.5px solid var(--teal);border-radius:100px;padding:3px 10px;font-family:var(--mono);font-size:7.5px;color:var(--teal-l);letter-spacing:0.12em}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--teal-l);animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.25}}
+.clk-wrap{text-align:right}
+.clk-lbl{font-family:var(--mono);font-size:7px;color:var(--cream3);letter-spacing:0.15em}
+.clk{font-family:var(--mono);font-size:10px;color:var(--ambl);letter-spacing:0.1em}
+.hi{font-size:14px;color:var(--t2)}
+
+/* ───── KPI ROW ───── */
+.kpi-row{
+  height:82px;min-height:82px;
+  display:grid;grid-template-columns:repeat(5,1fr);
+  border-bottom:0.5px solid var(--b1);
+  flex-shrink:0;
+}
+.kpi{padding:10px 14px;border-right:0.5px solid var(--b1);display:flex;flex-direction:column;gap:3px;position:relative;overflow:hidden}
+.kpi:last-child{border-right:none}
+.kic{width:20px;height:20px;border-radius:3px;display:flex;align-items:center;justify-content:center;margin-bottom:1px;flex-shrink:0}
+.klbl{font-family:var(--mono);font-size:7px;letter-spacing:0.16em;color:var(--t3)}
+.kval{font-size:18px;font-weight:600;color:var(--t1);line-height:1}
+.kunit{font-size:10px;font-weight:400;color:var(--t2)}
+.kdelta{font-family:var(--mono);font-size:7.5px;margin-top:1px}
+.up{color:var(--grn)}.dn{color:var(--red)}
+.spark{position:absolute;bottom:0;right:0;left:0;height:28px;opacity:0.3}
+
+/* ───── BODY ───── */
+.body{flex:1;display:flex;flex-direction:column;overflow:hidden}
+
+/* row 1: area chart + donut + bars */
+.row1{
+  flex:1.6;
+  display:grid;grid-template-columns:2.2fr 1fr;
+  border-bottom:0.5px solid var(--b1);
+  min-height:0;
+}
+/* row 2: 3 equal columns */
+.row2{
+  flex:1.4;
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  border-bottom:0.5px solid var(--b1);
+  min-height:0;
+}
+/* row 3: tolerance bars + twin cards */
+.row3{
+  flex:1.2;
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  border-bottom:0.5px solid var(--b1);
+  min-height:0;
+}
+
+.panel{padding:12px 14px;border-right:0.5px solid var(--b1);overflow:hidden;display:flex;flex-direction:column}
+.panel:last-child{border-right:none}
+.plbl{font-family:var(--mono);font-size:7.5px;letter-spacing:0.18em;color:var(--amber);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.plbl-r{font-family:var(--mono);font-size:7px;color:var(--cream3);letter-spacing:0.1em}
+
+/* ───── CHART WRAPPERS ───── */
+.chart-wrap{position:relative;flex:1;min-height:0}
+
+/* ───── DONUT ───── */
+.donut-section{display:flex;flex-direction:column;gap:8px;flex:1}
+.donut-row{display:flex;align-items:center;gap:10px}
+.dl{display:flex;flex-direction:column;gap:5px}
+.dlr{display:flex;align-items:center;gap:6px;font-size:9px;color:var(--t2)}
+.dsw{width:7px;height:7px;border-radius:2px}
+
+/* ───── BAR MINI ───── */
+.bar-section{border-top:0.5px solid var(--b1);padding-top:8px;flex-shrink:0}
+.day-lbls{display:flex;justify-content:space-between;margin-top:3px}
+.dlbl{font-family:var(--mono);font-size:6.5px;color:var(--t3)}
+
+/* ───── TOL BARS ───── */
+.tol{margin-bottom:6px;flex-shrink:0}
+.tol-h{display:flex;justify-content:space-between;margin-bottom:2px}
+.tol-n{font-size:8.5px;color:var(--t2)}
+.tol-v{font-family:var(--mono);font-size:7.5px;color:var(--ambl)}
+.tol-track{height:3px;background:var(--b2);border-radius:2px;overflow:hidden}
+.tol-fill{height:100%;border-radius:2px}
+
+/* ───── SEQ ───── */
+.seq{display:flex;align-items:center;gap:7px;margin-bottom:6px;flex-shrink:0}
+.sn{font-family:var(--mono);font-size:7px;color:var(--t3);min-width:14px}
+.sw{flex:1}
+.sname{font-size:8px;color:var(--t2);margin-bottom:2px}
+.strack{height:2.5px;background:var(--b2);border-radius:2px}
+.sfill{height:100%;border-radius:2px}
+.spct{font-family:var(--mono);font-size:7.5px;min-width:22px;text-align:right}
+@keyframes spulse{0%,100%{opacity:0.6}50%{opacity:1}}
+
+/* ───── CODE ───── */
+.code-block{background:var(--navy4);border:0.5px solid var(--b1);border-radius:4px;padding:9px 11px;font-family:var(--mono);font-size:8px;line-height:1.8;flex:1}
+.ckw{color:#7A9ECC}.cfn{color:#2EC4AC}.cstr{color:var(--cream2)}
+.chi{background:var(--ambd);display:block;margin:0 -11px;padding:0 11px;color:var(--ambl)}
+
+/* ───── TABLE ───── */
+.tbl{width:100%;border-collapse:collapse;font-size:9px;table-layout:fixed;flex-shrink:0}
+.tbl thead tr{border-bottom:0.5px solid var(--b1)}
+.tbl thead th{font-family:var(--mono);font-size:6.5px;letter-spacing:0.16em;color:var(--t3);padding:0 0 5px;font-weight:400;text-align:left}
+.tbl tbody tr{border-bottom:0.5px solid rgba(30,58,84,0.4)}
+.tbl tbody tr:last-child{border-bottom:none}
+.tbl td{padding:4px 0;color:var(--t2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tbl td:first-child{color:var(--t1)}
+.sbar{display:inline-block;height:2.5px;border-radius:2px;width:28px;vertical-align:middle}
+
+/* ───── TWIN ───── */
+.twin-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;flex:1}
+.tc{background:var(--navy4);border:0.5px solid var(--b1);border-radius:4px;padding:8px 9px;display:flex;flex-direction:column;justify-content:space-between}
+.tlbl{font-family:var(--mono);font-size:6.5px;letter-spacing:0.14em;color:var(--t3);margin-bottom:3px}
+.tval{font-size:15px;font-weight:600;color:var(--t1)}
+.tu{font-size:8.5px;font-weight:400;color:var(--t3)}
+
+/* ───── FOOTER ───── */
+.footer{
+  height:36px;min-height:36px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 18px;flex-shrink:0;
+}
+.ftag{font-family:var(--mono);font-size:6.5px;letter-spacing:0.12em;border:0.5px solid var(--b1);padding:2px 7px;border-radius:2px;color:var(--cream3)}
+.fright{display:flex;align-items:center;gap:14px}
+.fname{font-family:var(--mono);font-size:7.5px;color:var(--t3)}
+.fpg{font-family:var(--mono);font-size:8px;color:var(--cream3);letter-spacing:0.2em}
+
+
+/* Flash highlight and code-line style */
+@keyframes panel-flash {
+  0%, 100% { border-color: var(--b1); box-shadow: none; }
+  50% { border-color: var(--amber); box-shadow: 0 0 10px rgba(200, 130, 10, 0.3); }
+}
+.flash-highlight {
+  animation: panel-flash 1s ease-in-out 2;
+}
+.code-line {
+  display: block;
+  margin: 0 -11px;
+  padding: 0 11px;
+}
+.code-line.chi {
+  background: var(--ambd);
+  color: var(--ambl);
+}
+
+/* ───── TAGS ───── */
+.tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px;flex-shrink:0}
+.tag{font-family:var(--mono);font-size:6.5px;letter-spacing:0.1em;border:0.5px solid var(--b1);padding:2px 6px;border-radius:2px;color:var(--cream3)}
+</style>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="hdr">
+    <div class="hdr-l">
+      <div class="logo" aria-hidden="true"><i class="ti ti-satellite"></i></div>
+      <div>
+        <div class="eyebrow">CH.03 — ORBITAL GATEWAY CONSTRUCTION</div>
+        <div class="htitle">Assembly Digital Twin Dashboard</div>
+      </div>
+    </div>
+    <div class="hdr-r">
+      <div class="pill" id="live-sim-pill" style="cursor:pointer; user-select:none;"><span class="dot" id="live-sim-dot"></span><span id="live-sim-text">LIVE SIM</span></div>
+      <div class="clk-wrap">
+        <div class="clk-lbl">T+ ELAPSED</div>
+        <div class="clk" id="clk">00:14:38</div>
+      </div>
+      <i class="ti ti-bell hi" aria-hidden="true"></i>
+      <i class="ti ti-settings hi" aria-hidden="true"></i>
+    </div>
+  </div>
+
+  <!-- KPI STRIP -->
+  <div class="kpi-row">
+    <div class="kpi" id="kpi-modules" style="cursor:pointer;">
+      <div class="kic" style="background:var(--blue-d)"><i class="ti ti-building-factory-2" style="font-size:11px;color:var(--blue-l)" aria-hidden="true"></i></div>
+      <div class="klbl">MODULES LOCKED</div>
+      <div class="kval" id="kpi-modules-val">3<span class="kunit"> / 6</span></div>
+      <div class="kdelta up" id="kpi-modules-delta"><i class="ti ti-trending-up" style="font-size:9px"></i> +1 this cycle</div>
+      <svg class="spark" viewBox="0 0 80 28" preserveAspectRatio="none"><polyline points="0,24 12,18 24,14 36,20 48,10 60,5 72,7 80,4" fill="none" stroke="#4A9FE8" stroke-width="1.5"/></svg>
+    </div>
+    <div class="kpi" id="kpi-tolerance" style="cursor:pointer;">
+      <div class="kic" style="background:var(--ambd)"><i class="ti ti-ruler-measure" style="font-size:11px;color:var(--ambl)" aria-hidden="true"></i></div>
+      <div class="klbl">DOCK TOLERANCE</div>
+      <div class="kval" id="kpi-tolerance-val">0.0020<span class="kunit"> m</span></div>
+      <div class="kdelta up" id="kpi-tolerance-delta"><i class="ti ti-check" style="font-size:9px"></i> Within spec</div>
+      <svg class="spark" viewBox="0 0 80 28" preserveAspectRatio="none"><polyline points="0,14 14,12 28,16 42,10 56,13 70,11 80,12" fill="none" stroke="#E5A020" stroke-width="1.5"/></svg>
+    </div>
+    <div class="kpi" id="kpi-robots" style="cursor:pointer;">
+      <div class="kic" style="background:var(--teal-d)"><i class="ti ti-robot" style="font-size:11px;color:var(--teal-l)" aria-hidden="true"></i></div>
+      <div class="klbl">ACTIVE ROBOTS</div>
+      <div class="kval" id="kpi-robots-val">4<span class="kunit"> units</span></div>
+      <div class="kdelta up" id="kpi-robots-delta"><i class="ti ti-circle-check" style="font-size:9px"></i> All nominal</div>
+      <svg class="spark" viewBox="0 0 80 28" preserveAspectRatio="none"><polyline points="0,16 14,14 28,16 42,14 56,16 70,13 80,14" fill="none" stroke="#2EC4AC" stroke-width="1.5"/></svg>
+    </div>
+    <div class="kpi" id="kpi-locks" style="cursor:pointer;">
+      <div class="kic" style="background:rgba(200,130,10,0.1)"><i class="ti ti-circuit-diode" style="font-size:11px;color:var(--ambl)" aria-hidden="true"></i></div>
+      <div class="klbl">STRUCTURAL LOCKS</div>
+      <div class="kval" id="kpi-locks-val">12<span class="kunit"> pts</span></div>
+      <div class="kdelta up" id="kpi-locks-delta"><i class="ti ti-lock" style="font-size:9px"></i> Verified</div>
+      <svg class="spark" viewBox="0 0 80 28" preserveAspectRatio="none"><polyline points="0,24 20,18 32,10 44,10 56,10 68,10 80,10" fill="none" stroke="#E5A020" stroke-width="1.5"/></svg>
+    </div>
+    <div class="kpi" id="kpi-vibration" style="cursor:pointer;">
+      <div class="kic" style="background:rgba(74,158,106,0.12)"><i class="ti ti-wave-sine" style="font-size:11px;color:#4A9E6A" aria-hidden="true"></i></div>
+      <div class="klbl">VIBRATION AMP.</div>
+      <div class="kval" id="kpi-vibration-val">22<span class="kunit"> μm/s</span></div>
+      <div class="kdelta up" id="kpi-vibration-delta"><i class="ti ti-trending-down" style="font-size:9px"></i> Below 50 limit</div>
+      <svg class="spark" viewBox="0 0 80 28" preserveAspectRatio="none"><polyline points="0,14 10,18 20,10 30,16 40,12 50,20 60,14 70,16 80,12" fill="none" stroke="#4A9E6A" stroke-width="1.5"/></svg>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- ROW 1: Area chart + Donut/Bar -->
+    <div class="row1">
+      <div class="panel">
+        <div class="plbl">
+          ASSEMBLY PROGRESS — MICROGRAVITY STAGING
+          <div style="display:flex;gap:10px">
+            <span style="display:flex;align-items:center;gap:4px;font-size:7.5px;color:var(--t2);font-family:var(--mono)"><span style="width:8px;height:1.5px;background:var(--blue-l);display:inline-block;border-radius:1px"></span>Current</span>
+            <span style="display:flex;align-items:center;gap:4px;font-size:7.5px;color:var(--t2);font-family:var(--mono)"><span style="width:8px;height:1.5px;background:var(--ambl);display:inline-block;border-radius:1px;border:none"></span>Prior</span>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <canvas id="areaChart" role="img" aria-label="Area chart showing current vs prior assembly cycle progress">Assembly progress comparison.</canvas>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="plbl">MODULE STATUS <span class="plbl-r">Monthly</span></div>
+        <div class="donut-section">
+          <div class="donut-row">
+            <div style="position:relative;width:80px;height:80px;flex-shrink:0">
+              <canvas id="donutChart" role="img" aria-label="Donut chart: 50% complete, 33% active, 17% on hold">Module status.</canvas>
+            </div>
+            <div class="dl">
+              <div class="dlr"><span class="dsw" style="background:#4A9FE8"></span>Complete <strong style="color:var(--t1);margin-left:auto;padding-left:6px">50%</strong></div>
+              <div class="dlr"><span class="dsw" style="background:#E5A020"></span>Active <strong style="color:var(--t1);margin-left:auto;padding-left:6px">33%</strong></div>
+              <div class="dlr"><span class="dsw" style="background:#C84B4B"></span>On hold <strong style="color:var(--t1);margin-left:auto;padding-left:6px">17%</strong></div>
+            </div>
+          </div>
+          <div class="bar-section">
+            <div class="plbl" style="margin-bottom:6px">ROBOT OPS — DAILY</div>
+            <div style="position:relative;height:52px">
+              <canvas id="barChart" role="img" aria-label="Bar chart of daily robot operational hours">Daily ops Sa–Fr.</canvas>
+            </div>
+            <div class="day-lbls">
+              <span class="dlbl">SA</span><span class="dlbl">SU</span><span class="dlbl">MO</span>
+              <span class="dlbl">TU</span><span class="dlbl">WE</span><span class="dlbl">TH</span><span class="dlbl">FR</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROW 2: Sequence + Log + Code -->
+    <div class="row2">
+      <!-- Assembly sequence -->
+      <div class="panel">
+        <div class="plbl">ASSEMBLY SEQUENCE — MODULE 03</div>
+        <div class="seq"><span class="sn">01</span><div class="sw"><div class="sname">Approach & rendezvous</div><div class="strack"><div class="sfill" style="width:100%;background:var(--grn)"></div></div></div><span class="spct" style="color:var(--grn)">✓</span></div>
+        <div class="seq"><span class="sn">02</span><div class="sw"><div class="sname">Proximity ops (50m hold)</div><div class="strack"><div class="sfill" style="width:100%;background:var(--grn)"></div></div></div><span class="spct" style="color:var(--grn)">✓</span></div>
+        <div class="seq"><span class="sn">03</span><div class="sw"><div class="sname">Docking port alignment</div><div class="strack"><div class="sfill" style="width:100%;background:var(--grn)"></div></div></div><span class="spct" style="color:var(--grn)">✓</span></div>
+        <div class="seq" id="seq-step-4"><span class="sn">04</span><div class="sw"><div class="sname">Structural lock engage</div><div class="strack"><div class="sfill" id="seq-fill-4" style="width:82%;background:var(--ambl);animation:spulse 1.4s ease-in-out infinite"></div></div></div><span class="spct" id="seq-pct-4" style="color:var(--ambl)">82%</span></div>
+        <div class="seq" id="seq-step-5"><span class="sn">05</span><div class="sw"><div class="sname">Leak check & pressurise</div><div class="strack"><div class="sfill" id="seq-fill-5" style="width:0%"></div></div></div><span class="spct" id="seq-pct-5" style="color:var(--t3)">—</span></div>
+        <div class="seq" id="seq-step-6"><span class="sn">06</span><div class="sw"><div class="sname">Digital twin sync</div><div class="strack"><div class="sfill" id="seq-fill-6" style="width:0%"></div></div></div><span class="spct" id="seq-pct-6" style="color:var(--t3)">—</span></div>
+        <div style="flex:1"></div>
+        <!-- Mini earnings chart -->
+        <div>
+          <div class="plbl" style="margin-bottom:6px">CYCLE THROUGHPUT</div>
+          <div style="position:relative;height:56px">
+            <canvas id="lineChart2" role="img" aria-label="Line chart showing cycle throughput over time">Throughput chart.</canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Consensus log -->
+      <div class="panel">
+        <div class="plbl">CONSENSUS LOG — ROBOT FEED</div>
+        <table class="tbl">
+          <thead><tr>
+            <th style="width:28px">ID</th>
+            <th>Event</th>
+            <th style="width:36px">Robot</th>
+            <th style="width:40px">Status</th>
+          </tr></thead>
+          <tbody id="log-body">
+            <tr><td>#041</td><td>structural_lock verified</td><td style="color:var(--t3)">R0</td><td><span class="sbar" style="background:var(--grn)"></span></td></tr>
+            <tr><td>#042</td><td>update_digital_twin</td><td style="color:var(--t3)">R1</td><td><span class="sbar" style="background:var(--grn)"></span></td></tr>
+            <tr><td>#043</td><td>dock(tol=0.002)</td><td style="color:var(--t3)">R2</td><td><span class="sbar" style="background:var(--ambl)"></span></td></tr>
+            <tr><td>#044</td><td>assign_robot — I-HAB</td><td style="color:var(--t3)">R3</td><td><span class="sbar" style="background:var(--blue-l)"></span></td></tr>
+            <tr><td>#045</td><td>verify_structural_lock</td><td style="color:var(--t3)">R0</td><td><span class="sbar" style="background:var(--grn)"></span></td></tr>
+            <tr><td>#046</td><td>plan_assembly_order</td><td style="color:var(--t3)">SYS</td><td><span class="sbar" style="background:var(--blue-l)"></span></td></tr>
+          </tbody>
+        </table>
+        <div style="flex:1"></div>
+        <!-- Stat row -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px">
+          <div style="background:var(--navy4);border:0.5px solid var(--b1);border-radius:4px;padding:7px 9px">
+            <div style="font-family:var(--mono);font-size:6.5px;color:var(--t3);margin-bottom:3px">CONSENSUS</div>
+            <div style="font-size:14px;font-weight:600;color:var(--t1)" id="consensus-stat-val">4/4 <span style="font-size:8.5px;color:var(--grn);font-weight:400">robots</span></div>
+          </div>
+          <div style="background:var(--navy4);border:0.5px solid var(--b1);border-radius:4px;padding:7px 9px">
+            <div style="font-family:var(--mono);font-size:6.5px;color:var(--t3);margin-bottom:3px">UPTIME</div>
+            <div style="font-size:14px;font-weight:600;color:var(--t1)" id="uptime-stat-val">99.7<span style="font-size:8.5px;color:var(--teal-l);font-weight:400">%</span></div>
+          </div>
+        </div>
+        <!-- Throughput gauge -->
+        <div style="margin-top:8px">
+          <div class="plbl" style="margin-bottom:5px">ASSEMBLY RATE</div>
+          <div style="position:relative;height:44px">
+            <canvas id="gaugeBar" role="img" aria-label="Horizontal bar showing assembly rate metrics">Rate metrics.</canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Code panel -->
+      <div class="panel">
+        <div class="plbl">ORBITAL_SEQ.PY — Python 3.11</div>
+        <div class="code-block" id="code-panel">
+          <span class="ckw">def</span> <span class="cfn">orbital_assembly</span>(modules, fleet):<br>
+          &nbsp;&nbsp;sequence = <span class="cfn">plan_assembly_order</span>(modules)<br>
+          &nbsp;&nbsp;<span class="ckw">for</span> module <span class="ckw">in</span> sequence:<br>
+          <span class="code-line" id="code-line-1">&nbsp;&nbsp;&nbsp;&nbsp;robot = <span class="cfn">assign_robot</span>(fleet, module)</span><br>
+          <span class="code-line chi" id="code-line-2">&nbsp;&nbsp;&nbsp;&nbsp;robot.<span class="cfn">dock</span>(module,<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="cstr">tolerance=0.002</span>)</span><br>
+          <span class="code-line" id="code-line-3">&nbsp;&nbsp;&nbsp;&nbsp;<span class="cfn">verify_structural_lock</span>(module)</span><br>
+          <span class="code-line" id="code-line-4">&nbsp;&nbsp;&nbsp;&nbsp;<span class="cfn">update_digital_twin</span>(module.state)</span>
+        </div>
+        <div class="tags">
+          <span class="tag">In-Orbit Assembly</span>
+          <span class="tag">Robotic Construction</span>
+          <span class="tag">Microgravity Sim</span>
+          <span class="tag">Digital Twin</span>
+        </div>
+        <div style="flex:1"></div>
+        <!-- Mini line -->
+        <div>
+          <div class="plbl" style="margin-bottom:6px">DOCKING ACCURACY — LAST 8 OPS</div>
+          <div style="position:relative;height:56px">
+            <canvas id="lineChart3" role="img" aria-label="Line chart of docking accuracy across 8 operations">Accuracy trend.</canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROW 3: Tolerances + Twin + Extra chart -->
+    <div class="row3">
+      <!-- Tolerances -->
+      <div class="panel">
+        <div class="plbl">STRUCTURAL TOLERANCES</div>
+        <div class="tol"><div class="tol-h"><span class="tol-n">Docking alignment</span><span class="tol-v" id="tol-val-1">0.8 mm</span></div><div class="tol-track"><div class="tol-fill" id="tol-fill-1" style="width:40%;background:var(--grn)"></div></div></div>
+        <div class="tol"><div class="tol-h"><span class="tol-n">Structural lock torque</span><span class="tol-v" id="tol-val-2">65 Nm</span></div><div class="tol-track"><div class="tol-fill" id="tol-fill-2" style="width:54%;background:var(--blue-l)"></div></div></div>
+        <div class="tol"><div class="tol-h"><span class="tol-n">Port seal pressure Δ</span><span class="tol-v" id="tol-val-3">0.18 Pa</span></div><div class="tol-track"><div class="tol-fill" id="tol-fill-3" style="width:36%;background:var(--teal-l)"></div></div></div>
+        <div class="tol"><div class="tol-h"><span class="tol-n">Thermal deformation</span><span class="tol-v" id="tol-val-4">420 μm</span></div><div class="tol-track"><div class="tol-fill" id="tol-fill-4" style="width:49%;background:var(--ambl)"></div></div></div>
+        <div class="tol"><div class="tol-h"><span class="tol-n">Vibration amplitude</span><span class="tol-v" id="tol-val-5">22 μm/s</span></div><div class="tol-track"><div class="tol-fill" id="tol-fill-5" style="width:44%;background:var(--blue-l)"></div></div></div>
+        <div style="flex:1;min-height:8px"></div>
+        <!-- Tolerance radar -->
+        <div class="plbl" style="margin-bottom:6px;margin-top:4px">TOLERANCE DEVIATION — RADAR</div>
+        <div style="position:relative;height:64px">
+          <canvas id="radarChart" role="img" aria-label="Radar chart showing five structural tolerance values">Tolerance radar.</canvas>
+        </div>
+      </div>
+
+      <!-- Digital twin cards -->
+      <div class="panel">
+        <div class="plbl">DIGITAL TWIN STATE</div>
+        <div class="twin-grid">
+          <div class="tc" id="tc-modules"><div class="tlbl">MODULES</div><div class="tval" id="tc-modules-val">3<span class="tu"> / 6</span></div></div>
+          <div class="tc" id="tc-locks"><div class="tlbl">LOCKS</div><div class="tval" id="tc-locks-val">12<span class="tu"> pts</span></div></div>
+          <div class="tc" id="tc-robots"><div class="tlbl">ROBOTS</div><div class="tval" id="tc-robots-val">4<span class="tu"> act.</span></div></div>
+          <div class="tc" id="tc-tolerance"><div class="tlbl">TOLERANCE</div><div class="tval" style="font-size:12px" id="tc-tolerance-val">0.0020<span class="tu"> m</span></div></div>
+          <div class="tc" id="tc-uptime"><div class="tlbl">UPTIME</div><div class="tval" id="tc-uptime-val">99.7<span class="tu">%</span></div></div>
+          <div class="tc" id="tc-cyclet"><div class="tlbl">CYCLE T+</div><div class="tval" style="font-size:12px" id="twin-clk">00:14:38</div></div>
+        </div>
+      </div>
+
+      <!-- Stacked area / final chart -->
+      <div class="panel">
+        <div class="plbl">ROBOT CONSENSUS — MULTI-UNIT LOAD</div>
+        <div class="chart-wrap">
+          <canvas id="stackedChart" role="img" aria-label="Stacked area chart showing robot load distribution across 4 robots">Robot load distribution.</canvas>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div style="display:flex;gap:5px">
+      <span class="ftag">HORIZON PROTOCOL</span>
+      <span class="ftag">LUNAR GATEWAY</span>
+      <span class="ftag">ISU — SPACE ARCHITECTURE</span>
+      <span class="ftag">EPSC 2026</span>
+    </div>
+    <div class="fright">
+      <span class="fname">Nina Velimirovic — MSc Space Architecture, ISU Strasbourg</span>
+      <span class="fpg">13</span>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+Chart.defaults.font.family="'Inter',sans-serif";
+Chart.defaults.color='#5A5448';
+const G='rgba(42,100,160,0.1)';
+const gridOpts={color:G,drawBorder:false};
+
+// Store chart references
+window.areaChart = new Chart(document.getElementById('areaChart'),{
+  type:'line',
+  data:{
+    labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug'],
+    datasets:[
+      {label:'Current',data:[18,32,28,52,47,68,75,82],
+        borderColor:'#4A9FE8',borderWidth:1.5,borderDash:[],
+        backgroundColor:'rgba(74,159,232,0.12)',fill:true,
+        pointRadius:2.5,pointBackgroundColor:'#4A9FE8',tension:0.4},
+      {label:'Prior',data:[12,24,20,38,35,48,52,60],
+        borderColor:'#E5A020',borderWidth:1.5,borderDash:[4,3],
+        backgroundColor:'rgba(229,160,32,0.07)',fill:true,
+        pointRadius:2.5,pointBackgroundColor:'#E5A020',tension:0.4}
+    ]
+  },
+  options:{
+    responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{backgroundColor:'#1C3050',borderColor:'#2A4A6A',borderWidth:0.5,titleColor:'#D4C9A8',bodyColor:'#9A9280',padding:7}},
+    scales:{
+      x:{grid:gridOpts,ticks:{font:{size:8},color:'#5A5448'},border:{display:false}},
+      y:{grid:gridOpts,ticks:{font:{size:8},color:'#5A5448',callback:v=>v+'%'},border:{display:false},min:0,max:100}
+    }
+  }
+});
+
+window.donutChart = new Chart(document.getElementById('donutChart'),{
+  type:'doughnut',
+  data:{labels:['Complete','Active','On hold'],datasets:[{data:[50,33,17],backgroundColor:['#4A9FE8','#E5A020','#C84B4B'],borderWidth:0,borderRadius:2,hoverOffset:2}]},
+  options:{cutout:'68%',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{backgroundColor:'#1C3050',borderColor:'#2A4A6A',borderWidth:0.5,titleColor:'#D4C9A8',bodyColor:'#9A9280',padding:6}}}
+});
+
+window.barChart = new Chart(document.getElementById('barChart'),{
+  type:'bar',
+  data:{
+    labels:['SA','SU','MO','TU','WE','TH','FR'],
+    datasets:[
+      {data:[14,8,22,18,28,20,25],backgroundColor:'#2A7FD4',borderRadius:2,borderSkipped:false},
+      {data:[10,6,16,22,18,24,20],backgroundColor:'#C8820A',borderRadius:2,borderSkipped:false}
+    ]
+  },
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{enabled:false}},
+    scales:{x:{display:false,grid:{display:false}},y:{display:false,grid:{display:false},min:0,max:35}}
+  }
+});
+
+window.lineChart2 = new Chart(document.getElementById('lineChart2'),{
+  type:'line',
+  data:{
+    labels:['W1','W2','W3','W4','W5','W6'],
+    datasets:[{data:[42,58,51,74,68,82],borderColor:'#2EC4AC',borderWidth:1.5,backgroundColor:'rgba(46,196,172,0.1)',fill:true,pointRadius:2,pointBackgroundColor:'#2EC4AC',tension:0.4}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{enabled:false}},
+    scales:{x:{grid:{color:G},ticks:{font:{size:7},color:'#5A5448'},border:{display:false}},
+      y:{grid:{color:G},ticks:{font:{size:7},color:'#5A5448'},border:{display:false},min:30,max:90}}
+  }
+});
+
+window.gaugeBar = new Chart(document.getElementById('gaugeBar'),{
+  type:'bar',
+  data:{
+    labels:['R0','R1','R2','R3'],
+    datasets:[{data:[94,87,91,78],backgroundColor:['#4A9FE8','#2EC4AC','#4A9FE8','#E5A020'],borderRadius:3,borderSkipped:false}]
+  },
+  options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{enabled:false}},
+    scales:{
+      x:{grid:{color:G},ticks:{font:{size:7},color:'#5A5448',callback:v=>v+'%'},border:{display:false},min:0,max:100},
+      y:{grid:{display:false},ticks:{font:{size:7,family:"'Space Mono',monospace"},color:'#5A5448'},border:{display:false}}
+    }
+  }
+});
+
+window.lineChart3 = new Chart(document.getElementById('lineChart3'),{
+  type:'line',
+  data:{
+    labels:['Op1','Op2','Op3','Op4','Op5','Op6','Op7','Op8'],
+    datasets:[{data:[99.1,98.7,99.4,97.8,99.6,99.2,99.8,99.7],borderColor:'#E5A020',borderWidth:1.5,backgroundColor:'rgba(229,160,32,0.1)',fill:true,pointRadius:2,pointBackgroundColor:'#E5A020',tension:0.4}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{enabled:false}},
+    scales:{x:{grid:{color:G},ticks:{font:{size:7},color:'#5A5448'},border:{display:false}},
+      y:{grid:{color:G},ticks:{font:{size:7},color:'#5A5448',callback:v=>v+'%'},border:{display:false},min:97,max:100}}
+  }
+});
+
+window.radarChart = new Chart(document.getElementById('radarChart'),{
+  type:'radar',
+  data:{
+    labels:['Align','Torque','Seal','Thermal','Vibration'],
+    datasets:[{data:[40,54,36,49,44],backgroundColor:'rgba(42,127,212,0.15)',borderColor:'#2A7FD4',borderWidth:1,pointBackgroundColor:'#4A9FE8',pointRadius:2}]
+  },
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{enabled:false}},
+    scales:{r:{grid:{color:'rgba(42,100,160,0.15)'},angleLines:{color:'rgba(42,100,160,0.15)'},ticks:{display:false},pointLabels:{font:{size:7,family:"'Space Mono',monospace"},color:'#5A5448'},min:0,max:100}}
+  }
+});
+
+window.stackedChart = new Chart(document.getElementById('stackedChart'),{
+  type:'line',
+  data:{
+    labels:['T1','T2','T3','T4','T5','T6','T7','T8','T9','T10'],
+    datasets:[
+      {label:'R0',data:[22,28,25,32,30,35,28,34,36,38],fill:true,backgroundColor:'rgba(74,159,232,0.25)',borderColor:'#4A9FE8',borderWidth:1,pointRadius:0,tension:0.4,stack:'s'},
+      {label:'R1',data:[18,22,20,24,22,26,24,28,26,30],fill:true,backgroundColor:'rgba(46,196,172,0.2)',borderColor:'#2EC4AC',borderWidth:1,pointRadius:0,tension:0.4,stack:'s'},
+      {label:'R2',data:[14,18,16,20,18,22,20,22,24,26],fill:true,backgroundColor:'rgba(229,160,32,0.2)',borderColor:'#E5A020',borderWidth:1,pointRadius:0,tension:0.4,stack:'s'},
+      {label:'R3',data:[10,12,14,12,16,14,16,18,16,18],fill:true,backgroundColor:'rgba(200,75,75,0.15)',borderColor:'#C84B4B',borderWidth:1,pointRadius:0,tension:0.4,stack:'s'}
+    ]
+  },
+  options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false},tooltip:{backgroundColor:'#1C3050',borderColor:'#2A4A6A',borderWidth:0.5,titleColor:'#D4C9A8',bodyColor:'#9A9280',padding:6}},
+    scales:{
+      x:{grid:{color:G},ticks:{font:{size:7},color:'#5A5448'},border:{display:false}},
+      y:{grid:{color:G},ticks:{font:{size:7},color:'#5A5448'},border:{display:false},stacked:true}
+    }
+  }
+});
+
+// INTERACTIVE AND DYNAMIC UPDATES
+let s = 878;
+let isLive = true;
+let currentStep = 4;
+let stepProgress = 82;
+let locksCount = 12;
+let activeRobots = 4;
+let logIndex = 46;
+
+// Toggle Live Simulation (Pause / Resume)
+const liveSimPill = document.getElementById('live-sim-pill');
+const liveSimDot = document.getElementById('live-sim-dot');
+const liveSimText = document.getElementById('live-sim-text');
+
+liveSimPill.addEventListener('click', () => {
+  isLive = !isLive;
+  if (isLive) {
+    liveSimDot.style.background = 'var(--teal-l)';
+    liveSimDot.style.animation = 'blink 2s ease-in-out infinite';
+    liveSimPill.style.borderColor = 'var(--teal)';
+    liveSimPill.style.background = 'var(--teal-d)';
+    liveSimPill.style.color = 'var(--teal-l)';
+    liveSimText.textContent = 'LIVE SIM';
+  } else {
+    liveSimDot.style.background = 'var(--amber)';
+    liveSimDot.style.animation = 'none';
+    liveSimPill.style.borderColor = 'var(--amber)';
+    liveSimPill.style.background = 'var(--ambd)';
+    liveSimPill.style.color = 'var(--ambl)';
+    liveSimText.textContent = 'PAUSED';
+  }
+});
+
+// Clickable KPI panels highlighting matching cards
+const kpiModules = document.getElementById('kpi-modules');
+const kpiTolerance = document.getElementById('kpi-tolerance');
+const kpiRobots = document.getElementById('kpi-robots');
+const kpiLocks = document.getElementById('kpi-locks');
+const kpiVibration = document.getElementById('kpi-vibration');
+const panels = document.querySelectorAll('.panel');
+
+kpiModules.addEventListener('click', () => flashPanel(panels[1]));
+kpiTolerance.addEventListener('click', () => flashPanel(panels[5]));
+kpiRobots.addEventListener('click', () => { flashPanel(panels[3]); flashPanel(panels[7]); });
+kpiLocks.addEventListener('click', () => { flashPanel(panels[2]); flashPanel(panels[6]); });
+kpiVibration.addEventListener('click', () => flashPanel(panels[5]));
+
+function flashPanel(panel) {
+  panel.classList.remove('flash-highlight');
+  void panel.offsetWidth; // force reflow
+  panel.classList.add('flash-highlight');
+}
+
+// Code panel line highlighter based on sequence steps
+const codeLines = [
+  document.getElementById('code-line-1'),
+  document.getElementById('code-line-2'),
+  document.getElementById('code-line-3'),
+  document.getElementById('code-line-4')
+];
+
+function highlightCodeLine(activeId) {
+  codeLines.forEach(l => {
+    if (l) l.classList.remove('chi');
+  });
+  const activeLine = document.getElementById(activeId);
+  if (activeLine) activeLine.classList.add('chi');
+}
+
+// Consensus Log auto updater
+const logBody = document.getElementById('log-body');
+const logEvents = [
+  { text: 'pressure_seal_test', status: 'var(--grn)' },
+  { text: 'thermal_sensor_sync', status: 'var(--grn)' },
+  { text: 'realigning_joint_frame', status: 'var(--ambl)' },
+  { text: 'power_bus_connection', status: 'var(--grn)' },
+  { text: 'dock_sensor_recal', status: 'var(--blue-l)' },
+  { text: 'structural_joint_secured', status: 'var(--grn)' },
+  { text: 'ping_digital_twin', status: 'var(--blue-l)' }
+];
+
+function addLogEntry() {
+  logIndex++;
+  const robotId = 'R' + Math.floor(Math.random() * 4);
+  const ev = logEvents[Math.floor(Math.random() * logEvents.length)];
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td>#0${logIndex}</td><td>${ev.text}</td><td style="color:var(--t3)">${robotId}</td><td><span class="sbar" style="background:${ev.status}"></span></td>`;
+  logBody.insertBefore(tr, logBody.firstChild);
+  if (logBody.children.length > 6) {
+    logBody.removeChild(logBody.lastChild);
+  }
+}
+
+// Simulation Loop
+setInterval(() => {
+  if (!isLive) return;
+
+  // 1. Clock increment
+  s++;
+  const h=String(Math.floor(s/3600)).padStart(2,'0');
+  const m=String(Math.floor(s%3600/60)).padStart(2,'0');
+  const sc=String(s%60).padStart(2,'0');
+  const t=`${h}:${m}:${sc}`;
+  document.getElementById('clk').textContent=t;
+  document.getElementById('twin-clk').textContent=t;
+
+  // 2. Sequence Progress and Code highlight sync
+  if (currentStep === 4) {
+    highlightCodeLine('code-line-3'); // verify_structural_lock
+    stepProgress += Math.floor(Math.random() * 3) + 1;
+    if (stepProgress >= 100) {
+      stepProgress = 100;
+      document.querySelector('#seq-step-4 .spct').innerHTML = '✓';
+      document.querySelector('#seq-step-4 .spct').style.color = 'var(--grn)';
+      document.querySelector('#seq-step-4 .sfill').style.width = '100%';
+      document.querySelector('#seq-step-4 .sfill').style.background = 'var(--grn)';
+      document.querySelector('#seq-step-4 .sfill').style.animation = 'none';
+
+      currentStep = 5;
+      stepProgress = 0;
+      document.querySelector('#seq-step-5 .spct').innerHTML = '0%';
+      document.querySelector('#seq-step-5 .spct').style.color = 'var(--ambl)';
+      document.querySelector('#seq-step-5 .sfill').style.background = 'var(--ambl)';
+      document.querySelector('#seq-step-5 .sfill').style.animation = 'spulse 1.4s ease-in-out infinite';
+    } else {
+      document.getElementById('seq-pct-4').innerHTML = stepProgress + '%';
+      document.getElementById('seq-fill-4').style.width = stepProgress + '%';
+    }
+  } else if (currentStep === 5) {
+    highlightCodeLine('code-line-4'); // update_digital_twin
+    stepProgress += Math.floor(Math.random() * 4) + 1;
+    if (stepProgress >= 100) {
+      stepProgress = 100;
+      document.querySelector('#seq-step-5 .spct').innerHTML = '✓';
+      document.querySelector('#seq-step-5 .spct').style.color = 'var(--grn)';
+      document.querySelector('#seq-step-5 .sfill').style.width = '100%';
+      document.querySelector('#seq-step-5 .sfill').style.background = 'var(--grn)';
+      document.querySelector('#seq-step-5 .sfill').style.animation = 'none';
+
+      currentStep = 6;
+      stepProgress = 0;
+      document.querySelector('#seq-step-6 .spct').innerHTML = '0%';
+      document.querySelector('#seq-step-6 .spct').style.color = 'var(--ambl)';
+      document.querySelector('#seq-step-6 .sfill').style.background = 'var(--ambl)';
+      document.querySelector('#seq-step-6 .sfill').style.animation = 'spulse 1.4s ease-in-out infinite';
+    } else {
+      document.getElementById('seq-pct-5').innerHTML = stepProgress + '%';
+      document.getElementById('seq-fill-5').style.width = stepProgress + '%';
+    }
+  } else if (currentStep === 6) {
+    highlightCodeLine('code-line-4');
+    stepProgress += Math.floor(Math.random() * 5) + 1;
+    if (stepProgress >= 100) {
+      stepProgress = 100;
+      document.querySelector('#seq-step-6 .spct').innerHTML = '✓';
+      document.querySelector('#seq-step-6 .spct').style.color = 'var(--grn)';
+      document.querySelector('#seq-step-6 .sfill').style.width = '100%';
+      document.querySelector('#seq-step-6 .sfill').style.background = 'var(--grn)';
+      document.querySelector('#seq-step-6 .sfill').style.animation = 'none';
+
+      locksCount = Math.min(18, locksCount + 1);
+      document.getElementById('kpi-locks-val').innerHTML = `${locksCount}<span class="kunit"> pts</span>`;
+      document.getElementById('tc-locks-val').innerHTML = `${locksCount}<span class="tu"> pts</span>`;
+      
+      currentStep = 7; // Wait state
+      setTimeout(() => {
+        // Reset sequence back to start of structural lock engage for loop
+        document.querySelector('#seq-step-4 .spct').innerHTML = '82%';
+        document.querySelector('#seq-step-4 .spct').style.color = 'var(--ambl)';
+        document.querySelector('#seq-step-4 .sfill').style.width = '82%';
+        document.querySelector('#seq-step-4 .sfill').style.background = 'var(--ambl)';
+        document.querySelector('#seq-step-4 .sfill').style.animation = 'spulse 1.4s ease-in-out infinite';
+        
+        document.querySelector('#seq-step-5 .spct').innerHTML = '—';
+        document.querySelector('#seq-step-5 .spct').style.color = 'var(--t3)';
+        document.querySelector('#seq-step-5 .sfill').style.width = '0%';
+        document.querySelector('#seq-step-5 .sfill').style.background = 'var(--b2)';
+
+        document.querySelector('#seq-step-6 .spct').innerHTML = '—';
+        document.querySelector('#seq-step-6 .spct').style.color = 'var(--t3)';
+        document.querySelector('#seq-step-6 .sfill').style.width = '0%';
+        document.querySelector('#seq-step-6 .sfill').style.background = 'var(--b2)';
+        
+        currentStep = 4;
+        stepProgress = 82;
+      }, 4000);
+    } else {
+      document.getElementById('seq-pct-6').innerHTML = stepProgress + '%';
+      document.getElementById('seq-fill-6').style.width = stepProgress + '%';
+    }
+  }
+
+  // 3. Fluctuating KPIs & progress bars
+  // Vibration Amplitude
+  const vib = Math.round(20 + Math.random() * 5);
+  document.getElementById('kpi-vibration-val').innerHTML = `${vib}<span class="kunit"> μm/s</span>`;
+  document.getElementById('tol-val-5').innerHTML = `${vib} μm/s`;
+  document.getElementById('tol-fill-5').style.width = Math.round((vib/50)*100) + '%';
+
+  // Tolerance / alignment
+  const tol = parseFloat((0.0018 + Math.random() * 0.0004).toFixed(4));
+  document.getElementById('kpi-tolerance-val').innerHTML = `${tol}<span class="kunit"> m</span>`;
+  document.getElementById('tc-tolerance-val').innerHTML = `${tol}<span class="tu"> m</span>`;
+
+  const align = parseFloat((0.6 + Math.random() * 0.4).toFixed(1));
+  document.getElementById('tol-val-1').innerHTML = align + ' mm';
+  document.getElementById('tol-fill-1').style.width = Math.round((align/2.0)*100) + '%';
+
+  const torque = Math.round(62 + Math.random() * 8);
+  document.getElementById('tol-val-2').innerHTML = torque + ' Nm';
+  document.getElementById('tol-fill-2').style.width = Math.round((torque/120)*100) + '%';
+
+  const pDelta = parseFloat((0.15 + Math.random() * 0.05).toFixed(2));
+  document.getElementById('tol-val-3').innerHTML = pDelta + ' Pa';
+  document.getElementById('tol-fill-3').style.width = Math.round((pDelta/0.5)*100) + '%';
+
+  const therm = Math.round(400 + Math.random() * 40);
+  document.getElementById('tol-val-4').innerHTML = therm + ' μm';
+  document.getElementById('tol-fill-4').style.width = Math.round((therm/800)*100) + '%';
+
+  // Uptime fluctuation
+  if (Math.random() < 0.15) {
+    const upt = parseFloat((99.5 + Math.random() * 0.3).toFixed(1));
+    document.getElementById('tc-uptime-val').innerHTML = upt + '<span class="tu">%</span>';
+    document.getElementById('uptime-stat-val').innerHTML = upt + '<span style="font-size:8.5px;color:var(--teal-l);font-weight:400">%</span>';
+  }
+
+  // Active robots change
+  if (Math.random() < 0.08) {
+    activeRobots = activeRobots === 4 ? 3 : 4;
+    document.getElementById('kpi-robots-val').innerHTML = `${activeRobots}<span class="kunit"> units</span>`;
+    document.getElementById('tc-robots-val').innerHTML = `${activeRobots}<span class="tu"> act.</span>`;
+    document.getElementById('kpi-robots-delta').innerHTML = activeRobots === 4 ? '<i class="ti ti-circle-check" style="font-size:9px"></i> All nominal' : '<i class="ti ti-circle-x" style="font-size:9px;color:var(--red)"></i> 1 idle';
+    document.getElementById('consensus-stat-val').innerHTML = `${activeRobots}/4 <span style="font-size:8.5px;color:${activeRobots === 4 ? 'var(--grn)' : 'var(--ambl)'};font-weight:400">robots</span>`;
+  }
+
+}, 1000);
+
+// Slow logic loop for log entries and Chart scrolling
+setInterval(() => {
+  if (!isLive) return;
+  addLogEntry();
+}, 5000);
+
+setInterval(() => {
+  if (!isLive) return;
+
+  // Scroll Throughput Line Chart
+  const line2Data = window.lineChart2.data.datasets[0].data;
+  line2Data.shift();
+  const l2Last = line2Data[line2Data.length - 1];
+  const l2New = Math.max(30, Math.min(90, Math.round(l2Last + (Math.random() - 0.5) * 16)));
+  line2Data.push(l2New);
+  window.lineChart2.update();
+
+  // Scroll Docking Accuracy Line Chart
+  const line3Data = window.lineChart3.data.datasets[0].data;
+  line3Data.shift();
+  const l3Last = line3Data[line3Data.length - 1];
+  const l3New = parseFloat(Math.max(97.0, Math.min(100.0, l3Last + (Math.random() - 0.5) * 0.8)).toFixed(1));
+  line3Data.push(l3New);
+  window.lineChart3.update();
+
+  // Mutate Stacked Area Chart (Robot load)
+  window.stackedChart.data.datasets.forEach(dataset => {
+    const data = dataset.data;
+    data.shift();
+    const last = data[data.length - 1];
+    const val = Math.max(5, Math.min(50, Math.round(last + (Math.random() - 0.5) * 6)));
+    data.push(val);
+  });
+  window.stackedChart.update();
+
+  // Mutate Radar Chart
+  const radarData = window.radarChart.data.datasets[0].data;
+  for(let i=0; i<radarData.length; i++) {
+    radarData[i] = Math.max(20, Math.min(95, Math.round(radarData[i] + (Math.random() - 0.5) * 10)));
+  }
+  window.radarChart.update();
+
+}, 3000);
+
+// Initial highlight
+highlightCodeLine('code-line-2');
+</script>

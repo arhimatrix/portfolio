@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nina Velimirovic - Selected Works and Portfolio in Computational Design, Human-Machine Collaboration, and Autonomous Systems.">
+  <meta name="robots" content="index, follow">
+  <meta name="creator" content="Nina Velimirovic">
+  
+  <title>Nina Velimirovic — Computational Design Portfolio</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Archivo:wdth,wght@62..125,300..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css?v=12">
+  
+  <!-- Load academic data and scripts -->
+  <script src="cv-data.js?v=36"></script>
+  <script src="robot-simulator.js"></script>
+  <script src="app.js?v=35"></script>
+</head>
+<body>
+
+  <!-- Language Switcher (matching LogiRhein Live multilingual look) -->
+  <div id="lang-switch" aria-label="Language Switcher">
+    <a href="#" class="active">EN</a>
+    <a href="#" onclick="alert('Trilingual FR/DE translations will be loaded on demand.')">DE</a>
+    <a href="#" onclick="alert('Trilingual FR/DE translations will be loaded on demand.')">FR</a>
+  </div>
+
+  <!-- Background color wash and star field -->
+  <div id="bgwash"></div>
+  <canvas id="stars"></canvas>
+
+  <!-- Vertical River Navigation Track -->
+  <aside id="riverNav" aria-hidden="true">
+    <div class="track">
+      <div class="fill" id="navFill"></div>
+      <div class="stop" data-target="home" data-frac="0" data-label="TITLE PAGE"></div>
+      <div class="stop" data-target="contents-scene" data-frac="0" data-label="INDEX & CONTENTS"></div>
+      <div class="stop" data-target="profile-scene" data-frac="0" data-label="01 · PROFILE"></div>
+      <div class="stop" data-target="research-fit" data-frac="0" data-label="02 · RESEARCH STATEMENT"></div>
+      <div class="stop" data-target="chapters" data-frac="0" data-label="03 · PROJECT CHAPTERS"></div>
+      <div class="stop" data-target="skills" data-frac="0" data-label="04 · SKILLS MATRIX"></div>
+      <div class="stop" data-target="cv" data-frac="0" data-label="05 · CURRICULUM VITAE"></div>
+      <div class="stop" data-target="contact" data-frac="0" data-label="CONTACT"></div>
+    </div>
+  </aside>
+
+  <!-- Keyboard navigation hints -->
+  <div id="keyhint">↑↓ NAVIGATE · CLICK DOTS TO JUMP</div>
+
+  <!-- ============ SCENE 0: TITLE PAGE (Hero / Generative Diagram) ============ -->
+  <section class="scene" id="home">
+    <div class="academic-header">
+      <span class="left">PORTFOLIO — COMPUTATIONAL DESIGN</span>
+      <span class="right">SELECTED WORKS · 2026</span>
+    </div>
+
+    <div class="hero-content">
+      <!-- Generative Diagram Box -->
+      <div class="generative-box">
+        <canvas id="sim-canvas" class="simulator-canvas"></canvas>
+        <div class="generative-label">FIG.00 — CURL FLOW FIELD × AGENT PROXIMITY GRAPH · N=12 · GENERATIVE</div>
+      </div>
+
+      <!-- Title and Subtitle Block -->
+      <div class="hero-academic-title-block">
+        <h1 class="hero-academic-name">Nina Velimirovic</h1>
+        <p class="hero-academic-subtitle">
+          Architect · Human–Machine Collaboration · Autonomous Systems —<br>
+          <span class="muted">design-to-fabrication workflows for collaborative multi-robot assembly.</span>
+        </p>
+        <div class="hero-academic-code">
+          systems = swarm(n=9); field = curl(grid, k=0.014) # -> headings
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="scene light" id="contents-scene">
+    
+    <div class="contents-grid">
+      <div class="contents-left">
+        <h2 class="academic-title">Contents</h2>
+        <p class="lead">A research-oriented portfolio showcasing computational design, modular building systems, and robotic construction.</p>
+        <p class="sub-text">Generative diagrams throughout are produced procedurally — the same logic that drives the coordination, panelization, and assembly-sequencing research documented inside.</p>
+        
+        <div class="contents-vector-box">
+          <iframe src="Interactive diagrams/generative_design_process_v3.html?v=10" style="width: 100%; height: 100%; border: none; display: block; overflow: hidden;" scrolling="no"></iframe>
+        </div>
+      </div>
+      
+      <div class="contents-right">
+                <ul class="contents-list">
+          <li>
+            <span class="num">01</span>
+            <span class="title-wrap">
+              <span class="title">Profile</span>
+              <span class="subtitle">POSITION & RESEARCH ALIGNMENT</span>
+            </span>
+            <span class="page">p.02</span>
+          </li>
+          <li>
+            <span class="num">02</span>
+            <span class="title-wrap">
+              <span class="title">Research Statement</span>
+              <span class="subtitle">COMPUTATIONAL DESIGN FOR AUTONOMOUS ASSEMBLY</span>
+            </span>
+            <span class="page">p.04</span>
+          </li>
+          <li>
+            <span class="num">03</span>
+            <span class="title-wrap">
+              <span class="title">The Horizon Protocol</span>
+              <span class="subtitle">100-PERSON LUNAR SETTLEMENT MASTERPLAN</span>
+            </span>
+            <span class="page">p.05</span>
+          </li>
+          <li>
+            <span class="num">04</span>
+            <span class="title-wrap">
+              <span class="title">NEOM Multimodal Mobility Hubs</span>
+              <span class="subtitle">OVERVIEW · STATION ARCHITECTURE · SYSTEMS</span>
+            </span>
+            <span class="page">p.08</span>
+          </li>
+          <li>
+            <span class="num">05</span>
+            <span class="title-wrap">
+              <span class="title">Distributed Exploration of Titan</span>
+              <span class="subtitle">COOPERATIVE 9-AGENT SWARM · FULL MBSE</span>
+            </span>
+            <span class="page">p.13</span>
+          </li>
+          <li>
+            <span class="num">06</span>
+            <span class="title-wrap">
+              <span class="title">Orbital Gateway Construction</span>
+              <span class="subtitle">CONSENSUS COORDINATION FOR IN-ORBIT ASSEMBLY</span>
+            </span>
+            <span class="page">p.17</span>
+          </li>
+          <li>
+            <span class="num">07</span>
+            <span class="title-wrap">
+              <span class="title">Computational Design & Resilience</span>
+              <span class="subtitle">ENVIRONMENTAL STRESS · X-BIM DASHBOARD</span>
+            </span>
+            <span class="page">p.20</span>
+          </li>
+          <li>
+            <span class="num">08</span>
+            <span class="title-wrap">
+              <span class="title">Curriculum Vitae</span>
+              <span class="subtitle">EXPERIENCE · EDUCATION · AFFILIATIONS · SKILLS</span>
+            </span>
+            <span class="page">p.22</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+  </section>
+
+  <!-- ============ SCENE 1.6: PROFILE ============ -->
+  <section class="scene light" id="profile-scene">
+    
+    <div class="profile-layout-grid">
+      <div class="profile-left-col">
+        <h2 class="profile-headline">Designing adaptive, co-habited physical systems at the intersection of computational design, robotic construction, and space architecture.</h2>
+        <p class="profile-para">An interdisciplinary architect and systems engineer with over a decade of experience delivering human-inhabited automated environments — from underground driverless operations for the $5B Tel Aviv Red Line LRT to NEOM's autonomous zero-carbon mobility networks. Her work focuses on the translation of high-level architectural intentions into closed-loop physical systems, establishing a foundation for doctoral research in computational design frameworks that unify structural logic, material constraints, and robotic construction.</p>
+        <p class="profile-para">Her current MSc research at the International Space University integrates space architecture with cooperative robotics, developing complete systems-engineering packages for autonomous robot collectives. This research spans consensus-based coordination logic, real-time digital twins, telemetry streams, and hardware prototypes — validated through high-fidelity physics-based simulations (UE5/AirSim) and extreme analog environments (AATC Analog Astronaut Lab, testing human-machine cognitive load via EEG arrays) to pioneer autonomous construction workflows for both terrestrial and extraterrestrial habitats.</p>
+        
+      </div>
+      
+      <div class="profile-right-col">
+        <div class="photo-drop-zone" id="photo-drop" style="border-style: solid;">
+          <div class="drop-text" style="display:none;">
+            <svg class="drop-icon" viewBox="0 0 24 24" style="width:40px; height:40px; fill:#888;"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zm-5.04-6.71l-2.75 3.54-1.96-2.36L6.5 17h11l-3.54-4.71z"/></svg>
+            <p style="font-family:var(--font-m); font-size:11px; margin-top:10px; color:#666;">Drop portrait / studio photo</p>
+            <span class="browse-link" style="font-family:var(--font-m); font-size:10px; color:var(--d-teal); cursor:pointer;">or browse files</span>
+          </div>
+          <img id="profile-uploaded-img" src="profile.jpg?v=6" style="display:block; width:100%; height:100%; object-fit:cover;">
+          <input type="file" id="profile-photo-input" accept="image/*" style="display:none;">
+        </div>
+        <div class="fig-caption">FIG.01 — N. VELIMIROVIC</div>
+        
+        <div class="thesis-statement-box">
+          <div class="box-header">THESIS.STATEMENT <span class="txt-badge">TXT</span></div>
+          <p class="box-content">
+            # architecture is what a city means when the<br>
+            # boundary between human and machine agency<br>
+            # becomes the design variable.
+          </p>
+        </div>
+      </div>
+    </div>
+    
+  </section>
+
+  <!-- ============ SCENE 2: RESEARCH STATEMENT ============ -->
+  <section class="scene light" id="research-fit">
+
+    <!-- Two columns: left = text, right = code + assembly -->
+    <div class="profile-layout-grid">
+
+      <!-- LEFT: Research text -->
+      <div class="profile-left-col">
+        <h2 class="profile-headline">Computational design for <strong>autonomous multi-robot assembly.</strong></h2>
+        <p class="profile-para">The challenge of robot collectives delivering collaborative tasks in dynamic, unstructured construction environments sits exactly at the intersection my research has been converging on: <strong>integrated digital workflows</strong> that unify architectural design, structural and material logic, robotic-assembly constraints, and fabrication requirements within one computational framework.</p>
+        <p class="profile-para">Across four space-systems projects I have built the constituent methods of that framework: consensus-based coordination for multi-agent assembly under latency and failure; real-time digital twins linking design, robotic execution, and human supervision; design-to-fabrication pipelines with end-to-end requirement traceability; and fault-tolerance protocols holding mission continuity above 99% under 25% agent loss.</p>
+        <p class="profile-para">My work applies these to <strong>modular building systems</strong> — developing generative methods that produce, evaluate, and refine building components designed from the outset for assembly by collaborative robot teams, then validating them in simulation and physical demonstrators.</p>
+
+        <div class="alignment-topics-section">
+          <div class="section-title">DIRECT ALIGNMENT WITH THE ADVERTISED TOPICS</div>
+          <div class="alignment-grid">
+            <div class="alignment-col">
+              <p>— <strong>Computational design</strong> integrating structural, material &amp; robotic constraints</p>
+              <p>— <strong>Simulation &amp; optimisation</strong> for building-system design</p>
+            </div>
+            <div class="alignment-col">
+              <p>— <strong>Design-to-fabrication</strong> pipelines for modular elements</p>
+              <p>— <strong>Physical demonstrators</strong> — design, fabricate, evaluate</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Code snippet + Assembly simulation -->
+      <div class="profile-right-col">
+        <div class="sub-code-box">
+          <div class="code-header">
+            <span class="left">FRAMEWORK / ASSEMBLE.PY</span>
+            <span class="right">PY</span>
+          </div>
+          <pre><code class="language-python"><span class="k">def</span> <span class="f">assemble</span>(system, robots):
+    plan = sequence(system.modules)      <span class="c"># design -&gt; order</span>
+    <span class="k">for</span> step <span class="k">in</span> plan:
+        m = step.module
+        <span class="k">if</span> reachable(m, robots) <span class="k">and</span> stable(system + m):
+            r = allocate(step, robots)    <span class="c"># consensus bid</span>
+            r.place(m)                    <span class="c"># robotic assembly</span>
+            twin.update(system, r)        <span class="c"># digital twin sync</span>
+    <span class="k">return</span> system</code></pre>
+        </div>
+
+        <!-- Assembly simulation FIG.03 — 16:9 canvas in the right column -->
+        <div class="assembly-dashboard-box" id="assembly-sim-box" style="margin: 20px 0 0;">
+          <div class="assembly-dash-header">
+            <span class="dash-badge">Ã¢â€”Â TWIN SYNCED</span>
+            <span id="twin-sync-status" class="dash-badge dash-sync">Ã¢â€”Â TWIN SYNCED</span>
+          </div>
+          <canvas id="canvas-assembly-sim" class="assembly-main-canvas"></canvas>
+          <div class="assembly-bottom-strip">
+            <div class="assembly-strip-log">
+              <div class="dash-panel-header">CONSENSUS LOG</div>
+              <div class="telemetry-log" id="assembly-log"></div>
+            </div>
+            <div class="assembly-strip-metrics">
+              <div class="dash-panel-header">SYSTEM METRICS</div>
+              <div class="dash-metric-row">
+                <span class="dash-metric-label">STABILITY</span>
+                <div class="dash-bar-track"><div class="stat-bar-fill" id="assembly-stability-fill" style="width:0%"></div></div>
+                <span class="dash-metric-val" id="assembly-stability-val">0%</span>
+              </div>
+              <div class="dash-metric-row">
+                <span class="dash-metric-label">PROGRESS</span>
+                <div class="dash-bar-track"><div class="stat-bar-fill" id="assembly-progress-fill" style="width:0%"></div></div>
+                <span class="dash-metric-val" id="assembly-progress-val">0/12</span>
+              </div>
+            </div>
+            <div class="assembly-strip-leds">
+              <div class="dash-panel-header">ROBOTS</div>
+              <div class="dash-robots-row">
+                <div class="dash-robot-led" id="robot-led-1"><span class="led online"></span> R-01</div>
+                <div class="dash-robot-led" id="robot-led-2"><span class="led online"></span> R-02</div>
+                <div class="dash-robot-led" id="robot-led-3"><span class="led online"></span> R-03</div>
+              </div>
+            </div>
+            <div class="assembly-strip-controls">
+              <button id="btn-assembly-play">&#9646;&#9646; PAUSE</button>
+              <button id="btn-assembly-step">STEP</button>
+              <button id="btn-assembly-fault">&#9889; FAULT</button>
+              <button id="btn-assembly-reset">RESET</button>
+            </div>
+          </div>
+          <div class="sub-fig-label">FIG.03 — COOPERATIVE ASSEMBLY WORKFLOW &amp; REAL-TIME DIGITAL TWIN</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FIG.02 SWARM: same width as hero canvas -->
+    <div class="hero-width-wrap" style="margin-top: 40px;">
+      <div class="swarm-fullwidth-box">
+        <canvas class="sub-fig-canvas" id="canvas-research-swarm"></canvas>
+        <div class="swarm-ctrl-bar">
+          <label>AGENTS <input type="range" id="nAgents" min="10" max="120" value="50"> <span id="nOut">50</span></label>
+          <label>SPEED <input type="range" id="spd" min="1" max="6" value="2"> <span id="sOut">2</span></label>
+          <label>COHESION <input type="range" id="coh" min="0" max="10" value="4"> <span id="cOut">4</span></label>
+          <button id="btn-swarm-reset">â†º RESET</button>
+          <button id="btn-swarm-waypoint">+ WAYPOINT</button>
+        </div>
+        <div class="sub-fig-label">FIG.02 â€“ GENERATIVE SWARM BEHAVIOR Ã— AGENT PROXIMITY GRAPH (CLICK TO ADD WAYPOINT)</div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ============ SCENE 3: PORTFOLIO CHAPTERS (7 Chapters) ============ -->
+  <section class="scene" id="chapters">
+    <div class="wrap">
+      <span class="kicker reveal">02 · Project Chapters</span>
+      <h2 class="reveal">A research trajectory in <em>seven computational stages</em>.</h2>
+      <p class="lead reveal">From large-scale transit networks and parametric material systems, to swarm simulations, sentient infrastructure, and cognitive analog validation.</p>
+    </div>
+    
+    <div class="chapter-container" id="chapters-container">
+      <!-- Rendered dynamically by app.js from cv-data.js -->
+    </div>
+  </section>
+
+  <!-- ============ SCENE 4: SKILLS MATRIX ============ -->
+  <section class="scene" id="skills">
+    <div class="wrap">
+      <span class="kicker reveal">03 · Skills Matrix</span>
+      <h2 class="reveal">Computational, robotic, and <em>systems engineering competencies</em>.</h2>
+      <p class="lead reveal">Proven through infrastructure delivery, high-fidelity physics-based simulations (UE5/AirSim), and academic research pipelines.</p>
+      
+      <div class="skills-grid" id="skills-container">
+        <!-- Rendered dynamically by app.js from cv-data.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCENE 5: ACADEMIC & PROFESSIONAL CV (Washes to Light) ============ -->
+  <section class="scene light" id="cv">
+    <div class="wrap">
+      <span class="kicker reveal">04 · Academic Dossier</span>
+      <h2 class="reveal">Professional and academic CV. <em>Ten years in automated hubs.</em></h2>
+      <p class="lead reveal">A career focused on designing and validating human environments where machine systems share spatial agency.</p>
+      
+      <div style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; margin-top: 4vh;">
+        <div>
+          <h3 style="font-size: 20px; margin-bottom: 25px; border-bottom: 1px solid var(--d-border); padding-bottom: 10px; color: var(--d-teal);">Professional Experience</h3>
+          <div class="cv-timeline" id="cv-experience-container">
+            <!-- Rendered dynamically by app.js from cv-data.js -->
+          </div>
+        </div>
+        
+        <div>
+          <h3 style="font-size: 20px; margin-bottom: 25px; border-bottom: 1px solid var(--d-border); padding-bottom: 10px; color: var(--d-teal);">Education</h3>
+          <div class="cv-timeline" id="cv-education-container" style="padding-left:0; display: flex; flex-direction: column; gap: 20px;">
+            <!-- Rendered dynamically by app.js from cv-data.js -->
+          </div>
+          
+          <h3 style="font-size: 20px; margin-top: 40px; margin-bottom: 20px; border-bottom: 1px solid var(--d-border); padding-bottom: 10px; color: var(--d-teal);">Affiliations & Networks</h3>
+          <ul class="cv-entry-bullets" id="cv-affiliations-container" style="list-style: square; padding-left: 20px; color: var(--d-muted);">
+            <!-- Rendered dynamically by app.js from cv-data.js -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCENE 6: CONTACT & FINALE (White) ============ -->
+  <section class="scene light" id="contact" style="padding-bottom: 80px;">
+    <div class="wrap" style="text-align: center;">
+      <span class="kicker reveal">05 · Contact</span>
+      <h2 class="reveal" style="margin-bottom: 20px;">Let's collaborate.</h2>
+      <p class="lead reveal" style="margin: 0 auto 40px; max-width: 600px;">Available for interviews, collaborations, research alignment, and professional opportunities.</p>
+      
+      <div class="reveal" style="display: inline-block; background: var(--d-card); border: 1px solid var(--d-border); border-radius: 12px; padding: 35px; max-width: 500px; text-align: left; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+        <h3 style="font-size: 18px; margin-bottom: 15px; color: var(--d-teal);">Nina Velimirovic</h3>
+        <p style="font-size: 14px; margin-bottom: 8px; color: var(--d-muted);"><strong>Email:</strong> <a href="mailto:nina_velimirovic@yahoo.com" style="color: var(--d-ink); text-decoration: none;">nina_velimirovic@yahoo.com</a></p>
+        <p style="font-size: 14px; margin-bottom: 8px; color: var(--d-muted);"><strong>Phone:</strong> +33 6 87 42 06 94</p>
+        <p style="font-size: 14px; margin-bottom: 8px; color: var(--d-muted);"><strong>Location:</strong> Strasbourg, France / Stuttgart, Germany</p>
+        <p style="font-size: 14px; color: var(--d-muted);"><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/nina-v-6b03715" target="_blank" style="color: var(--d-teal); text-decoration: none;">linkedin.com/in/nina-v-6b03715</a></p>
+      </div>
+
+      <div style="margin-top: 40px; display: flex; gap: 15px; justify-content: center;">
+        <button class="btn-primary" onclick="triggerPdfExport()" style="width: auto;">Print Portfolio PDF</button>
+      </div>
+    </div>
+    
+    <div id="finale">
+      <p class="meta">Selected research and professional portfolio highlighting design-to-fabrication and autonomous robotic assembly.</p>
+      <p class="meta" style="margin-top: 4px;">Ã‚Â© 2026 Nina Velimirovic</p>
+    </div>
+
+    <div class="academic-footer" style="margin-top: 40px;">
+      <span class="left">NINA VELIMIROVIC · PORTFOLIO</span>
+      <span class="right">SELECTED WORKS · 2026</span>
+    </div>
+  </section>
+
+  <!-- --- Fullscreen Image Lightbox Overlay --- -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <button class="lightbox-prev" id="lightbox-prev" onclick="event.stopPropagation(); navigateLightbox(-1)">&#8249;</button>
+    <button class="lightbox-next" id="lightbox-next" onclick="event.stopPropagation(); navigateLightbox(1)">&#8250;</button>
+    <img id="lightbox-img" class="lightbox-content" src="" alt="" onclick="event.stopPropagation()">
+    <video id="lightbox-video" class="lightbox-content" src="" style="display:none; max-width:85%; max-height:80%; object-fit:contain; border-radius:6px; border:1px solid var(--line);" controls autoplay loop muted playsinline onclick="event.stopPropagation()"></video>
+    <div id="lightbox-caption" class="lightbox-caption"></div>
+    <div id="lightbox-counter" class="lightbox-counter"></div>
+  </div>
+
+</body>
+</html>

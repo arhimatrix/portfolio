@@ -1,0 +1,88 @@
+
+<canvas id="c" style="width:100%;height:480px;display:block;background:#f5f3ee;cursor:crosshair;border:0.5px solid #e2e8f0;border-radius:6px"></canvas>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#94a3b8;margin-top:6px;padding:0 4px">CH.04 · TITAN DUAL-MODE SWARM · N=9 AGENTS · CLICK TO PLACE OBSTACLE</div>
+<script>
+const c=document.getElementById('c');
+const ctx=c.getContext('2d');
+let W,H,frame=0,agents=[],obstacles=[];
+const N=9;
+function resize(){
+  W=c.width=c.offsetWidth;H=c.height=480;
+  if(agents.length===0){
+    for(let i=0;i<N;i++)agents.push({x:80+Math.random()*(W-160),y:80+Math.random()*(H-160),vx:(Math.random()-.5)*1.4,vy:(Math.random()-.5)*1.4,trail:[]});
+  }
+}
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle='#f5f3ee';ctx.fillRect(0,0,W,H);
+  frame++;const t=frame*.013;
+  // grid
+  ctx.strokeStyle='rgba(0,0,0,0.04)';ctx.lineWidth=.5;
+  for(let x=0;x<W;x+=30){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+  for(let y=0;y<H;y+=30){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+  // obstacles
+  obstacles.forEach(o=>{
+    ctx.fillStyle='rgba(15,23,42,0.08)';ctx.strokeStyle='rgba(15,23,42,0.5)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.roundRect(o.x-14,o.y-14,28,28,3);ctx.fill();ctx.stroke();
+    ctx.fillStyle='rgba(15,23,42,0.5)';ctx.font='7px "IBM Plex Mono"';ctx.textAlign='center';
+    ctx.fillText('OBS',o.x,o.y+3);
+  });
+  // update agents
+  for(let i=0;i<N;i++){
+    const a=agents[i];
+    a.vx+=Math.cos(t*.55+i*.72+a.y*.01)*.065;
+    a.vy+=Math.sin(t*.55+i*.72+a.x*.01)*.065;
+    obstacles.forEach(o=>{const dx=a.x-o.x,dy=a.y-o.y,d=Math.hypot(dx,dy);if(d<42&&d>0){a.vx+=dx/d*.55;a.vy+=dy/d*.55;}});
+    agents.forEach((b,j)=>{if(i===j)return;const dx=a.x-b.x,dy=a.y-b.y,d=Math.hypot(dx,dy);if(d<38&&d>0){a.vx+=dx/d*.32;a.vy+=dy/d*.32;}});
+    a.vx+=(Math.random()-.5)*.08;a.vy+=(Math.random()-.5)*.08;
+    a.vx*=.975;a.vy*=.975;
+    const spd=Math.hypot(a.vx,a.vy);if(spd>2.6){a.vx=a.vx/spd*2.6;a.vy=a.vy/spd*2.6;}
+    a.x+=a.vx;a.y+=a.vy;
+    if(a.x<10)a.x+=W;if(a.x>W-10)a.x-=W;if(a.y<10)a.y+=H;if(a.y>H-10)a.y-=H;
+    a.trail.push({x:a.x,y:a.y});if(a.trail.length>22)a.trail.shift();
+  }
+  // draw connections
+  for(let i=0;i<N;i++){
+    for(let j=i+1;j<N;j++){
+      const d=Math.hypot(agents[i].x-agents[j].x,agents[i].y-agents[j].y);
+      if(d<110){
+        ctx.strokeStyle=`rgba(0,0,0,${(1-d/110)*.2})`;ctx.lineWidth=.6;
+        ctx.beginPath();ctx.moveTo(agents[i].x,agents[i].y);ctx.lineTo(agents[j].x,agents[j].y);ctx.stroke();
+      }
+    }
+  }
+  // draw agents
+  for(let i=0;i<N;i++){
+    const a=agents[i];
+    // trail
+    if(a.trail.length>1){
+      ctx.beginPath();ctx.moveTo(a.trail[0].x,a.trail[0].y);
+      a.trail.forEach(p=>ctx.lineTo(p.x,p.y));
+      ctx.strokeStyle=i===0?'rgba(14,122,138,0.3)':'rgba(0,0,0,0.08)';
+      ctx.lineWidth=.8;ctx.stroke();
+    }
+    // dot
+    ctx.beginPath();ctx.arc(a.x,a.y,i===0?6:4,0,Math.PI*2);
+    ctx.fillStyle=i===0?'#0e7a8a':'#fff';
+    ctx.strokeStyle=i===0?'#0e7a8a':'#0f172a';
+    ctx.lineWidth=1.5;ctx.fill();ctx.stroke();
+    // inner for non-leader
+    if(i!==0){ctx.beginPath();ctx.arc(a.x,a.y,1.5,0,Math.PI*2);ctx.fillStyle='#0f172a';ctx.fill();}
+  }
+  // leader label
+  const L=agents[0];
+  ctx.fillStyle='#0e7a8a';ctx.font='500 8px "IBM Plex Mono"';ctx.textAlign='center';
+  ctx.fillText('LEADER',L.x,L.y-11);
+  // info
+  ctx.fillStyle='rgba(0,0,0,0.2)';ctx.font='400 8px "IBM Plex Mono"';ctx.textAlign='left';
+  ctx.fillText(`agents: ${N}   obstacles: ${obstacles.length}   frame: ${frame}`,10,H-10);
+  requestAnimationFrame(draw);
+}
+c.addEventListener('click',e=>{
+  const r=c.getBoundingClientRect();
+  obstacles.push({x:e.clientX-r.left,y:e.clientY-r.top});
+  if(obstacles.length>8)obstacles.shift();
+});
+window.addEventListener('resize',resize);
+resize();draw();
+</script>

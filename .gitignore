@@ -1,0 +1,22 @@
+node_modules/
+*.zip
+*.bat
+*.docx
+.gemini/
+.system_generated/
+scratch/
+
+# Ignore raw development and work-in-progress asset folders
+NEOM/Neom/
+NEOM/pudo 2/
+Tel Aviv/Tel Aviv portfolio/
+Stormcity/Stormresilient/
+Horizon Protocol/Horizon Protocol/
+Swarm Titan/cad/
+Swarm Titan/for web/
+Swarm Titan/*.png
+Swarm Titan/*.jpeg
+Swarm Titan/*.jpg
+Orbital City/Orbital City/
+Orbital City/portfolio_assets/*(1)*
+PUDO/PUDO/

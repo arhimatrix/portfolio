@@ -1,0 +1,90 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--teal:#00B4C8;--ink:#0D0D0D;--ink3:#888;--rule:rgba(13,13,13,0.1);--mono:'Space Mono',monospace;--sans:'Inter',sans-serif}
+</style>
+<div style="background:#fff;padding:24px 20px 20px;font-family:var(--sans)">
+  <div style="font-size:8px;font-weight:700;color:#0E7A8A;letter-spacing:0.22em;text-transform:uppercase;font-family:'Space Mono',monospace;margin-bottom:4px">System topology</div>
+  <div style="height:0.5px;background:var(--rule);margin:10px 0 0"></div>
+
+  <svg width="100%" viewBox="0 0 680 460" role="img">
+    <title>System topology</title>
+    <desc>Radial node diagram with OBC at centre and 8 subsystems orbiting.</desc>
+
+    <text x="500" y="300" text-anchor="middle" font-family="'Inter',sans-serif" font-size="220" font-weight="600" fill="rgba(13,13,13,0.03)" dominant-baseline="central">02</text>
+
+    <polygon points="340,52 500,112 556,250 500,388 340,448 180,388 124,250 180,112" fill="none" stroke="rgba(13,13,13,0.12)" stroke-width="1.2"/>
+    <polygon points="340,92 460,142 506,250 460,358 340,408 220,358 174,250 220,142" fill="none" stroke="rgba(13,13,13,0.07)" stroke-width="1.0"/>
+
+    <line x1="340" y1="250" x2="340" y2="72" stroke="rgba(13,13,13,0.18)" stroke-width="1.2"/>
+    <line x1="340" y1="250" x2="500" y2="120" stroke="rgba(13,13,13,0.18)" stroke-width="1.2"/>
+    <line x1="340" y1="250" x2="538" y2="250" stroke="rgba(13,13,13,0.18)" stroke-width="1.2"/>
+    <line x1="340" y1="250" x2="500" y2="380" stroke="rgba(13,13,13,0.18)" stroke-width="1.2"/>
+    <line x1="340" y1="250" x2="340" y2="428" stroke="rgba(13,13,13,0.18)" stroke-width="1.2"/>
+    <line x1="340" y1="250" x2="180" y2="380" stroke="rgba(13,13,13,0.18)" stroke-width="1.2"/>
+    <line x1="340" y1="250" x2="142" y2="250" stroke="rgba(13,13,13,0.18)" stroke-width="1.2"/>
+    <line x1="340" y1="250" x2="180" y2="120" stroke="rgba(13,13,13,0.18)" stroke-width="1.2"/>
+
+    <circle cx="340" cy="161" r="2.5" fill="none" stroke="rgba(13,13,13,0.3)" stroke-width="1.2"/>
+    <circle cx="420" cy="185" r="2.5" fill="none" stroke="rgba(13,13,13,0.3)" stroke-width="1.2"/>
+    <circle cx="439" cy="250" r="2.5" fill="none" stroke="rgba(13,13,13,0.3)" stroke-width="1.2"/>
+    <circle cx="420" cy="315" r="2.5" fill="none" stroke="rgba(13,13,13,0.3)" stroke-width="1.2"/>
+    <circle cx="340" cy="339" r="2.5" fill="none" stroke="rgba(13,13,13,0.3)" stroke-width="1.2"/>
+    <circle cx="260" cy="315" r="2.5" fill="none" stroke="rgba(13,13,13,0.3)" stroke-width="1.2"/>
+    <circle cx="241" cy="250" r="2.5" fill="none" stroke="rgba(13,13,13,0.3)" stroke-width="1.2"/>
+    <circle cx="260" cy="185" r="2.5" fill="none" stroke="rgba(13,13,13,0.3)" stroke-width="1.2"/>
+
+    <!-- Centre OBC -->
+    <circle cx="340" cy="250" r="44" fill="#fff" stroke="#0D0D0D" stroke-width="1.8"/>
+    <circle cx="340" cy="250" r="38" fill="none" stroke="rgba(13,13,13,0.15)" stroke-width="0.8"/>
+    <text x="340" y="245" text-anchor="middle" font-family="'Space Mono',monospace" font-size="12" font-weight="700" fill="#0D0D0D" dominant-baseline="central">OBC</text>
+    <text x="340" y="262" text-anchor="middle" font-family="'Space Mono',monospace" font-size="7.5" fill="#888" dominant-baseline="central">central hub</text>
+
+    <!-- GNC top -->
+    <circle cx="340" cy="56" r="30" fill="#fff" stroke="rgba(13,13,13,0.35)" stroke-width="1.0"/>
+    <text x="340" y="52" text-anchor="middle" font-family="'Space Mono',monospace" font-size="9" font-weight="700" fill="#0D0D0D">GNC</text>
+    <text x="340" y="64" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6.5" fill="#888">navigation</text>
+
+    <!-- EPS top right -->
+    <circle cx="500" cy="108" r="30" fill="#fff" stroke="rgba(13,13,13,0.35)" stroke-width="1.0"/>
+    <text x="500" y="104" text-anchor="middle" font-family="'Space Mono',monospace" font-size="9" font-weight="700" fill="#0D0D0D">EPS</text>
+    <text x="500" y="116" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6.5" fill="#888">power</text>
+
+    <!-- Mobility right -->
+    <circle cx="538" cy="250" r="30" fill="#fff" stroke="rgba(13,13,13,0.35)" stroke-width="1.0"/>
+    <text x="538" y="246" text-anchor="middle" font-family="'Space Mono',monospace" font-size="8" font-weight="700" fill="#0D0D0D">MOBILITY</text>
+    <text x="538" y="258" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6.5" fill="#888">drive</text>
+
+    <!-- Payload bottom right -->
+    <circle cx="500" cy="392" r="30" fill="#fff" stroke="rgba(13,13,13,0.35)" stroke-width="1.0"/>
+    <text x="500" y="388" text-anchor="middle" font-family="'Space Mono',monospace" font-size="8.5" font-weight="700" fill="#0D0D0D">PAYLOAD</text>
+    <text x="500" y="400" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6.5" fill="#888">science</text>
+
+    <!-- Comms bottom -->
+    <circle cx="340" cy="428" r="30" fill="#fff" stroke="rgba(13,13,13,0.35)" stroke-width="1.0"/>
+    <text x="340" y="424" text-anchor="middle" font-family="'Space Mono',monospace" font-size="9" font-weight="700" fill="#0D0D0D">COMMS</text>
+    <text x="340" y="436" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6.5" fill="#888">UHF · LGA</text>
+
+    <!-- Thermal bottom left -->
+    <circle cx="180" cy="392" r="30" fill="#fff" stroke="rgba(13,13,13,0.35)" stroke-width="1.0"/>
+    <text x="180" y="388" text-anchor="middle" font-family="'Space Mono',monospace" font-size="8.5" font-weight="700" fill="#0D0D0D">THERMAL</text>
+    <text x="180" y="400" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6.5" fill="#888">RHU</text>
+
+    <!-- Structure left -->
+    <circle cx="142" cy="250" r="30" fill="#fff" stroke="rgba(13,13,13,0.35)" stroke-width="1.0"/>
+    <text x="142" y="246" text-anchor="middle" font-family="'Space Mono',monospace" font-size="8" font-weight="700" fill="#0D0D0D">STRUCT.</text>
+    <text x="142" y="258" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6.5" fill="#888">chassis</text>
+
+    <!-- Swarm HRC top left — teal accent -->
+    <circle cx="180" cy="108" r="30" fill="#fff" stroke="#00B4C8" stroke-width="1.8"/>
+    <text x="180" y="104" text-anchor="middle" font-family="'Space Mono',monospace" font-size="9" font-weight="700" fill="#00B4C8">SWARM</text>
+    <text x="180" y="116" text-anchor="middle" font-family="'Space Mono',monospace" font-size="6.5" fill="#00B4C8">HRC</text>
+  </svg>
+
+  <div style="height:0.5px;background:var(--rule);margin:8px 0 10px"></div>
+  <div style="display:flex;gap:18px;flex-wrap:wrap">
+    <span style="display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:8px;color:#444"><span style="width:10px;height:10px;border-radius:50%;border:1.8px solid #00B4C8;display:inline-block"></span>active / lead subsystem</span>
+    <span style="display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:8px;color:#444"><span style="width:10px;height:10px;border-radius:50%;border:1.0px solid rgba(13,13,13,0.35);display:inline-block"></span>nominal subsystem</span>
+    <span style="display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:8px;color:#444"><span style="width:10px;height:10px;border-radius:50%;border:1.8px solid #0D0D0D;display:inline-block"></span>central OBC</span>
+  </div>
+</div>

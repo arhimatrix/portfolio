@@ -1,0 +1,65 @@
+
+<canvas id="c" style="width:100%;height:480px;display:block;cursor:pointer;border:0.5px solid #e2e8f0;border-radius:6px"></canvas>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#94a3b8;margin-top:6px;padding:0 4px">CH.03 · STORM RESILIENT BUILDINGS / X-BIM · CLICK TO CYCLE LOAD SCENARIO</div>
+<script>
+const c=document.getElementById('c');
+const ctx=c.getContext('2d');
+let W,H,frame=0,sc=0;
+const scenarios=[
+  {name:'WIND LOAD · NORTH',desc:'Windward face pressure · Leeward suction'},
+  {name:'WIND LOAD · NE DIAGONAL',desc:'Torsional load · Corner vortex shedding'},
+  {name:'STORM SURGE · SOUTH',desc:'Hydrostatic base pressure · Wave impact'},
+  {name:'SEISMIC · BASE EXCITATION',desc:'Inertial forces · Mode shape response'}
+];
+function resize(){W=c.width=c.offsetWidth;H=c.height=480;}
+function stress(x,y,t){
+  const nx=x/W,ny=y/H;
+  switch(sc){
+    case 0:return Math.pow(1-ny,1.6)*(.5+Math.sin(nx*Math.PI*2+t)*.22);
+    case 1:return Math.pow(1-ny,1.2)*(.45+Math.sin((nx+ny)*Math.PI*2.5+t)*.3);
+    case 2:return(.25+Math.pow(ny,2.2)*.75)*(.6+Math.cos(nx*Math.PI*3+t)*.18);
+    default:return.38+Math.sin(nx*Math.PI*4+t*2)*Math.sin(ny*Math.PI*3.5)*.42;
+  }
+}
+function stressCol(v){
+  // white(low) -> amber -> red(high) on white bg
+  if(v<.33){const t=v/.33;return `rgb(${Math.round(245-t*20)},${Math.round(243-t*60)},${Math.round(238-t*80)})`;}
+  if(v<.66){const t=(v-.33)/.33;return `rgb(${Math.round(225+t*14)},${Math.round(183-t*100)},${Math.round(158-t*120)})`;}
+  const t=(v-.66)/.34;return `rgb(${Math.round(239-t*20)},${Math.round(83-t*60)},${Math.round(38-t*20)})`;
+}
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  frame++;const t=frame*.016;
+  const C=28,R=18,cw=W/C,ch=H/R;
+  for(let r=0;r<R;r++){
+    for(let cc=0;cc<C;cc++){
+      const s=stress((cc+.5)*cw,(r+.5)*ch,t);
+      ctx.fillStyle=stressCol(s);
+      ctx.fillRect(cc*cw,r*ch,cw+.5,ch+.5);
+    }
+  }
+  // structural grid overlay
+  ctx.strokeStyle='rgba(0,0,0,0.07)';ctx.lineWidth=.5;
+  for(let x=0;x<W;x+=cw){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+  for(let y=0;y<H;y+=ch){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+  // scenario name
+  ctx.fillStyle='rgba(0,0,0,0.75)';ctx.font='600 11px "IBM Plex Mono"';ctx.textAlign='left';
+  ctx.fillText(scenarios[sc].name,12,22);
+  ctx.fillStyle='rgba(0,0,0,0.4)';ctx.font='400 9px "IBM Plex Mono"';
+  ctx.fillText(scenarios[sc].desc,12,36);
+  ctx.fillText('CLICK TO CHANGE LOAD SCENARIO',12,H-10);
+  // scenario counter
+  ctx.fillStyle='rgba(0,0,0,0.3)';ctx.font='400 9px "IBM Plex Mono"';ctx.textAlign='right';
+  ctx.fillText(`${sc+1} / ${scenarios.length}`,W-12,22);
+  // legend bar
+  const lx=W-22,ly=50,lh=100;
+  for(let i=0;i<lh;i++){ctx.fillStyle=stressCol(1-i/lh);ctx.fillRect(lx,ly+i,12,1);}
+  ctx.strokeStyle='rgba(0,0,0,0.2)';ctx.lineWidth=.5;ctx.strokeRect(lx,ly,12,lh);
+  ctx.fillStyle='rgba(0,0,0,0.4)';ctx.font='8px "IBM Plex Mono"';ctx.textAlign='left';
+  ctx.fillText('MAX',lx+16,ly+8);ctx.fillText('MIN',lx+16,ly+lh);
+  requestAnimationFrame(draw);
+}
+c.addEventListener('click',()=>sc=(sc+1)%scenarios.length);
+window.addEventListener('resize',resize);
+resize();draw();
+</script>

@@ -1,0 +1,189 @@
+
+<style>
+canvas { display: block; background: #0a0a0a; border-radius: 8px; }
+.ctrl { display:flex; gap:12px; align-items:center; margin-top:10px; flex-wrap:wrap; font-size:13px; color:var(--color-text-secondary); }
+.ctrl label { display:flex; gap:6px; align-items:center; }
+input[type=range] { width:90px; }
+button { font-size:12px; padding:4px 12px; }
+</style>
+<canvas id="c" width="680" height="420"></canvas>
+<div class="ctrl">
+  <label>Agents <input type="range" id="nAgents" min="10" max="120" value="50"> <span id="nOut">50</span></label>
+  <label>Speed <input type="range" id="spd" min="1" max="6" value="2"> <span id="sOut">2</span></label>
+  <label>Cohesion <input type="range" id="coh" min="0" max="10" value="4"> <span id="cOut">4</span></label>
+  <button onclick="reset()">↺ Reset</button>
+  <button onclick="addTarget()">+ Waypoint</button>
+</div>
+<script>
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+const W = 680, H = 420;
+let agents = [], targets = [], frame = 0;
+
+const CREAM = '#e8e0c8';
+const TEAL  = '#1d9e75';
+const AMBER = '#ef9f27';
+const DIM   = 'rgba(232,224,200,0.18)';
+
+function rnd(a,b){ return a + Math.random()*(b-a); }
+
+function mkAgent(){
+  return {
+    x: rnd(40,W-40), y: rnd(40,H-40),
+    vx: rnd(-1,1), vy: rnd(-1,1),
+    trail: [], phase: rnd(0, Math.PI*2)
+  };
+}
+
+function reset(){
+  const n = +document.getElementById('nAgents').value;
+  agents = Array.from({length:n}, mkAgent);
+  targets = [{x: W*0.5, y: H*0.5, age:0}];
+}
+
+function addTarget(){
+  targets.push({x: rnd(80, W-80), y: rnd(80, H-80), age:0});
+  if(targets.length > 4) targets.shift();
+}
+
+reset();
+
+function update(){
+  const spd = +document.getElementById('spd').value;
+  const coh = +document.getElementById('coh').value * 0.002;
+
+  for(const a of agents){
+    // Attraction to nearest target
+    let tx = 0, ty = 0, minD = Infinity;
+    for(const t of targets){
+      const d = Math.hypot(a.x-t.x, a.y-t.y);
+      if(d < minD){ minD = d; tx = t.x; ty = t.y; }
+    }
+    a.vx += (tx - a.x) * coh;
+    a.vy += (ty - a.y) * coh;
+
+    // Separation from neighbors
+    for(const b of agents){
+      if(b === a) continue;
+      const dx = a.x - b.x, dy = a.y - b.y;
+      const d2 = dx*dx + dy*dy;
+      if(d2 < 600 && d2 > 0){
+        const f = 0.4 / d2;
+        a.vx += dx * f;
+        a.vy += dy * f;
+      }
+    }
+
+    // Noise
+    a.vx += (Math.random()-0.5)*0.15;
+    a.vy += (Math.random()-0.5)*0.15;
+
+    // Clamp speed
+    const v = Math.hypot(a.vx, a.vy);
+    if(v > spd){ a.vx = a.vx/v*spd; a.vy = a.vy/v*spd; }
+
+    // Boundaries
+    if(a.x < 20) a.vx += 0.5;
+    if(a.x > W-20) a.vx -= 0.5;
+    if(a.y < 20) a.vy += 0.5;
+    if(a.y > H-20) a.vy -= 0.5;
+
+    a.trail.push({x:a.x, y:a.y});
+    if(a.trail.length > 18) a.trail.shift();
+
+    a.x += a.vx;
+    a.y += a.vy;
+    a.phase += 0.04;
+  }
+
+  for(const t of targets) t.age++;
+}
+
+function drawGrid(){
+  ctx.strokeStyle = 'rgba(232,224,200,0.04)';
+  ctx.lineWidth = 0.5;
+  for(let x=0;x<W;x+=40){ ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,H); ctx.stroke(); }
+  for(let y=0;y<H;y+=40){ ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(W,y); ctx.stroke(); }
+}
+
+function drawConnections(){
+  for(let i=0;i<agents.length;i++){
+    for(let j=i+1;j<agents.length;j++){
+      const a=agents[i], b=agents[j];
+      const d = Math.hypot(a.x-b.x, a.y-b.y);
+      if(d < 70){
+        const alpha = (1 - d/70) * 0.25;
+        ctx.strokeStyle = `rgba(29,158,117,${alpha})`;
+        ctx.lineWidth = 0.5;
+        ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+      }
+    }
+  }
+}
+
+function draw(){
+  ctx.fillStyle = '#0a0a0a';
+  ctx.fillRect(0,0,W,H);
+  drawGrid();
+
+  // Targets
+  for(const t of targets){
+    const pulse = Math.sin(frame*0.05)*4;
+    ctx.strokeStyle = AMBER;
+    ctx.lineWidth = 0.8;
+    ctx.globalAlpha = 0.5;
+    ctx.beginPath(); ctx.arc(t.x,t.y,14+pulse,0,Math.PI*2); ctx.stroke();
+    ctx.globalAlpha = 0.15;
+    ctx.fillStyle = AMBER;
+    ctx.beginPath(); ctx.arc(t.x,t.y,8,0,Math.PI*2); ctx.fill();
+    ctx.globalAlpha = 1;
+    // crosshair
+    ctx.strokeStyle = AMBER; ctx.lineWidth = 0.6; ctx.globalAlpha = 0.6;
+    ctx.beginPath(); ctx.moveTo(t.x-10,t.y); ctx.lineTo(t.x+10,t.y); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(t.x,t.y-10); ctx.lineTo(t.x,t.y+10); ctx.stroke();
+    ctx.globalAlpha = 1;
+  }
+
+  drawConnections();
+
+  // Trails + agents
+  for(const a of agents){
+    // Trail
+    if(a.trail.length > 1){
+      ctx.beginPath();
+      ctx.moveTo(a.trail[0].x, a.trail[0].y);
+      for(let i=1;i<a.trail.length;i++) ctx.lineTo(a.trail[i].x, a.trail[i].y);
+      ctx.strokeStyle = `rgba(29,158,117,0.18)`;
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+    }
+    // Agent dot
+    const pulse = (Math.sin(a.phase)*0.3+0.7);
+    ctx.fillStyle = TEAL;
+    ctx.globalAlpha = pulse;
+    ctx.beginPath(); ctx.arc(a.x, a.y, 2.2, 0, Math.PI*2); ctx.fill();
+    ctx.globalAlpha = 0.5;
+    ctx.fillStyle = CREAM;
+    ctx.beginPath(); ctx.arc(a.x, a.y, 1, 0, Math.PI*2); ctx.fill();
+    ctx.globalAlpha = 1;
+  }
+
+  // Label
+  ctx.fillStyle = 'rgba(232,224,200,0.35)';
+  ctx.font = '11px monospace';
+  ctx.fillText(`agents: ${agents.length}   targets: ${targets.length}   frame: ${frame}`, 12, H-12);
+}
+
+function loop(){
+  update();
+  draw();
+  frame++;
+  requestAnimationFrame(loop);
+}
+
+document.getElementById('nAgents').oninput = function(){ document.getElementById('nOut').textContent = this.value; reset(); };
+document.getElementById('spd').oninput = function(){ document.getElementById('sOut').textContent = this.value; };
+document.getElementById('coh').oninput = function(){ document.getElementById('cOut').textContent = this.value; };
+
+loop();
+</script>

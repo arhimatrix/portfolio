@@ -1,0 +1,86 @@
+
+<canvas id="c" style="width:100%;height:480px;display:block;background:#f5f3ee;cursor:crosshair;border:0.5px solid #e2e8f0;border-radius:6px"></canvas>
+<div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:#94a3b8;margin-top:6px;padding:0 4px">CH.07 · EEG COGNITIVE LOAD · AATC ANALOG MISSION 2026 · MOVE MOUSE LEFT/RIGHT</div>
+<script>
+const c=document.getElementById('c');
+const ctx=c.getContext('2d');
+let W,H,frame=0,mouseX=.5;
+const rooms=[
+  {label:'AIRLOCK',load:.85,col:'#dc2626',sub:'Emergency protocol active'},
+  {label:'OPS CTR',load:.72,col:'#d97706',sub:'Multi-system monitoring'},
+  {label:'HABITAT',load:.41,col:'#059669',sub:'Rest cycle · Low demand'},
+  {label:'LAB',load:.63,col:'#2563eb',sub:'Experiment sequence'},
+  {label:'EVA PREP',load:.91,col:'#7c3aed',sub:'Peak cognitive load'}
+];
+const bands=[
+  {name:'δ delta  1–4 Hz',f:.45,amp:.10,ph:0},
+  {name:'θ theta  4–8 Hz',f:1.1,amp:.075,ph:1.2},
+  {name:'α alpha  8–13Hz',f:2.0,amp:.055,ph:2.4},
+  {name:'β beta  13–30Hz',f:4.2,amp:.036,ph:3.6},
+  {name:'γ gamma 30–100Hz',f:7.8,amp:.022,ph:4.8}
+];
+function resize(){W=c.width=c.offsetWidth;H=c.height=480;}
+function draw(){
+  ctx.clearRect(0,0,W,H);
+  ctx.fillStyle='#f5f3ee';ctx.fillRect(0,0,W,H);
+  frame++;const t=frame*.02;
+  // bg grid
+  ctx.strokeStyle='rgba(0,0,0,0.04)';ctx.lineWidth=.5;
+  for(let x=0;x<W;x+=30){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+  for(let y=0;y<H;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+  const ar=Math.min(Math.floor(mouseX*rooms.length),rooms.length-1);
+  const room=rooms[ar];
+  // channel labels area
+  const plotTop=30,plotH=H-110;
+  // EEG channels
+  bands.forEach((band,bi)=>{
+    const yBase=plotTop+(bi+.5)*(plotH/bands.length);
+    const amp=(plotH/bands.length)*.4*(.5+room.load*.9);
+    // baseline
+    ctx.strokeStyle='rgba(0,0,0,0.08)';ctx.lineWidth=.5;
+    ctx.beginPath();ctx.moveTo(60,yBase);ctx.lineTo(W-10,yBase);ctx.stroke();
+    // wave
+    ctx.beginPath();
+    for(let x=60;x<W-10;x+=1){
+      const y=yBase+Math.sin(x*band.f*.05+t*band.f+band.ph)*amp
+                   +Math.sin(x*band.f*.028+t*.55)*amp*.25
+                   +Math.sin(x*band.f*.013+t*.3)*amp*.12;
+      if(x===60)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+    }
+    ctx.strokeStyle=`rgba(0,0,0,${.25+bi*.06})`;ctx.lineWidth=.85+bi*.07;ctx.stroke();
+    // channel label
+    ctx.fillStyle='rgba(0,0,0,0.35)';ctx.font='400 8px "IBM Plex Mono"';ctx.textAlign='left';
+    ctx.fillText(band.name,4,yBase+3);
+  });
+  // bottom room selector bar
+  const bh=26,by=H-36;
+  rooms.forEach((r,i)=>{
+    const bx=i*(W/rooms.length)+2,bw=W/rooms.length-4;
+    ctx.fillStyle=i===ar?r.col:'rgba(0,0,0,0.06)';
+    ctx.beginPath();ctx.roundRect(bx,by,bw,bh-2,3);ctx.fill();
+    if(i!==ar){ctx.strokeStyle='rgba(0,0,0,0.12)';ctx.lineWidth=.5;ctx.stroke();}
+    ctx.fillStyle=i===ar?'#fff':'rgba(0,0,0,0.3)';
+    ctx.font=`${i===ar?'600':'400'} 8px "IBM Plex Mono"`;ctx.textAlign='center';
+    ctx.fillText(r.label,bx+bw/2,by+bh*.55);
+  });
+  // active room info
+  ctx.fillStyle='rgba(0,0,0,0.5)';ctx.font='600 10px "IBM Plex Mono"';ctx.textAlign='left';
+  ctx.fillText(room.label,10,H-44);
+  ctx.fillStyle='rgba(0,0,0,0.3)';ctx.font='400 9px "IBM Plex Mono"';
+  ctx.fillText(room.sub,10,H-55+12);
+  // cognitive load gauge
+  const gx=W-160,gy=H-52;
+  ctx.fillStyle='rgba(0,0,0,0.08)';ctx.beginPath();ctx.roundRect(gx,gy,150,12,2);ctx.fill();
+  ctx.fillStyle=room.col;ctx.beginPath();ctx.roundRect(gx,gy,150*room.load,12,2);ctx.fill();
+  ctx.fillStyle='rgba(0,0,0,0.4)';ctx.font='500 8px "IBM Plex Mono"';ctx.textAlign='right';
+  ctx.fillText(`COGNITIVE LOAD  ${Math.round(room.load*100)}%`,W-10,gy-4);
+  // cursor line
+  const cx2=mouseX*W;
+  ctx.strokeStyle='rgba(0,0,0,0.12)';ctx.lineWidth=.7;ctx.setLineDash([4,6]);
+  ctx.beginPath();ctx.moveTo(cx2,plotTop);ctx.lineTo(cx2,plotTop+plotH);ctx.stroke();ctx.setLineDash([]);
+  requestAnimationFrame(draw);
+}
+c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();mouseX=(e.clientX-r.left)/W;});
+window.addEventListener('resize',resize);
+resize();draw();
+</script>

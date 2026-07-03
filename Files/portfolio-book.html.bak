@@ -1,0 +1,2024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nina Velimirovic — Portfolio 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   PRINT-BOOK LAYOUT · Nina Velimirovic Portfolio 2026
+   A4 Portrait · 210mm × 297mm per page
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black:  #0A0A0A;
+  --white:  #FFFFFF;
+  --teal:   #0E7A8A;
+  --teal-lt:#2DD6E8;
+  --gray:   #475569;
+  --light:  #F8FAFC;
+  --border: #E2E8F0;
+  --f-d: "Space Grotesk", system-ui, sans-serif;
+  --f-m: "IBM Plex Mono", monospace;
+}
+
+body {
+  background: #1a1a1a;
+  font-family: var(--f-d);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ---- Print button (hidden in print) ---- */
+.print-btn {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  z-index: 1000;
+  background: var(--teal);
+  color: #fff;
+  font-family: var(--f-m);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  box-shadow: 0 4px 16px rgba(14,122,138,0.4);
+  transition: background 0.2s;
+}
+.print-btn:hover { background: #0a5f6b; }
+
+/* ---- Page wrapper ---- */
+.book {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 24px 0 40px;
+}
+
+/* ---- A4 page ---- */
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  height: 297mm;
+  position: relative;
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Colour variants ---- */
+.page.dark  { background: var(--black); color: var(--white); }
+.page.light { background: var(--white); color: var(--black); }
+
+/* ---- Page footer ---- */
+.pf {
+  margin-top: auto;
+  padding: 6mm 14mm 8mm;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-top: 0.3mm solid rgba(0,0,0,0.12);
+  flex-shrink: 0;
+}
+.page.dark .pf { border-top-color: rgba(255,255,255,0.08); }
+.pf-left, .pf-right {
+  font-family: var(--f-m);
+  font-size: 7pt;
+  color: #94A3B8;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.page.dark .pf-left,
+.page.dark .pf-right { color: rgba(255,255,255,0.3); }
+.pf-right { text-align: right; }
+
+/* ---- Running header ---- */
+.rh {
+  padding: 6mm 14mm 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+.rh-label {
+  font-family: var(--f-m);
+  font-size: 7pt;
+  letter-spacing: 0.18em;
+  color: #94A3B8;
+  text-transform: uppercase;
+}
+.page.dark .rh-label { color: rgba(255,255,255,0.3); }
+.rh-line {
+  flex: 1;
+  height: 0.3mm;
+  background: var(--border);
+  margin: 0 8mm;
+}
+.page.dark .rh-line { background: rgba(255,255,255,0.08); }
+
+/* ============================================================
+   COVER PAGE
+   ============================================================ */
+.cover-inner {
+  flex-shrink: 0;
+  padding: 12mm 14mm 6mm;
+}
+.cover-top-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3mm;
+  background: var(--teal);
+}
+.cover-corner {
+  position: absolute;
+  top: 10mm; right: 14mm;
+  font-family: var(--f-m);
+  font-size: 7pt;
+  letter-spacing: 0.22em;
+  color: rgba(255,255,255,0.25);
+  text-transform: uppercase;
+}
+.cover-fig {
+  flex: 1;
+  position: relative;
+  margin: 0 14mm;
+  border: 0.3mm solid rgba(255,255,255,0.06);
+  overflow: hidden;
+  min-height: 0;
+}
+.cover-fig img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+  filter: grayscale(30%);
+}
+.cover-fig-label {
+  position: absolute;
+  bottom: 4mm; left: 5mm;
+  font-family: var(--f-m);
+  font-size: 6pt;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.1em;
+}
+.cover-name {
+  font-size: 36pt;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+  color: var(--white);
+  margin-bottom: 4mm;
+}
+.cover-title {
+  font-family: var(--f-m);
+  font-size: 8pt;
+  letter-spacing: 0.18em;
+  color: var(--teal-lt);
+  text-transform: uppercase;
+  margin-bottom: 8mm;
+}
+.cover-rule {
+  width: 24mm;
+  height: 0.5mm;
+  background: var(--teal);
+  margin-bottom: 5mm;
+}
+.cover-meta {
+  font-family: var(--f-m);
+  font-size: 7pt;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   PROFILE PAGE
+   ============================================================ */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 72mm 1fr;
+  gap: 0;
+  flex: 1;
+  overflow: hidden;
+}
+.profile-photo-col {
+  background: #F1F5F9;
+  position: relative;
+  overflow: hidden;
+}
+.profile-photo-col img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+.profile-text-col {
+  padding: 10mm 12mm 8mm;
+  display: flex;
+  flex-direction: column;
+}
+.p-kicker {
+  font-family: var(--f-m);
+  font-size: 7pt;
+  letter-spacing: 0.22em;
+  color: var(--teal);
+  text-transform: uppercase;
+  margin-bottom: 4mm;
+}
+.p-name {
+  font-size: 22pt;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--black);
+  margin-bottom: 2mm;
+}
+.p-title {
+  font-family: var(--f-m);
+  font-size: 7pt;
+  color: var(--gray);
+  letter-spacing: 0.06em;
+  margin-bottom: 6mm;
+  line-height: 1.5;
+}
+.p-divider {
+  width: 100%;
+  height: 0.3mm;
+  background: var(--border);
+  margin: 4mm 0;
+}
+.p-bio {
+  font-size: 8.5pt;
+  line-height: 1.7;
+  color: var(--gray);
+  margin-bottom: 5mm;
+}
+.p-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3mm;
+  margin-top: auto;
+}
+.p-meta-item .label {
+  font-family: var(--f-m);
+  font-size: 6.5pt;
+  color: #94A3B8;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1mm;
+}
+.p-meta-item .val {
+  font-size: 8pt;
+  color: var(--black);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   TABLE OF CONTENTS
+   ============================================================ */
+.toc-layout {
+  padding: 12mm 14mm;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.toc-heading {
+  font-size: 42pt;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--black);
+  line-height: 1.0;
+  margin-bottom: 10mm;
+}
+.toc-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.toc-item {
+  display: grid;
+  grid-template-columns: 12mm 1fr auto;
+  gap: 0 4mm;
+  align-items: baseline;
+  padding: 3.5mm 0;
+  border-bottom: 0.3mm solid var(--border);
+}
+.toc-num {
+  font-family: var(--f-m);
+  font-size: 8pt;
+  color: var(--teal);
+  font-weight: 500;
+}
+.toc-title-wrap {}
+.toc-title {
+  font-size: 11pt;
+  font-weight: 600;
+  color: var(--black);
+  letter-spacing: -0.01em;
+  display: block;
+  line-height: 1.2;
+}
+.toc-sub {
+  font-family: var(--f-m);
+  font-size: 6.5pt;
+  color: #94A3B8;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 1mm;
+}
+.toc-page {
+  font-family: var(--f-m);
+  font-size: 8pt;
+  color: #94A3B8;
+}
+
+/* ============================================================
+   CHAPTER OPENER PAGES — image + title at bottom
+   ============================================================ */
+.ch-opener {
+  position: absolute;
+  inset: 0;
+  bottom: 14mm; /* leave room for pf footer */
+}
+.ch-opener-img {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.ch-opener-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.38;
+  filter: grayscale(15%);
+}
+/* Gradient overlay for text legibility */
+.ch-opener::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 70%;
+  background: linear-gradient(to top, rgba(10,10,10,0.97) 0%, rgba(10,10,10,0.65) 55%, transparent 100%);
+  pointer-events: none;
+}
+/* Chapter number watermark */
+.ch-num {
+  position: absolute;
+  top: 8mm;
+  left: 10mm;
+  font-family: var(--f-d);
+  font-size: 88pt;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  color: rgba(255,255,255,0.07);
+  line-height: 1.0;
+  z-index: 2;
+  pointer-events: none;
+  user-select: none;
+}
+/* Title/text block pinned to bottom of opener */
+.ch-opener-content {
+  position: absolute;
+  bottom: 8mm;
+  left: 14mm;
+  right: 14mm;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+}
+.ch-kicker {
+  font-family: var(--f-m);
+  font-size: 7pt;
+  letter-spacing: 0.25em;
+  color: var(--teal-lt);
+  text-transform: uppercase;
+  margin-bottom: 3mm;
+}
+.ch-title {
+  font-size: 24pt;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 3mm;
+}
+.ch-subtitle {
+  font-family: var(--f-m);
+  font-size: 8pt;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.05em;
+  margin-bottom: 4mm;
+}
+.ch-theme-line {
+  font-size: 8pt;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.5;
+  max-width: 120mm;
+  border-left: 1.5mm solid var(--teal);
+  padding-left: 4mm;
+}
+
+/* ============================================================
+   CHAPTER CONTENT PAGES
+   ============================================================ */
+.ch-content {
+  padding: 10mm 14mm 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.ch-content-top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6mm;
+  margin-bottom: 6mm;
+}
+.ch-text-block {}
+.ch-section-kicker {
+  font-family: var(--f-m);
+  font-size: 6.5pt;
+  letter-spacing: 0.22em;
+  color: var(--teal);
+  text-transform: uppercase;
+  margin-bottom: 2mm;
+}
+.ch-summary {
+  font-size: 8.5pt;
+  line-height: 1.7;
+  color: var(--gray);
+  margin-bottom: 4mm;
+}
+.ch-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2mm;
+}
+.ch-bullets li {
+  font-size: 7.5pt;
+  color: #334155;
+  line-height: 1.55;
+  padding-left: 5mm;
+  position: relative;
+}
+.ch-bullets li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--teal);
+}
+.ch-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2mm;
+  margin-top: 4mm;
+}
+.ch-tag {
+  font-family: var(--f-m);
+  font-size: 6pt;
+  color: var(--gray);
+  background: #F1F5F9;
+  border: 0.3mm solid var(--border);
+  border-radius: 99mm;
+  padding: 1mm 3mm;
+}
+/* Code block */
+.ch-code-box {
+  background: #F6F8FA;
+  border: 0.3mm solid var(--border);
+  border-radius: 2mm;
+  overflow: hidden;
+  font-size: 6.5pt;
+}
+.ch-code-header {
+  background: #EEF1F4;
+  border-bottom: 0.3mm solid var(--border);
+  padding: 2mm 3mm;
+  font-family: var(--f-m);
+  font-size: 6pt;
+  letter-spacing: 0.1em;
+  color: var(--gray);
+  display: flex;
+  justify-content: space-between;
+}
+.ch-code-body {
+  padding: 3mm;
+  font-family: var(--f-m);
+  font-size: 6.5pt;
+  line-height: 1.65;
+  color: #1E293B;
+  white-space: pre;
+  overflow: hidden;
+}
+.ch-code-body .kw { color: #D73A49; font-weight: 600; }
+.ch-code-body .fn { color: #6F42C1; }
+.ch-code-body .cm { color: #6A737D; font-style: italic; }
+
+/* Image grids */
+.img-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2mm;
+}
+.img-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2mm;
+}
+.img-grid-1-2 {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 2mm;
+}
+.img-cell {
+  position: relative;
+  overflow: hidden;
+  background: var(--border);
+}
+.img-cell.tall { aspect-ratio: 3/4; }
+.img-cell.wide { aspect-ratio: 16/9; }
+.img-cell.sq { aspect-ratio: 1/1; }
+.img-cell.nat { aspect-ratio: 4/3; }
+.img-cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.img-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+  padding: 5mm 2mm 1.5mm;
+  font-family: var(--f-m);
+  font-size: 5.5pt;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.04em;
+}
+
+/* Full-width image strip */
+.img-strip {
+  width: 100%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.img-strip img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+.img-strip.h40 { height: 40mm; }
+.img-strip.h50 { height: 50mm; }
+.img-strip.h55 { height: 55mm; }
+.img-strip.h65 { height: 65mm; }
+
+/* Full-bleed image page */
+.full-bleed {
+  position: absolute;
+  inset: 0;
+}
+.full-bleed img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.full-bleed-caption {
+  position: absolute;
+  bottom: 12mm;
+  left: 14mm;
+  right: 14mm;
+  font-family: var(--f-m);
+  font-size: 7pt;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.6);
+}
+
+/* ============================================================
+   CV PAGE
+   ============================================================ */
+.cv-layout {
+  padding: 10mm 14mm 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.cv-section-title {
+  font-family: var(--f-m);
+  font-size: 7pt;
+  letter-spacing: 0.22em;
+  color: var(--teal);
+  text-transform: uppercase;
+  margin-bottom: 3mm;
+}
+.cv-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6mm;
+  flex: 1;
+}
+.cv-entry {
+  padding-bottom: 4mm;
+  border-bottom: 0.3mm solid var(--border);
+  margin-bottom: 4mm;
+}
+.cv-role {
+  font-size: 9pt;
+  font-weight: 700;
+  color: var(--black);
+  letter-spacing: -0.01em;
+  margin-bottom: 1mm;
+}
+.cv-company {
+  font-family: var(--f-m);
+  font-size: 6.5pt;
+  color: var(--teal);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.5mm;
+}
+.cv-period {
+  font-family: var(--f-m);
+  font-size: 6.5pt;
+  color: #94A3B8;
+  margin-bottom: 1.5mm;
+}
+.cv-desc {
+  font-size: 7pt;
+  color: var(--gray);
+  line-height: 1.55;
+}
+.edu-card {
+  background: #F8FAFC;
+  border: 0.3mm solid var(--border);
+  border-radius: 2mm;
+  padding: 3mm 4mm;
+  margin-bottom: 2.5mm;
+}
+.edu-degree {
+  font-size: 8pt;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 0.5mm;
+}
+.edu-school {
+  font-family: var(--f-m);
+  font-size: 6pt;
+  color: var(--teal);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1mm;
+}
+.edu-focus {
+  font-size: 7pt;
+  color: var(--gray);
+  line-height: 1.4;
+}
+
+/* Skills row */
+.skills-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2mm;
+  margin-top: 3mm;
+}
+.skill-chip {
+  font-family: var(--f-m);
+  font-size: 6pt;
+  padding: 1.5mm 2mm;
+  background: #F1F5F9;
+  border: 0.3mm solid var(--border);
+  border-radius: 1mm;
+  color: var(--gray);
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* ============================================================
+   BACK COVER
+   ============================================================ */
+.back-cover-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 14mm 10mm;
+  z-index: 2;
+}
+/* ::before teal stripe removed */
+.bc-mono {
+  font-family: var(--f-m);
+  font-size: 7pt;
+  letter-spacing: 0.22em;
+  color: rgba(255,255,255,0.25);
+  text-transform: uppercase;
+  margin-bottom: 8mm;
+}
+.bc-name {
+  font-size: 28pt;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--white);
+  margin-bottom: 4mm;
+  text-align: center;
+}
+.bc-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3mm 6mm;
+  margin-top: 8mm;
+  text-align: center;
+}
+.bc-contact-item .bc-label {
+  font-family: var(--f-m);
+  font-size: 6pt;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1mm;
+}
+.bc-contact-item .bc-val {
+  font-family: var(--f-m);
+  font-size: 7.5pt;
+  color: var(--teal-lt);
+}
+.bc-teal-bar {
+  width: 20mm;
+  height: 0.5mm;
+  background: var(--teal);
+  margin: 6mm auto;
+}
+
+/* ============================================================
+   PRINT RULES
+   ============================================================ */
+@media print {
+  body { background: none; }
+  .print-btn { display: none !important; }
+  .book { padding: 0; gap: 0; background: none; }
+  .page {
+    box-shadow: none;
+    page-break-after: always;
+    break-after: page;
+  }
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">⬇ Save as PDF</button>
+
+<div class="book">
+
+  <!-- ══════════════════════════════════════════
+       PAGE 01 · COVER
+       ══════════════════════════════════════════ -->
+
+  <!-- ══════════════════════════════════════════
+       PAGE 01 · COVER
+       ══════════════════════════════════════════ -->
+  <div class="page dark">
+    <div style="flex:1; display:flex; flex-direction:column; position:relative; overflow:hidden;">
+      <div class="cover-top-bar"></div>
+      <div class="cover-corner">PORTFOLIO · 2026</div>
+
+      <!-- Name + Title block at TOP -->
+      <div class="cover-inner">
+        <div class="cover-name">Nina<br>Velimirovic</div>
+        <div class="cover-title">Architect · Human–Machine Collaboration · Autonomous Systems</div>
+        <div class="cover-rule"></div>
+        <div class="cover-meta">International Space University · Strasbourg, France · 2026</div>
+      </div>
+
+      <!-- Hero image fills remaining space BELOW the name -->
+      <div class="cover-fig">
+        <img src="Horizon Protocol/portfolio_assets/hero_lunar_structure.jpg" alt="Lunar Sentient Habitat">
+        <div class="cover-fig-label">FIG.00 — SENTIENT HABITAT · SAMI ADAPTIVE STRUCTURE · HORIZON PROTOCOL</div>
+      </div>
+
+      <!-- Spacer below image -->
+      <div style="height:4mm;"></div>
+    </div>
+    <div class="pf">
+      <span class="pf-left">SELECTED WORKS 2016–2026</span>
+      <span class="pf-right">COMPUTATIONAL DESIGN PORTFOLIO</span>
+    </div>
+  </div>
+
+
+  
+  
+
+  <!-- ══════════════════════════════════════════
+       PAGE 02 · PROFILE
+       ══════════════════════════════════════════ -->
+  <div class="page light">
+    <div class="rh">
+      <span class="rh-label">Profile</span>
+      <div class="rh-line"></div>
+      <span class="rh-label">02</span>
+    </div>
+    <div class="profile-grid" style="flex:1; overflow:hidden;">
+      <div class="profile-photo-col">
+        <img src="profile.jpg" alt="Nina Velimirovic">
+      </div>
+      <div class="profile-text-col">
+        <div class="p-kicker">Candidate Profile</div>
+        <div class="p-name">Nina<br>Velimirovic</div>
+        <div class="p-title">Architect · Human–Machine Collaboration Researcher<br>Robotics & Computational Design</div>
+        <div class="p-divider"></div>
+        <div class="p-bio">
+          Architect and Human-Machine Collaboration researcher with over a decade of delivery on billion-dollar automated environments where machine systems and humans share physical and cognitive space — from the $5B Tel Aviv Red Line LRT to NEOM's zero-carbon urban mobility network.
+        </div>
+        <div class="p-bio">
+          MSc research at the International Space University applies EEG neurophysiological monitoring, spatial behavioral mapping, and ergonomic auditing to evaluate how humans perform and navigate in robot-inhabited environments. Research themes: adaptive task planning, wearable supervisory interfaces, real-time digital twins, and autonomous coordination with human-in-the-loop override.
+        </div>
+        <div class="p-divider"></div>
+        <div class="p-meta-grid">
+          <div class="p-meta-item">
+            <div class="label">Email</div>
+            <div class="val">nina_velimirovic@yahoo.com</div>
+          </div>
+          <div class="p-meta-item">
+            <div class="label">Location</div>
+            <div class="val">Strasbourg, France</div>
+          </div>
+          <div class="p-meta-item">
+            <div class="label">LinkedIn</div>
+            <div class="val">linkedin.com/in/nina-v-6b03715</div>
+          </div>
+          <div class="p-meta-item">
+            <div class="label">MSc Program</div>
+            <div class="val">Space Engineering & Applications, ISU</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pf">
+      <span class="pf-left">Nina Velimirovic — Portfolio 2026</span>
+      <span class="pf-right">p. 02</span>
+    </div>
+  </div>
+
+
+  
+  
+
+  <!-- ══════════════════════════════════════════
+       PAGE 03 · TABLE OF CONTENTS
+       ══════════════════════════════════════════ -->
+  <div class="page light">
+    <div class="rh">
+      <span class="rh-label">Contents</span>
+      <div class="rh-line"></div>
+      <span class="rh-label">03</span>
+    </div>
+    <div class="toc-layout">
+      <div class="toc-heading">Contents</div>
+      <ul class="toc-list">
+        <li class="toc-item">
+          <span class="toc-num">01</span>
+          <span class="toc-title-wrap">
+            <span class="toc-title">Human-Machine Collaboration & Sentient Infrastructure</span>
+            <span class="toc-sub">EuroMoonMars Lunar Village · Adaptive Human-Robot Interface</span>
+          </span>
+          <span class="toc-page">p.04</span>
+        </li>
+        <li class="toc-item">
+          <span class="toc-num">02</span>
+          <span class="toc-title-wrap">
+            <span class="toc-title">Distributed Exploration of Titan's Organic Chemistry - A Cooperative Hybrid-Agent Swarm Mission</span>
+            <span class="toc-sub">9-Agent Swarm · Adaptive Task Planning · Full MBSE</span>
+          </span>
+          <span class="toc-page">p.07</span>
+        </li>
+        <li class="toc-item">
+          <span class="toc-num">03</span>
+          <span class="toc-title-wrap">
+            <span class="toc-title">Orbital Gateway Construction</span>
+            <span class="toc-sub">Consensus Coordination · In-Orbit Assembly · Digital Twin</span>
+          </span>
+          <span class="toc-page">p.11</span>
+        </li>
+        <li class="toc-item">
+          <span class="toc-num">04</span>
+          <span class="toc-title-wrap">
+            <span class="toc-title">UMBRELLA · Real-Time Digital Twin</span>
+            <span class="toc-sub">Human-Robot Supervisory Interface · UE5/AirSim</span>
+          </span>
+          <span class="toc-page">p.14</span>
+        </li>
+        <li class="toc-item">
+          <span class="toc-num">05</span>
+          <span class="toc-title-wrap">
+            <span class="toc-title">NEOM Multimodal Mobility Hubs</span>
+            <span class="toc-sub">Human-Machine Interface · Zero-Carbon Transit · Occupant Sensing</span>
+          </span>
+          <span class="toc-page">p.16</span>
+        </li>
+        <li class="toc-item">
+          <span class="toc-num">06</span>
+          <span class="toc-title-wrap">
+            <span class="toc-title">Computational Design & Resilience</span>
+            <span class="toc-sub">Storm-Resilient Buildings · X-BIM Suite · Real-Time Dashboard</span>
+          </span>
+          <span class="toc-page">p.20</span>
+        </li>
+        <li class="toc-item">
+          <span class="toc-num">07</span>
+          <span class="toc-title-wrap">
+            <span class="toc-title">Curriculum Vitae</span>
+            <span class="toc-sub">Experience · Education · Affiliations · Skills</span>
+          </span>
+          <span class="toc-page">p.22</span>
+        </li>
+      </ul>
+    </div>
+    <div class="pf">
+      <span class="pf-left">Nina Velimirovic — Portfolio 2026</span>
+      <span class="pf-right">p. 03</span>
+    </div>
+  </div>
+
+
+  
+  
+
+  <!-- ══════════════════════════════════════════
+       PAGE 04 · CHAPTER 01 OPENER
+       ══════════════════════════════════════════ -->
+  <div class="page dark" style="position:relative;">
+    <div class="ch-opener">
+      <div class="ch-opener-img">
+        <img src="Horizon Protocol/portfolio_assets/lunar_base_craters.jpg" alt="Lunar habitat">
+      </div>
+      <div class="ch-opener-content">
+        <div class="ch-kicker">Chapter 01 · Human-Machine Collaboration</div>
+        <div class="ch-title">Human-Machine Collaboration<br>&amp; Sentient Infrastructure</div>
+        <div class="ch-subtitle">EuroMoonMars Lunar Village · Adaptive Human-Robot Interface</div>
+        <div class="ch-theme-line">Wearable sensor-driven interfaces, decentralised adaptive control, and human-in-the-loop supervisory systems for a 100-person lunar settlement.</div>
+      </div>
+    </div>
+    <div class="ch-num">01</div>
+    <div class="pf">
+      <span class="pf-left">Ch.01 · Human-Machine Collaboration</span>
+      <span class="pf-right">p. 04</span>
+    </div>
+  </div>
+
+
+  
+  
+
+  <!-- ══════════════════════════════════════════
+       PAGE 05 · CHAPTER 01 CONTENT
+       ══════════════════════════════════════════ -->
+  <div class="page light">
+    <div class="rh">
+      <span class="rh-label">Ch.01 · Human-Machine Collaboration</span>
+      <div class="rh-line"></div>
+      <span class="rh-label">05</span>
+    </div>
+    <div class="ch-content">
+      <div class="ch-content-top">
+        <div class="ch-text-block">
+          <div class="ch-section-kicker">Project Overview</div>
+          <div class="ch-summary">Proposed the architectural masterplan and human-machine interface architecture for a permanent 100-person Moon Village in partnership with EuroMoonMars. Engineered decentralised control loops, wearable-sensor-responsive spatial skins, and supervisory override interfaces.</div>
+          <ul class="ch-bullets">
+            <li>Designed SAMI — a wearable-sensor-informed kinetic architectural skin: reads occupant biometric and movement data in real time to adapt spatial configuration, luminance, and atmospheric zones.</li>
+            <li>Engineered 'Reflex Arc' distributed control loops: rule-based autonomous agents regulating life-support, pressure zones, and spatial reconfiguration in response to physiological sensor input — with human supervisory override capability.</li>
+            <li>Developed human-in-the-loop interface dashboards enabling crew to monitor robot task sequences and issue override commands.</li>
+            <li>Coordinated with EuroMoonMars and Tohoku University Space Robotics Laboratory on robotic construction sequencing and wearable interface validation.</li>
+          </ul>
+          <div class="ch-tags">
+            <span class="ch-tag">Human-Machine Collaboration</span>
+            <span class="ch-tag">SAMI Adaptive Interface</span>
+            <span class="ch-tag">Wearable Sensors</span>
+            <span class="ch-tag">Supervisory Override</span>
+            <span class="ch-tag">EuroMoonMars</span>
+          </div>
+        </div>
+        <div>
+          <div class="ch-code-box">
+            <div class="ch-code-header">
+              <span>PROTOCOL / REFLEX_HRC.PY</span>
+              <span>Python 3.11</span>
+            </div>
+            <div class="ch-code-body"><span class="kw">def</span> <span class="fn">reflex_hrc</span>(zone, sensors, human_present):
+    state = sensors.<span class="fn">read_biometric</span>(zone)
+    <span class="kw">if</span> state.co2 > THRESH <span class="kw">or</span> state.breach:
+        <span class="kw">if not</span> <span class="fn">human_present</span>(zone):
+            <span class="fn">seal</span>(zone) <span class="cm"># autonomous response</span>
+        <span class="kw">else</span>:
+            <span class="fn">alert_crew</span>(zone, state) <span class="cm"># HRC</span>
+    sami_skin.<span class="fn">adapt</span>(zone, state.motion,
+                      state.strain)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lunar Village Overview — no frame -->
+      <div style="flex:1; display:flex; flex-direction:column; min-height:0; margin-top:4mm;">
+        <div style="flex:1; overflow:hidden; min-height:0;">
+          <img src="Horizon Protocol/portfolio_assets/lunar_base_overview.jpg" alt="Lunar Village Overview" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+        <div style="font-family: var(--f-m); font-size: 6.5pt; color: #64748B; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2mm; padding-left: 1mm;">Lunar Village Overview — Masterplan &amp; Dome Structure Overview</div>
+      </div>
+    </div>
+    <div class="pf">
+      <span class="pf-left">Ch.01 · Human-Machine Collaboration</span>
+      <span class="pf-right">p. 05</span>
+    </div>
+  </div>
+
+  
+  
+
+  <!-- ══════════════════════════════════════════
+       PAGE 06 · CHAPTER 01 UNDERGROUND HABITATS
+       ══════════════════════════════════════════ -->
+  <div class="page light">
+    <div class="rh">
+      <span class="rh-label">Ch.01 · Human-Machine Collaboration</span>
+      <div class="rh-line"></div>
+      <span class="rh-label">06</span>
+    </div>
+    <div class="ch-content" style="padding: 4mm 14mm 0; gap: 3mm; flex: 1; display: flex; flex-direction: column; min-height: 0;">
+      <!-- Top Image: Full Width Cross-section -->
+      <div style="flex: 1.5; display: flex; flex-direction: column; min-height: 0;">
+        <div style="flex: 1; overflow: hidden; min-height: 0;">
+          <img src="Horizon Protocol/portfolio_assets/lunar_base_crosssection.png" alt="Lunar Base Underground Cross-section" style="width:100%; height:100%; object-fit:cover; object-position: center bottom;">
+        </div>
+        <div style="font-family: var(--f-m); font-size: 6.5pt; color: #64748B; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2mm; padding-left: 1mm;">FIG.01.A — Lunar Base Masterplan &amp; Underground Settlement Section</div>
+      </div>
+
+      <!-- Bottom Grid: 2x2 Suspended Habitats -->
+      <div style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 3mm; min-height: 0;">
+        <div style="display: flex; flex-direction: column; min-height: 0;">
+          <div style="flex: 1; overflow: hidden; min-height: 0;">
+            <img src="Horizon Protocol/portfolio_assets/underground_capsule_vertical.jpg" alt="Suspended Habitat Vertical Structure" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div style="font-family: var(--f-m); font-size: 5.5pt; color: #64748B; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 1mm; padding-left: 0.5mm;">FIG.01.B — Subterranean Cave Habitation: Suspended Pod Concept A</div>
+        </div>
+        <div style="display: flex; flex-direction: column; min-height: 0;">
+          <div style="flex: 1; overflow: hidden; min-height: 0;">
+            <img src="Horizon Protocol/portfolio_assets/underground_capsule_flat.jpg" alt="Suspended Habitat Flat Roof" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div style="font-family: var(--f-m); font-size: 5.5pt; color: #64748B; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 1mm; padding-left: 0.5mm;">FIG.01.C — Subterranean Cave Habitation: Suspended Pod Concept B</div>
+        </div>
+        <div style="display: flex; flex-direction: column; min-height: 0;">
+          <div style="flex: 1; overflow: hidden; min-height: 0;">
+            <img src="Horizon Protocol/portfolio_assets/underground_capsule_wide.jpg" alt="Suspended Habitat Wide Structure" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div style="font-family: var(--f-m); font-size: 5.5pt; color: #64748B; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 1mm; padding-left: 0.5mm;">FIG.01.D — Subterranean Cave Habitation: Suspended Pod Concept C</div>
+        </div>
+        <div style="display: flex; flex-direction: column; min-height: 0;">
+          <div style="flex: 1; overflow: hidden; min-height: 0;">
+            <img src="Horizon Protocol/portfolio_assets/underground_capsule_curved.jpg" alt="Suspended Habitat Curved Capsule" style="width:100%; height:100%; object-fit:cover;">
+          </div>
+          <div style="font-family: var(--f-m); font-size: 5.5pt; color: #64748B; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 1mm; padding-left: 0.5mm;">FIG.01.E — Subterranean Cave Habitation: Suspended Pod Concept D</div>
+        </div>
+      </div>
+    </div>
+    <div class="pf">
+      <span class="pf-left">Ch.01 · Human-Machine Collaboration</span>
+      <span class="pf-right">p. 06</span>
+    </div>
+  </div>
+
+
+  
+  
+
+  <!-- ══════════════════════════════════════════
+       PAGE 07 · CHAPTER 02 OPENER
+       ══════════════════════════════════════════ -->
+  <div class="page dark" style="position:relative;">
+    <div class="ch-opener">
+      <div class="ch-opener-img">
+        <img src="Swarm Titan/portfolio_assets/IMG_3508.jpeg" alt="UE5 Terrain">
+      </div>
+      <div class="ch-opener-content">
+        <div class="ch-kicker">Chapter 02 · Robotics &amp; Autonomous Systems</div>
+        <div class="ch-title" style="font-size:18pt; margin-bottom:2mm;">Distributed Exploration of Titan's<br>Organic Chemistry</div>
+        <div class="ch-subtitle" style="font-size:9.5pt; letter-spacing:0.04em;">A Cooperative Hybrid-Agent Swarm Mission</div>
+        <div class="ch-theme-line">Multi-agent coordination, adaptive task planning, human-supervisory interfaces, and high-fidelity swarm simulation for Titan's prebiotic terrain mapping.</div>
+      </div>
+    </div>
+    <div class="ch-num">02</div>
+    <div class="pf">
+      <span class="pf-left">Ch.02 · Distributed Exploration of Titan's Organic Chemistry</span>
+      <span class="pf-right">p. 07</span>
+    </div>
+  </div>
+
+
+  
+  
+
+  <!-- ══════════════════════════════════════════
+       PAGE 08 · CHAPTER 02 CONTENT
+       ══════════════════════════════════════════ -->
+  <div class="page light">
+    <div class="rh">
+      <span class="rh-label">Ch.02 · Distributed Exploration of Titan's Organic Chemistry</span>
+      <div class="rh-line"></div>
+      <span class="rh-label">08</span>
+    </div>
+    <div class="ch-content">
+      <div class="ch-content-top">
+        <div class="ch-text-block">
+          <div class="ch-section-kicker">Project Overview · Project Lead & Simulation Lead</div>
+          <div class="ch-summary">Cooperative swarm of nine autonomous hybrid agents for Titan's prebiotic terrain mapping. Delivered full MBSE package, designed adaptive task-planning and leader-election algorithms, prototyped physical swarm hardware, and conducted structured user evaluation studies.</div>
+          <ul class="ch-bullets">
+            <li>Designed adaptive task-planning algorithms for real-time goal re-allocation between 9 agents — with human supervisory override capability.</li>
+            <li>Programmed consensus-coordination and leader-election protocols (delay-tolerant mesh) enabling cooperative swarm under communication disruption.</li>
+            <li>Conducted structured evaluation studies of the swarm coordination interface, testing operator-override protocols.</li>
+            <li>Delivered full MBSE package: 35 requirements, FMECA matrix, mass/power/data link budgets, DRL-trained agent behaviour models.</li>
+          </ul>
+          <div class="ch-tags">
+            <span class="ch-tag">Adaptive Task Planning</span>
+            <span class="ch-tag">Swarm HRC</span>
+            <span class="ch-tag">User Study</span>
+            <span class="ch-tag">UE5 Digital Twin</span>
+            <span class="ch-tag">ROS · MBSE</span>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 4mm;">
+          <div class="ch-code-box">
+            <div class="ch-code-header">
+              <span>SWARM / ADAPTIVE_TASK.PY</span>
+              <span>ROS 2 / Python</span>
+            </div>
+            <div class="ch-code-body"><span class="kw">def</span> <span class="fn">adaptive_task_planning</span>(agents, state):
+    leader = <span class="fn">elect_leader</span>(agents, signal_quality)
+    <span class="kw">for</span> agent <span class="kw">in</span> agents:
+        task = leader.<span class="fn">allocate_task</span>(
+            agent.sensors, state)
+        <span class="kw">if</span> <span class="fn">human_override_active</span>():
+            task = <span class="fn">apply_human_command</span>(task)
+        agent.<span class="fn">execute</span>(task)</div>
+          </div>
+          <iframe
+            src="Swarm Titan/Diagrams/titan_topology_clean.html"
+            style="width: 100%; height: 78mm; border: none; background: transparent;"
+            scrolling="no"
+            loading="lazy"
+            title="Swarm Titan — System Topology Diagram"
+          ></iframe>
+        </div>
+      </div>
+      <!-- Swarm Titan Product Breakdown Structure -->
+      <iframe
+        src="Swarm Titan/Diagrams/titan_pbs_clean.html"
+        style="width: 100%; height: 125mm; border: none; background: transparent;"
+        scrolling="no"
+        loading="lazy"
+        title="Swarm Titan — Product Breakdown Structure"
+      ></iframe>
+    </div>
+    <div class="pf">
+      <span class="pf-left">Ch.02 · Distributed Exploration of Titan's Organic Chemistry</span>
+      <span class="pf-right">p. 08</span>
+    </div>
+  </div>
+
+  
+  
+
+  <!-- ══════════════════════════════════════════
+       PAGE 09 · CHAPTER 02 DIAGRAMS (1)
+       ══════════════════════════════════════════ -->
+  <div class="page light">
+    <div class="rh">
+      <span class="rh-label">Ch.02 · Distributed Exploration of Titan's Organic Chemistry</span>
+      <div class="rh-line"></div>
+      <span class="rh-label">09</span>
+    </div>
+    <div style="flex:1; display:flex; flex-direction:column; padding:4mm 14mm; gap:6mm; min-height:0;">
+      <!-- 4-view CAD — no frame -->
+      <div style="flex:1; display:flex; flex-direction:column; min-height:0;">
+        <div style="flex:1; overflow:hidden; background:#fff; min-height:0;">
+          <img src="Swarm Titan/4_views.png" alt="Orthographic CAD views" style="width:100%; height:100%; object-fit:contain; background:#fff;">
+        </div>
+        <div style="font-family: var(--f-m); font-size: 6.5pt; color: #64748B; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2mm; padding-left: 1mm;">Orthographic CAD Profiles (Front, Side, Back)</div>
+      </div>
+      <!-- HQ Exploded Assembly — no frame -->
+      <div style="flex:1; display:flex; flex-direction:column; min-height:0;">
+        <div style="flex:1; overflow:hidden; background:#fff; min-height:0;">
+          <img src="Swarm Titan/exploded_hq.png" alt="Exploded CAD Assembly" style="width:100%; height:100%; object-fit:contain; background:#fff;">
+        </div>
+        <div style="font-family: var(--f-m); font-size: 6.5pt; color: #64748B; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2mm; padding-left: 1mm;">Exploded CAD Assembly &amp; Component Specs</div>
+      </div>
+    </div>
+    <div class="pf">
+      <span class="pf-left">Ch.02 · Distributed Exploration of Titan's Organic Chemistry</span>
+      <span class="pf-right">p. 09</span>
+    </div>
+  </div>
+
+  
+  
+
+  <!-- ══════════════════════════════════════════
+       PAGE 10 · CHAPTER 02 DIAGRAMS (2)
+       ══════════════════════════════════════════ -->
+  <div class="page light">
+    <div class="rh">
+      <span class="rh-label">Ch.02 · Distributed Exploration of Titan's Organic Chemistry</span>
+      <div class="rh-line"></div>
+      <span class="rh-label">10</span>
+    </div>
+    <div style="flex:1; display:flex; flex-direction:column; padding:4mm 14mm; gap:6mm; min-height:0;">
+      <iframe
+        src="Swarm Titan/Diagrams/titan_parametric_clean.html"
+        style="width:100%; flex:1.1; border:none; background:transparent;"
+        scrolling="no"
+        loading="lazy"
+        title="Swarm Titan — Adaptive Task Planning"
+      ></iframe>
+      <!-- UE5 Simulation Screenshot — no frame -->
+      <div style="flex:0.9; display:flex; flex-direction:column; min-height:0;">
+        <div style="flex:1; overflow:hidden; background:#fff; min-height:0;">
+          <img src="Swarm Titan/ue5_sim.png" alt="UE5 Swarm Simulation" style="width:100%; height:100%; object-fit:contain; background:#fff;">
+        </div>
+        <div style="font-family: var(--f-m); font-size: 6.5pt; color: #64748B; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2mm; padding-left: 1mm;">UE5 Exploration Simulation — Titan Prebiotic Terrain Mapping</div>
+      </div>
+    </div>
+    <div class="pf">
+      <span class="pf-left">Ch.02 · Distributed Exploration of Titan's Organic Chemistry</span>
+      <span class="pf-right">p. 10</span>
+    </div>
+  </div>
+
+
+  
+  
+
+  <!-- ══════════════════════════════════════════
+       PAGE 11 · CHAPTER 03 OPENER
+       ══════════════════════════════════════════ -->
+  <div class="page dark" style="position:relative;">
+    <div class="ch-num">03</div>
+    <div class="ch-opener">
+      <div class="ch-opener-img">
+        <img src="Orbital City/portfolio_assets/IMG_9641.png" alt="Orbital Gateway">
+      </div>
+      <div class="ch-opener-gradient"></div>
+      <div class="ch-opener-content">
+        <div class="ch-kicker">Chapter 03 · Robotic Construction</div>
+        <div class="ch-title">Orbital Gateway<br>Construction</div>
+        <div class="ch-subtitle">Consensus Coordination · In-Orbit Assembly · Digital Twin</div>
+        <div class="ch-theme-line">Computational coordination logic for robotic in-orbit assembly sequences at the Lunar Gateway. Multi-robot consensus algorithms, structural tolerancing, and digital twin dashboards.</div>
+      </div>
+    </div>
+    <div class="pf">
+      <span class="pf-left">Ch.03 · Orbital Gateway Construction</span>
+      <span class="pf-right">p. 11</span>
+    </div>
+  </div>
+
+
+  
+  
+
+  <!-- ══════════════════════════════════════════
+       PAGE 12 · CHAPTER 03 CONTENT
+       ══════════════════════════════════════════ -->
+  <div class="page light">
+    <div class="rh">
+      <span class="rh-label">Ch.03 · Orbital Gateway Construction</span>
+      <div class="rh-line"></div>
+      <span class="rh-label">12</span>
+    </div>
+    <div class="ch-content">
+      <div class="ch-content-top">
+        <div class="ch-text-block">
+          <div class="ch-section-kicker">Project Overview</div>
+          <div class="ch-summary">Designed the computational coordination logic for robotic in-orbit assembly sequences at the Lunar Gateway. Developed custom simulation environments to validate structural tolerances, robotic handoff sequences, and construction staging under microgravity constraints.</div>
+          <ul class="ch-bullets">
+            <li>Programmed consensus-coordination algorithms for multi-robot assembly sequences in zero-gravity simulation environments.</li>
+            <li>Optimised structural module interfaces against dynamic launch loads and microgravity deformation using evolutionary solvers.</li>
+            <li>Built custom data pipelines exporting live fabrication tolerances and assembly states to digital twin dashboards.</li>
+          </ul>
+          <div class="ch-tags">
+            <span class="ch-tag">In-Orbit Assembly</span>
+            <span class="ch-tag">Robotic Construction</span>
+            <span class="ch-tag">Microgravity Sim</span>
+            <span class="ch-tag">Digital Twin</span>
+          </div>
+        </div>
+        <div>
+          <div class="ch-code-box">
+            <div class="ch-code-header">
+              <span>ASSEMBLY / ORBITAL_SEQ.PY</span>
+              <span>Python 3.11</span>
+            </div>
+            <div class="ch-code-body"><span class="kw">def</span> <span class="fn">orbital_assembly</span>(modules, fleet):
+    sequence = <span class="fn">plan_assembly_order</span>(modules)
+    <span class="kw">for</span> module <span class="kw">in</span> sequence:
+        robot = <span class="fn">assign_robot</span>(fleet, module)
+        robot.<span class="fn">dock</span>(module, tolerance=0.002)
+        <span class="fn">verify_structural_lock</span>(module)
+        <span class="fn">update_digital_twin</span>(module.state)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image grid — HTML Immages -->
+      <div class="img-grid-2" style="gap:2mm; margin-bottom:2mm;">
+        <div class="img-cell sq">
+          <img src="Orbital City/portfolio_assets/HTML Immages/IMG_3564.png" alt="Modular Space Station Assemblies">
+          <div class="img-caption">FIG.03.A — Modular Space Station Assemblies: Orthogonal, Ring, and Linear Module Staging</div>
+        </div>
+        <div class="img-cell sq">
+          <img src="Orbital City/portfolio_assets/HTML Immages/IMG_3565.png" alt="Alternative Hub Configurations">
+          <div class="img-caption">FIG.03.B — Consensus Coordination: Multi-Directional Node Hubs & Solar Array Integration</div>
+        </div>
+        <div class="img-cell sq">
+          <img src="Orbital City/portfolio_assets/HTML Immages/IMG_3578.png" alt="Orbital Gateway Station Over Earth">
+          <div class="img-caption">FIG.03.C — Final Orbital Gateway Assembly in Low Earth Orbit</div>
+        </div>
+        <div class="img-cell sq">
+          <img src="Orbital City/portfolio_assets/HTML Immages/IMG_3570.png" alt="Dynamic Load Balancing and Node Frame Analysis">
+          <div class="img-caption">FIG.03.D — Structural Alignment & Joint Interface Tension Studies</div>
+        </div>
+      </div>
+    </div>
+    <div class="pf">
+      <span class="pf-left">Ch.03 · Orbital Gateway Construction</span>
+      <span class="pf-right">p. 12</span>
+    </div>
+  </div>
+
+
+  
+  
+
+  <!-- ══════════════════════════════════════════
+       PAGE 13 · CHAPTER 03 SIMULATION DASHBOARD
+       ══════════════════════════════════════════ -->
+  <div class="page dark" style="position:relative; background:#050A0F; overflow:hidden; padding:0;">
+    <!-- Full-bleed iframe — no margins, no header -->
+    <div style="flex:1; position:relative; overflow:hidden; min-height:0;">
+      <iframe
+        src="Orbital City/orbital_gateway_dashboard_a4_full (1).html"
+        style="
+          position:absolute;
+          top:0; left:0;
+          width:100%;
+          height:100%;
+          border:none;
+          background:#050A0F;
+        "
+        scrolling="no"
+        loading="eager"
+        title="Orbital Gateway Assembly — Digital Twin Dashboard"
+      ></iframe>
+    </div>
+  </div>
+
+
+  
+  
+
+  <!-- ══════════════════════════════════════════
+       PAGE 14 · CHAPTER 04 OPENER
+       ══════════════════════════════════════════ -->
+  <div class="page dark" style="position:relative; background: #050F1A;">
+    <div class="ch-opener" style="flex:1; position:relative;">
+      <div class="ch-num">04</div>
+      <!-- No hero image — design-forward opener -->
+      <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; opacity:0.06;">
+        <div style="font-family:'IBM Plex Mono',monospace; font-size:6pt; line-height:1.8; color:#2DD6E8; white-space:pre; padding:20mm;">
+pub = rospy.Publisher('/supervisor/state', RobotState)
+twin = DigitalTwin(rover.sensors)
+while not rospy.is_shutdown():
+    state = twin.update(rover.get_telemetry())
+    pub.publish(state)
+    if operator.has_override():
+        rover.execute(operator.command)
+    rate.sleep()  # 50Hz real-time loop
+        </div>
+      </div>
+      <div class="ch-opener-content" style="background: linear-gradient(to top, rgba(5,15,26,0.98) 0%, rgba(5,15,26,0.7) 70%, transparent 100%);">
+        <div class="ch-kicker">Chapter 04 · Digital Twin & HRC Interface</div>
+        <div class="ch-title">UMBRELLA · Real-Time<br>Digital Twin</div>
+        <div class="ch-subtitle">Human-Robot Supervisory Interface · UE5/AirSim</div>
+        <div class="ch-theme-line">Real-time digital twin framework for human-robot collaborative mapping, supervisory interface design, and closed-loop sensor feedback on Mars-terrain simulation.</div>
+      </div>
+    </div>
+    <div class="pf">
+      <span class="pf-left">Ch.04 · UMBRELLA · Digital Twin</span>
+      <span class="pf-right">p. 14</span>
+    </div>
+  </div>
+
+
+  
+  
+
+  <!-- ══════════════════════════════════════════
+       PAGE 15 · CHAPTER 04 CONTENT
+       ══════════════════════════════════════════ -->
+  <div class="page light">
+    <div class="rh">
+      <span class="rh-label">Ch.04 · UMBRELLA · Real-Time Digital Twin</span>
+      <div class="rh-line"></div>
+      <span class="rh-label">15</span>
+    </div>
+    <div class="ch-content">
+      <div class="ch-content-top">
+        <div class="ch-text-block">
+          <div class="ch-section-kicker">Project Overview</div>
+          <div class="ch-summary">Designed and calibrated a Mars-terrain digital twin in UE5 using NASA MOLA heightmaps, integrated with AirSim for high-fidelity robotic simulation. Built the human supervisory interface layer enabling operators to monitor live robot state, issue task commands, and evaluate system behaviour through the real-time feedback loop.</div>
+          <ul class="ch-bullets">
+            <li>Built a real-time digital twin framework: UE5 environment synced with live AirSim sensor streams (RGB-D, IMU, LiDAR).</li>
+            <li>Designed the human supervisory interface: operators visualise robot task sequences, sensor degradation events, and SLAM map state — intervening via override commands through an AirSim-to-ROS bridge.</li>
+            <li>Calibrated Martian gravity, surface friction, atmospheric density, and full sensor suites to validate digital twin fidelity.</li>
+            <li>Designed Blackboard data-sharing architecture for leader-follower coordination in visual degradation scenarios.</li>
+          </ul>
+          <div class="ch-tags">
+            <span class="ch-tag">Real-Time Digital Twin</span>
+            <span class="ch-tag">Human Supervisory Interface</span>
+            <span class="ch-tag">UE5 / AirSim</span>
+            <span class="ch-tag">ROS Bridge</span>
+            <span class="ch-tag">Collaborative Mapping</span>
+          </div>
+        </div>
+        <div>
+          <div class="ch-code-box">
+            <div class="ch-code-header">
+              <span>SIMULATION / SUPERVISOR_INTERFACE.PY</span>
+              <span>ROS 2</span>
+            </div>
+            <div class="ch-code-body"><span class="kw">def</span> <span class="fn">supervisory_interface</span>(rover, operator):
+    twin = <span class="fn">DigitalTwin</span>(rover.sensors)
+    pub = rospy.<span class="fn">Publisher</span>(
+        '/supervisor/state',
+        RobotState, queue_size=10)
+    <span class="kw">while not</span> rospy.<span class="fn">is_shutdown</span>():
+        state = twin.<span class="fn">update</span>(
+            rover.<span class="fn">get_telemetry</span>())
+        pub.<span class="fn">publish</span>(state)
+        <span class="kw">if</span> operator.<span class="fn">has_override</span>():
+            rover.<span class="fn">execute</span>(operator.command)
+        rate.<span class="fn">sleep</span>() <span class="cm"># 50Hz</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- System diagram as text boxes -->
+      <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin-top:3mm; margin-bottom:4mm;">
+        <div style="background:#F8FAFC; border:0.3mm solid var(--border); border-radius:2mm; padding:3mm; text-align:center;">
+          <div style="font-family:var(--f-m); font-size:6pt; color:var(--teal); letter-spacing:0.1em; margin-bottom:1.5mm;">NASA MOLA</div>
+          <div style="font-size:7.5pt; font-weight:600; color:var(--black);">Heightmap DEM</div>
+          <div style="font-size:6pt; color:var(--gray); margin-top:1mm;">16-bit terrain data</div>
+        </div>
+        <div style="background:#F8FAFC; border:0.3mm solid var(--border); border-radius:2mm; padding:3mm; text-align:center;">
+          <div style="font-family:var(--f-m); font-size:6pt; color:var(--teal); letter-spacing:0.1em; margin-bottom:1.5mm;">UE5 / AIRSIM</div>
+          <div style="font-size:7.5pt; font-weight:600; color:var(--black);">Physics Sim</div>
+          <div style="font-size:6pt; color:var(--gray); margin-top:1mm;">RGB-D · IMU · LiDAR</div>
+        </div>
+        <div style="background:#F8FAFC; border:0.3mm solid var(--border); border-radius:2mm; padding:3mm; text-align:center;">
+          <div style="font-family:var(--f-m); font-size:6pt; color:var(--teal); letter-spacing:0.1em; margin-bottom:1.5mm;">ROS 2 BRIDGE</div>
+          <div style="font-size:7.5pt; font-weight:600; color:var(--black);">SLAM / Control</div>
+          <div style="font-size:6pt; color:var(--gray); margin-top:1mm;">Path planning nodes</div>
+        </div>
+        <div style="background:rgba(14,122,138,0.07); border:0.3mm solid rgba(14,122,138,0.3); border-radius:2mm; padding:3mm; text-align:center;">
+          <div style="font-family:var(--f-m); font-size:6pt; color:var(--teal); letter-spacing:0.1em; margin-bottom:1.5mm;">SUPERVISOR HMI</div>
+          <div style="font-size:7.5pt; font-weight:600; color:var(--black);">Override Interface</div>
+          <div style="font-size:6pt; color:var(--gray); margin-top:1mm;">Human-in-the-loop</div>
+        </div>
+      </div>
+
+      <div style="background:#F6F8FA; border:0.3mm solid var(--border); border-radius:2mm; padding:4mm; flex:1;">
+        <div style="font-family:var(--f-m); font-size:6pt; letter-spacing:0.18em; color:var(--teal); text-transform:uppercase; margin-bottom:2mm;">Key Metrics</div>
+        <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:3mm;">
+          <div><div style="font-size:16pt; font-weight:700; color:var(--black);">50<span style="font-size:9pt;">Hz</span></div><div style="font-family:var(--f-m); font-size:6pt; color:var(--gray);">Real-time telemetry loop</div></div>
+          <div><div style="font-size:16pt; font-weight:700; color:var(--black);">9<span style="font-size:9pt;">×</span></div><div style="font-family:var(--f-m); font-size:6pt; color:var(--gray);">Simultaneous agents</div></div>
+          <div><div style="font-size:16pt; font-weight:700; color:var(--black);">3<span style="font-size:9pt;">D</span></div><div style="font-family:var(--f-m); font-size:6pt; color:var(--gray);">Sensor suites calibrated</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="pf">
+      <span class="pf-left">Ch.04 · UMBRELLA · Real-Time Digital Twin</span>
+      <span class="pf-right">p. 15</span>
+    </div>
+  </div>
+
+
+  
+  
+
+  <!-- ══════════════════════════════════════════
+       PAGE 16 · CHAPTER 05 OPENER
+       ══════════════════════════════════════════ -->
+  <div class="page dark" style="position:relative;">
+    <div class="ch-opener" style="flex:1; position:relative;">
+      <div class="ch-opener-img">
+        <img src="NEOM/portfolio_assets/Neom HSR1.png" alt="NEOM Station">
+      </div>
+      <div class="ch-num">05</div>
+      <div class="ch-opener-content">
+        <div class="ch-kicker">Chapter 05 · Mobility & Infrastructure Intelligence</div>
+        <div class="ch-title">NEOM Multimodal<br>Mobility Hubs</div>
+        <div class="ch-subtitle">Human-Machine Interface · Zero-Carbon Transit · Occupant Sensing</div>
+        <div class="ch-theme-line">Sensor-embedded public realm, real-time occupant flow monitoring, and interface legibility design for automated driverless interchange hubs in NEOM's 170km network.</div>
+      </div>
+    </div>
+    <div class="pf">
+      <span class="pf-left">Ch.05 · NEOM Multimodal Mobility Hubs</span>
+      <span class="pf-right">p. 16</span>
+    </div>
+  </div>
+
+
+  
+  
+
+  <!-- ══════════════════════════════════════════
+       PAGE 17 · CHAPTER 05 CONTENT
+       ══════════════════════════════════════════ -->
+  <div class="page light">
+    <div class="rh">
+      <span class="rh-label">Ch.05 · NEOM Multimodal Mobility Hubs</span>
+      <div class="rh-line"></div>
+      <span class="rh-label">17</span>
+    </div>
+    <div class="ch-content">
+      <div class="ch-content-top">
+        <div class="ch-text-block">
+          <div class="ch-section-kicker">Project Overview · NEOM · Saudi Arabia · 2022–2025</div>
+          <div class="ch-summary">Designed architectural, systems, and digital interface logic for multimodal mobility hubs within NEOM — environments where autonomous vehicles, robotic maintenance systems, and thousands of daily occupants share space. Led the human-in-the-loop feedback layer design.</div>
+          <ul class="ch-bullets">
+            <li>Designed the human-machine interface layer for driverless interchange hubs: visual and spatial cues communicating robot intent, vehicle approach state, and safety zones.</li>
+            <li>Developed integrated sensor networks and real-time spatial feedback systems for occupant flow monitoring and autonomous vehicle routing.</li>
+            <li>Directed wayfinding and pedestrian circulation design — applying user study methods to evaluate interface legibility.</li>
+            <li>Simulated occupant demand models and flow networks to optimise physical infrastructure footprint.</li>
+          </ul>
+          <div class="ch-tags">
+            <span class="ch-tag">Human-Machine Interface</span>
+            <span class="ch-tag">Occupant Sensing</span>
+            <span class="ch-tag">Driverless Infrastructure</span>
+            <span class="ch-tag">Real-Time Feedback</span>
+            <span class="ch-tag">User Study Methods</span>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 3mm; justify-content: flex-start; align-self: stretch;">
+          <div class="img-cell" style="aspect-ratio: 1.03; background: transparent; width: 100%; border-radius: 1mm;">
+            <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;">
+              <source src="NEOM/portfolio_assets/grok-video-47b058fd-4d08-4561-a3c0-796c5481acb0 (6).mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="img-cell" style="aspect-ratio: 1.56; background: transparent; width: 100%; border-radius: 1mm;">
+            <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;">
+              <source src="NEOM/portfolio_assets/grok-video-043ac60f-9cac-4672-9b7c-0c11c5b5833a.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map section title -->
+      <div style="font-family: var(--f-m); font-size: 8.5pt; font-weight: 500; color: var(--teal); letter-spacing: 0.08em; text-transform: uppercase; margin: 3mm 0 1.5mm 0; padding-left: 1mm; flex-shrink: 0;">
+        Neom Integrated Multimodal Mobility System
+      </div>
+
+      <!-- Map section instead of railway renderings -->
+      <div style="flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; margin-bottom: 2mm;">
+        <div class="img-cell" style="width: 100%; height: 100%; background: transparent;">
+          <img src="NEOM/portfolio_assets/IMG_1675_clean.png" alt="NEOM Developments, Infrastructures, and Hubs Map" style="width: 100%; height: 100%; object-fit: contain; display: block;">
+        </div>
+      </div>
+    </div>
+    <div class="pf">
+      <span class="pf-left">Ch.05 · NEOM Multimodal Mobility Hubs</span>
+      <span class="pf-right">p. 17</span>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       PAGE 18 · CHAPTER 05 PUDO DESIGN DEMONSTRATOR 1
+       ══════════════════════════════════════════ -->
+  <div class="page light">
+    <div class="rh">
+      <span class="rh-label">Ch.05 · NEOM Multimodal Mobility Hubs</span>
+      <div class="rh-line"></div>
+      <span class="rh-label">18</span>
+    </div>
+    <div class="ch-content" style="padding: 4mm 14mm 0; gap: 4mm; flex: 1; display: flex; flex-direction: column; min-height: 0;">
+      <!-- Row 1: 2 Renders of Torus Canopy -->
+      <div style="flex: 1.1; display: flex; flex-direction: column; min-height: 0;">
+        <!-- Images row -->
+        <div style="display: flex; gap: 2mm; flex: 1; min-height: 0;">
+          <div style="flex: 1.78; min-height: 0;">
+            <div class="img-cell" style="width: 100%; height: 100%; background: transparent;">
+              <img src="NEOM/portfolio_assets/pudo_render_1.jpg" alt="Torus Canopy Render - Front Elevation" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+          </div>
+          <div style="flex: 1.63; min-height: 0;">
+            <div class="img-cell" style="width: 100%; height: 100%; background: transparent;">
+              <img src="NEOM/portfolio_assets/pudo_render_2.jpg" alt="Torus Canopy Render - Perspective View" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+          </div>
+        </div>
+        <!-- Captions row -->
+        <div style="display: flex; gap: 2mm; margin-top: 1.5mm; flex-shrink: 0;">
+          <div style="flex: 1.78; font-family: var(--f-m); font-size: 6.5pt; color: #64748B; letter-spacing: 0.1em; text-transform: uppercase; padding-left: 1mm;">
+            FIG.05.A — Front Elevation: Undulating Torus Canopy
+          </div>
+          <div style="flex: 1.63; font-family: var(--f-m); font-size: 6.5pt; color: #64748B; letter-spacing: 0.1em; text-transform: uppercase; padding-left: 1mm;">
+            FIG.05.B — Perspective View: 3D-Printed Structural Shell
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: Grasshopper script -->
+      <div style="flex: 1.2; display: flex; flex-direction: column; min-height: 0;">
+        <div style="flex: 1; overflow: hidden; min-height: 0; background: #fff; border: 0.3mm solid var(--border); border-radius: 2px;">
+          <img src="NEOM/portfolio_assets/pudo_gh_definition.jpg" alt="Grasshopper Parametric Definition" style="width:100%; height:100%; object-fit:contain;">
+        </div>
+        <div style="font-family: var(--f-m); font-size: 6.5pt; color: #64748B; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 1.5mm; padding-left: 1mm; flex-shrink: 0;">FIG.05.C — Grasshopper Parametric Definition: Sub-D Grid &amp; Structural Relaxation</div>
+      </div>
+
+      <!-- Row 3: Form Evolution Steps -->
+      <div style="flex: 1.2; display: flex; flex-direction: column; min-height: 0; margin-bottom: 2mm;">
+        <div style="flex: 1; overflow: hidden; min-height: 0; background: #fff; border: 0.3mm solid var(--border); border-radius: 2px;">
+          <img src="NEOM/portfolio_assets/pudo_form_evolution.jpg" alt="Form Evolution Diagram" style="width:100%; height:100%; object-fit:contain;">
+        </div>
+        <div style="font-family: var(--f-m); font-size: 6.5pt; color: #64748B; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 1.5mm; padding-left: 1mm; flex-shrink: 0;">FIG.05.D — Crescent Form Generation &amp; Geometric Evolution Steps</div>
+      </div>
+    </div>
+    <div class="pf">
+      <span class="pf-left">Ch.05 · NEOM Multimodal Mobility Hubs</span>
+      <span class="pf-right">p. 18</span>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       PAGE 19 · CHAPTER 05 PUDO DESIGN DEMONSTRATOR 2
+       ══════════════════════════════════════════ -->
+  <div class="page light">
+    <div class="rh">
+      <span class="rh-label">Ch.05 · NEOM Multimodal Mobility Hubs</span>
+      <div class="rh-line"></div>
+      <span class="rh-label">19</span>
+    </div>
+    <div class="ch-content" style="padding: 4mm 14mm 0; gap: 4mm; flex: 1; display: flex; flex-direction: column; min-height: 0;">
+      <!-- Row 1: 2 Renders of Rotated Shell Canopy -->
+      <div style="flex: 1.1; display: flex; flex-direction: column; min-height: 0;">
+        <!-- Images row -->
+        <div style="display: flex; gap: 2mm; flex: 1; min-height: 0;">
+          <div style="flex: 1.44; min-height: 0;">
+            <div class="img-cell" style="width: 100%; height: 100%; background: transparent;">
+              <img src="NEOM/portfolio_assets/pudo2_render_1.jpg" alt="Rotated Shell Canopy Render - Top View" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+          </div>
+          <div style="flex: 1.16; min-height: 0;">
+            <div class="img-cell" style="width: 100%; height: 100%; background: transparent;">
+              <img src="NEOM/portfolio_assets/pudo2_render_2.jpg" alt="Rotated Shell Canopy Render - Perspective View" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+          </div>
+        </div>
+        <!-- Captions row -->
+        <div style="display: flex; gap: 2mm; margin-top: 1.5mm; flex-shrink: 0;">
+          <div style="flex: 1.44; font-family: var(--f-m); font-size: 6.5pt; color: #64748B; letter-spacing: 0.1em; text-transform: uppercase; padding-left: 1mm;">
+            FIG.05.E — Isometric View: Rotated Structural Shell
+          </div>
+          <div style="flex: 1.16; font-family: var(--f-m); font-size: 6.5pt; color: #64748B; letter-spacing: 0.1em; text-transform: uppercase; padding-left: 1mm;">
+            FIG.05.F — Perspective View: Segmented Fa&ccedil;ade Prototype
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 2: Grasshopper script -->
+      <div style="flex: 1.2; display: flex; flex-direction: column; min-height: 0;">
+        <div style="flex: 1; overflow: hidden; min-height: 0; background: #fff; border: 0.3mm solid var(--border); border-radius: 2px;">
+          <img src="NEOM/portfolio_assets/pudo2_gh_definition.jpg" alt="Grasshopper Parametric Definition" style="width:100%; height:100%; object-fit:contain;">
+        </div>
+        <div style="font-family: var(--f-m); font-size: 6.5pt; color: #64748B; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 1.5mm; padding-left: 1mm; flex-shrink: 0;">FIG.05.G — Grasshopper Parametric Definition: Segmented Fa&ccedil;ade Pattern Generation</div>
+      </div>
+
+      <!-- Row 3: 4 Photos of Physical Model -->
+      <div style="flex: 1.2; display: flex; flex-direction: column; min-height: 0; margin-bottom: 2mm;">
+        <div style="flex: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2mm; min-height: 0;">
+          <div class="img-cell sq" style="flex: 1; min-height: 0;">
+            <img src="NEOM/portfolio_assets/pudo2_model_1.jpg" alt="Physical Model - Front View">
+          </div>
+          <div class="img-cell sq" style="flex: 1; min-height: 0;">
+            <img src="NEOM/portfolio_assets/pudo2_model_2.jpg" alt="Physical Model - Top View">
+          </div>
+          <div class="img-cell sq" style="flex: 1; min-height: 0;">
+            <img src="NEOM/portfolio_assets/pudo2_model_3.jpg" alt="Physical Model - Perspective View 1">
+          </div>
+          <div class="img-cell sq" style="flex: 1; min-height: 0;">
+            <img src="NEOM/portfolio_assets/pudo2_model_4.jpg" alt="Physical Model - Perspective View 2">
+          </div>
+        </div>
+        <div style="font-family: var(--f-m); font-size: 6.5pt; color: #64748B; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 1.5mm; padding-left: 1mm; flex-shrink: 0;">FIG.05.H — Physical Design Demonstrator: Timber Rib Prototype &amp; Node Connections</div>
+      </div>
+    </div>
+    <div class="pf">
+      <span class="pf-left">Ch.05 · NEOM Multimodal Mobility Hubs</span>
+      <span class="pf-right">p. 19</span>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       PAGE 20 · CHAPTER 06 OPENER
+       ══════════════════════════════════════════ -->
+  <div class="page dark" style="position:relative;">
+    <div class="ch-opener" style="flex:1; position:relative;">
+      <div class="ch-opener-img">
+        <img src="Stormcity/portfolio_assets/IMG_3360.jpeg" alt="Storm Resilient">
+      </div>
+      <div class="ch-num">06</div>
+      <div class="ch-opener-content">
+        <div class="ch-kicker">Chapter 06 · Computational Design</div>
+        <div class="ch-title">Computational Design<br>& Resilience</div>
+        <div class="ch-subtitle">Storm-Resilient Buildings · X-BIM Suite · Real-Time Dashboard</div>
+        <div class="ch-theme-line">Spatial simulation and monitoring dashboards to evaluate building performance under extreme environmental stress. Custom Python/Streamlit plugins combining BIM structural data with real-time sensor streams.</div>
+      </div>
+    </div>
+    <div class="pf">
+      <span class="pf-left">Ch.06 · Computational Design & Resilience</span>
+      <span class="pf-right">p. 20</span>
+    </div>
+  </div>
+
+
+  
+  
+
+  <!-- ══════════════════════════════════════════
+       PAGE 21 · CHAPTER 06 CONTENT
+       ══════════════════════════════════════════ -->
+  <div class="page light">
+    <div class="rh">
+      <span class="rh-label">Ch.06 · Computational Design & Resilience</span>
+      <div class="rh-line"></div>
+      <span class="rh-label">21</span>
+    </div>
+    <div class="ch-content">
+      <div class="ch-content-top">
+        <div class="ch-text-block">
+          <div class="ch-section-kicker">Project Overview · Tel Aviv Red Line LRT Infrastructure</div>
+          <div class="ch-summary">Created spatial simulation and monitoring dashboards to evaluate building performance under extreme environmental stress. Developed custom plugins that parse BIM structural data and combine it with real-time sensor streams for the X-BIM Suite.</div>
+          <ul class="ch-bullets">
+            <li>Programmed the X-BIM Suite: a Python and Streamlit dashboard for real-time sensor tracking and simulation in extreme testing chambers.</li>
+            <li>Optimised structural building envelopes against dynamic storm loads and aerodynamic wind tunnel data using evolutionary solvers (Galapagos).</li>
+            <li>Developed automated clash-detection workflows (Navisworks API) to streamline architectural-structural model alignment.</li>
+            <li>Built custom CAD data pipelines exporting live fabrication tolerances directly to digital twins.</li>
+          </ul>
+          <div class="ch-tags">
+            <span class="ch-tag">X-BIM Suite</span>
+            <span class="ch-tag">Python / Streamlit</span>
+            <span class="ch-tag">Galapagos</span>
+            <span class="ch-tag">Clash Detection</span>
+            <span class="ch-tag">Environmental Simulation</span>
+          </div>
+        </div>
+        <div>
+          <div class="ch-code-box">
+            <div class="ch-code-header">
+              <span>ANALYSIS / DYNAMIC_CLASH.PY</span>
+              <span>Python · Streamlit</span>
+            </div>
+            <div class="ch-code-body"><span class="kw">def</span> <span class="fn">stream_telemetry</span>(sensor_id):
+    client = <span class="fn">connect_xbim_dashboard</span>()
+    <span class="kw">while</span> client.is_active:
+        data = client.<span class="fn">read_clash_sensors</span>(
+            sensor_id)
+        metrics = <span class="fn">parse_tolerance</span>(
+            data.realtime)
+        streamlit.<span class="fn">line_chart</span>(metrics)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="img-grid-2" style="gap:2mm; margin-bottom:2mm;">
+        <div class="img-cell nat">
+          <img src="Stormcity/portfolio_assets/IMG_3361.jpeg" alt="Deflection Study">
+          <div class="img-caption">Structural Deflection Study — Galapagos Evolutionary Solver</div>
+        </div>
+        <div class="img-cell nat">
+          <img src="Stormcity/portfolio_assets/IMG_3362.jpeg" alt="X-BIM Dashboard">
+          <div class="img-caption">X-BIM Suite — Real-Time Sensor Tracking</div>
+        </div>
+      </div>
+      <div class="img-grid-3" style="gap:2mm;">
+        <div class="img-cell nat">
+          <img src="Stormcity/portfolio_assets/IMG_3363.jpeg" alt="Clash Detection">
+          <div class="img-caption">Clash Detection — Navisworks API</div>
+        </div>
+        <div class="img-cell nat">
+          <img src="Stormcity/portfolio_assets/IMG_3365.jpeg" alt="Digital Twin Pipeline">
+          <div class="img-caption">Digital Twin Pipeline</div>
+        </div>
+        <div class="img-cell nat">
+          <img src="Stormcity/portfolio_assets/IMG_3360.jpeg" alt="Storm Envelope">
+          <div class="img-caption">Storm-Resilient Envelope — Wind Load</div>
+        </div>
+      </div>
+    </div>
+    <div class="pf">
+      <span class="pf-left">Ch.06 · Computational Design & Resilience</span>
+      <span class="pf-right">p. 21</span>
+    </div>
+  </div>
+
+
+  
+  
+
+  <!-- ══════════════════════════════════════════
+       PAGE 22 · CURRICULUM VITAE
+       ══════════════════════════════════════════ -->
+  <div class="page light">
+    <div class="rh">
+      <span class="rh-label">Curriculum Vitae</span>
+      <div class="rh-line"></div>
+      <span class="rh-label">22</span>
+    </div>
+    <div class="cv-layout">
+      <div class="cv-grid">
+        <!-- Left: Experience -->
+        <div>
+          <div class="cv-section-title">Professional Experience</div>
+          <div class="cv-entry">
+            <div class="cv-role">Mobility Hubs & Urban Masterplanning Manager</div>
+            <div class="cv-company">NEOM · Saudi Arabia</div>
+            <div class="cv-period">Sep 2022 – Sep 2025</div>
+            <div class="cv-desc">Designed architectural and digital systems for zero-carbon automated mobility networks. Embedded digital infrastructure and sensors for passenger flow optimisation and autonomous vehicle routing. Directed human-flow logic and interface legibility in complex multi-level automated interchange hubs.</div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-role">Transit Architecture Lead</div>
+            <div class="cv-company">WSP · Tel Aviv, Israel</div>
+            <div class="cv-period">Apr 2016 – Aug 2022</div>
+            <div class="cv-desc">Architectural lead for the $5B Tel Aviv Red Line LRT — 23km driverless underground transit. Designed driverless stations and public spaces where machine systems operate autonomously alongside thousands of citizens. Oversaw automated safety gates, platform screen doors, and machine-to-human interface systems.</div>
+          </div>
+          <div class="cv-entry">
+            <div class="cv-role">Architect · 3D Clash Detection & Roadway Design</div>
+            <div class="cv-company">WSP / Middle East · Doha, Qatar</div>
+            <div class="cv-period">Jan 2015 – Jan 2016</div>
+            <div class="cv-desc">Developed 3D underground utility simulations and spatial clash coordination for Qatar's Expressway programme.</div>
+          </div>
+          <div class="cv-entry" style="border-bottom:none;">
+            <div class="cv-role">Architect & 3D Designer</div>
+            <div class="cv-company">Foster + Partners / MJL · London, UK</div>
+            <div class="cv-period">Jan 2014 – Jan 2015</div>
+            <div class="cv-desc">BIM coordinator on Bloomberg's $50M European HQ designed by Foster + Partners.</div>
+          </div>
+        </div>
+
+        <!-- Right: Education + Skills + Affiliations -->
+        <div>
+          <div class="cv-section-title">Education</div>
+          <div class="edu-card">
+            <div class="edu-degree">MSc Space Engineering & Applications (Ongoing)</div>
+            <div class="edu-school">International Space University · Strasbourg, France · 2025–2026</div>
+            <div class="edu-focus">Swarm robotics, digital twin simulation (UE5/AirSim), human performance analog studies (AATC Poland).</div>
+          </div>
+          <div class="edu-card">
+            <div class="edu-degree">Executive Education: The Walkable City</div>
+            <div class="edu-school">Harvard Graduate School of Design · 2024</div>
+            <div class="edu-focus">Urban design, walkable networks, micro-mobility integration.</div>
+          </div>
+          <div class="edu-card">
+            <div class="edu-degree">Emerging Design & Technology: Beyond Smart Cities</div>
+            <div class="edu-school">MIT · 2023</div>
+            <div class="edu-focus">Sensor networks, responsive materials, computational design at urban scales.</div>
+          </div>
+          <div class="edu-card">
+            <div class="edu-degree">Professional Specialization: System Architecture</div>
+            <div class="edu-school">MIT · 2017</div>
+            <div class="edu-focus">Model-Based Systems Engineering, dynamic system modeling, lifecycle design.</div>
+          </div>
+          <div class="edu-card">
+            <div class="edu-degree">Master of Architecture & Urban Studies</div>
+            <div class="edu-school">University of Novi Sad, Faculty of Technical Sciences</div>
+            <div class="edu-focus">Computational geometry, architectural theory, and urban systems.</div>
+          </div>
+
+          <div style="margin-top:3mm;">
+            <div class="cv-section-title">Computational Skills</div>
+            <div class="skills-row">
+              <div class="skill-chip">Python</div>
+              <div class="skill-chip">C# / .NET</div>
+              <div class="skill-chip">ROS 2</div>
+              <div class="skill-chip">Grasshopper / Rhino 8</div>
+              <div class="skill-chip">UE5 / AirSim</div>
+              <div class="skill-chip">Real-Time Digital Twins</div>
+              <div class="skill-chip">EEG / HPA</div>
+              <div class="skill-chip">MBSE / STK</div>
+              <div class="skill-chip">Revit / BIM / Navisworks</div>
+            </div>
+          </div>
+
+          <div style="margin-top:3mm;">
+            <div class="cv-section-title">Affiliations</div>
+            <div style="font-size:7pt; color:var(--gray); line-height:1.8;">
+              EuroMoonMars / ESA &nbsp;·&nbsp; International Space University<br>
+              AATC Poland 2026 — Analog Astronaut / Human Performance Lead<br>
+              ExoSpaceHab Express &nbsp;·&nbsp; Tohoku University Space Robotics Laboratory
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pf">
+      <span class="pf-left">Nina Velimirovic — Portfolio 2026</span>
+      <span class="pf-right">p. 22</span>
+    </div>
+  </div>
+
+
+  
+  
+
+  <!-- ══════════════════════════════════════════
+       PAGE 23 · BACK COVER
+       ══════════════════════════════════════════ -->
+  <div class="page dark">
+    <div style="flex:1; position:relative; overflow:hidden;">
+      <!-- Full-bleed background image -->
+      <div style="position:absolute; inset:0; overflow:hidden;">
+        <img src="Orbital City/portfolio_assets/IMG_9643.png" alt="" style="width:100%;height:100%;object-fit:cover;opacity:0.25;filter:grayscale(20%);">
+      </div>
+      <!-- Gradient: fades bottom 60% dark so text is legible -->
+      <div style="position:absolute; bottom:0; left:0; right:0; height:65%; background:linear-gradient(to top, rgba(10,10,10,0.97) 0%, rgba(10,10,10,0.65) 55%, transparent 100%); pointer-events:none; z-index:1;"></div>
+      <div class="back-cover-inner" style="z-index:2;">
+        <div class="bc-mono">Nina Velimirovic · Selected Works</div>
+        <div class="bc-teal-bar"></div>
+        <div class="bc-name">Thank you.</div>
+        <div style="font-family:var(--f-m); font-size:8pt; color:rgba(255,255,255,0.35); text-align:center; letter-spacing:0.08em; margin-top:2mm;">
+          Architect · Human-Machine Collaboration Researcher<br>
+          Robotics & Computational Design
+        </div>
+        <div class="bc-teal-bar"></div>
+        <div class="bc-contact-grid">
+          <div class="bc-contact-item">
+            <div class="bc-label">Email</div>
+            <div class="bc-val">nina_velimirovic@yahoo.com</div>
+          </div>
+          <div class="bc-contact-item">
+            <div class="bc-label">Phone</div>
+            <div class="bc-val">+33 6 87 42 06 94</div>
+          </div>
+          <div class="bc-contact-item">
+            <div class="bc-label">Location</div>
+            <div class="bc-val">Strasbourg, France</div>
+          </div>
+          <div class="bc-contact-item">
+            <div class="bc-label">LinkedIn</div>
+            <div class="bc-val">linkedin.com/in/nina-v-6b03715</div>
+          </div>
+        </div>
+        <div style="margin-top:10mm; font-family:var(--f-m); font-size:6.5pt; color:rgba(255,255,255,0.15); text-align:center; letter-spacing:0.1em;">
+          © 2026 NINA VELIMIROVIC · ALL RIGHTS RESERVED
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<script>
+// Automatically trigger print if requested in URL query
+if (window.location.search.includes('print=true')) {
+  window.addEventListener('load', () => {
+    // 2.5s delay to ensure all interactive elements and iframes are fully rendered
+    setTimeout(() => {
+      window.print();
+    }, 2500);
+  });
+}
+</script>
+</body>
+</html>
+

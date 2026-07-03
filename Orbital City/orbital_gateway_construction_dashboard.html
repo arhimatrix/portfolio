@@ -1,0 +1,650 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #E8DFC8; --cream2: #C9BA9B; --cream3: #A89878;
+    --amber: #D4960A; --amber2: #B07D08; --amber-glow: rgba(212,150,10,0.18);
+    --ink: #0A0A08; --ink2: #111109; --ink3: #1A1A16;
+    --teal: #2EAAA0; --red: #C84B3C; --green: #5A9E55;
+    --mono: 'Space Mono', 'Courier New', monospace;
+  }
+  body { background: var(--ink); color: var(--cream); font-family: var(--mono); font-size: 12px; }
+  .dash { width: 100%; min-height: 100vh; background: var(--ink); }
+
+  /* Header */
+  .hdr { display: flex; justify-content: space-between; align-items: flex-end;
+    padding: 18px 20px 10px; border-bottom: 0.5px solid rgba(232,223,200,0.18); }
+  .hdr-eyebrow { font-size: 9px; letter-spacing: 0.22em; color: var(--cream3); margin-bottom: 4px; }
+  .hdr-title { font-size: 15px; font-weight: 700; letter-spacing: 0.08em; color: var(--cream); }
+  .hdr-right { text-align: right; }
+  .hdr-pg { font-size: 9px; color: var(--cream3); letter-spacing: 0.2em; }
+  .status-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--green); margin-right: 5px; animation: pulse-green 2s ease-in-out infinite; }
+  @keyframes pulse-green { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  /* Layout grid */
+  .grid { display: grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows: auto; gap: 0; }
+  .panel { border: 0.5px solid rgba(232,223,200,0.12); padding: 14px 16px; }
+  .panel-label { font-size: 8px; letter-spacing: 0.2em; color: var(--amber); margin-bottom: 10px; border-bottom: 0.5px solid rgba(212,150,10,0.3); padding-bottom: 6px; }
+
+  /* Orbital canvas panel */
+  .p-orbit { grid-column: 1/3; grid-row: 1/3; min-height: 340px; position: relative; }
+  .p-tol { grid-column: 3/4; grid-row: 1/2; }
+  .p-code { grid-column: 3/4; grid-row: 2/3; }
+  .p-seq  { grid-column: 1/2; grid-row: 3/4; }
+  .p-log  { grid-column: 2/3; grid-row: 3/4; }
+  .p-twin { grid-column: 3/4; grid-row: 3/4; }
+
+  /* Orbital canvas */
+  #orb-canvas { width: 100%; height: 300px; display: block; }
+
+  /* Tolerance bars */
+  .tol-row { margin-bottom: 10px; }
+  .tol-name { font-size: 9px; color: var(--cream2); margin-bottom: 3px; display: flex; justify-content: space-between; }
+  .tol-val { color: var(--amber); }
+  .tol-bar-bg { height: 4px; background: rgba(232,223,200,0.1); border-radius: 2px; overflow: hidden; }
+  .tol-bar { height: 100%; border-radius: 2px; transition: width 0.6s ease; }
+  .tol-ok { background: var(--green); }
+  .tol-warn { background: var(--amber); }
+  .tol-crit { background: var(--red); animation: flicker-red 0.8s ease-in-out infinite; }
+  @keyframes flicker-red { 0%,100%{opacity:1} 50%{opacity:0.55} }
+
+  /* Code block */
+  .code-block { background: var(--ink3); border: 0.5px solid rgba(232,223,200,0.1); border-radius: 3px; padding: 10px; font-family: var(--mono); font-size: 9px; line-height: 1.7; overflow: hidden; }
+  .c-kw { color: #E07A5F; }
+  .c-fn { color: #6DBCB4; }
+  .c-str { color: var(--cream2); }
+  .c-cm { color: rgba(232,223,200,0.4); }
+  .c-hi { background: rgba(212,150,10,0.22); color: var(--amber); display: block; margin: 0 -10px; padding: 0 10px; }
+
+  /* Sequence steps */
+  .seq-step { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
+  .seq-num { font-size: 8px; color: var(--cream3); min-width: 16px; padding-top: 2px; }
+  .seq-bar-wrap { flex: 1; }
+  .seq-name { font-size: 9px; color: var(--cream2); margin-bottom: 3px; }
+  .seq-prog-bg { height: 3px; background: rgba(232,223,200,0.1); border-radius: 2px; }
+  .seq-prog { height: 3px; border-radius: 2px; background: var(--cream3); }
+  .seq-prog.active { background: var(--amber); animation: shimmer 1.4s linear infinite; }
+  @keyframes shimmer { 0%{opacity:0.7} 50%{opacity:1} 100%{opacity:0.7} }
+  .seq-prog.done { background: var(--green); }
+  .seq-pct { font-size: 8px; color: var(--cream3); min-width: 28px; text-align: right; padding-top: 2px; }
+
+  /* Log */
+  .log-entry { display: flex; gap: 6px; margin-bottom: 5px; font-size: 9px; line-height: 1.5; }
+  .log-time { color: var(--cream3); min-width: 52px; }
+  .log-msg { color: var(--cream2); flex: 1; }
+  .log-ok { color: var(--green); }
+  .log-warn { color: var(--amber); }
+  .log-err { color: var(--red); }
+
+  /* Twin metrics */
+  .twin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px; }
+  .twin-card { background: var(--ink3); border: 0.5px solid rgba(232,223,200,0.1); padding: 8px; border-radius: 2px; }
+  .twin-lbl { font-size: 8px; color: var(--cream3); letter-spacing: 0.1em; margin-bottom: 4px; }
+  .twin-val { font-size: 14px; font-weight: 700; color: var(--cream); }
+  .twin-unit { font-size: 8px; color: var(--cream3); }
+
+  /* Tags */
+  .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+  .tag { font-size: 8px; letter-spacing: 0.12em; border: 0.5px solid rgba(232,223,200,0.25); padding: 3px 7px; border-radius: 2px; color: var(--cream3); }
+
+  /* Controls */
+  .ctrl-row { display: flex; gap: 8px; align-items: center; padding: 8px 16px; border-top: 0.5px solid rgba(232,223,200,0.08); border-bottom: 0.5px solid rgba(232,223,200,0.08); flex-wrap: wrap; }
+  .btn { font-family: var(--mono); font-size: 8px; letter-spacing: 0.14em; border: 0.5px solid rgba(232,223,200,0.3); background: transparent; color: var(--cream); padding: 5px 12px; cursor: pointer; border-radius: 2px; transition: background 0.2s; }
+  .btn:hover { background: rgba(232,223,200,0.08); }
+  .btn.active { border-color: var(--amber); color: var(--amber); background: var(--amber-glow); }
+  .speed-lbl { font-size: 9px; color: var(--cream3); margin-left: 6px; }
+  input[type=range] { accent-color: var(--amber); width: 80px; }
+</style>
+
+<div class="dash">
+  <div class="hdr">
+    <div>
+      <div class="hdr-eyebrow">CH.03 — ORBITAL GATEWAY CONSTRUCTION</div>
+      <div class="hdr-title">ASSEMBLY / DIGITAL TWIN DASHBOARD</div>
+    </div>
+    <div class="hdr-right">
+      <div style="font-size:9px;color:var(--cream3);margin-bottom:3px;letter-spacing:0.15em;">
+        <span class="status-dot"></span>LIVE SIM
+      </div>
+      <div id="clock" style="font-size:11px;color:var(--cream);letter-spacing:0.1em;">T+00:00:00</div>
+      <div class="hdr-pg">09</div>
+    </div>
+  </div>
+
+  <div class="ctrl-row">
+    <button class="btn active" id="btn-play" onclick="toggleSim()">▶ RUN SIM</button>
+    <button class="btn" onclick="resetSim()">↺ RESET</button>
+    <button class="btn" id="btn-dock" onclick="triggerDock()">⊕ DOCK MODULE</button>
+    <button class="btn" id="btn-fault" onclick="triggerFault()">⚠ INJECT FAULT</button>
+    <span class="speed-lbl">SPEED</span>
+    <input type="range" min="0.5" max="4" step="0.5" value="1" id="speed-sl" oninput="setSpeed(this.value)">
+    <span id="speed-out" style="font-size:9px;color:var(--amber);min-width:20px;">1×</span>
+  </div>
+
+  <div class="grid">
+    <!-- Orbital Assembly Canvas -->
+    <div class="panel p-orbit">
+      <div class="panel-label">ORBITAL ASSEMBLY VISUALISATION — LUNAR GATEWAY CROSS-SECTION</div>
+      <canvas id="orb-canvas"></canvas>
+    </div>
+
+    <!-- Structural Tolerances -->
+    <div class="panel p-tol">
+      <div class="panel-label">STRUCTURAL TOLERANCES</div>
+      <div id="tol-list"></div>
+    </div>
+
+    <!-- Code Block -->
+    <div class="panel p-code">
+      <div class="panel-label">ASSEMBLY / ORBITAL_SEQ.PY — Python 3.11</div>
+      <div class="code-block">
+        <span class="c-kw">def</span> <span class="c-fn">orbital_assembly</span>(modules, fleet):<br>
+        &nbsp;&nbsp;sequence = <span class="c-fn">plan_assembly_order</span>(modules)<br>
+        &nbsp;&nbsp;<span class="c-kw">for</span> module <span class="c-kw">in</span> sequence:<br>
+        <span class="c-hi">&nbsp;&nbsp;&nbsp;&nbsp;robot = <span class="c-fn">assign_robot</span>(fleet, module)</span>
+        &nbsp;&nbsp;&nbsp;&nbsp;robot.<span class="c-fn">dock</span>(module, <span class="c-str">tolerance=0.002</span>)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="c-fn">verify_structural_lock</span>(module)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="c-fn">update_digital_twin</span>(module.state)
+      </div>
+    </div>
+
+    <!-- Assembly Sequence -->
+    <div class="panel p-seq">
+      <div class="panel-label">ASSEMBLY SEQUENCE — STAGING</div>
+      <div id="seq-list"></div>
+      <div class="tags">
+        <span class="tag">IN-ORBIT ASSEMBLY</span>
+        <span class="tag">MICROGRAVITY SIM</span>
+        <span class="tag">ROBOTIC CONSTRUCTION</span>
+      </div>
+    </div>
+
+    <!-- Log -->
+    <div class="panel p-log">
+      <div class="panel-label">CONSENSUS LOG — MULTI-ROBOT FEED</div>
+      <div id="log-list" style="max-height:140px;overflow:hidden;"></div>
+    </div>
+
+    <!-- Digital Twin -->
+    <div class="panel p-twin">
+      <div class="panel-label">DIGITAL TWIN STATE</div>
+      <div class="twin-grid" id="twin-grid"></div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+// ─── State ───────────────────────────────────────────────────────
+let running = true, speed = 1, elapsed = 0, tick = 0;
+let faultActive = false, faultTimer = 0;
+let moduleProgress = [100, 100, 82, 57, 24, 0];
+let moduleActive = 2; // currently assembling
+let robots = [];
+let logEntries = [];
+let twinData = { modules: 3, locks: 12, robots: 4, tolerance: 0.002 };
+
+const MODULES = [
+  { name: 'HALO Core', color: '#C9BA9B', w: 80, h: 36 },
+  { name: 'PPE Module', color: '#A89878', w: 64, h: 32 },
+  { name: 'I-HAB Habitat', color: '#D4960A', w: 90, h: 42 },
+  { name: 'ESPRIT Node', color: '#8A7A62', w: 70, h: 30 },
+  { name: 'Gateway Arm', color: '#6DBCB4', w: 110, h: 20 },
+  { name: 'Airlock Mod', color: '#5A4A38', w: 60, h: 36 },
+];
+
+const SEQ_STEPS = [
+  'Approach & rendezvous',
+  'Proximity ops (50m hold)',
+  'Docking port alignment',
+  'Structural lock engage',
+  'Leak check & pressurize',
+  'Digital twin sync',
+];
+
+const TOL_ITEMS = [
+  { name: 'Docking alignment offset', unit: 'mm', max: 2.0 },
+  { name: 'Structural lock torque', unit: 'Nm', max: 120 },
+  { name: 'Port seal pressure delta', unit: 'Pa', max: 0.5 },
+  { name: 'Thermal deformation', unit: 'μm', max: 850 },
+  { name: 'Vibration amplitude', unit: 'μm/s', max: 50 },
+];
+
+// ─── Canvas Setup ────────────────────────────────────────────────
+const canvas = document.getElementById('orb-canvas');
+const ctx = canvas.getContext('2d');
+
+function resizeCanvas() {
+  const r = canvas.parentElement.getBoundingClientRect();
+  canvas.width = r.width - 32;
+  canvas.height = 300;
+}
+resizeCanvas();
+
+// ─── Robot init ──────────────────────────────────────────────────
+function initRobots() {
+  robots = [];
+  for (let i = 0; i < 4; i++) {
+    robots.push({
+      id: i, x: 40 + i * 120, y: 80 + Math.random() * 40,
+      tx: 200, ty: 130, angle: 0, state: 'approach',
+      armAngle: 0, color: ['#6DBCB4','#D4960A','#E8DFC8','#A89878'][i],
+      speed: 0.6 + Math.random() * 0.4
+    });
+  }
+}
+initRobots();
+
+// ─── Draw Functions ──────────────────────────────────────────────
+function drawGrid(cw, ch) {
+  ctx.strokeStyle = 'rgba(232,223,200,0.05)';
+  ctx.lineWidth = 0.5;
+  for (let x = 0; x < cw; x += 40) {
+    ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, ch); ctx.stroke();
+  }
+  for (let y = 0; y < ch; y += 40) {
+    ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(cw, y); ctx.stroke();
+  }
+  // Earth limb
+  ctx.save();
+  ctx.strokeStyle = 'rgba(52,110,180,0.22)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.arc(cw/2, ch + 60, ch + 20, Math.PI * 1.12, Math.PI * 1.88); ctx.stroke();
+  ctx.restore();
+}
+
+function drawModule(x, y, mod, progress, idx) {
+  const { name, color, w, h } = mod;
+  const assembled = progress >= 100;
+  const active = idx === moduleActive && progress < 100 && progress > 0;
+  const locked = progress >= 100;
+
+  ctx.save();
+  // Glow for active
+  if (active) {
+    ctx.shadowColor = 'rgba(212,150,10,0.5)';
+    ctx.shadowBlur = 12;
+  }
+  // Module body
+  ctx.fillStyle = assembled ? color : `rgba(${hexToRgb(color)},${0.3 + progress/100*0.5})`;
+  ctx.strokeStyle = active ? '#D4960A' : locked ? 'rgba(232,223,200,0.5)' : 'rgba(232,223,200,0.2)';
+  ctx.lineWidth = active ? 1.2 : 0.5;
+  roundRect(ctx, x - w/2, y - h/2, w, h, 4);
+  ctx.fill(); ctx.stroke();
+
+  // Port circles
+  if (assembled || progress > 20) {
+    ctx.fillStyle = locked ? '#5A9E55' : '#D4960A';
+    ctx.beginPath(); ctx.arc(x - w/2, y, 4, 0, Math.PI*2); ctx.fill();
+    ctx.beginPath(); ctx.arc(x + w/2, y, 4, 0, Math.PI*2); ctx.fill();
+  }
+
+  // Label
+  ctx.fillStyle = assembled ? '#0A0A08' : 'rgba(232,223,200,0.7)';
+  ctx.font = '8px Space Mono, monospace';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText(name.toUpperCase(), x, y);
+
+  // Progress arc if active
+  if (active && progress > 0 && progress < 100) {
+    ctx.strokeStyle = '#D4960A'; ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.arc(x + w/2 + 12, y, 9, -Math.PI/2, -Math.PI/2 + (progress/100)*Math.PI*2);
+    ctx.stroke();
+    ctx.fillStyle = '#D4960A'; ctx.font = '7px Space Mono, monospace';
+    ctx.fillText(Math.round(progress)+'%', x + w/2 + 12, y);
+  }
+  ctx.restore();
+}
+
+function drawRobot(r) {
+  ctx.save();
+  ctx.translate(r.x, r.y);
+  // Body
+  ctx.fillStyle = r.state === 'docking' ? r.color : `rgba(${hexToRgb(r.color)},0.7)`;
+  ctx.strokeStyle = r.color; ctx.lineWidth = 0.8;
+  roundRect(ctx, -10, -8, 20, 16, 3); ctx.fill(); ctx.stroke();
+
+  // Arm
+  ctx.strokeStyle = r.color; ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(10, 0);
+  ctx.lineTo(10 + Math.cos(r.armAngle)*18, Math.sin(r.armAngle)*18);
+  ctx.stroke();
+
+  // End effector
+  ctx.fillStyle = '#D4960A';
+  ctx.beginPath();
+  ctx.arc(10 + Math.cos(r.armAngle)*18, Math.sin(r.armAngle)*18, 3, 0, Math.PI*2);
+  ctx.fill();
+
+  // ID label
+  ctx.fillStyle = '#0A0A08'; ctx.font = 'bold 7px Space Mono, monospace';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  ctx.fillText('R'+r.id, 0, 0);
+  ctx.restore();
+}
+
+function drawConnector(x1, y1, x2, y2, color, label) {
+  ctx.save();
+  ctx.strokeStyle = color || 'rgba(232,223,200,0.2)';
+  ctx.lineWidth = 0.5; ctx.setLineDash([4, 4]);
+  ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+  if (label) {
+    ctx.fillStyle = 'rgba(232,223,200,0.45)'; ctx.font = '7px Space Mono, monospace';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(label, (x1+x2)/2, (y1+y2)/2 - 6);
+  }
+  ctx.restore();
+}
+
+function drawStars(cw, ch) {
+  ctx.save();
+  const stars = [[12,18],[45,8],[88,22],[130,14],[190,6],[310,11],[420,8],[510,19],[580,7],[620,14],[660,20],[30,50],[160,48],[350,44],[500,52],[640,46]];
+  stars.forEach(([sx,sy]) => {
+    ctx.fillStyle = `rgba(232,223,200,${0.2+Math.sin(tick*0.03+sx)*0.1})`;
+    ctx.fillRect(sx, sy, 1, 1);
+  });
+  ctx.restore();
+}
+
+function drawFrame() {
+  const cw = canvas.width, ch = canvas.height;
+  ctx.clearRect(0, 0, cw, ch);
+  ctx.fillStyle = '#0A0A08'; ctx.fillRect(0, 0, cw, ch);
+
+  drawGrid(cw, ch);
+  drawStars(cw, ch);
+
+  // Central axis / orbit reference line
+  ctx.save();
+  ctx.strokeStyle = 'rgba(232,223,200,0.08)'; ctx.lineWidth = 0.5; ctx.setLineDash([8,12]);
+  ctx.beginPath(); ctx.moveTo(0, ch/2); ctx.lineTo(cw, ch/2); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.restore();
+
+  // Module layout: chain horizontally centered
+  const centerX = cw / 2, centerY = ch / 2;
+  const positions = [
+    { x: centerX - 210, y: centerY },
+    { x: centerX - 130, y: centerY },
+    { x: centerX - 40,  y: centerY },
+    { x: centerX + 60,  y: centerY },
+    { x: centerX + 145, y: centerY + 50 },
+    { x: centerX + 145, y: centerY - 50 },
+  ];
+
+  // Draw connectors between assembled modules
+  for (let i = 0; i < positions.length - 1; i++) {
+    if (moduleProgress[i] >= 100 && i < 4) {
+      drawConnector(
+        positions[i].x + MODULES[i].w/2, positions[i].y,
+        positions[i+1].x - MODULES[i+1].w/2, positions[i+1].y,
+        moduleProgress[i+1] >= 100 ? 'rgba(90,158,85,0.5)' : 'rgba(212,150,10,0.4)',
+        null
+      );
+    }
+  }
+  if (moduleProgress[3] >= 100) {
+    drawConnector(positions[3].x + MODULES[3].w/2, positions[3].y, positions[4].x - MODULES[4].w/2, positions[4].y, 'rgba(212,150,10,0.3)');
+    drawConnector(positions[3].x + MODULES[3].w/2, positions[3].y, positions[5].x - MODULES[5].w/2, positions[5].y, 'rgba(212,150,10,0.3)');
+  }
+
+  // Draw modules
+  for (let i = 0; i < MODULES.length; i++) {
+    if (moduleProgress[i] > 0 || i <= moduleActive + 1) {
+      drawModule(positions[i].x, positions[i].y, MODULES[i], moduleProgress[i], i);
+    }
+  }
+
+  // Fault flash overlay
+  if (faultActive) {
+    ctx.save();
+    ctx.fillStyle = `rgba(200,75,60,${0.06 + Math.sin(tick*0.2)*0.06})`;
+    ctx.fillRect(0,0,cw,ch);
+    ctx.strokeStyle = 'rgba(200,75,60,0.6)'; ctx.lineWidth = 2;
+    ctx.strokeRect(2,2,cw-4,ch-4);
+    ctx.fillStyle = '#C84B3C'; ctx.font = 'bold 9px Space Mono, monospace';
+    ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+    ctx.fillText('⚠ FAULT INJECTED — TOLERANCE BREACH DETECTED', 14, 14);
+    ctx.restore();
+  }
+
+  // Robots
+  robots.forEach(r => { if (r.active !== false) drawRobot(r); });
+
+  // Dimension annotations
+  if (moduleProgress[0] >= 100 && moduleProgress[1] >= 100) {
+    const p0 = positions[0], p1 = positions[1];
+    ctx.save();
+    ctx.strokeStyle = 'rgba(232,223,200,0.25)'; ctx.lineWidth = 0.5;
+    const yl = p0.y + MODULES[0].h/2 + 14;
+    ctx.beginPath(); ctx.moveTo(p0.x - MODULES[0].w/2, yl); ctx.lineTo(p1.x + MODULES[1].w/2, yl); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(p0.x - MODULES[0].w/2, yl-5); ctx.lineTo(p0.x - MODULES[0].w/2, yl+5); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(p1.x + MODULES[1].w/2, yl-5); ctx.lineTo(p1.x + MODULES[1].w/2, yl+5); ctx.stroke();
+    ctx.fillStyle = 'rgba(232,223,200,0.45)'; ctx.font = '7px Space Mono, monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText('TOL: ±0.002m', (p0.x + p1.x)/2, yl + 8);
+    ctx.restore();
+  }
+}
+
+// ─── Tolerance Panel ────────────────────────────────────────────
+let tolVals = [0.8, 65, 0.18, 420, 22];
+function renderTol() {
+  const el = document.getElementById('tol-list');
+  el.innerHTML = '';
+  TOL_ITEMS.forEach((t, i) => {
+    const val = tolVals[i];
+    const pct = Math.min(100, (val / t.max) * 100);
+    let cls = pct < 60 ? 'tol-ok' : pct < 85 ? 'tol-warn' : 'tol-crit';
+    if (faultActive && i === 0) cls = 'tol-crit';
+    const disp = val < 1 ? val.toFixed(3) : val.toFixed(1);
+    el.innerHTML += `
+      <div class="tol-row">
+        <div class="tol-name"><span>${t.name}</span><span class="tol-val">${disp}${t.unit}</span></div>
+        <div class="tol-bar-bg"><div class="tol-bar ${cls}" style="width:${pct}%"></div></div>
+      </div>`;
+  });
+}
+
+// ─── Sequence Panel ─────────────────────────────────────────────
+function renderSeq() {
+  const el = document.getElementById('seq-list');
+  el.innerHTML = '';
+  const subPct = moduleProgress[moduleActive] || 0;
+  SEQ_STEPS.forEach((s, i) => {
+    const stepPct = Math.min(100, Math.max(0, (subPct - i*(100/6)) * 6));
+    const done = stepPct >= 100;
+    const active = !done && stepPct > 0;
+    el.innerHTML += `
+      <div class="seq-step">
+        <div class="seq-num">${String(i+1).padStart(2,'0')}</div>
+        <div class="seq-bar-wrap">
+          <div class="seq-name">${s}</div>
+          <div class="seq-prog-bg"><div class="seq-prog ${active?'active':done?'done':''}" style="width:${done?100:stepPct}%"></div></div>
+        </div>
+        <div class="seq-pct">${done?'✓':active?Math.round(stepPct)+'%':'—'}</div>
+      </div>`;
+  });
+}
+
+// ─── Log Panel ──────────────────────────────────────────────────
+const LOG_MSGS = [
+  ['ok', 'R0: structural_lock verified — module HALO'],
+  ['ok', 'R1: update_digital_twin(HALO.state)'],
+  ['warn', 'vibration amplitude: 47.2 μm/s (threshold 50)'],
+  ['ok', 'R2: assign_robot — I-HAB Habitat'],
+  ['ok', 'consensus achieved — 4/4 robots'],
+  ['ok', 'R3: dock(module, tolerance=0.002)'],
+  ['warn', 'thermal deformation spike: 720μm'],
+  ['ok', 'plan_assembly_order → seq[3] = ESPRIT'],
+  ['ok', 'port seal pressure delta: 0.12 Pa ✓'],
+  ['err', 'FAULT: alignment offset exceeded 2.0mm'],
+  ['ok', 'RECOVERY: recalibrate trajectory — R0'],
+  ['ok', 'verify_structural_lock → LOCKED'],
+];
+let logIdx = 0;
+function pushLog(type, msg) {
+  const t = String(Math.floor(elapsed/3600)).padStart(2,'0')+':'+String(Math.floor(elapsed%3600/60)).padStart(2,'0')+':'+String(Math.floor(elapsed%60)).padStart(2,'0');
+  logEntries.unshift({ t, type, msg });
+  if (logEntries.length > 7) logEntries.pop();
+  const el = document.getElementById('log-list');
+  el.innerHTML = logEntries.map(e=>`
+    <div class="log-entry">
+      <div class="log-time">${e.t}</div>
+      <div class="log-msg ${e.type==='ok'?'log-ok':e.type==='warn'?'log-warn':'log-err'}">${e.msg}</div>
+    </div>`).join('');
+}
+
+// ─── Digital Twin ────────────────────────────────────────────────
+function renderTwin() {
+  const el = document.getElementById('twin-grid');
+  const items = [
+    { lbl: 'MODULES LOCKED', val: twinData.modules, unit: '/ 6' },
+    { lbl: 'STRUCTURAL LOCKS', val: twinData.locks, unit: 'pts' },
+    { lbl: 'ACTIVE ROBOTS', val: twinData.robots, unit: 'units' },
+    { lbl: 'DOCK TOLERANCE', val: twinData.tolerance.toFixed(3), unit: 'm' },
+  ];
+  el.innerHTML = items.map(i=>`
+    <div class="twin-card">
+      <div class="twin-lbl">${i.lbl}</div>
+      <div class="twin-val">${i.val}<span class="twin-unit"> ${i.unit}</span></div>
+    </div>`).join('');
+}
+
+// ─── Clock ───────────────────────────────────────────────────────
+function updateClock() {
+  const h = String(Math.floor(elapsed/3600)).padStart(2,'0');
+  const m = String(Math.floor(elapsed%3600/60)).padStart(2,'0');
+  const s = String(Math.floor(elapsed%60)).padStart(2,'0');
+  document.getElementById('clock').textContent = `T+${h}:${m}:${s}`;
+}
+
+// ─── Main Loop ───────────────────────────────────────────────────
+let lastLog = 0, lastTolUpdate = 0;
+function simLoop() {
+  if (!running) return;
+  tick++;
+  elapsed += 0.05 * speed;
+
+  // Progress active module
+  if (moduleProgress[moduleActive] < 100) {
+    moduleProgress[moduleActive] += 0.08 * speed * (faultActive ? 0.1 : 1);
+    if (moduleProgress[moduleActive] >= 100) {
+      moduleProgress[moduleActive] = 100;
+      twinData.modules++;
+      twinData.locks += 4;
+      pushLog('ok', `Module ${MODULES[moduleActive].name} — ASSEMBLY COMPLETE`);
+      moduleActive = Math.min(moduleActive + 1, MODULES.length - 1);
+      if (moduleActive < MODULES.length) {
+        moduleProgress[moduleActive] = moduleProgress[moduleActive] || 0.1;
+      }
+    }
+  }
+
+  // Update tolerances with jitter
+  if (tick - lastTolUpdate > 6) {
+    lastTolUpdate = tick;
+    tolVals = tolVals.map((v, i) => {
+      const base = [0.8, 65, 0.18, 420, 22][i];
+      const jitter = (Math.random() - 0.5) * [0.2, 8, 0.04, 60, 6][i];
+      return Math.max(0.05, Math.min(TOL_ITEMS[i].max * (faultActive && i===0 ? 1.1 : 0.95), base + jitter));
+    });
+    renderTol();
+  }
+
+  // Update robots
+  const activePos = [
+    { x: canvas.width/2 - 40, y: canvas.height/2 }
+  ];
+  robots.forEach((r, i) => {
+    const target = { x: canvas.width/2 - 40 + (i-1.5)*40, y: canvas.height/2 - 50 };
+    r.x += (target.x - r.x) * 0.015 * speed;
+    r.y += (target.y - r.y) * 0.015 * speed;
+    r.armAngle = Math.sin(tick * 0.04 * speed + i * 1.3) * 0.7;
+    r.state = moduleProgress[moduleActive] > 50 ? 'docking' : 'approach';
+  });
+
+  // Fault timer
+  if (faultActive) {
+    faultTimer -= speed;
+    if (faultTimer <= 0) {
+      faultActive = false;
+      pushLog('ok', 'FAULT CLEARED — nominal operations resumed');
+      document.getElementById('btn-fault').classList.remove('active');
+    }
+  }
+
+  // Random log
+  if (tick - lastLog > Math.floor(80 / speed)) {
+    lastLog = tick;
+    const msg = LOG_MSGS[logIdx % LOG_MSGS.length];
+    if (!faultActive || msg[0] !== 'err') {
+      pushLog(msg[0], msg[1]);
+    }
+    logIdx++;
+  }
+
+  renderSeq();
+  updateClock();
+  renderTwin();
+  drawFrame();
+}
+
+// ─── Controls ────────────────────────────────────────────────────
+function toggleSim() {
+  running = !running;
+  const btn = document.getElementById('btn-play');
+  btn.textContent = running ? '▶ RUN SIM' : '‖ PAUSED';
+  btn.classList.toggle('active', running);
+  if (running) loop();
+}
+function resetSim() {
+  elapsed = 0; tick = 0; faultActive = false; faultTimer = 0;
+  moduleProgress = [100, 100, 0, 0, 0, 0]; moduleActive = 2;
+  logEntries = [];
+  initRobots();
+  renderTol(); renderSeq(); renderTwin();
+  pushLog('ok', 'SIMULATION RESET — assembly sequence initialised');
+}
+function triggerDock() {
+  if (moduleProgress[moduleActive] < 100) {
+    moduleProgress[moduleActive] = Math.min(moduleProgress[moduleActive] + 15, 100);
+    pushLog('ok', `MANUAL DOCK: R0 assigned to ${MODULES[moduleActive].name}`);
+  }
+}
+function triggerFault() {
+  faultActive = true; faultTimer = 120;
+  pushLog('err', 'FAULT INJECTED: tolerance breach — docking axis misalign');
+  document.getElementById('btn-fault').classList.add('active');
+}
+function setSpeed(v) {
+  speed = parseFloat(v);
+  document.getElementById('speed-out').textContent = v + '×';
+}
+
+// ─── Helpers ─────────────────────────────────────────────────────
+function hexToRgb(hex) {
+  const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+  return `${r},${g},${b}`;
+}
+function roundRect(c, x, y, w, h, r) {
+  c.beginPath(); c.moveTo(x+r,y); c.lineTo(x+w-r,y);
+  c.arcTo(x+w,y,x+w,y+r,r); c.lineTo(x+w,y+h-r);
+  c.arcTo(x+w,y+h,x+w-r,y+h,r); c.lineTo(x+r,y+h);
+  c.arcTo(x,y+h,x,y+h-r,r); c.lineTo(x,y+r);
+  c.arcTo(x,y,x+r,y,r); c.closePath();
+}
+
+// ─── Init ────────────────────────────────────────────────────────
+renderTol(); renderSeq(); renderTwin();
+pushLog('ok', 'orbital_assembly() — sequence initiated');
+pushLog('ok', 'plan_assembly_order → 6 modules queued');
+pushLog('ok', 'R0–R3: consensus protocol active');
+
+function loop() { if (running) { simLoop(); requestAnimationFrame(loop); } }
+drawFrame();
+loop();
+window.addEventListener('resize', () => { resizeCanvas(); drawFrame(); });
+</script>

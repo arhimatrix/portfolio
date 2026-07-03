@@ -1,0 +1,183 @@
+
+<style>
+canvas { display:block; background:#0a0a0a; border-radius:6px; cursor:crosshair; }
+.info { font-family:monospace; font-size:11px; color:#e8e0c8; opacity:0.45; margin-top:8px; display:flex; gap:24px; }
+.info span { opacity:0.7; }
+.tag { font-family:monospace; font-size:10px; color:#1d9e75; opacity:0.7; margin-top:4px; }
+</style>
+<canvas id="c" width="680" height="480"></canvas>
+<div class="info">
+  <span>drag attractor — panels respond to proximity</span>
+  <span id="coords">attractor: —</span>
+  <span id="depth-out">max depth: —</span>
+</div>
+<div class="tag">PUDO — bamboo parametric panelisation — attractor field</div>
+
+<script>
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+const W = 680, H = 480;
+
+const COLS = 22, ROWS = 14;
+const MARGIN_X = 60, MARGIN_Y = 50;
+const CW = (W - MARGIN_X*2) / COLS;
+const CH = (H - MARGIN_Y*2) / ROWS;
+
+let attractor = { x: W/2, y: H/2 };
+let dragging = false;
+let frame = 0;
+
+const CREAM = '#e8e0c8';
+const TEAL = '#1d9e75';
+const BG = '#0a0a0a';
+
+function dist(x1,y1,x2,y2){ return Math.sqrt((x1-x2)**2+(y1-y2)**2); }
+
+function panelDepth(cx,cy){
+  const d = dist(cx, cy, attractor.x, attractor.y);
+  const maxD = Math.sqrt(W*W+H*H)*0.5;
+  const t = Math.max(0, 1 - d/280);
+  return t * t;
+}
+
+function drawGrid(){
+  ctx.fillStyle = BG;
+  ctx.fillRect(0,0,W,H);
+
+  ctx.strokeStyle = 'rgba(232,224,200,0.04)';
+  ctx.lineWidth = 0.5;
+  for(let x=0;x<W;x+=40){ ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke(); }
+  for(let y=0;y<H;y+=40){ ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke(); }
+}
+
+function drawPanels(){
+  let maxDepth = 0;
+  for(let r=0;r<ROWS;r++){
+    for(let c=0;c<COLS;c++){
+      const px = MARGIN_X + c*CW;
+      const py = MARGIN_Y + r*CH;
+      const cx = px + CW/2;
+      const cy = py + CH/2;
+      const depth = panelDepth(cx,cy);
+      if(depth > maxDepth) maxDepth = depth;
+
+      const inset = 2 + depth * 10;
+      const alpha = 0.08 + depth * 0.55;
+      const strokeAlpha = 0.2 + depth * 0.6;
+
+      ctx.fillStyle = `rgba(232,224,200,${alpha * 0.18})`;
+      ctx.strokeStyle = `rgba(232,224,200,${strokeAlpha})`;
+      ctx.lineWidth = 0.4 + depth * 0.8;
+
+      ctx.beginPath();
+      ctx.rect(px+inset, py+inset, CW-inset*2, CH-inset*2);
+      ctx.fill();
+      ctx.stroke();
+
+      if(depth > 0.3){
+        const diag = 0.5 + depth * 2;
+        ctx.strokeStyle = `rgba(232,224,200,${depth*0.3})`;
+        ctx.lineWidth = 0.3;
+        ctx.beginPath();
+        ctx.moveTo(px+inset, py+inset);
+        ctx.lineTo(px+CW-inset, py+CH-inset);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(px+CW-inset, py+inset);
+        ctx.lineTo(px+inset, py+CH-inset);
+        ctx.stroke();
+      }
+
+      if(depth > 0.65){
+        ctx.fillStyle = `rgba(29,158,117,${(depth-0.65)*0.4})`;
+        ctx.fillRect(px+inset+2, py+inset+2, CW-inset*2-4, CH-inset*2-4);
+      }
+    }
+  }
+  document.getElementById('depth-out').textContent = `max depth: ${(maxDepth*200).toFixed(0)}mm`;
+}
+
+function drawAttractor(){
+  const pulse = Math.sin(frame*0.05)*3;
+  ctx.strokeStyle = TEAL;
+  ctx.lineWidth = 0.8;
+  ctx.globalAlpha = 0.6;
+  ctx.beginPath(); ctx.arc(attractor.x, attractor.y, 14+pulse, 0, Math.PI*2); ctx.stroke();
+  ctx.globalAlpha = 0.25;
+  ctx.fillStyle = TEAL;
+  ctx.beginPath(); ctx.arc(attractor.x, attractor.y, 7, 0, Math.PI*2); ctx.fill();
+  ctx.globalAlpha = 0.7;
+  ctx.strokeStyle = TEAL;
+  ctx.lineWidth = 0.5;
+  ctx.beginPath(); ctx.moveTo(attractor.x-12,attractor.y); ctx.lineTo(attractor.x+12,attractor.y); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(attractor.x,attractor.y-12); ctx.lineTo(attractor.x,attractor.y+12); ctx.stroke();
+  ctx.globalAlpha = 1;
+
+  ctx.fillStyle = TEAL;
+  ctx.font = '9px monospace';
+  ctx.fillText('attractor', attractor.x+18, attractor.y-8);
+  ctx.fillStyle = 'rgba(232,224,200,0.35)';
+  ctx.fillText('pt', attractor.x+18, attractor.y+4);
+}
+
+function drawLabels(){
+  ctx.fillStyle = 'rgba(232,224,200,0.18)';
+  ctx.font = '9px monospace';
+  ctx.fillText('PUDO — bamboo parametric panelisation', 12, H-28);
+  ctx.fillStyle = 'rgba(232,224,200,0.1)';
+  ctx.fillText(`${COLS}×${ROWS} panel grid   depth 20–200mm   attractor-point field`, 12, H-14);
+
+  ctx.fillStyle = 'rgba(232,224,200,0.12)';
+  ctx.fillText('20mm', MARGIN_X - 40, H - MARGIN_Y + 4);
+  ctx.fillText('200mm', attractor.x - 20, attractor.y - 24);
+}
+
+function drawInfluenceRing(){
+  ctx.strokeStyle = 'rgba(29,158,117,0.08)';
+  ctx.lineWidth = 0.5;
+  ctx.setLineDash([4,6]);
+  ctx.beginPath(); ctx.arc(attractor.x, attractor.y, 280, 0, Math.PI*2); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.strokeStyle = 'rgba(29,158,117,0.04)';
+  ctx.beginPath(); ctx.arc(attractor.x, attractor.y, 180, 0, Math.PI*2); ctx.stroke();
+  ctx.beginPath(); ctx.arc(attractor.x, attractor.y, 90, 0, Math.PI*2); ctx.stroke();
+}
+
+function loop(){
+  drawGrid();
+  drawInfluenceRing();
+  drawPanels();
+  drawAttractor();
+  drawLabels();
+  document.getElementById('coords').textContent =
+    `attractor: ${Math.round(attractor.x)}, ${Math.round(attractor.y)}`;
+  frame++;
+  requestAnimationFrame(loop);
+}
+
+function getPos(e){
+  const r = canvas.getBoundingClientRect();
+  const scaleX = W / r.width;
+  const scaleY = H / r.height;
+  if(e.touches){
+    return {
+      x: (e.touches[0].clientX - r.left) * scaleX,
+      y: (e.touches[0].clientY - r.top) * scaleY
+    };
+  }
+  return {
+    x: (e.clientX - r.left) * scaleX,
+    y: (e.clientY - r.top) * scaleY
+  };
+}
+
+canvas.addEventListener('mousedown', e => { dragging=true; const p=getPos(e); attractor=p; });
+canvas.addEventListener('mousemove', e => { if(dragging){ const p=getPos(e); attractor=p; } });
+canvas.addEventListener('mouseup', () => dragging=false);
+canvas.addEventListener('mouseleave', () => dragging=false);
+canvas.addEventListener('touchstart', e => { e.preventDefault(); dragging=true; const p=getPos(e); attractor=p; }, {passive:false});
+canvas.addEventListener('touchmove', e => { e.preventDefault(); if(dragging){ const p=getPos(e); attractor=p; } }, {passive:false});
+canvas.addEventListener('touchend', () => dragging=false);
+
+loop();
+</script>

@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Nina Velimirovic - Titan Swarm Exploration Interactive Dashboard. Systems engineering, CAD design, and swarm simulation.">
+  <title>Nina Velimirovic — Titan Swarm Systems Dashboard</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Reuse main stylesheet for font/color variables -->
+  <link rel="stylesheet" href="index.css?v=9">
+  
+  <style>
+    /* Custom overrides for the fullscreen dashboard layout */
+    body {
+      background-color: #FFFFFF !important;
+      color: #000000 !important;
+      font-family: var(--font-d);
+      overflow-x: hidden;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .dashboard-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 6vw;
+      box-sizing: border-box;
+    }
+    
+    .dash-header {
+      border-bottom: 1px solid var(--d-border);
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    
+    .dash-header h1 {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 0;
+      line-height: 1.1;
+    }
+    
+    .dash-header .subtitle {
+      font-family: var(--font-m);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      color: var(--d-muted);
+      text-transform: uppercase;
+      margin-top: 5px;
+    }
+    
+    .btn-back {
+      font-family: var(--font-m);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      color: var(--d-teal);
+      text-decoration: none;
+      border: 1px solid var(--d-border);
+      padding: 6px 12px;
+      border-radius: 4px;
+      transition: all 0.2s;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    
+    .btn-back:hover {
+      border-color: var(--d-teal);
+      background: #F4FBFB;
+    }
+    
+    .dash-section-title {
+      font-size: 18px;
+      font-weight: 800;
+      border-bottom: 1px solid var(--d-border);
+      padding-bottom: 8px;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      color: var(--d-teal);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    /* Dual Column Layout Grid */
+    .dash-grid-2 {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 35px;
+      margin-bottom: 40px;
+    }
+    
+    @media (max-width: 900px) {
+      .dash-grid-2 {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+    }
+    
+    /* Swarm Simulator Styles */
+    .swarm-panel {
+      border: 1px solid var(--d-border);
+      border-radius: 6px;
+      background: #FFFFFF;
+      padding: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .swarm-canvas-container {
+      width: 100%;
+      height: 300px;
+      border: 1px solid var(--d-border);
+      border-radius: 4px;
+      background: #FFFFFF;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    #canvas-titan-swarm {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    
+    .swarm-ctrl-bar-detailed {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    
+    .swarm-ctrl-bar-detailed button {
+      font-family: var(--font-m);
+      font-size: 9px;
+      font-weight: 600;
+      background: #FFFFFF;
+      color: var(--d-ink);
+      border: 1px solid var(--d-border);
+      padding: 4px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+    }
+    
+    .swarm-ctrl-bar-detailed button:hover {
+      background: var(--d-border);
+      color: var(--d-teal);
+    }
+    
+    .swarm-ctrl-bar-detailed button.active {
+      background: var(--d-teal);
+      color: #FFFFFF;
+      border-color: var(--d-teal);
+    }
+    
+    .swarm-mode-label {
+      font-family: var(--font-m);
+      font-size: 9px;
+      color: var(--d-muted);
+      margin-left: auto;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+    
+    /* Telemetry Panel Styles */
+    .telemetry-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .telemetry-stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    
+    .tel-card {
+      border: 1px solid var(--d-border);
+      border-radius: 4px;
+      padding: 10px;
+      background: #FAFBFB;
+      text-align: center;
+    }
+    
+    .tel-card .label {
+      font-family: var(--font-m);
+      font-size: 7.5px;
+      letter-spacing: 0.05em;
+      color: var(--d-muted);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 4px;
+    }
+    
+    .tel-card .val {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--d-ink);
+    }
+    
+    .tel-card .val.active {
+      color: var(--d-teal);
+    }
+    
+    .chart-container {
+      border: 1px solid var(--d-border);
+      border-radius: 6px;
+      background: #FFFFFF;
+      padding: 12px;
+      height: 110px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .chart-title {
+      font-family: var(--font-m);
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--d-muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    
+    .chart-svg-box {
+      flex-grow: 1;
+      position: relative;
+    }
+    
+    .chart-svg-box svg {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .console-log-box {
+      border: 1px solid var(--d-border);
+      border-radius: 6px;
+      background: #F8FAF9;
+      padding: 12px;
+      height: 118px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .console-title {
+      font-family: var(--font-m);
+      font-size: 8px;
+      font-weight: 600;
+      color: var(--d-muted);
+      border-bottom: 1px solid var(--d-border);
+      padding-bottom: 4px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    
+    .console-log {
+      flex-grow: 1;
+      font-family: var(--font-m);
+      font-size: 7.5px;
+      line-height: 1.35;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      color: #334155;
+    }
+    
+    /* Interactive Exploded CAD Inspector */
+    .cad-inspector-box {
+      border: 1px solid var(--d-border);
+      border-radius: 6px;
+      padding: 15px;
+      background: #FFFFFF;
+    }
+    
+    .cad-viewer-container {
+      position: relative;
+      width: 100%;
+      max-width: 700px;
+      margin: 0 auto;
+      border: 1px solid var(--d-border);
+      background: #FFFFFF;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    
+    .cad-viewer-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      user-select: none;
+    }
+    
+    /* Hotspot Pins */
+    .hotspot-pin {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background: var(--d-teal);
+      border: 2px solid #FFFFFF;
+      border-radius: 50%;
+      cursor: pointer;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 10px rgba(0, 155, 158, 0.4);
+      transition: all 0.25s ease;
+      z-index: 10;
+    }
+    
+    .hotspot-pin::after {
+      content: '';
+      position: absolute;
+      top: -4px; left: -4px; right: -4px; bottom: -4px;
+      border: 1.5px solid var(--d-teal);
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: pulse-pin 1.6s infinite ease-out;
+    }
+    
+    .hotspot-pin:hover, .hotspot-pin.active {
+      background: #ef9f27;
+      border-color: #FFFFFF;
+      box-shadow: 0 0 12px rgba(239, 159, 39, 0.6);
+    }
+    
+    .hotspot-pin:hover::after, .hotspot-pin.active::after {
+      border-color: #ef9f27;
+    }
+    
+    @keyframes pulse-pin {
+      0% { transform: scale(0.9); opacity: 0.8; }
+      100% { transform: scale(1.6); opacity: 0; }
+    }
+    
+    /* Detail Card */
+    .cad-detail-card {
+      border: 1px solid var(--d-border);
+      border-radius: 4px;
+      background: #FAFBFB;
+      padding: 15px;
+      height: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .cad-detail-card h3 {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--d-teal);
+      margin: 0 0 5px 0;
+    }
+    
+    .cad-detail-card .category-badge {
+      font-family: var(--font-m);
+      font-size: 8px;
+      font-weight: 600;
+      color: #FFFFFF;
+      background: var(--d-teal);
+      padding: 2px 6px;
+      border-radius: 2px;
+      display: inline-block;
+      align-self: flex-start;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    
+    .cad-detail-card .desc {
+      font-size: 13px;
+      color: var(--d-muted);
+      line-height: 1.5;
+      margin: 0 0 15px 0;
+    }
+    
+    .cad-detail-card .specs-table {
+      border-top: 1px dashed var(--d-border);
+      padding-top: 10px;
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    
+    .cad-detail-card .spec-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+    }
+    
+    .cad-detail-card .spec-row .lbl {
+      font-family: var(--font-m);
+      color: var(--d-muted);
+    }
+    
+    .cad-detail-card .spec-row .val {
+      font-family: var(--font-m);
+      font-weight: bold;
+      color: var(--d-ink);
+    }
+    
+    /* Slideshow details styling */
+    .slideshow-panel {
+      border: 1px solid var(--d-border);
+      border-radius: 6px;
+      padding: 15px;
+      background: #FFFFFF;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .slide-main-image {
+      aspect-ratio: 16/10;
+      width: 100%;
+      border: 1px solid var(--d-border);
+      border-radius: 4px;
+      overflow: hidden;
+      background: #FAFBFB;
+      position: relative;
+      cursor: pointer;
+    }
+    
+    .slide-main-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    
+    .slide-main-image:hover img {
+      transform: scale(1.02);
+    }
+    
+    .slide-caption-overlay {
+      position: absolute;
+      bottom: 0; left: 0; width: 100%;
+      padding: 8px 12px;
+      background: rgba(255, 255, 255, 0.95);
+      border-top: 1px solid var(--d-border);
+      font-family: var(--font-m);
+      font-size: 10px;
+      letter-spacing: 0.05em;
+      color: var(--d-teal);
+      box-sizing: border-box;
+    }
+    
+    .slide-thumb-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    
+    .slide-thumb-item {
+      aspect-ratio: 4/3;
+      border: 1px solid var(--d-border);
+      border-radius: 4px;
+      overflow: hidden;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: all 0.2s;
+    }
+    
+    .slide-thumb-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .slide-thumb-item:hover, .slide-thumb-item.active {
+      opacity: 1;
+      border-color: var(--d-teal);
+    }
+    
+    .spec-bullets {
+      list-style: none;
+      padding-left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .spec-bullets li {
+      position: relative;
+      padding-left: 15px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: var(--d-muted);
+    }
+    
+    .spec-bullets li::before {
+      content: "▪";
+      position: absolute;
+      left: 0;
+      color: var(--d-teal);
+      font-size: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="dashboard-container">
+    
+    <!-- Header -->
+    <header class="dash-header">
+      <div>
+        <div class="subtitle">PROJECT 04 · INTERACTIVE FLIGHT-DRIVE DASHBOARD</div>
+        <h1>Distributed Exploration of Titan</h1>
+      </div>
+      <a href="index.html#chapter4" class="btn-back">← Back to Portfolio</a>
+    </header>
+    
+    <!-- SECTION 1: SWARM SIMULATOR & TELEMETRY -->
+    <h2 class="dash-section-title">01 · Real-time Swarm Simulation & Telemetry</h2>
+    <div class="dash-grid-2">
+      
+      <!-- Simulator -->
+      <div class="swarm-panel">
+        <div class="swarm-canvas-container">
+          <canvas id="canvas-titan-swarm"></canvas>
+        </div>
+        <div class="swarm-ctrl-bar-detailed">
+          <button id="btn-swarm-drive" class="active">WHEEL MODE (DRIVE)</button>
+          <button id="btn-swarm-flight">ROTOR MODE (FLIGHT)</button>
+          <button id="btn-swarm-storm">⚡ INJECT RADIATION STORM</button>
+          <span class="swarm-mode-label" id="lbl-swarm-mode">MODE: DRIVE</span>
+        </div>
+      </div>
+      
+      <!-- Telemetry Dashboard -->
+      <div class="telemetry-panel">
+        <div class="telemetry-stats-row">
+          <div class="tel-card">
+            <span class="label">ACTIVE AGENTS</span>
+            <span class="val text-teal" id="stat-active-nodes">9 / 9</span>
+          </div>
+          <div class="tel-card">
+            <span class="label">LATENCY (AVG)</span>
+            <span class="val" id="stat-latency">68 ms</span>
+          </div>
+          <div class="tel-card">
+            <span class="label">TRANSFERRED</span>
+            <span class="val text-teal" id="stat-data-pct">0%</span>
+          </div>
+          <div class="tel-card">
+            <span class="label">SYNC STATE</span>
+            <span class="val" id="stat-sync" style="font-size:11px; font-family:var(--font-m); color:var(--d-teal);">CONNECTED</span>
+          </div>
+        </div>
+        
+        <!-- SVG Latency Line Chart -->
+        <div class="chart-container">
+          <div class="chart-title">NETWORK COMMS LATENCY TELEMETRY (MS)</div>
+          <div class="chart-svg-box">
+            <svg id="svg-latency-chart" viewBox="0 0 350 70" preserveAspectRatio="none">
+              <path d="M 0,35 L 350,35" stroke="#E2E8F0" stroke-width="0.5" stroke-dasharray="2 2" />
+              <polyline id="poly-latency-line" fill="none" stroke="#009b9e" stroke-width="1.5" points="" />
+            </svg>
+          </div>
+        </div>
+        
+        <!-- Consensus Log -->
+        <div class="console-log-box">
+          <div class="console-title">CONSENSUS TASK ENGINE LOG</div>
+          <div class="console-log" id="titan-log"></div>
+        </div>
+      </div>
+      
+    </div>
+    
+    <!-- SECTION 2: INTERACTIVE exploded CAD view -->
+    <h2 class="dash-section-title">02 · Dual-Mode Swarm Agent CAD Inspector</h2>
+    <div class="dash-grid-2">
+      
+      <!-- Exploded View Image with absolute hot spot overlay -->
+      <div class="cad-inspector-box">
+        <div class="cad-viewer-container">
+          <img src="Swarm Titan/exploded_cad.jpg" alt="Exploded CAD view of dual-mode agent">
+          
+          <!-- Hotspots placement -->
+          <div class="hotspot-pin active" style="top: 12%; left: 50%;" data-idx="0"></div> <!-- Propeller -->
+          <div class="hotspot-pin" style="top: 25%; left: 45%;" data-idx="1"></div> <!-- Airframe truss -->
+          <div class="hotspot-pin" style="top: 36%; left: 40%;" data-idx="2"></div> <!-- Linear guide -->
+          <div class="hotspot-pin" style="top: 55%; left: 53%;" data-idx="3"></div> <!-- Chassis/LiDAR -->
+          <div class="hotspot-pin" style="top: 77%; left: 30%;" data-idx="4"></div> <!-- Wheel / Gimbal -->
+        </div>
+      </div>
+      
+      <!-- Component Specs detail card -->
+      <div class="cad-details-panel">
+        <div class="cad-detail-card" id="cad-card">
+          <h3 id="cad-part-name">Aerodynamic Propeller</h3>
+          <span class="category-badge" id="cad-part-cat">Propulsion</span>
+          <p class="desc" id="cad-part-desc">Four custom carbon-fiber composite propellers designed to optimize hover and thrust efficiency in Titan's dense, high-pressure nitrogen atmosphere. Configured with pitch geometries suited for flight densities 4.5 times greater than Earth's sea level.</p>
+          <div class="specs-table">
+            <div class="spec-row"><span class="lbl">Mass Allocation</span><span class="val" id="cad-part-mass">420 g</span></div>
+            <div class="spec-row"><span class="lbl">Power Draw (Peak)</span><span class="val" id="cad-part-power">140 W</span></div>
+            <div class="spec-row"><span class="lbl">Redundancy Configuration</span><span class="val" id="cad-part-redun">Quad-Rotor Independent</span></div>
+            <div class="spec-row"><span class="lbl">System Status</span><span class="val" id="cad-part-status" style="color:var(--d-teal);">NOMINAL (100%)</span></div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
+    <!-- SECTION 3: ENGINEERING DRAWINGS & SIMULATION GALLERY -->
+    <h2 class="dash-section-title">03 · Engineering Performance & Physics Validation</h2>
+    <div class="dash-grid-2">
+      
+      <!-- Slideshow Panel -->
+      <div class="slideshow-panel">
+        <div class="slide-main-image" onclick="triggerLightbox()">
+          <img src="Swarm Titan/orthographic_cad.jpg" alt="Orthographic CAD Views" id="slide-main-img">
+          <div class="slide-caption-overlay" id="slide-caption">Orthographic CAD drawing: Front, Right side, Back, and Left side views</div>
+        </div>
+        <div class="slide-thumb-strip">
+          <div class="slide-thumb-item active" onclick="changeSlide('Swarm Titan/orthographic_cad.jpg', 'Orthographic CAD drawing: Front, Right side, Back, and Left side views', this)">
+            <img src="Swarm Titan/orthographic_cad.jpg" alt="Orthographic CAD">
+          </div>
+          <div class="slide-thumb-item" onclick="changeSlide('Swarm Titan/fea_analysis.jpg', 'FEA Stress Analysis: Structural load distribution and strain mapping under atmospheric drag', this)">
+            <img src="Swarm Titan/fea_analysis.jpg" alt="FEA Strain Analysis">
+          </div>
+          <div class="slide-thumb-item" onclick="changeSlide('Swarm Titan/ue5_simulation.jpg', 'Unreal Engine 5 physics validation viewport: Multi-agent cooperative traversal in simulated terrain', this)">
+            <img src="Swarm Titan/ue5_simulation.jpg" alt="UE5 Physics Sim">
+          </div>
+        </div>
+      </div>
+      
+      <!-- Engineering Specifications Details -->
+      <div>
+        <h3 style="font-size: 18px; font-weight: 800; color: #000; margin: 0 0 15px 0;">Validation & Structural Auditing Specs</h3>
+        <ul class="spec-bullets">
+          <li><strong>Finite Element Analysis (FEA)</strong>: Modeled in Karamba3D and validated under Titan-representative aerodynamic forces. Red zones indicate maximum bending stresses under high drag, showing a margin of safety exceeding 2.2 using anisotropic carbon-composite trusses.</li>
+          <li><strong>Dual-Mode Kinematic Transitions</strong>: Dual-mode rovers shift from ground driving to rotor flight by sliding arm extensions outwards on linear guides, widening the rotor diameter to 1.5m to maximize lift and stability.</li>
+          <li><strong>UE5 Physics-Based Digital Twin</strong>: Terrain, heights, and material friction indexes are generated from radar heightmap displacement grids. Custom rigid body controllers calibrate atmospheric density (`5.3 kg/m³`) and gravity (`1.35 m/s²`) to validate task plan latency.</li>
+          <li><strong>Cooperative Consensus</strong>: Under latency lag, the 9 agents coordinate using distributed consensus voting. Task allocation, Lakeside soil LiDAR sweeps, and routing sequences are computed locally, preventing master-node bottlenecks.</li>
+        </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  <!-- Fullscreen Image Lightbox Overlay -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img id="lightbox-img" class="lightbox-content" src="" alt="" onclick="event.stopPropagation()">
+    <div id="lightbox-caption" class="lightbox-caption"></div>
+  </div>
+
+  <script>
+    // ----------------- CAD HOTSPOT DETAILS DATA -----------------
+    const hotspotData = [
+      {
+        name: "Aerodynamic Propeller",
+        cat: "Propulsion",
+        desc: "Four custom carbon-fiber composite propellers designed to optimize hover and thrust efficiency in Titan's dense, high-pressure nitrogen atmosphere. Configured with pitch geometries suited for flight densities 4.5 times greater than Earth's sea level.",
+        mass: "420 g",
+        power: "140 W (Peak)",
+        redun: "Quad-Rotor Independent",
+        status: "NOMINAL (100%)"
+      },
+      {
+        name: "Upper Airframe Truss",
+        cat: "Structure",
+        desc: "A lightweight carbon-composite space frame truss optimized via Karamba3D finite element analysis. Distributes structural forces between ground suspension loads and aerial vertical thrust forces with a maximum structural safety factor of 2.2.",
+        mass: "1150 g",
+        power: "0 W",
+        redun: "Anisotropic Rigid Truss",
+        status: "NOMINAL (100%)"
+      },
+      {
+        name: "Linear Tracking Guide",
+        cat: "Morphology Actuation",
+        desc: "A carbon-rail linear drive actuator that retracts the rotor hubs close to the chassis center for ground mode (decreasing width to 0.8m) and pushes them outward (to 1.5m span) for stable aerodynamic flight mode transitions.",
+        mass: "290 g",
+        power: "45 W (Active)",
+        redun: "Dual Locking Actuator",
+        status: "NOMINAL (100%)"
+      },
+      {
+        name: "Main Chassis & LiDAR Payload",
+        cat: "Avionics & Payload",
+        desc: "Protective double-walled chassis housing flight computers, ROS telemetry nodes, and a 150m scanning LiDAR payload. Used for real-time 3D SLAM mapping of prebiotic nitrogen ice shelves and liquid methane lake margins.",
+        mass: "2200 g",
+        power: "25 W (LiDAR Active)",
+        redun: "Dual Redundant IMU / SLAM",
+        status: "NOMINAL (100%)"
+      },
+      {
+        name: "Wheel Gimbal Suspension",
+        cat: "Suspension & Steering",
+        desc: "A motorized 360-degree gimbal hinge connecting wheels to the chassis frame. Serves as independent steering for rover traversal and aligns wheels horizontally during flight mode to minimize drag and act as landing skids.",
+        mass: "980 g (per corner)",
+        power: "60 W (Traversing)",
+        redun: "4x Independent Steering",
+        status: "NOMINAL (100%)"
+      }
+    ];
+
+    // Bind Hotspot Pins clicks
+    const pins = document.querySelectorAll('.hotspot-pin');
+    const partName = document.getElementById('cad-part-name');
+    const partCat = document.getElementById('cad-part-cat');
+    const partDesc = document.getElementById('cad-part-desc');
+    const partMass = document.getElementById('cad-part-mass');
+    const partPower = document.getElementById('cad-part-power');
+    const partRedun = document.getElementById('cad-part-redun');
+    const partStatus = document.getElementById('cad-part-status');
+
+    pins.forEach(p => {
+      p.addEventListener('click', () => {
+        pins.forEach(x => x.classList.remove('active'));
+        p.classList.add('active');
+        
+        const idx = parseInt(p.dataset.idx);
+        const data = hotspotData[idx];
+        
+        partName.textContent = data.name;
+        partCat.textContent = data.cat;
+        partDesc.textContent = data.desc;
+        partMass.textContent = data.mass;
+        partPower.textContent = data.power;
+        partRedun.textContent = data.redun;
+        partStatus.textContent = data.status;
+        
+        if (data.status.includes("OFFLINE")) {
+          partStatus.style.color = "var(--crisis)";
+        } else {
+          partStatus.style.color = "var(--d-teal)";
+        }
+      });
+    });
+
+    // ----------------- GALLERY SLIDESHOW -----------------
+    const slideImg = document.getElementById('slide-main-img');
+    const slideCaption = document.getElementById('slide-caption');
+    const thumbs = document.querySelectorAll('.slide-thumb-item');
+
+    function changeSlide(imgPath, caption, element) {
+      slideImg.src = imgPath;
+      slideCaption.textContent = caption;
+      thumbs.forEach(t => t.classList.remove('active'));
+      element.classList.add('active');
+    }
+
+    // Lightbox modal binding
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+
+    function triggerLightbox() {
+      if (!lightbox || !lightboxImg || !lightboxCaption) return;
+      lightboxImg.src = slideImg.src;
+      lightboxCaption.textContent = slideCaption.textContent;
+      lightbox.classList.add('active');
+    }
+
+    function closeLightbox() {
+      if (lightbox) lightbox.classList.remove('active');
+    }
+
+    // ----------------- 2D SWARM SIMULATION & LOGS -----------------
+    const canvas = document.getElementById('canvas-titan-swarm');
+    const ctx = canvas.getContext('2d');
+    
+    const logEl = document.getElementById('titan-log');
+    const polyLatency = document.getElementById('poly-latency-line');
+    
+    const activeNodesEl = document.getElementById('stat-active-nodes');
+    const latencyEl = document.getElementById('stat-latency');
+    const dataPctEl = document.getElementById('stat-data-pct');
+    const syncStatusEl = document.getElementById('stat-sync');
+    
+    const btnDrive = document.getElementById('btn-swarm-drive');
+    const btnFlight = document.getElementById('btn-swarm-flight');
+    const btnStorm = document.getElementById('btn-swarm-storm');
+    const lblSwarmMode = document.getElementById('lbl-swarm-mode');
+    
+    let dpr = window.devicePixelRatio || 1;
+    let width = 300, height = 200;
+    
+    let mode = 'drive'; // 'drive' or 'flight'
+    let stormInjected = false;
+    let dataTransferred = 0;
+    let latencyHistory = Array.from({length: 30}, () => 65 + Math.random()*15);
+    let agents = [];
+    let waypoints = [];
+    let frame = 0;
+    let logCooldown = 0;
+    
+    function logMsg(msg, type = 'info') {
+      if (!logEl) return;
+      const time = new Date().toLocaleTimeString('en-US', { hour12: false });
+      const span = document.createElement('span');
+      span.style.display = 'block';
+      
+      if (type === 'warn') {
+        span.style.color = '#ef4444';
+        span.style.fontWeight = 'bold';
+      } else if (type === 'bid') {
+        span.style.color = '#ef9f27';
+      } else if (type === 'action') {
+        span.style.color = '#009b9e';
+      } else {
+        span.style.color = '#64748b';
+      }
+      
+      span.textContent = `[${time}] ${msg}`;
+      logEl.appendChild(span);
+      logEl.scrollTop = logEl.scrollHeight;
+      
+      while (logEl.children.length > 20) {
+        logEl.removeChild(logEl.firstChild);
+      }
+    }
+    
+    function initAgents() {
+      agents = [];
+      for (let i = 0; i < 9; i++) {
+        agents.push({
+          id: i + 1,
+          x: 40 + Math.random() * (width - 80),
+          y: 40 + Math.random() * (height - 80),
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          targetX: null,
+          targetY: null,
+          status: 'active',
+          scanRadius: 0
+        });
+      }
+      waypoints = [];
+    }
+    
+    function resizeCanvas() {
+      const rect = canvas.getBoundingClientRect();
+      width = rect.width || 300;
+      height = rect.height || 200;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.scale(dpr, dpr);
+      
+      if (agents.length === 0) {
+        initAgents();
+      }
+    }
+    
+    // Controls binding
+    btnDrive.addEventListener('click', () => {
+      mode = 'drive';
+      btnDrive.classList.add('active');
+      btnFlight.classList.remove('active');
+      lblSwarmMode.textContent = "MODE: DRIVE";
+      logMsg("✔ Swarm morphology switched to ground traversal (wheel mode).", "info");
+      logMsg("[SYSTEM] Max velocity limited to 0.8 m/s. Power draw reduced.", "info");
+    });
+    
+    btnFlight.addEventListener('click', () => {
+      mode = 'flight';
+      btnFlight.classList.add('active');
+      btnDrive.classList.remove('active');
+      lblSwarmMode.textContent = "MODE: FLIGHT";
+      logMsg("✔ Swarm morphology switched to aerial flight (quad-rotor mode).", "action");
+      logMsg("[SYSTEM] Velocity increased to 2.5 m/s. Obstacle clearance active.", "info");
+    });
+    
+    btnStorm.addEventListener('click', () => {
+      stormInjected = !stormInjected;
+      if (stormInjected) {
+        btnStorm.classList.add('active');
+        btnStorm.textContent = "⚡ CLEAR RADIATION STORM";
+        logMsg("⚡ WARNING: Radiation storm detected. Comm packet loss spikes.", "warn");
+        logMsg("⚡ [CONSENSUS] Distributed delay-tolerant routing loops active.", "warn");
+        activeNodesEl.textContent = "9 / 9 (Storm degraded)";
+        activeNodesEl.style.color = "var(--crisis)";
+        syncStatusEl.textContent = "DEGRADED SYNC";
+        syncStatusEl.style.color = "var(--crisis)";
+        hotspotData[3].status = "DEGRADED (STORM DROPOUT)";
+        if (document.querySelector('.hotspot-pin.active[data-idx="3"]')) {
+          partStatus.textContent = hotspotData[3].status;
+          partStatus.style.color = "var(--crisis)";
+        }
+      } else {
+        btnStorm.classList.remove('active');
+        btnStorm.textContent = "⚡ INJECT RADIATION STORM";
+        logMsg("✔ Solar radiation cleared. Sensor connection re-established.", "info");
+        logMsg("[SYSTEM] Comm network latency returned to nominal limits.", "info");
+        activeNodesEl.textContent = "9 / 9";
+        activeNodesEl.style.color = "var(--d-teal)";
+        syncStatusEl.textContent = "CONNECTED";
+        syncStatusEl.style.color = "var(--d-teal)";
+        hotspotData[3].status = "NOMINAL (100%)";
+        if (document.querySelector('.hotspot-pin.active[data-idx="3"]')) {
+          partStatus.textContent = hotspotData[3].status;
+          partStatus.style.color = "var(--d-teal)";
+        }
+      }
+    });
+
+    window.addEventListener('resize', resizeCanvas);
+    
+    // Simulator animation
+    function updateSimulation() {
+      // 1. Generate target waypoints
+      if (waypoints.length === 0 && Math.random() < 0.015) {
+        const wx = 30 + Math.random() * (width - 60);
+        const wy = 30 + Math.random() * (height - 60);
+        waypoints.push({
+          x: wx,
+          y: wy,
+          life: 250,
+          allocated: false
+        });
+        logMsg(`[CONSENSUS] Science waypoint detected at [${Math.round(wx)}, ${Math.round(wy)}]`, "info");
+        
+        // Consensus bidding
+        let bestScore = -1;
+        let winner = null;
+        
+        agents.forEach(a => {
+          if (a.status === 'active') {
+            const dist = Math.hypot(a.x - wx, a.y - wy);
+            let score = 1 - dist / width;
+            score += (Math.random() - 0.5) * 0.08;
+            logMsg(`  Agent-${a.id} Bid Score: ${score.toFixed(2)}`, "bid");
+            if (score > bestScore) {
+              bestScore = score;
+              winner = a;
+            }
+          }
+        });
+        
+        if (winner) {
+          logMsg(`[CONSENSUS] Task allocated to Agent-${winner.id} (Winner).`, "action");
+          winner.targetX = wx;
+          winner.targetY = wy;
+          winner.status = 'mapping';
+        }
+      }
+      
+      // Update agents
+      agents.forEach(a => {
+        const speedLimit = (mode === 'flight') ? 1.8 : 0.6;
+        
+        if (a.status === 'mapping' && a.targetX !== null) {
+          const dx = a.targetX - a.x;
+          const dy = a.targetY - a.y;
+          const dist = Math.hypot(dx, dy);
+          
+          if (dist < 3) {
+            a.x = a.targetX;
+            a.y = a.targetY;
+            a.vx = 0; a.vy = 0;
+            a.scanRadius = Math.min(22, a.scanRadius + 0.8);
+            
+            if (waypoints.length > 0) {
+              const W = waypoints[0];
+              W.life -= 2.5;
+              if (W.life <= 0) {
+                waypoints.shift();
+                a.status = 'active';
+                a.targetX = null;
+                a.targetY = null;
+                a.scanRadius = 0;
+                logMsg(`✔ [AGENT-${a.id}] Waypoint LiDAR scan sync'd. lake data buffered.`, "action");
+                dataTransferred = Math.min(100, dataTransferred + 8.3);
+                dataPctEl.textContent = `${Math.round(dataTransferred)}%`;
+              }
+            } else {
+              a.status = 'active';
+              a.targetX = null;
+              a.targetY = null;
+              a.scanRadius = 0;
+            }
+          } else {
+            a.vx = (dx / dist) * speedLimit;
+            a.vy = (dy / dist) * speedLimit;
+          }
+        } else {
+          // Wander forces
+          a.vx += (Math.random() - 0.5) * 0.08;
+          a.vy += (Math.random() - 0.5) * 0.08;
+          
+          // Speed Clamp
+          const spd = Math.hypot(a.vx, a.vy);
+          if (spd > speedLimit) {
+            a.vx = (a.vx / spd) * speedLimit;
+            a.vy = (a.vy / spd) * speedLimit;
+          }
+        }
+        
+        a.x += a.vx;
+        a.y += a.vy;
+        
+        // Boundaries bounce
+        const padding = 10;
+        if (a.x < padding) { a.x = padding; a.vx *= -1; }
+        if (a.x > width - padding) { a.x = width - padding; a.vx *= -1; }
+        if (a.y < padding) { a.y = padding; a.vy *= -1; }
+        if (a.y > height - padding) { a.y = height - padding; a.vy *= -1; }
+      });
+      
+      // Update latency graph values
+      frame++;
+      if (frame % 20 === 0) {
+        const base = stormInjected ? 380 : 60;
+        const noise = stormInjected ? 90 : 15;
+        const curLatency = Math.round(base + Math.random() * noise);
+        latencyEl.textContent = `${curLatency} ms`;
+        
+        latencyHistory.push(curLatency);
+        latencyHistory.shift();
+        
+        drawLatencyChart();
+      }
+    }
+    
+    function drawLatencyChart() {
+      if (!polyLatency) return;
+      const points = [];
+      const len = latencyHistory.length;
+      const xSpacing = 350 / (len - 1);
+      
+      latencyHistory.forEach((v, idx) => {
+        const x = idx * xSpacing;
+        // Map Y from latency scale 0-500ms to SVG height 0-70px (Y decreases upwards)
+        const y = 65 - (v / 500) * 60;
+        points.push(`${x},${y}`);
+      });
+      
+      polyLatency.setAttribute('points', points.join(' '));
+      polyLatency.setAttribute('stroke', stormInjected ? '#ef4444' : '#009b9e');
+    }
+    
+    function drawSimulation() {
+      ctx.clearRect(0, 0, width, height);
+      
+      // Background Grid
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+      const spacing = 20;
+      for (let x = spacing; x < width; x += spacing) {
+        for (let y = spacing; y < height; y += spacing) {
+          ctx.fillRect(x - 0.5, y - 0.5, 1, 1);
+        }
+      }
+      
+      // Draw waypoints
+      waypoints.forEach(w => {
+        ctx.strokeStyle = '#ef9f27';
+        ctx.lineWidth = 0.8;
+        ctx.globalAlpha = 0.5;
+        ctx.beginPath();
+        ctx.arc(w.x, w.y, 8 + Math.sin(frame * 0.08)*2, 0, Math.PI * 2);
+        ctx.stroke();
+        
+        ctx.fillStyle = '#ef9f27';
+        ctx.globalAlpha = 0.15;
+        ctx.beginPath();
+        ctx.arc(w.x, w.y, 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 1.0;
+        
+        ctx.strokeStyle = '#ef9f27';
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(w.x - 6, w.y); ctx.lineTo(w.x + 6, w.y);
+        ctx.moveTo(w.x, w.y - 6); ctx.lineTo(w.x, w.y + 6);
+        ctx.stroke();
+      });
+      
+      // Draw mesh communication link lines
+      ctx.lineWidth = 0.5;
+      const meshDist = 80;
+      for (let i = 0; i < agents.length; i++) {
+        for (let j = i + 1; j < agents.length; j++) {
+          const a1 = agents[i];
+          const a2 = agents[j];
+          const d = Math.hypot(a1.x - a2.x, a1.y - a2.y);
+          
+          if (d < meshDist) {
+            let opacity = (1 - d / meshDist) * 0.25;
+            if (stormInjected) {
+              opacity *= 0.6;
+              ctx.strokeStyle = `rgba(239, 68, 68, ${opacity})`; // Red links in storm
+              ctx.setLineDash([2, 2]);
+            } else {
+              ctx.strokeStyle = `rgba(0, 155, 158, ${opacity})`; // Teal normal links
+              ctx.setLineDash([]);
+            }
+            ctx.beginPath();
+            ctx.moveTo(a1.x, a1.y);
+            ctx.lineTo(a2.x, a2.y);
+            ctx.stroke();
+          }
+        }
+      }
+      ctx.setLineDash([]); // Reset line dash
+      
+      // Draw agents
+      agents.forEach(a => {
+        // Draw scan cone if scanning
+        if (a.status === 'mapping' && a.scanRadius > 0) {
+          ctx.strokeStyle = '#ef9f27';
+          ctx.lineWidth = 0.8;
+          ctx.globalAlpha = 0.45;
+          ctx.beginPath();
+          ctx.arc(a.x, a.y, a.scanRadius, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.globalAlpha = 1.0;
+        }
+        
+        // Draw agent shape based on mode
+        ctx.save();
+        ctx.translate(a.x, a.y);
+        
+        if (mode === 'flight') {
+          // Quad-rotor drone symbol (wings and propellers)
+          ctx.strokeStyle = '#475569';
+          ctx.lineWidth = 1.0;
+          ctx.beginPath();
+          // Cross wings
+          ctx.moveTo(-5, -5); ctx.lineTo(5, 5);
+          ctx.moveTo(-5, 5); ctx.lineTo(5, -5);
+          ctx.stroke();
+          
+          // Spinning propellers indicators (small circles)
+          ctx.fillStyle = 'rgba(0, 155, 158, 0.2)';
+          const propRadius = 2.0;
+          const spinOffset = Math.sin(frame * 0.4 + a.id) * 1.5;
+          
+          ctx.beginPath(); ctx.arc(-5, -5, propRadius, 0, Math.PI * 2); ctx.fill();
+          ctx.beginPath(); ctx.arc(5, -5, propRadius, 0, Math.PI * 2); ctx.fill();
+          ctx.beginPath(); ctx.arc(-5, 5, propRadius, 0, Math.PI * 2); ctx.fill();
+          ctx.beginPath(); ctx.arc(5, 5, propRadius, 0, Math.PI * 2); ctx.fill();
+          
+          // Core chassis dot
+          ctx.fillStyle = '#009b9e';
+          ctx.beginPath(); ctx.arc(0, 0, 2.5, 0, Math.PI * 2); ctx.fill();
+          ctx.strokeStyle = '#FFFFFF';
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        } else {
+          // Rover symbol (wheels and body)
+          ctx.fillStyle = '#64748B';
+          // Wheel treads
+          ctx.fillRect(-5.5, -4, 2, 8);
+          ctx.fillRect(3.5, -4, 2, 8);
+          
+          // Main chassis body
+          ctx.fillStyle = '#009b9e';
+          ctx.fillRect(-3.5, -3, 7, 6);
+          
+          ctx.strokeStyle = '#FFFFFF';
+          ctx.lineWidth = 0.6;
+          ctx.strokeRect(-3.5, -3, 7, 6);
+          
+          // Scanner camera front dot
+          ctx.fillStyle = '#ef9f27';
+          ctx.beginPath(); ctx.arc(0, -2, 0.8, 0, Math.PI * 2); ctx.fill();
+        }
+        
+        // Agent ID label (tiny text overlay)
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
+        ctx.font = '6.5px IBM Plex Mono';
+        ctx.textAlign = 'center';
+        ctx.fillText(a.id, 0, 9.5);
+        
+        ctx.restore();
+      });
+    }
+    
+    function animate() {
+      updateSimulation();
+      drawSimulation();
+      requestAnimationFrame(animate);
+    }
+    
+    // Initialize
+    setTimeout(() => {
+      resizeCanvas();
+      drawLatencyChart();
+      animate();
+    }, 100);
+  </script>
+
+</body>
+</html>
