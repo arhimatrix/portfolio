@@ -2428,10 +2428,10 @@ if (window.location.search.includes('print=true')) {
 function adjustLayout() {
   const pages = document.querySelectorAll('.page');
   const viewportWidth = window.innerWidth;
-  const targetWidth = 794; // A4 width in pixels (210mm at 96dpi)
+  const targetWidth = 793.7; // A4 width in pixels (210mm at 96dpi)
   
-  if (viewportWidth < targetWidth + 20) {
-    const scale = (viewportWidth - 16) / targetWidth;
+  if (viewportWidth < targetWidth) {
+    const scale = viewportWidth / targetWidth;
     pages.forEach(page => {
       // Wrap page in a wrapper if not already wrapped
       let wrapper = page.parentElement;
@@ -2441,19 +2441,40 @@ function adjustLayout() {
         page.parentNode.insertBefore(wrapper, page);
         wrapper.appendChild(page);
       }
+      
+      // Set wrapper styles
+      wrapper.style.width = '100%';
+      wrapper.style.position = 'relative';
+      wrapper.style.overflow = 'hidden';
+      wrapper.style.height = `${1122.5 * scale}px`;
+      
+      // Set page styles
+      page.style.position = 'absolute';
+      page.style.left = '50%';
+      page.style.marginLeft = '-396.85px'; // -793.7/2
+      page.style.width = '793.7px';
+      page.style.height = '1122.5px';
+      page.style.minHeight = '1122.5px';
       page.style.transform = `scale(${scale})`;
       page.style.transformOrigin = 'top center';
       page.style.margin = '0';
-      wrapper.style.height = `${1122.5 * scale + 8}px`;
     });
   } else {
     // Desktop reset
     pages.forEach(page => {
+      page.style.position = '';
+      page.style.left = '';
+      page.style.marginLeft = '';
+      page.style.width = '';
+      page.style.height = '';
+      page.style.minHeight = '';
       page.style.transform = '';
       page.style.transformOrigin = '';
       page.style.margin = '';
       let wrapper = page.parentElement;
       if (wrapper && wrapper.classList.contains('page-wrapper')) {
+        wrapper.style.position = '';
+        wrapper.style.overflow = '';
         wrapper.style.height = '';
       }
     });
