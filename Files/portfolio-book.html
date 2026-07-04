@@ -1995,14 +1995,78 @@ while not rospy.is_shutdown():
   
   
 
+
+
   <!-- ══════════════════════════════════════════
-       PAGE 24 · CHAPTER 06 CONTENT
+       PAGE 25 · CHAPTER 06 SYSTEM ARCHITECTURE (DARK)
+       ══════════════════════════════════════════ -->
+
+  <div class="page dark" style="position:relative; background: #050F1A;">
+    <div class="rh" style="border-color:rgba(255,255,255,0.08);">
+      <span class="rh-label" style="color:rgba(255,255,255,0.45);">Ch.06 · UMBRELLA · Real-Time Digital Twin</span>
+      <div class="rh-line" style="background:rgba(255,255,255,0.1);"></div>
+      <span class="rh-label" style="color:rgba(255,255,255,0.45);">24</span>
+    </div>
+
+    <div class="ch-content" style="padding:6mm 14mm 4mm; display:flex; flex-direction:column; gap:5mm; flex:1; min-height:0;">
+
+      <!-- Section title -->
+      <div style="font-family:var(--f-m); font-size:8.5pt; font-weight:700; color:#2DD6E8; letter-spacing:0.18em; text-transform:uppercase; flex-shrink:0;">
+        System Architecture · Rover &amp; Aerial Drone
+      </div>
+
+      <!-- Intro text -->
+      <div style="font-family:var(--f-s); font-size:7.5pt; line-height:1.6; color:rgba(255,255,255,0.65); max-width:160mm; flex-shrink:0;">
+        The UMBRELLA system integrates a six-wheeled rover and an autonomous aerial drone operating in concert across Mars-analogue terrain. Two independent but tightly coupled architecture layers govern the mission: the <span style="color:#2DD6E8; font-weight:500;">Mobility Subsystem</span> for localisation, path planning, and actuator control; and the <span style="color:#2DD6E8; font-weight:500;">Communications System</span> for inter-vehicle data-link, science data relay, and ground-segment uplink. Both architectures were formally defined in the MBSE framework and validated in AirSim high-fidelity simulation.
+      </div>
+
+      <!-- Two diagram cells stacked vertically -->
+      <div style="display:flex; flex-direction:column; gap:4mm; flex:1; min-height:0;">
+
+        <!-- Mobility Architecture -->
+        <div style="flex:1; display:flex; flex-direction:column; min-height:0; border:0.3mm solid rgba(45,214,232,0.25); border-radius:2mm; overflow:hidden; position:relative;">
+          <div style="padding:2.5mm 4mm; background:rgba(45,214,232,0.06); border-bottom:0.3mm solid rgba(45,214,232,0.15); flex-shrink:0; display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-family:var(--f-m); font-size:7pt; font-weight:700; color:#2DD6E8; letter-spacing:0.14em; text-transform:uppercase;">Mobility Subsystem Architecture</span>
+            <span style="font-family:var(--f-m); font-size:6.5pt; color:rgba(255,255,255,0.35);">FIG.06.E — Localisation · Navigation · Locomotion Control</span>
+          </div>
+          <div style="flex:1; min-height:0; overflow:hidden;">
+            <img src="UMBRELLA/portfolio_assets/mobility_architecture.png"
+                 alt="UMBRELLA Mobility Subsystem Architecture — Localisation, Navigation, Locomotion Control"
+                 style="width:100%; height:100%; object-fit:contain; object-position:center; display:block; background:#050F1A;">
+          </div>
+        </div>
+
+        <!-- Comms Architecture -->
+        <div style="flex:1; display:flex; flex-direction:column; min-height:0; border:0.3mm solid rgba(45,214,232,0.25); border-radius:2mm; overflow:hidden; position:relative;">
+          <div style="padding:2.5mm 4mm; background:rgba(45,214,232,0.06); border-bottom:0.3mm solid rgba(45,214,232,0.15); flex-shrink:0; display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-family:var(--f-m); font-size:7pt; font-weight:700; color:#2DD6E8; letter-spacing:0.14em; text-transform:uppercase;">Communications System Architecture — Rover &amp; Drone</span>
+            <span style="font-family:var(--f-m); font-size:6.5pt; color:rgba(255,255,255,0.35);">FIG.06.F — Deep Space Link · Local Drone Link · Air Interface</span>
+          </div>
+          <div style="flex:1; min-height:0; overflow:hidden;">
+            <img src="UMBRELLA/portfolio_assets/comms_architecture.png"
+                 alt="UMBRELLA Comms System Architecture — Rover and Drone, Deep Space Link, Air Interface"
+                 style="width:100%; height:100%; object-fit:contain; object-position:center; display:block; background:#050F1A;">
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="pf" style="border-color:rgba(255,255,255,0.08);">
+      <span class="pf-left" style="color:rgba(255,255,255,0.35);">Ch.06 · UMBRELLA · Real-Time Digital Twin</span>
+      <span class="pf-right" style="color:rgba(255,255,255,0.35);">p. 24</span>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       PAGE 26 · CHAPTER 06 CONTENT
        ══════════════════════════════════════════ -->
   <div class="page light">
     <div class="rh">
       <span class="rh-label">Ch.06 · UMBRELLA · Real-Time Digital Twin</span>
       <div class="rh-line"></div>
-      <span class="rh-label">24</span>
+      <span class="rh-label">25</span>
     </div>
     <div class="ch-content">
       <div class="ch-content-top">
@@ -2080,7 +2144,7 @@ while not rospy.is_shutdown():
     </div>
     <div class="pf">
       <span class="pf-left">Ch.06 · UMBRELLA · Real-Time Digital Twin</span>
-      <span class="pf-right">p. 24</span>
+      <span class="pf-right">p. 25</span>
     </div>
   </div>
 
@@ -2089,13 +2153,13 @@ while not rospy.is_shutdown():
   
 
   <!-- ══════════════════════════════════════════
-       PAGE 25 · CHAPTER 06 VISUALS
+       PAGE 26 · CHAPTER 06 VISUALS
        ══════════════════════════════════════════ -->
   <div class="page light">
     <div class="rh">
       <span class="rh-label">Ch.06 · UMBRELLA · Real-Time Digital Twin</span>
       <div class="rh-line"></div>
-      <span class="rh-label">25</span>
+      <span class="rh-label">26</span>
     </div>
     <div class="ch-content" style="padding: 4mm 14mm; gap: 4mm; display: flex; flex-direction: column; justify-content: space-between;">
       <div style="font-family: var(--f-m); font-size: 8.5pt; font-weight: 500; color: var(--teal); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2mm; padding-left: 1mm; flex-shrink: 0;">
@@ -2123,7 +2187,7 @@ while not rospy.is_shutdown():
     </div>
     <div class="pf">
       <span class="pf-left">Ch.06 · UMBRELLA · Real-Time Digital Twin</span>
-      <span class="pf-right">p. 25</span>
+      <span class="pf-right">p. 26</span>
     </div>
   </div>
 
@@ -2132,7 +2196,7 @@ while not rospy.is_shutdown():
   
 
   <!-- ══════════════════════════════════════════
-       PAGE 26 · CHAPTER 07 OPENER
+       PAGE 27 · CHAPTER 07 OPENER
        ══════════════════════════════════════════ -->
   <div class="page dark" style="position:relative;">
     <div class="ch-opener">
@@ -2149,7 +2213,7 @@ while not rospy.is_shutdown():
     </div>
     <div class="pf">
       <span class="pf-left">Ch.07 · Computational Design & Resilience</span>
-      <span class="pf-right">p. 26</span>
+      <span class="pf-right">p. 27</span>
     </div>
   </div>
 
@@ -2157,14 +2221,78 @@ while not rospy.is_shutdown():
   
   
 
+
+
   <!-- ══════════════════════════════════════════
-       PAGE 24 · CHAPTER 06 CONTENT
+       PAGE 25 · CHAPTER 06 SYSTEM ARCHITECTURE (DARK)
+       ══════════════════════════════════════════ -->
+
+  <div class="page dark" style="position:relative; background: #050F1A;">
+    <div class="rh" style="border-color:rgba(255,255,255,0.08);">
+      <span class="rh-label" style="color:rgba(255,255,255,0.45);">Ch.06 · UMBRELLA · Real-Time Digital Twin</span>
+      <div class="rh-line" style="background:rgba(255,255,255,0.1);"></div>
+      <span class="rh-label" style="color:rgba(255,255,255,0.45);">24</span>
+    </div>
+
+    <div class="ch-content" style="padding:6mm 14mm 4mm; display:flex; flex-direction:column; gap:5mm; flex:1; min-height:0;">
+
+      <!-- Section title -->
+      <div style="font-family:var(--f-m); font-size:8.5pt; font-weight:700; color:#2DD6E8; letter-spacing:0.18em; text-transform:uppercase; flex-shrink:0;">
+        System Architecture · Rover &amp; Aerial Drone
+      </div>
+
+      <!-- Intro text -->
+      <div style="font-family:var(--f-s); font-size:7.5pt; line-height:1.6; color:rgba(255,255,255,0.65); max-width:160mm; flex-shrink:0;">
+        The UMBRELLA system integrates a six-wheeled rover and an autonomous aerial drone operating in concert across Mars-analogue terrain. Two independent but tightly coupled architecture layers govern the mission: the <span style="color:#2DD6E8; font-weight:500;">Mobility Subsystem</span> for localisation, path planning, and actuator control; and the <span style="color:#2DD6E8; font-weight:500;">Communications System</span> for inter-vehicle data-link, science data relay, and ground-segment uplink. Both architectures were formally defined in the MBSE framework and validated in AirSim high-fidelity simulation.
+      </div>
+
+      <!-- Two diagram cells stacked vertically -->
+      <div style="display:flex; flex-direction:column; gap:4mm; flex:1; min-height:0;">
+
+        <!-- Mobility Architecture -->
+        <div style="flex:1; display:flex; flex-direction:column; min-height:0; border:0.3mm solid rgba(45,214,232,0.25); border-radius:2mm; overflow:hidden; position:relative;">
+          <div style="padding:2.5mm 4mm; background:rgba(45,214,232,0.06); border-bottom:0.3mm solid rgba(45,214,232,0.15); flex-shrink:0; display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-family:var(--f-m); font-size:7pt; font-weight:700; color:#2DD6E8; letter-spacing:0.14em; text-transform:uppercase;">Mobility Subsystem Architecture</span>
+            <span style="font-family:var(--f-m); font-size:6.5pt; color:rgba(255,255,255,0.35);">FIG.06.E — Localisation · Navigation · Locomotion Control</span>
+          </div>
+          <div style="flex:1; min-height:0; overflow:hidden;">
+            <img src="UMBRELLA/portfolio_assets/mobility_architecture.png"
+                 alt="UMBRELLA Mobility Subsystem Architecture — Localisation, Navigation, Locomotion Control"
+                 style="width:100%; height:100%; object-fit:contain; object-position:center; display:block; background:#050F1A;">
+          </div>
+        </div>
+
+        <!-- Comms Architecture -->
+        <div style="flex:1; display:flex; flex-direction:column; min-height:0; border:0.3mm solid rgba(45,214,232,0.25); border-radius:2mm; overflow:hidden; position:relative;">
+          <div style="padding:2.5mm 4mm; background:rgba(45,214,232,0.06); border-bottom:0.3mm solid rgba(45,214,232,0.15); flex-shrink:0; display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-family:var(--f-m); font-size:7pt; font-weight:700; color:#2DD6E8; letter-spacing:0.14em; text-transform:uppercase;">Communications System Architecture — Rover &amp; Drone</span>
+            <span style="font-family:var(--f-m); font-size:6.5pt; color:rgba(255,255,255,0.35);">FIG.06.F — Deep Space Link · Local Drone Link · Air Interface</span>
+          </div>
+          <div style="flex:1; min-height:0; overflow:hidden;">
+            <img src="UMBRELLA/portfolio_assets/comms_architecture.png"
+                 alt="UMBRELLA Comms System Architecture — Rover and Drone, Deep Space Link, Air Interface"
+                 style="width:100%; height:100%; object-fit:contain; object-position:center; display:block; background:#050F1A;">
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="pf" style="border-color:rgba(255,255,255,0.08);">
+      <span class="pf-left" style="color:rgba(255,255,255,0.35);">Ch.06 · UMBRELLA · Real-Time Digital Twin</span>
+      <span class="pf-right" style="color:rgba(255,255,255,0.35);">p. 28</span>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       PAGE 26 · CHAPTER 06 CONTENT
        ══════════════════════════════════════════ -->
   <div class="page light">
     <div class="rh">
       <span class="rh-label">Ch.07 · Computational Design & Resilience</span>
       <div class="rh-line"></div>
-      <span class="rh-label">27</span>
+      <span class="rh-label">29</span>
     </div>
     <div class="ch-content">
       <div class="ch-content-top" style="margin-bottom: 3mm;">
@@ -2235,7 +2363,7 @@ while not rospy.is_shutdown():
     </div>
     <div class="pf">
       <span class="pf-left">Ch.07 · Computational Design & Resilience</span>
-      <span class="pf-right">p. 27</span>
+      <span class="pf-right">p. 29</span>
     </div>
   </div>
 
@@ -2244,13 +2372,13 @@ while not rospy.is_shutdown():
   
 
   <!-- ══════════════════════════════════════════
-       PAGE 25 · CURRICULUM VITAE
+       PAGE 26 · CURRICULUM VITAE
        ══════════════════════════════════════════ -->
   <div class="page light">
     <div class="rh">
       <span class="rh-label">Curriculum Vitae</span>
       <div class="rh-line"></div>
-      <span class="rh-label">28</span>
+      <span class="rh-label">30</span>
     </div>
     <div class="cv-layout">
       <div class="cv-grid">
@@ -2340,7 +2468,7 @@ while not rospy.is_shutdown():
     </div>
     <div class="pf">
       <span class="pf-left">Nina Velimirovic — Portfolio 2026</span>
-      <span class="pf-right">p. 28</span>
+      <span class="pf-right">p. 30</span>
     </div>
   </div>
 
@@ -2349,7 +2477,7 @@ while not rospy.is_shutdown():
   
 
   <!-- ══════════════════════════════════════════
-       PAGE 26 · BACK COVER
+       PAGE 27 · BACK COVER
        ══════════════════════════════════════════ -->
   <div class="page dark">
     <div style="flex:1; position:relative; overflow:hidden;">
