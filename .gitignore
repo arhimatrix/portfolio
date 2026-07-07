@@ -20,3 +20,10 @@ Swarm Titan/*.jpg
 Orbital City/Orbital City/
 Orbital City/portfolio_assets/*(1)*
 PUDO/PUDO/
+
+# Ignore UMBRELLA raw source assets (large videos + raw imagery)
+UMBRELLA/Umbrella Images/
+UMBRELLA/*.mp4
+UMBRELLA/*.MP4
+*.mp4
+*.MP4
