@@ -2154,49 +2154,6 @@ body {
   <!-- ══════════════════════════════════════════
        PAGE 26 · CHAPTER 06 VISUALS
        ══════════════════════════════════════════ -->
-  <div class="page light">
-    <div class="rh">
-      <span class="rh-label">Ch.06 · UMBRELLA · Real-Time Digital Twin</span>
-      <div class="rh-line"></div>
-      <span class="rh-label">26</span>
-    </div>
-    <div class="ch-content" style="padding: 4mm 14mm; gap: 4mm; display: flex; flex-direction: column; justify-content: space-between;">
-      <div style="font-family: var(--f-m); font-size: 8.5pt; font-weight: 500; color: var(--teal); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2mm; padding-left: 1mm; flex-shrink: 0;">
-        UMBRELLA Simulation Pipeline &amp; Validation Visuals
-      </div>
-
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; flex: 1; min-height: 0;">
-        <div class="img-cell" style="border: 0.3mm solid var(--border); border-radius: 2mm; overflow: hidden; position: relative;">
-          <img src="UMBRELLA/portfolio_assets/mars_slam_render.png" alt="Mars SLAM Mapping UE5 Render" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-          <div class="img-caption">FIG.06.A — High-Fidelity Martian Terrain SLAM Mapping &amp; UE5 Digital Twin Render</div>
-        </div>
-        <div class="img-cell" style="border: 0.3mm solid var(--border); border-radius: 2mm; overflow: hidden; position: relative;">
-          <img src="UMBRELLA/portfolio_assets/airsim_control_pipeline.png" alt="Microsoft AirSim Multi-agent Control Pipeline" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-          <div class="img-caption">FIG.06.B — Microsoft AirSim Multi-Agent Supervisory Control Pipeline &amp; Telemetry</div>
-        </div>
-        <div class="img-cell" style="border: 0.3mm solid var(--border); border-radius: 2mm; overflow: hidden; position: relative;">
-          <img src="UMBRELLA/portfolio_assets/rover_rigging_diagram.png" alt="Rover CAD-to-AirSim Rigging Diagram" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-          <div class="img-caption">FIG.06.C — Rover Assembly CAD Model &amp; Joint Rigging Architecture for AirSim Integration</div>
-        </div>
-        <div class="img-cell" style="border: 0.3mm solid var(--border); border-radius: 2mm; overflow: hidden; position: relative;">
-          <img src="UMBRELLA/portfolio_assets/martian_physics_sim.png" alt="Martian Physics Gravity Simulation" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-          <div class="img-caption">FIG.06.D — Physics Calibration: Martian Gravity &amp; Surface Friction Verification under Load</div>
-        </div>
-      </div>
-    </div>
-    <div class="pf">
-      <span class="pf-left">Ch.06 · UMBRELLA · Real-Time Digital Twin</span>
-      <span class="pf-right">p. 26</span>
-    </div>
-  </div>
-
-
-  
-  
-
-  <!-- ══════════════════════════════════════════
-       PAGE 27 · CHAPTER 07 OPENER
-       ══════════════════════════════════════════ -->
   <div class="page dark" style="position:relative;">
     <div class="ch-opener">
       <div class="ch-opener-img">
@@ -2212,7 +2169,7 @@ body {
     </div>
     <div class="pf">
       <span class="pf-left">Ch.07 · Computational Design & Resilience</span>
-      <span class="pf-right">p. 27</span>
+      <span class="pf-right">p. 26</span>
     </div>
   </div>
 
@@ -2228,95 +2185,9 @@ body {
 
   <div class="page light">
     <div class="rh">
-      <span class="rh-label">Ch.07 · Computational Design & Resilience</span>
-      <div class="rh-line"></div>
-      <span class="rh-label">28</span>
-    </div>
-    <div class="ch-content">
-      <div class="ch-content-top" style="margin-bottom: 3mm;">
-        <div class="ch-text-block">
-          <div class="ch-section-kicker">Mantis · Procedural Resilience System</div>
-          <div class="ch-summary">Created Mantis, a Streamlit-based climate-resilience auditing and parametric design application. Mantis combines global geospatial risk data (wildfire, flood, hurricane, seismic, solar radiation) with local material availability to generate optimized, hazard-resistant structural configurations.</div>
-          <ul class="ch-bullets">
-            <li>Programmed Mantis: a Python and Streamlit application for procedural hazard mapping, real-time structural resilience calculations, and SDG 11 compliance auditing.</li>
-            <li>Integrated dynamic climate risk feeds (mapping wildfire, flood, hurricane, seismic, and solar radiation statistics) to calculate localized vulnerability indices.</li>
-            <li>Developed parametric optimization algorithms that adapt building dimensions (length, width, height) to local environmental constraints and resource availability.</li>
-            <li>Generated hazard-specific modular design packages (such as low-profile hip roofs for high wind areas, reinforced cores for tornados, and intumescent-treated timber defensible spaces for fire zones) targeting SDG 11 compliance.</li>
-          </ul>
-          <div class="ch-tags">
-            <span class="ch-tag">Mantis App</span>
-            <span class="ch-tag">Python / Streamlit</span>
-            <span class="ch-tag">Procedural Resilience</span>
-            <span class="ch-tag">Climate Risk Profiling</span>
-            <span class="ch-tag">Parametric Optimization</span>
-          </div>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 3mm;">
-          <div class="ch-code-box">
-            <div class="ch-code-header">
-              <span>MANTIS / MANTIS_ENGINE.PY</span>
-              <span>Python · Streamlit</span>
-            </div>
-            <div class="ch-code-body"><span class="kw">def</span> <span class="fn">evaluate_resilience</span>(lat, lon, dimensions):
-    risk = mantis_db.<span class="fn">fetch_hazards</span>(lat, lon)
-    <span class="kw">if</span> risk.wildfire > 0.60:
-        design.<span class="fn">apply_module</span>("wildfire_shield", thermal_barrier="4h")
-    <span class="kw">if</span> risk.hurricane > 0.40:
-        design.<span class="fn">apply_module</span>("aero_canopy", pitch=20.0)
-    <span class="kw">return</span> design.<span class="fn">calculate_resilience_score</span>(dimensions)</div>
-          </div>
-          
-          <div class="img-cell" style="width: 100%; aspect-ratio: 1024/529; border: 0.3mm solid var(--border); border-radius: 2mm; overflow: hidden; position: relative;">
-            <img src="Stormcity/portfolio_assets/mantis_app_map.png" alt="Mantis Interface" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-            <div class="img-caption">Mantis Interface — Hazard Analysis & Parameter Controls</div>
-          </div>
-
-          <div class="img-grid-3" style="gap:1.5mm; width: 100%;">
-            <div class="img-cell" style="aspect-ratio: 4/3; border-radius: 1mm; overflow: hidden; position: relative;">
-              <img src="Stormcity/portfolio_assets/IMG_3363.jpeg" alt="Clash Detection">
-              <div class="img-caption" style="font-size: 5pt; padding: 3mm 1mm 1mm;">Clash Detection</div>
-            </div>
-            <div class="img-cell" style="aspect-ratio: 4/3; border-radius: 1mm; overflow: hidden; position: relative;">
-              <img src="Stormcity/portfolio_assets/IMG_3365.jpeg" alt="Digital Twin Pipeline">
-              <div class="img-caption" style="font-size: 5pt; padding: 3mm 1mm 1mm;">Digital Twin</div>
-            </div>
-            <div class="img-cell" style="aspect-ratio: 4/3; border-radius: 1mm; overflow: hidden; position: relative;">
-              <img src="Stormcity/portfolio_assets/IMG_3360.jpeg" alt="Storm Envelope">
-              <div class="img-caption" style="font-size: 5pt; padding: 3mm 1mm 1mm;">Storm Envelope</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="img-grid-2" style="gap:2mm;">
-        <div class="img-cell" style="height: 80mm; border-radius: 2mm; overflow: hidden; position: relative;">
-          <video src="Stormcity/portfolio_assets/mantis_simulation.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;"></video>
-          <div class="img-caption">Mantis Simulation — Galapagos Evolutionary Solver</div>
-        </div>
-        <div class="img-cell" style="height: 80mm; border-radius: 2mm; overflow: hidden; position: relative;">
-          <img src="Stormcity/portfolio_assets/IMG_3362.jpeg" alt="X-BIM Dashboard">
-          <div class="img-caption">X-BIM Suite — Real-Time Sensor Tracking</div>
-        </div>
-      </div>
-    </div>
-    <div class="pf">
-      <span class="pf-left">Ch.07 · Computational Design & Resilience</span>
-      <span class="pf-right">p. 28</span>
-    </div>
-  </div>
-
-
-  
-  
-
-  <!-- ══════════════════════════════════════════
-       PAGE 26 · CURRICULUM VITAE
-       ══════════════════════════════════════════ -->
-  <div class="page light">
-    <div class="rh">
       <span class="rh-label">Curriculum Vitae</span>
       <div class="rh-line"></div>
-      <span class="rh-label">29</span>
+      <span class="rh-label">27</span>
     </div>
     <div class="cv-layout">
       <div class="cv-grid">
@@ -2406,7 +2277,7 @@ body {
     </div>
     <div class="pf">
       <span class="pf-left">Nina Velimirovic — Portfolio 2026</span>
-      <span class="pf-right">p. 29</span>
+      <span class="pf-right">p. 27</span>
     </div>
   </div>
 
