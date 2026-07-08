@@ -6,6 +6,10 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
+  <!-- portfolio-version: 20260708-2052 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <!-- portfolio-version: 20260708-2027 -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
@@ -2272,12 +2276,12 @@ body {
 
       <!-- Section title -->
       <div style="font-family:var(--f-m); font-size:8.5pt; font-weight:700; color:#2DD6E8; letter-spacing:0.18em; text-transform:uppercase; flex-shrink:0;">
-        System Architecture · Rover &amp; Aerial Drone
+        System Architecture · Human-Robot Collaborative Mapping
       </div>
 
       <!-- Intro text -->
       <div style="font-family:var(--f-s); font-size:7.5pt; line-height:1.6; color:rgba(255,255,255,0.65); max-width:160mm; flex-shrink:0;">
-        The UMBRELLA system integrates a six-wheeled rover and an autonomous aerial drone operating in concert across Mars-analogue terrain. Two independent but tightly coupled architecture layers govern the mission: the <span style="color:#2DD6E8; font-weight:500;">Mobility Subsystem</span> for localisation, path planning, and actuator control; and the <span style="color:#2DD6E8; font-weight:500;">Communications System</span> for inter-vehicle data-link, science data relay, and ground-segment uplink. Both architectures were formally defined in the MBSE framework and validated in AirSim high-fidelity simulation.
+        Human-robot collaborative mapping on Mars-analogue terrain introduces a core supervisory control problem: a six-wheeled rover and an autonomous aerial drone must coordinate semi-autonomously across complex terrain while an Earth-based operator maintains situational awareness of both systems under communication lag. The operator must track robot position, coordination state, and sensor health — and retain the ability to issue override commands at any point in the mission.<br><br>The UMBRELLA system architecture addresses this challenge through two formally defined subsystems. The <span style="color:#2DD6E8; font-weight:500;">Mobility Subsystem</span> governs localisation, path planning, and actuator control — providing the real-time telemetry stream the supervisory interface uses to display robot state. The <span style="color:#2DD6E8; font-weight:500;">Communications System</span> manages inter-vehicle data-link, science data relay, and ground-segment uplink — ensuring the operator retains command authority and can monitor link health at all times. Both subsystems were formally defined in the MBSE framework so they could be validated in digital twin simulation before deployment.
       </div>
 
       <!-- Two diagram cells stacked vertically -->
@@ -2319,20 +2323,21 @@ body {
     <div class="ch-content">
       <div class="ch-content-top">
         <div class="ch-text-block">
-          <div class="ch-section-kicker">Project Overview · Strasbourg, France · 2025–2026</div>
-          <div class="ch-summary">Designed and calibrated a Mars-terrain digital twin in UE5 using NASA MOLA heightmaps, integrated with AirSim for high-fidelity robotic simulation. Built the human supervisory interface layer enabling operators to monitor live robot state, issue task commands, and evaluate system behaviour through the real-time feedback loop.</div>
+          <div class="ch-section-kicker">Project Overview · Systems Lead · Strasbourg, France · 2025–2026</div>
+          <div class="ch-summary">Validated the UMBRELLA system architecture by simulating both the Mobility and Communications subsystems in Mars-terrain conditions using a digital twin built from NASA MOLA heightmap data and AirSim physics — calibrating Martian gravity, surface friction, atmospheric density, and full sensor suites (RGB-D, IMU, LiDAR) to test that the architecture performs under real mission conditions.<br><br>Designed the supervisory interface to display system architecture state in real-time: operators visualise robot task sequences, sensor degradation events, SLAM map state, and communication link health — and intervene via override commands through a closed-loop ROS 2 bridge. The digital twin simultaneously serves as operator training environment and validation testbed, closing the loop between system architecture, simulation fidelity, and human supervisory control.</div>
           <ul class="ch-bullets">
-            <li>Built a real-time digital twin framework: UE5 environment synced with live AirSim sensor streams (RGB-D, IMU, LiDAR).</li>
-            <li>Designed the human supervisory interface: operators visualise robot task sequences, sensor degradation events, and SLAM map state — intervening via override commands through an AirSim-to-ROS bridge.</li>
-            <li>Calibrated Martian gravity, surface friction, atmospheric density, and full sensor suites to validate digital twin fidelity.</li>
-            <li>Designed Blackboard data-sharing architecture for leader-follower coordination in visual degradation scenarios.</li>
+            <li>Validated the system architecture in digital twin simulation using NASA MOLA terrain data and AirSim physics — calibrating Martian gravity, friction, atmosphere, and sensor suites to confirm Mobility and Comms subsystems perform under Mars conditions.</li>
+            <li>Designed the supervisory interface to translate system architecture state into operator-readable displays: real-time telemetry at 50 Hz, sensor degradation alerts, SLAM map updates, and communication link status — enabling operator situational awareness across both rover and drone.</li>
+            <li>Implemented closed-loop feedback: operator override commands issued through the supervisory interface propagate via AirSim-to-ROS 2 bridge, update the digital twin state, and return updated telemetry to the operator display in real time.</li>
+            <li>Designed Blackboard data-sharing architecture for leader-follower coordination, enabling the rover and drone to share SLAM state and sensor data while the operator monitors and intervenes via the supervisory interface in visual degradation scenarios.</li>
           </ul>
           <div class="ch-tags">
-            <span class="ch-tag">Real-Time Digital Twin</span>
-            <span class="ch-tag">Human Supervisory Interface</span>
-            <span class="ch-tag">UE5 / AirSim</span>
-            <span class="ch-tag">ROS Bridge</span>
-            <span class="ch-tag">Collaborative Mapping</span>
+            <span class="ch-tag">Human-Robot Collaborative Mapping</span>
+            <span class="ch-tag">Supervisory Interface</span>
+            <span class="ch-tag">Digital Twin Validation</span>
+            <span class="ch-tag">Closed-Loop Feedback</span>
+            <span class="ch-tag">UE5 / AirSim / ROS 2</span>
+            <span class="ch-tag">Sensor Degradation</span>
           </div>
         </div>
         <div style="display:flex; flex-direction:column; gap:3mm; min-height:0;">
