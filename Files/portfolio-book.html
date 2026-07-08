@@ -6,6 +6,10 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
+  <!-- portfolio-version: 20260708-2110 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <!-- portfolio-version: 20260708-2052 -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
@@ -2311,35 +2315,39 @@ body {
   </div>
 
 
-  <!-- ══════════════════════════════════════════
+    <!-- ════════════════════════════════════════════
        PAGE 26 · CHAPTER 06 CONTENT
-       ══════════════════════════════════════════ -->
-  <div class="page light">
-    <div class="rh">
-      <span class="rh-label">Ch.06 · UMBRELLA · Real-Time Digital Twin</span>
-      <div class="rh-line"></div>
-      <span class="rh-label">26</span>
+       ════════════════════════════════════════════ -->
+  <div class="page dark" style="position:relative; background:#000000;">
+    <div class="rh" style="border-color:rgba(255,255,255,0.08);">
+      <span class="rh-label" style="color:rgba(255,255,255,0.45);">Ch.06 · UMBRELLA · Real-Time Digital Twin</span>
+      <div class="rh-line" style="background:rgba(255,255,255,0.1);"></div>
+      <span class="rh-label" style="color:rgba(255,255,255,0.45);">26</span>
     </div>
-    <div class="ch-content">
+    <div class="ch-content" style="padding:6mm 14mm 4mm; display:flex; flex-direction:column; gap:5mm; flex:1; min-height:0;">
       <div class="ch-content-top">
+
+        <!-- Left col: text -->
         <div class="ch-text-block">
           <div class="ch-section-kicker">Project Overview · Systems Lead · Strasbourg, France · 2025–2026</div>
-          <div class="ch-summary">Validated the UMBRELLA system architecture by simulating both the Mobility and Communications subsystems in Mars-terrain conditions using a digital twin built from NASA MOLA heightmap data and AirSim physics — calibrating Martian gravity, surface friction, atmospheric density, and full sensor suites (RGB-D, IMU, LiDAR) to test that the architecture performs under real mission conditions.<br><br>Designed the supervisory interface to display system architecture state in real-time: operators visualise robot task sequences, sensor degradation events, SLAM map state, and communication link health — and intervene via override commands through a closed-loop ROS 2 bridge. The digital twin simultaneously serves as operator training environment and validation testbed, closing the loop between system architecture, simulation fidelity, and human supervisory control.</div>
-          <ul class="ch-bullets">
+          <div class="ch-summary" style="color:rgba(255,255,255,0.65);">Validated the UMBRELLA system architecture by simulating both the Mobility and Communications subsystems in Mars-terrain conditions using a digital twin built from NASA MOLA heightmap data and AirSim physics — calibrating Martian gravity, surface friction, atmospheric density, and full sensor suites (RGB-D, IMU, LiDAR) to test that the architecture performs under real mission conditions.<br><br>Designed the supervisory interface to display system architecture state in real-time: operators visualise robot task sequences, sensor degradation events, SLAM map state, and communication link health — and intervene via override commands through a closed-loop ROS 2 bridge. The digital twin simultaneously serves as operator training environment and validation testbed, closing the loop between system architecture, simulation fidelity, and human supervisory control.</div>
+          <ul class="ch-bullets" style="color:rgba(255,255,255,0.65);">
             <li>Validated the system architecture in digital twin simulation using NASA MOLA terrain data and AirSim physics — calibrating Martian gravity, friction, atmosphere, and sensor suites to confirm Mobility and Comms subsystems perform under Mars conditions.</li>
-            <li>Designed the supervisory interface to translate system architecture state into operator-readable displays: real-time telemetry at 50 Hz, sensor degradation alerts, SLAM map updates, and communication link status — enabling operator situational awareness across both rover and drone.</li>
-            <li>Implemented closed-loop feedback: operator override commands issued through the supervisory interface propagate via AirSim-to-ROS 2 bridge, update the digital twin state, and return updated telemetry to the operator display in real time.</li>
+            <li>Designed the supervisory interface to translate system architecture state into operator-readable displays: real-time telemetry at 50 Hz, sensor degradation alerts, SLAM map updates, and communication link status — enabling operator situational awareness across both rover and drone.</li>
+            <li>Implemented closed-loop feedback: operator override commands issued through the supervisory interface propagate via AirSim-to-ROS 2 bridge, update the digital twin state, and return updated telemetry to the operator display in real time.</li>
             <li>Designed Blackboard data-sharing architecture for leader-follower coordination, enabling the rover and drone to share SLAM state and sensor data while the operator monitors and intervenes via the supervisory interface in visual degradation scenarios.</li>
           </ul>
           <div class="ch-tags">
-            <span class="ch-tag">Human-Robot Collaborative Mapping</span>
-            <span class="ch-tag">Supervisory Interface</span>
-            <span class="ch-tag">Digital Twin Validation</span>
-            <span class="ch-tag">Closed-Loop Feedback</span>
-            <span class="ch-tag">UE5 / AirSim / ROS 2</span>
-            <span class="ch-tag">Sensor Degradation</span>
+            <span class="ch-tag" style="border-color:rgba(255,255,255,0.18); color:rgba(255,255,255,0.7);">Human-Robot Collaborative Mapping</span>
+            <span class="ch-tag" style="border-color:rgba(255,255,255,0.18); color:rgba(255,255,255,0.7);">Supervisory Interface</span>
+            <span class="ch-tag" style="border-color:rgba(255,255,255,0.18); color:rgba(255,255,255,0.7);">Digital Twin Validation</span>
+            <span class="ch-tag" style="border-color:rgba(255,255,255,0.18); color:rgba(255,255,255,0.7);">Closed-Loop Feedback</span>
+            <span class="ch-tag" style="border-color:rgba(255,255,255,0.18); color:rgba(255,255,255,0.7);">UE5 / AirSim / ROS 2</span>
+            <span class="ch-tag" style="border-color:rgba(255,255,255,0.18); color:rgba(255,255,255,0.7);">Sensor Degradation</span>
           </div>
         </div>
+
+        <!-- Right col: code + image -->
         <div style="display:flex; flex-direction:column; gap:3mm; min-height:0;">
           <div class="ch-code-box">
             <div class="ch-code-header">
@@ -2359,55 +2367,58 @@ body {
             rover.<span class="fn">execute</span>(operator.command)
         rate.<span class="fn">sleep</span>() <span class="cm"># 50Hz</span></div>
           </div>
-          <div class="img-cell" style="flex:1; border:0.3mm solid var(--border); border-radius:2mm; overflow:hidden; position:relative; min-height:0;">
+          <div class="img-cell" style="flex:1; border:0.3mm solid rgba(255,255,255,0.12); border-radius:2mm; overflow:hidden; position:relative; min-height:0;">
             <img src="UMBRELLA/portfolio_assets/ue5_rover_blueprint.jpg" alt="UE5 Rover Component Blueprint" style="width:100%; height:100%; object-fit:cover; display:block;">
             <div class="img-caption">UE5 Editor — Rover Component &amp; Physics Assembly Blueprint</div>
           </div>
         </div>
+
       </div>
 
-      <!-- System diagram as text boxes -->
-      <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin-top:3mm; margin-bottom:4mm;">
-        <div style="background:#F8FAFC; border:0.3mm solid var(--border); border-radius:2mm; padding:3mm; text-align:center;">
-          <div style="font-family:var(--f-m); font-size:6pt; color:var(--teal); letter-spacing:0.1em; margin-bottom:1.5mm;">NASA MOLA</div>
-          <div style="font-size:7.5pt; font-weight:600; color:var(--black);">Heightmap DEM</div>
-          <div style="font-size:6pt; color:var(--gray); margin-top:1mm;">16-bit terrain data</div>
+      <!-- System pipeline: 4 dark cards -->
+      <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; flex-shrink:0;">
+        <div style="background:rgba(255,255,255,0.04); border:0.3mm solid rgba(255,255,255,0.12); border-radius:2mm; padding:3mm; text-align:center;">
+          <div style="font-family:var(--f-m); font-size:6pt; color:#2DD6E8; letter-spacing:0.1em; margin-bottom:1.5mm;">NASA MOLA</div>
+          <div style="font-size:7.5pt; font-weight:600; color:rgba(255,255,255,0.9);">Heightmap DEM</div>
+          <div style="font-size:6pt; color:rgba(255,255,255,0.45); margin-top:1mm;">16-bit terrain data</div>
         </div>
-        <div style="background:#F8FAFC; border:0.3mm solid var(--border); border-radius:2mm; padding:3mm; text-align:center;">
-          <div style="font-family:var(--f-m); font-size:6pt; color:var(--teal); letter-spacing:0.1em; margin-bottom:1.5mm;">UE5 / AIRSIM</div>
-          <div style="font-size:7.5pt; font-weight:600; color:var(--black);">Physics Sim</div>
-          <div style="font-size:6pt; color:var(--gray); margin-top:1mm;">RGB-D · IMU · LiDAR</div>
+        <div style="background:rgba(255,255,255,0.04); border:0.3mm solid rgba(255,255,255,0.12); border-radius:2mm; padding:3mm; text-align:center;">
+          <div style="font-family:var(--f-m); font-size:6pt; color:#2DD6E8; letter-spacing:0.1em; margin-bottom:1.5mm;">UE5 / AIRSIM</div>
+          <div style="font-size:7.5pt; font-weight:600; color:rgba(255,255,255,0.9);">Physics Sim</div>
+          <div style="font-size:6pt; color:rgba(255,255,255,0.45); margin-top:1mm;">RGB-D · IMU · LiDAR</div>
         </div>
-        <div style="background:#F8FAFC; border:0.3mm solid var(--border); border-radius:2mm; padding:3mm; text-align:center;">
-          <div style="font-family:var(--f-m); font-size:6pt; color:var(--teal); letter-spacing:0.1em; margin-bottom:1.5mm;">ROS 2 BRIDGE</div>
-          <div style="font-size:7.5pt; font-weight:600; color:var(--black);">SLAM / Control</div>
-          <div style="font-size:6pt; color:var(--gray); margin-top:1mm;">Path planning nodes</div>
+        <div style="background:rgba(255,255,255,0.04); border:0.3mm solid rgba(255,255,255,0.12); border-radius:2mm; padding:3mm; text-align:center;">
+          <div style="font-family:var(--f-m); font-size:6pt; color:#2DD6E8; letter-spacing:0.1em; margin-bottom:1.5mm;">ROS 2 BRIDGE</div>
+          <div style="font-size:7.5pt; font-weight:600; color:rgba(255,255,255,0.9);">SLAM / Control</div>
+          <div style="font-size:6pt; color:rgba(255,255,255,0.45); margin-top:1mm;">Path planning nodes</div>
         </div>
-        <div style="background:rgba(14,122,138,0.07); border:0.3mm solid rgba(14,122,138,0.3); border-radius:2mm; padding:3mm; text-align:center;">
-          <div style="font-family:var(--f-m); font-size:6pt; color:var(--teal); letter-spacing:0.1em; margin-bottom:1.5mm;">SUPERVISOR HMI</div>
-          <div style="font-size:7.5pt; font-weight:600; color:var(--black);">Override Interface</div>
-          <div style="font-size:6pt; color:var(--gray); margin-top:1mm;">Human-in-the-loop</div>
+        <div style="background:rgba(45,214,232,0.08); border:0.3mm solid rgba(45,214,232,0.3); border-radius:2mm; padding:3mm; text-align:center;">
+          <div style="font-family:var(--f-m); font-size:6pt; color:#2DD6E8; letter-spacing:0.1em; margin-bottom:1.5mm;">SUPERVISOR HMI</div>
+          <div style="font-size:7.5pt; font-weight:600; color:rgba(255,255,255,0.9);">Override Interface</div>
+          <div style="font-size:6pt; color:rgba(255,255,255,0.45); margin-top:1mm;">Human-in-the-loop</div>
         </div>
       </div>
 
+      <!-- Terrain image + metrics -->
       <div style="flex:1; display:flex; flex-direction:column; gap:3mm; min-height:0;">
         <div class="img-cell" style="flex:1; border-radius:2mm; overflow:hidden; position:relative; min-height:0;">
-          <img src="UMBRELLA/portfolio_assets/ue5_terrain_editor.jpg" alt="UE5 Martian Terrain Editor — MartianRoverDrone03" style="width:100%; height:100%; object-fit:cover; display:block;">
+          <img src="UMBRELLA/portfolio_assets/ue5_terrain_editor.jpg" alt="UE5 Martian Terrain Editor" style="width:100%; height:100%; object-fit:cover; display:block;">
           <div class="img-caption">UE5 Editor — Martian Terrain Calibration · SkyAtmosphere &amp; Physics Setup</div>
         </div>
-        <div style="background:#F6F8FA; border:0.3mm solid var(--border); border-radius:2mm; padding:3mm;">
-          <div style="font-family:var(--f-m); font-size:6pt; letter-spacing:0.18em; color:var(--teal); text-transform:uppercase; margin-bottom:1.5mm;">Key Metrics</div>
+        <div style="background:rgba(255,255,255,0.04); border:0.3mm solid rgba(255,255,255,0.1); border-radius:2mm; padding:3mm; flex-shrink:0;">
+          <div style="font-family:var(--f-m); font-size:6pt; letter-spacing:0.18em; color:#2DD6E8; text-transform:uppercase; margin-bottom:1.5mm;">Key Metrics</div>
           <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:2mm;">
-            <div><div style="font-size:13pt; font-weight:700; color:var(--black);">50<span style="font-size:8pt;">Hz</span></div><div style="font-family:var(--f-m); font-size:5.5pt; color:var(--gray);">Real-time telemetry loop</div></div>
-            <div><div style="font-size:13pt; font-weight:700; color:var(--black);">9<span style="font-size:8pt;">×</span></div><div style="font-family:var(--f-m); font-size:5.5pt; color:var(--gray);">Simultaneous agents</div></div>
-            <div><div style="font-size:13pt; font-weight:700; color:var(--black);">3<span style="font-size:8pt;">D</span></div><div style="font-family:var(--f-m); font-size:5.5pt; color:var(--gray);">Sensor suites calibrated</div></div>
+            <div><div style="font-size:13pt; font-weight:700; color:rgba(255,255,255,0.9);">50<span style="font-size:8pt;">Hz</span></div><div style="font-family:var(--f-m); font-size:5.5pt; color:rgba(255,255,255,0.45);">Real-time telemetry loop</div></div>
+            <div><div style="font-size:13pt; font-weight:700; color:rgba(255,255,255,0.9);">9<span style="font-size:8pt;">×</span></div><div style="font-family:var(--f-m); font-size:5.5pt; color:rgba(255,255,255,0.45);">Simultaneous agents</div></div>
+            <div><div style="font-size:13pt; font-weight:700; color:rgba(255,255,255,0.9);">3<span style="font-size:8pt;">D</span></div><div style="font-family:var(--f-m); font-size:5.5pt; color:rgba(255,255,255,0.45);">Sensor suites calibrated</div></div>
           </div>
         </div>
       </div>
     </div>
-    <div class="pf">
-      <span class="pf-left">Ch.06 · UMBRELLA · Real-Time Digital Twin</span>
-      <span class="pf-right">p. 26</span>
+
+    <div class="pf" style="border-color:rgba(255,255,255,0.08);">
+      <span class="pf-left" style="color:rgba(255,255,255,0.35);">Ch.06 · UMBRELLA · Real-Time Digital Twin</span>
+      <span class="pf-right" style="color:rgba(255,255,255,0.35);">p. 26</span>
     </div>
   </div>
 
