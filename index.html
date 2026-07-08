@@ -5,13 +5,17 @@
   <title>Nina Velimirovic - Portfolio 2026</title>
   <meta http-equiv="refresh" content="0; url=Files/portfolio-book.html" />
   <script>
-    window.location.replace("Files/portfolio-book.html");
+    // Force cache-busting by appending a timestamp query string
+    window.location.replace("Files/portfolio-book.html?v=" + Date.now());
   </script>
 </head>
 <body style="background: #050a0f; color: #fff; font-family: sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0;">
   <div style="text-align: center;">
     <p style="font-size: 14px; opacity: 0.8; letter-spacing: 0.05em; font-family: monospace;">Redirecting to Portfolio Book...</p>
-    <p style="font-size: 12px; opacity: 0.5;"><a href="Files/portfolio-book.html" style="color: #2dd6e8; text-decoration: none; border-bottom: 1px solid rgba(45,214,232,0.3);">Click here if you are not redirected automatically</a></p>
+    <p style="font-size: 12px; opacity: 0.5;"><a id="redirect-link" href="Files/portfolio-book.html" style="color: #2dd6e8; text-decoration: none; border-bottom: 1px solid rgba(45,214,232,0.3);">Click here if you are not redirected automatically</a></p>
+    <script>
+      document.getElementById('redirect-link').href = "Files/portfolio-book.html?v=" + Date.now();
+    </script>
   </div>
 </body>
 </html>
