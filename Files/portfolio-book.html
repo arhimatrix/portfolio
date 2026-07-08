@@ -6,6 +6,10 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
+  <!-- portfolio-version: 20260708-2147 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <!-- portfolio-version: 20260708-2138 -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
@@ -2355,18 +2359,6 @@ body {
             <li style="font-family:var(--f-s); font-size:7pt; line-height:1.55; color:rgba(255,255,255,0.88); padding-left:4mm; position:relative;"><span style="position:absolute; left:0; color:rgba(255,255,255,0.4);">—</span>Implemented closed-loop feedback: override commands propagate via AirSim-to-ROS 2 bridge, update the digital twin state, and return updated telemetry to the operator display in real time.</li>
             <li style="font-family:var(--f-s); font-size:7pt; line-height:1.55; color:rgba(255,255,255,0.88); padding-left:4mm; position:relative;"><span style="position:absolute; left:0; color:rgba(255,255,255,0.4);">—</span>Designed Blackboard data-sharing architecture for leader-follower coordination, enabling rover and drone to share SLAM state while the operator monitors and intervenes in visual degradation scenarios.</li>
           </ul>
-          <div class="ch-code-box">
-            <div class="ch-code-header"><span>SIMULATION / SUPERVISOR_INTERFACE.PY</span><span>ROS 2</span></div>
-            <div class="ch-code-body"><span class="kw">def</span> <span class="fn">supervisory_interface</span>(rover, operator):
-    twin = <span class="fn">DigitalTwin</span>(rover.sensors)
-    pub = rospy.<span class="fn">Publisher</span>('/supervisor/state', RobotState)
-    <span class="kw">while not</span> rospy.<span class="fn">is_shutdown</span>():
-        state = twin.<span class="fn">update</span>(rover.<span class="fn">get_telemetry</span>())
-        pub.<span class="fn">publish</span>(state)
-        <span class="kw">if</span> operator.<span class="fn">has_override</span>():
-            rover.<span class="fn">execute</span>(operator.command)
-        rate.<span class="fn">sleep</span>() <span class="cm"># 50 Hz closed-loop</span></div>
-          </div>
         </div>
 
       </div>
