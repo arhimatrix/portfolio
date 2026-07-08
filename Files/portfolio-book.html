@@ -6,6 +6,10 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
+  <!-- portfolio-version: 20260708-1812 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <!-- portfolio-version: 20260708-1757 -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
@@ -1925,14 +1929,15 @@ body {
 
       </div>
 
-      <!-- Row 2: Code box + Topology diagram side by side, pushed down -->
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; flex-shrink: 0; margin-top: 5mm;">
-        <div class="ch-code-box">
-          <div class="ch-code-header">
+      <!-- Row 2: Code box + Topology — fixed 105mm height so both show fully -->
+      <div style="display: flex; flex-direction: row; gap: 5mm; flex-shrink: 0; margin-top: 5mm; height: 105mm;">
+        <!-- Code box: constrained to row height -->
+        <div class="ch-code-box" style="flex: 1; display: flex; flex-direction: column; overflow: hidden;">
+          <div class="ch-code-header" style="flex-shrink: 0;">
             <span>SWARM / ADAPTIVE_TASK.PY</span>
             <span>ROS 2 / Python</span>
           </div>
-          <div class="ch-code-body"><span class="kw">def</span> <span class="fn">adaptive_task_planning</span>(agents, state):
+          <div class="ch-code-body" style="flex: 1; overflow: auto;"><span class="kw">def</span> <span class="fn">adaptive_task_planning</span>(agents, state):
     leader = <span class="fn">elect_leader</span>(agents, signal_quality)
     <span class="kw">for</span> agent <span class="kw">in</span> agents:
         task = leader.<span class="fn">allocate_task</span>(
@@ -1941,23 +1946,28 @@ body {
             task = <span class="fn">apply_human_command</span>(task)
         agent.<span class="fn">execute</span>(task)</div>
         </div>
-        <iframe
-          src="Swarm Titan/Diagrams/titan_topology_clean.html?v=7"
-          style="width: 100%; height: 70mm; border: none; background: transparent;"
-          scrolling="no"
-          loading="lazy"
-          title="Swarm Titan — System Topology Diagram"
-        ></iframe>
+        <!-- Topology: wrapper div takes flex:1 height, iframe fills it -->
+        <div style="flex: 1; display: flex; flex-direction: column; min-width: 0;">
+          <iframe
+            src="Swarm Titan/Diagrams/titan_topology_clean.html?v=7"
+            style="width: 100%; flex: 1; border: none; background: transparent;"
+            scrolling="no"
+            loading="lazy"
+            title="Swarm Titan — System Topology Diagram"
+          ></iframe>
+        </div>
       </div>
 
-      <!-- Row 3: PBS full width, fills all remaining page height -->
-      <iframe
-        src="Swarm Titan/Diagrams/titan_pbs_clean.html?v=7"
-        style="width: 100%; flex: 1; min-height: 0; border: none; background: transparent; margin-top: 4mm;"
-        scrolling="no"
-        loading="lazy"
-        title="Swarm Titan — Product Breakdown Structure"
-      ></iframe>
+      <!-- Row 3: PBS full width, fills all remaining page height via wrapper div -->
+      <div style="flex: 1; min-height: 0; display: flex; flex-direction: column; margin-top: 4mm;">
+        <iframe
+          src="Swarm Titan/Diagrams/titan_pbs_clean.html?v=7"
+          style="width: 100%; flex: 1; min-height: 0; border: none; background: transparent;"
+          scrolling="no"
+          loading="lazy"
+          title="Swarm Titan — Product Breakdown Structure"
+        ></iframe>
+      </div>
 
     </div>
     </div>
