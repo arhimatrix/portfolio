@@ -6,11 +6,7 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
-  <!-- portfolio-version: 20260708-2010 -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-  <!-- portfolio-version: 20260708-1946 -->
+  <!-- portfolio-version: 20260708-2027 -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
@@ -2124,138 +2120,70 @@ body {
       <div class="rh-line"></div>
       <span class="rh-label">22</span>
     </div>
-    <div class="ch-content" style="display: flex; flex-direction: column; padding: 4mm 14mm 0; gap: 0; flex: 1; min-height: 0;">
+    <div class="ch-content">
 
-
-
-      <!-- Row 1: Two-column text -->
-
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; flex-shrink: 0; margin-bottom: 4mm;">
-
-
+      <!-- Two-column section using existing ch-content-top CSS class (grid 1fr 1fr) -->
+      <div class="ch-content-top">
 
         <!-- Left col: kicker + condensed summary -->
-
-        <div>
-
+        <div class="ch-text-block">
           <div class="ch-section-kicker">Project Overview &middot; Systems Architecture Lead</div>
-
-          <div class="ch-summary" style="margin-top: 2mm;">Robotic in-orbit assembly of complex spacecraft at the Lunar Gateway presents a fundamental human-machine collaboration challenge: modules manufactured by distributed contractors must be assembled by coordinated robot teams under <em>human supervisory control</em> &mdash; with no margin for error in microgravity.<br><br>The design strategy centred on <em>standardized modular interfaces</em>: defining exact mechanical, electrical, and informational specifications enabling <em>distributed fabrication with standardized specifications</em> across independent manufacturing chains. The work integrated interface design (docking geometry, electrical handshakes, capture mechanisms), computational algorithms for robotic assembly coordination (sequencing, tolerance budgeting, multi-robot consensus), and supervisory protocols enabling operators to monitor progress, recognise deviations, and intervene at contingency points.</div>
-
+          <div class="ch-summary">Robotic in-orbit assembly of complex spacecraft at the Lunar Gateway presents a fundamental human-machine collaboration challenge: modules manufactured by distributed contractors must be assembled by coordinated robot teams under <em>human supervisory control</em> &mdash; with no margin for error in microgravity.<br><br>The design strategy centred on <em>standardized modular interfaces</em>: defining exact mechanical, electrical, and informational specifications enabling <em>distributed fabrication with standardized specifications</em> across independent manufacturing chains. The work integrated interface design (docking geometry, electrical handshakes, capture mechanisms), computational algorithms for robotic assembly coordination (sequencing, tolerance budgeting, multi-robot consensus), and supervisory protocols enabling operators to monitor progress, recognise deviations, and intervene at contingency points.</div>
         </div>
-
-
 
         <!-- Right col: bullets + tags + code snippet -->
-
         <div>
-
-          <ul class="ch-bullets" style="margin-top: 0;">
-
+          <ul class="ch-bullets">
             <li>Designed standardized modular interfaces specifying docking geometry, electrical connections, and informational handshakes &mdash; enabling distributed fabrication across independent contractors without custom fit-up, and making assembly state legible to human supervisory operators.</li>
-
             <li>Applied evolutionary solvers optimising interface tolerances across distributed manufacturing, simulating worst-case cumulative stack-up to ensure capture mechanisms succeed and structural margins are preserved under all tolerance scenarios.</li>
-
             <li>Programmed consensus-coordination algorithms for multi-robot assembly sequencing &mdash; leader election, human override protocols, anomaly recovery &mdash; validated through digital twin simulation of microgravity dynamics and docking loads.</li>
-
             <li>Built real-time data pipelines exporting live fabrication tolerances and assembly states to digital twin dashboards, supporting user evaluation of supervisory interface legibility and contingency decision timelines.</li>
-
           </ul>
-
           <div class="ch-tags" style="margin-top: 2mm;">
-
             <span class="ch-tag">Modular Interfaces</span>
-
             <span class="ch-tag">Distributed Fabrication</span>
-
             <span class="ch-tag">Assembly Coordination</span>
-
             <span class="ch-tag">Supervisory Control</span>
-
             <span class="ch-tag">Tolerance Management</span>
-
             <span class="ch-tag">Digital Twin</span>
-
           </div>
-
           <div class="ch-code-box" style="margin-top: 3mm;">
-
             <div class="ch-code-header">
-
               <span>ASSEMBLY / ORBITAL_SEQ.PY</span>
-
               <span>Python 3.11</span>
-
             </div>
-
             <div class="ch-code-body"><span class="kw">def</span> <span class="fn">orbital_assembly</span>(modules, fleet):
-
     sequence = <span class="fn">plan_assembly_order</span>(modules)
-
     <span class="kw">for</span> module <span class="kw">in</span> sequence:
-
         robot = <span class="fn">assign_robot</span>(fleet, module)
-
         robot.<span class="fn">dock</span>(module, tolerance=0.002)
-
         <span class="fn">verify_structural_lock</span>(module)
-
         <span class="fn">update_digital_twin</span>(module.state)</div>
-
           </div>
-
         </div>
-
-
 
       </div>
 
-
-
-      <!-- Row 2: Video + Image filling remaining page height -->
-
+      <!-- Bottom row: Video + Image filling remaining page height -->
       <div style="display: flex; flex-direction: row; gap: 4mm; flex: 1; min-height: 0; margin-bottom: 2mm;">
 
-
-
-        <!-- Video -->
-
         <div style="flex: 1; min-height: 0; display: flex; flex-direction: column; overflow: hidden;">
-
           <div style="flex: 1; overflow: hidden; min-height: 0;">
-
             <video src="Orbital City/portfolio_assets/orbital_assembly_sequence.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;"></video>
-
           </div>
-
           <div class="img-caption" style="flex-shrink: 0; margin-top: 1mm;">FIG.05.A &mdash; Assembly Simulation: Consensus-Based Joint Interface In-Orbit Docking</div>
-
         </div>
-
-
-
-        <!-- Image -->
 
         <div style="flex: 1; min-height: 0; display: flex; flex-direction: column; overflow: hidden;">
-
           <div style="flex: 1; overflow: hidden; min-height: 0;">
-
             <img src="Orbital City/portfolio_assets/HTML Immages/IMG_3578.jpg" alt="Orbital Gateway Assembly in Low Earth Orbit" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-
           </div>
-
           <div class="img-caption" style="flex-shrink: 0; margin-top: 1mm;">FIG.05.B &mdash; Final Orbital Gateway Assembly in Low Earth Orbit</div>
-
         </div>
-
-
 
       </div>
 
-
-
     </div>
-
     <div class="pf">
       <span class="pf-left">Ch.05 · Orbital Gateway Construction</span>
       <span class="pf-right">p. 22</span>
