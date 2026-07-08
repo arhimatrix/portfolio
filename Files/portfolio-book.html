@@ -6,6 +6,10 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
+  <!-- portfolio-version: 20260708-2208 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <!-- portfolio-version: 20260708-2153 -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
@@ -2441,76 +2445,83 @@ body {
 
 
 
-  <!-- ══════════════════════════════════════════
-       PAGE 25 · CHAPTER 06 SYSTEM ARCHITECTURE (DARK)
-       ══════════════════════════════════════════ -->
+    <!-- ════════════════════════════════════════════
+       PAGE 28 · CHAPTER 07 COMPUTATIONAL DESIGN & RESILIENCE
+       ════════════════════════════════════════════ -->
 
-  <div class="page light">
-    <div class="rh">
-      <span class="rh-label">Ch.07  &middot;  Computational Design & Resilience</span>
-      <div class="rh-line"></div>
-      <span class="rh-label">28</span>
+  <div class="page dark" style="position:relative; background:#000000;">
+    <div class="rh" style="border-color:rgba(255,255,255,0.08);">
+      <span class="rh-label" style="color:rgba(255,255,255,0.45);">Ch.07 &middot; Computational Design &amp; Resilience</span>
+      <div class="rh-line" style="background:rgba(255,255,255,0.1);"></div>
+      <span class="rh-label" style="color:rgba(255,255,255,0.45);">28</span>
     </div>
     <div class="ch-content">
-      <div class="ch-content-top" style="margin-bottom: 3mm;">
+      <div class="ch-content-top" style="margin-bottom:3mm;">
+
+        <!-- Left col: kicker + summary + bullets + tags -->
         <div class="ch-text-block">
-          <div class="ch-section-kicker">Mantis  &middot;  Procedural Resilience System</div>
-          <div class="ch-summary">Created Mantis, a Streamlit-based climate-resilience auditing and parametric design application. Mantis combines global geospatial risk data (wildfire, flood, hurricane, seismic, solar radiation) with local material availability to generate optimized, hazard-resistant structural configurations.</div>
-          <ul class="ch-bullets">
-            <li>Programmed Mantis: a Python and Streamlit application for procedural hazard mapping, real-time structural resilience calculations, and SDG 11 compliance auditing.</li>
+          <div class="ch-section-kicker" style="color:rgba(255,255,255,0.45);">Mantis &middot; Procedural Resilience System</div>
+          <div class="ch-summary" style="color:rgba(255,255,255,0.88);">Created Mantis, a Streamlit-based climate-resilience auditing and parametric design application. Mantis combines global geospatial risk data (wildfire, flood, hurricane, seismic, solar radiation) with local material availability to generate optimized, hazard-resistant structural configurations.</div>
+          <ul class="ch-bullets" style="color:rgba(255,255,255,0.88);">
+            <li>Programmed Mantis: a Python and Streamlit application for procedural hazard mapping, real-time structural resilience calculations, and SDG&nbsp;11 compliance auditing.</li>
             <li>Integrated dynamic climate risk feeds (mapping wildfire, flood, hurricane, seismic, and solar radiation statistics) to calculate localized vulnerability indices.</li>
             <li>Developed parametric optimization algorithms that adapt building dimensions (length, width, height) to local environmental constraints and resource availability.</li>
-            <li>Generated hazard-specific modular design packages (such as low-profile hip roofs for high wind areas, reinforced cores for tornados, and intumescent-treated timber defensible spaces for fire zones) targeting SDG 11 compliance.</li>
+            <li>Generated hazard-specific modular design packages (such as low-profile hip roofs for high wind areas, reinforced cores for tornados, and intumescent-treated timber defensible spaces for fire zones) targeting SDG&nbsp;11 compliance.</li>
           </ul>
           <div class="ch-tags">
-            <span class="ch-tag">Mantis App</span>
-            <span class="ch-tag">Python / Streamlit</span>
-            <span class="ch-tag">Procedural Resilience</span>
-            <span class="ch-tag">Climate Risk Profiling</span>
-            <span class="ch-tag">Parametric Optimization</span>
+            <span class="ch-tag" style="border-color:rgba(255,255,255,0.22); color:rgba(255,255,255,0.85);">Mantis App</span>
+            <span class="ch-tag" style="border-color:rgba(255,255,255,0.22); color:rgba(255,255,255,0.85);">Python / Streamlit</span>
+            <span class="ch-tag" style="border-color:rgba(255,255,255,0.22); color:rgba(255,255,255,0.85);">Procedural Resilience</span>
+            <span class="ch-tag" style="border-color:rgba(255,255,255,0.22); color:rgba(255,255,255,0.85);">Climate Risk Profiling</span>
+            <span class="ch-tag" style="border-color:rgba(255,255,255,0.22); color:rgba(255,255,255,0.85);">Parametric Optimization</span>
           </div>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 3mm;">
+
+        <!-- Right col: code box + 2 images -->
+        <div style="display:flex; flex-direction:column; gap:3mm;">
           <div class="ch-code-box">
             <div class="ch-code-header">
               <span>MANTIS / MANTIS_ENGINE.PY</span>
-              <span>Python  &middot;  Streamlit</span>
+              <span>Python &middot; Streamlit</span>
             </div>
             <div class="ch-code-body"><span class="kw">def</span> <span class="fn">evaluate_resilience</span>(lat, lon, dimensions):
     risk = mantis_db.<span class="fn">fetch_hazards</span>(lat, lon)
-    <span class="kw">if</span> risk.wildfire > 0.60:
+    <span class="kw">if</span> risk.wildfire &gt; 0.60:
         design.<span class="fn">apply_module</span>("wildfire_shield", thermal_barrier="4h")
-    <span class="kw">if</span> risk.hurricane > 0.40:
+    <span class="kw">if</span> risk.hurricane &gt; 0.40:
         design.<span class="fn">apply_module</span>("aero_canopy", pitch=20.0)
     <span class="kw">return</span> design.<span class="fn">calculate_resilience_score</span>(dimensions)</div>
           </div>
-          
-          <div class="img-cell" style="width: 100%; aspect-ratio: 1024/529; border: 0.3mm solid var(--border); border-radius: 2mm; overflow: hidden; position: relative;">
-            <img src="Stormcity/portfolio_assets/mantis_app_map.png" alt="Mantis Interface" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-            <div class="img-caption">Mantis Interface  &mdash;  Hazard Analysis & Parameter Controls</div>
+
+          <div class="img-cell" style="width:100%; aspect-ratio:1024/529; border:0.3mm solid rgba(255,255,255,0.12); border-radius:2mm; overflow:hidden; position:relative;">
+            <img src="Stormcity/portfolio_assets/mantis_app_map.png" alt="Mantis Interface" style="width:100%; height:100%; object-fit:cover; display:block;">
+            <div class="img-caption">Mantis Interface &mdash; Hazard Analysis &amp; Parameter Controls</div>
           </div>
 
-          <div class="img-cell" style="width: 100%; aspect-ratio: 1600/682; border: 0.3mm solid var(--border); border-radius: 2mm; overflow: hidden; position: relative;">
-            <img src="Stormcity/portfolio_assets/IMG_3859.jpg" alt="Mantis Structural Form Evolution" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          <div class="img-cell" style="width:100%; aspect-ratio:1600/682; border:0.3mm solid rgba(255,255,255,0.12); border-radius:2mm; overflow:hidden; position:relative;">
+            <img src="Stormcity/portfolio_assets/IMG_3859.jpg" alt="Mantis Structural Form Evolution" style="width:100%; height:100%; object-fit:cover; display:block;">
             <div class="img-caption">Mantis Structural Form Evolution Diagram</div>
           </div>
         </div>
+
       </div>
 
+      <!-- Bottom: 2-col image grid -->
       <div class="img-grid-2" style="gap:2mm;">
-        <div class="img-cell" style="height: 80mm; border-radius: 2mm; overflow: hidden; position: relative;">
-          <video src="Stormcity/portfolio_assets/mantis_simulation.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; display: block;"></video>
-          <div class="img-caption">Mantis Simulation  &mdash;  Galapagos Evolutionary Solver</div>
+        <div class="img-cell" style="height:80mm; border-radius:2mm; overflow:hidden; position:relative;">
+          <video src="Stormcity/portfolio_assets/mantis_simulation.mp4" autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover; display:block;"></video>
+          <div class="img-caption">Mantis Simulation &mdash; Galapagos Evolutionary Solver</div>
         </div>
-        <div class="img-cell" style="height: 80mm; border-radius: 2mm; overflow: hidden; position: relative;">
-          <img src="Stormcity/portfolio_assets/IMG_3362.jpeg" alt="X-BIM Dashboard">
-          <div class="img-caption">X-BIM Suite  &mdash;  Real-Time Sensor Tracking</div>
+        <div class="img-cell" style="height:80mm; border-radius:2mm; overflow:hidden; position:relative;">
+          <img src="Stormcity/portfolio_assets/IMG_3362.jpeg" alt="X-BIM Dashboard" style="width:100%; height:100%; object-fit:cover; display:block;">
+          <div class="img-caption">X-BIM Suite &mdash; Real-Time Sensor Tracking</div>
         </div>
       </div>
     </div>
-    <div class="pf">
-      <span class="pf-left">Ch.07  &middot;  Computational Design & Resilience</span>
-      <span class="pf-right">p. 28</span>
+
+    <div class="pf" style="border-color:rgba(255,255,255,0.08);">
+      <span class="pf-left" style="color:rgba(255,255,255,0.35);">Ch.07 &middot; Computational Design &amp; Resilience</span>
+      <span class="pf-right" style="color:rgba(255,255,255,0.35);">p. 28</span>
     </div>
   </div>
 
