@@ -6,6 +6,10 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
+  <!-- portfolio-version: 20260708-1904 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <!-- portfolio-version: 20260708-1854 -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
@@ -1949,8 +1953,8 @@ body {
 
       </div>
 
-      <!-- Row 2: Code box (auto-height, shorter) + Topology (55mm, top-aligned) -->
-      <div style="display: flex; flex-direction: row; gap: 5mm; flex-shrink: 0; margin-top: 3mm; align-items: flex-start;">
+      <!-- Row 2: Code box + Topology — hard-clipped at 55mm, no overflow into PBS -->
+      <div style="display: flex; flex-direction: row; gap: 5mm; flex-shrink: 0; margin-top: 3mm; height: 55mm; overflow: hidden;">
         <!-- Code box: auto height, only as tall as its content -->
         <div class="ch-code-box" style="flex: 1; display: flex; flex-direction: column; overflow: hidden;">
           <div class="ch-code-header" style="flex-shrink: 0;">
@@ -1966,8 +1970,8 @@ body {
             task = <span class="fn">apply_human_command</span>(task)
         agent.<span class="fn">execute</span>(task)</div>
         </div>
-        <!-- Topology: 55mm height, z-index above PBS so it's never covered -->
-        <div style="flex: 1; height: 55mm; display: flex; flex-direction: column; min-width: 0; position: relative; z-index: 2;">
+        <!-- Topology: 55mm, clipped by parent Row 2 overflow:hidden -->
+        <div style="flex: 1; height: 55mm; display: flex; flex-direction: column; min-width: 0; overflow: hidden;">
           <iframe
             src="Swarm Titan/Diagrams/titan_topology_clean.html?v=7"
             style="width: 100%; flex: 1; border: none; background: transparent;"
