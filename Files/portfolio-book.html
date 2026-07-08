@@ -6,6 +6,10 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
+  <!-- portfolio-version: 20260708-2241 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <!-- portfolio-version: 20260708-2217 -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
@@ -2479,22 +2483,31 @@ body {
     <div class="ch-content">
       <div class="ch-content-top" style="margin-bottom:3mm;">
 
-        <!-- Left col: kicker + summary + bullets + tags -->
+        <!-- Left col: revised 4-section narrative -->
         <div class="ch-text-block">
-          <div class="ch-section-kicker" style="color:rgba(255,255,255,0.45);">Mantis &middot; Procedural Resilience System</div>
-          <div class="ch-summary" style="color:rgba(255,255,255,0.88);">Created Mantis, a Streamlit-based climate-resilience auditing and parametric design application. Mantis combines global geospatial risk data (wildfire, flood, hurricane, seismic, solar radiation) with local material availability to generate optimized, hazard-resistant structural configurations.</div>
+
+          <!-- Section label -->
+          <div class="ch-section-kicker" style="color:rgba(255,255,255,0.45);">Mantis · Computational Resilience Design · Designer-in-the-Loop</div>
+
+          <!-- HRC connection + Problem statement -->
+          <div class="ch-summary" style="color:rgba(255,255,255,0.88);">While earlier projects address autonomous robotic systems with human supervisory control, computational design represents a different HRC paradigm: algorithms augmenting architect expertise in evidence-based decision-making.<br><br>Buildings face compounding climate risks — wildfire, flood, hurricane, seismic loading, extreme heat — that traditional design methods cannot address simultaneously. An architect optimising for wind resistance may inadvertently create seismic vulnerability; designing for fire defensibility may conflict with thermal performance. Manual processes evaluate three to five configurations; computational design explores hundreds simultaneously, identifying unintuitive resilient forms that human intuition would not reach unaided.</div>
+
+          <!-- 4 methodology bullets -->
           <ul class="ch-bullets" style="color:rgba(255,255,255,0.88);">
-            <li>Programmed Mantis: a Python and Streamlit application for procedural hazard mapping, real-time structural resilience calculations, and SDG&nbsp;11 compliance auditing.</li>
-            <li>Integrated dynamic climate risk feeds (mapping wildfire, flood, hurricane, seismic, and solar radiation statistics) to calculate localized vulnerability indices.</li>
-            <li>Developed parametric optimization algorithms that adapt building dimensions (length, width, height) to local environmental constraints and resource availability.</li>
-            <li>Generated hazard-specific modular design packages (such as low-profile hip roofs for high wind areas, reinforced cores for tornados, and intumescent-treated timber defensible spaces for fire zones) targeting SDG&nbsp;11 compliance.</li>
+            <li>Developed Mantis to address the multi-hazard optimisation problem: the application fetches real-time geospatial risk feeds (wildfire, flood, hurricane, seismic, solar radiation) for any latitude/longitude input and computes a localized vulnerability index — replacing assumption-based design with evidence-based hazard profiling.</li>
+            <li>Implemented parametric optimization to test 500+ building dimension combinations per hazard profile, automatically generating hazard-specific design modules: low-profile hip roofs for hurricane zones; reinforced cores and flexible connections for seismic areas; intumescent timber treatments and defensible space configurations for wildfire zones — targeting SDG&nbsp;11 compliance.</li>
+            <li>Maintained designer-in-the-loop control throughout: Mantis surfaces optimal configurations for architect review and approval, augmenting human design judgement rather than replacing it — the architect evaluates, contextualises, and approves before any configuration advances to documentation.</li>
+            <li>Integrated X-BIM real-time sensor dashboard to close the design validation loop post-construction: structural health, environmental conditions, and resilience margin are monitored live against design predictions, enabling evidence-based retrofitting and feeding field performance data back into Mantis to improve future hazard predictions.</li>
           </ul>
+
+          <!-- Updated tags -->
           <div class="ch-tags">
-            <span class="ch-tag" style="border-color:rgba(255,255,255,0.22); color:rgba(255,255,255,0.85);">Mantis App</span>
-            <span class="ch-tag" style="border-color:rgba(255,255,255,0.22); color:rgba(255,255,255,0.85);">Python / Streamlit</span>
-            <span class="ch-tag" style="border-color:rgba(255,255,255,0.22); color:rgba(255,255,255,0.85);">Procedural Resilience</span>
-            <span class="ch-tag" style="border-color:rgba(255,255,255,0.22); color:rgba(255,255,255,0.85);">Climate Risk Profiling</span>
+            <span class="ch-tag" style="border-color:rgba(255,255,255,0.22); color:rgba(255,255,255,0.85);">Climate Resilience</span>
             <span class="ch-tag" style="border-color:rgba(255,255,255,0.22); color:rgba(255,255,255,0.85);">Parametric Optimization</span>
+            <span class="ch-tag" style="border-color:rgba(255,255,255,0.22); color:rgba(255,255,255,0.85);">Designer-in-the-Loop</span>
+            <span class="ch-tag" style="border-color:rgba(255,255,255,0.22); color:rgba(255,255,255,0.85);">SDG 11 Compliance</span>
+            <span class="ch-tag" style="border-color:rgba(255,255,255,0.22); color:rgba(255,255,255,0.85);">Digital Twin Validation</span>
+            <span class="ch-tag" style="border-color:rgba(255,255,255,0.22); color:rgba(255,255,255,0.85);">X-BIM Dashboard</span>
           </div>
         </div>
 
