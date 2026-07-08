@@ -6,6 +6,10 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
+  <!-- portfolio-version: 20260708-1937 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <!-- portfolio-version: 20260708-1918 -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
@@ -2115,17 +2119,20 @@ body {
     <div class="ch-content">
       <div class="ch-content-top">
         <div class="ch-text-block">
-          <div class="ch-section-kicker">Project Overview</div>
-          <div class="ch-summary">Designed the computational coordination logic for robotic in-orbit assembly sequences at the Lunar Gateway. Developed custom simulation environments to validate structural tolerances, robotic handoff sequences, and construction staging under microgravity constraints.</div>
+          <div class="ch-section-kicker">Project Overview &middot; Systems Architecture Lead</div>
+          <div class="ch-summary">Robotic in-orbit assembly of complex spacecraft at the Lunar Gateway presents a core human-machine collaboration challenge: modules manufactured by distributed contractors across multiple facilities must be assembled by coordinated robot teams under human supervisory control &mdash; with no margin for error in the microgravity environment.<br><br>The design strategy centered on <em>standardized modular interfaces</em>: defining the exact mechanical, electrical, and informational specifications that all modules must meet, enabling <em>distributed fabrication with standardized specifications</em> across independent manufacturing chains. This standardization makes assembly sequences predictable, tolerances manageable, and anomalies legible to human operators. The work integrated three elements: (1) interface design establishing mechanical docking geometry, electrical handshakes, and capture mechanism specifications, (2) computational algorithms for robotic assembly coordination including sequencing, tolerance budgeting, and multi-robot consensus, and (3) supervisory protocols enabling operators to monitor assembly progress, recognize deviations, and intervene at contingency points.</div>
           <ul class="ch-bullets">
-            <li>Programmed consensus-coordination algorithms for multi-robot assembly sequences in zero-gravity simulation environments.</li>
-            <li>Optimised structural module interfaces against dynamic launch loads and microgravity deformation using evolutionary solvers.</li>
-            <li>Built custom data pipelines exporting live fabrication tolerances and assembly states to digital twin dashboards.</li>
+            <li>Designed standardized modular interfaces specifying docking geometry, electrical connections, and informational handshakes &mdash; enabling distributed fabrication across independent contractors without custom fit-up at final assembly, and making assembly state legible to human supervisory operators.</li>
+            <li>Applied evolutionary solvers to optimize interface tolerances across distributed manufacturing, simulating worst-case cumulative stack-up combinations to ensure capture mechanisms succeed and structural margins are preserved under all tolerance scenarios.</li>
+            <li>Programmed consensus-coordination algorithms for multi-robot assembly sequencing &mdash; including leader election, human override protocols, and anomaly recovery &mdash; validated through digital twin simulation of microgravity dynamics, robotic kinematics, and docking loads.</li>
+            <li>Built real-time data pipelines exporting live fabrication tolerances and assembly states to digital twin dashboards, enabling operator situational awareness of assembly progress and supporting user evaluation of supervisory interface legibility and contingency decision timelines.</li>
           </ul>
           <div class="ch-tags">
-            <span class="ch-tag">In-Orbit Assembly</span>
-            <span class="ch-tag">Robotic Construction</span>
-            <span class="ch-tag">Microgravity Sim</span>
+            <span class="ch-tag">Modular Interfaces</span>
+            <span class="ch-tag">Distributed Fabrication</span>
+            <span class="ch-tag">Assembly Coordination</span>
+            <span class="ch-tag">Supervisory Control</span>
+            <span class="ch-tag">Tolerance Management</span>
             <span class="ch-tag">Digital Twin</span>
           </div>
         </div>
