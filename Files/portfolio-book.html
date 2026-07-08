@@ -6,6 +6,10 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
+  <!-- portfolio-version: 20260708-1757 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <!-- portfolio-version: 20260708-1735 -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
@@ -1889,18 +1893,26 @@ body {
       <div class="rh-line"></div>
       <span class="rh-label">18</span>
     </div>
-    <div class="ch-content">
-      <div class="ch-content-top">
-        <div class="ch-text-block">
+    <div class="ch-content" style="display: flex; flex-direction: column; padding: 4mm 14mm 0; gap: 0; flex: 1; min-height: 0;">
+
+      <!-- Row 1: Two-column text -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; flex-shrink: 0; margin-bottom: 0;">
+
+        <!-- Left col: kicker + summary -->
+        <div>
           <div class="ch-section-kicker">Project Overview &middot; Project Lead &amp; Simulation Lead</div>
-          <div class="ch-summary">A cooperative swarm of nine autonomous hybrid agents presents a distinct human-machine collaboration challenge: how do operators maintain situational awareness and supervisory control when communication is delayed or disrupted, agent behaviors are partially autonomous, and swarm state is distributed across nine independent systems?<br><br>Designed for Titan&rsquo;s prebiotic terrain mapping, this project required integrating three elements: (1) operator requirements research through structured user studies evaluating interface legibility and override protocols under simulated communication constraints, (2) computational architecture for human-supervised multi-agent coordination using MBSE, ROS 2, and consensus algorithms with human override capability, and (3) physical validation of operator interfaces and swarm HRC through CrazyFlie prototype testing.</div>
-          <ul class="ch-bullets">
+          <div class="ch-summary" style="margin-top: 2mm;">A cooperative swarm of nine autonomous hybrid agents presents a distinct human-machine collaboration challenge: how do operators maintain situational awareness and supervisory control when communication is delayed or disrupted, agent behaviors are partially autonomous, and swarm state is distributed across nine independent systems?<br><br>Designed for Titan&rsquo;s prebiotic terrain mapping, this project required integrating three elements: (1) operator requirements research through structured user studies evaluating interface legibility and override protocols under simulated communication constraints, (2) computational architecture for human-supervised multi-agent coordination using MBSE, ROS&nbsp;2, and consensus algorithms with human override capability, and (3) physical validation of operator interfaces and swarm HRC through CrazyFlie prototype testing.</div>
+        </div>
+
+        <!-- Right col: bullets + tags -->
+        <div>
+          <ul class="ch-bullets" style="margin-top: 0;">
             <li>Conducted operator user studies evaluating situational awareness, decision time, and override success rate under high-latency and communication-disruption scenarios &mdash; findings directly drove interface design decisions for swarm state visualization and command feedback.</li>
             <li>Designed supervisory interface enabling operators to monitor individual agent status, interpret swarm consensus state, and issue direct or collective override commands &mdash; validated through physical CrazyFlie prototype testing under real communication constraints.</li>
             <li>Programmed adaptive task-planning and leader-election algorithms with human-interrupt capability: operators can inject override commands mid-consensus, with the delay-tolerant mesh ensuring command propagation even under disruption.</li>
             <li>Applied MBSE to trace 35 operator requirements through FMECA, mass/power/data link budgets, and DRL agent behaviour models &mdash; ensuring supervisory control logic and override failure modes were explicitly designed and validated.</li>
           </ul>
-          <div class="ch-tags">
+          <div class="ch-tags" style="margin-top: 2mm;">
             <span class="ch-tag">Multi-Agent HRC</span>
             <span class="ch-tag">Operator Studies</span>
             <span class="ch-tag">Interface Design</span>
@@ -1910,13 +1922,17 @@ body {
             <span class="ch-tag">ROS &middot; MBSE</span>
           </div>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 4mm;">
-          <div class="ch-code-box">
-            <div class="ch-code-header">
-              <span>SWARM / ADAPTIVE_TASK.PY</span>
-              <span>ROS 2 / Python</span>
-            </div>
-            <div class="ch-code-body"><span class="kw">def</span> <span class="fn">adaptive_task_planning</span>(agents, state):
+
+      </div>
+
+      <!-- Row 2: Code box + Topology diagram side by side, pushed down -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; flex-shrink: 0; margin-top: 5mm;">
+        <div class="ch-code-box">
+          <div class="ch-code-header">
+            <span>SWARM / ADAPTIVE_TASK.PY</span>
+            <span>ROS 2 / Python</span>
+          </div>
+          <div class="ch-code-body"><span class="kw">def</span> <span class="fn">adaptive_task_planning</span>(agents, state):
     leader = <span class="fn">elect_leader</span>(agents, signal_quality)
     <span class="kw">for</span> agent <span class="kw">in</span> agents:
         task = leader.<span class="fn">allocate_task</span>(
@@ -1924,24 +1940,26 @@ body {
         <span class="kw">if</span> <span class="fn">human_override_active</span>():
             task = <span class="fn">apply_human_command</span>(task)
         agent.<span class="fn">execute</span>(task)</div>
-          </div>
-          <iframe
-            src="Swarm Titan/Diagrams/titan_topology_clean.html?v=7"
-            style="width: 100%; height: 78mm; border: none; background: transparent;"
-            scrolling="no"
-            loading="lazy"
-            title="Swarm Titan — System Topology Diagram"
-          ></iframe>
         </div>
+        <iframe
+          src="Swarm Titan/Diagrams/titan_topology_clean.html?v=7"
+          style="width: 100%; height: 70mm; border: none; background: transparent;"
+          scrolling="no"
+          loading="lazy"
+          title="Swarm Titan — System Topology Diagram"
+        ></iframe>
       </div>
-      <!-- Swarm Titan Product Breakdown Structure -->
+
+      <!-- Row 3: PBS full width, fills all remaining page height -->
       <iframe
         src="Swarm Titan/Diagrams/titan_pbs_clean.html?v=7"
-        style="width: 100%; height: 125mm; border: none; background: transparent;"
+        style="width: 100%; flex: 1; min-height: 0; border: none; background: transparent; margin-top: 4mm;"
         scrolling="no"
         loading="lazy"
         title="Swarm Titan — Product Breakdown Structure"
       ></iframe>
+
+    </div>
     </div>
     <div class="pf">
       <span class="pf-left">Ch.04 · Distributed Exploration of Titan's Organic Chemistry</span>
