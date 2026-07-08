@@ -6,6 +6,10 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
+  <!-- portfolio-version: 20260708-2338 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <!-- portfolio-version: 20260708-2313 -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
@@ -1518,7 +1522,7 @@ body {
     <div class="ch-content">
       <div class="ch-content-top">
         <div class="ch-text-block">
-          <div class="ch-section-kicker" style="color:rgba(255,255,255,0.55);">Project Overview &middot; NEOM &middot; Saudi Arabia &middot; 2022&ndash;2025</div>
+          <div class="ch-section-kicker" style="color:#2DD6E8;">Project Overview &middot; NEOM &middot; Saudi Arabia &middot; 2022&ndash;2025</div>
           <div class="ch-summary">NEOM&rsquo;s 170km mobility network presents a core human-machine collaboration challenge: thousands of daily occupants must navigate driverless interchange hubs where autonomous vehicles, robotic maintenance systems, and human pedestrians share dynamic space. The design task required a three-stage methodology: (1) behavioral mapping through occupant sensing and user studies, (2) synthesis of interface logic to communicate robot intent and safety states, and (3) computational form-finding to scale responsive spatial and visual systems across multiple hub typologies.</div>
           <ul class="ch-bullets">
             <li>Conducted user study methods and spatial behavioral mapping to evaluate interface legibility: how occupants perceive vehicle approach state, understand safety zones, and navigate without human operators or signage.</li>
@@ -2367,7 +2371,7 @@ body {
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:6mm; flex-shrink:0;">
         <!-- Left: kicker + summary -->
         <div>
-          <div style="font-family:var(--f-m); font-size:6.5pt; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:3mm;">Project Overview · Systems Lead · Strasbourg 2025–2026</div>
+          <div style="font-family:var(--f-m); font-size:6.5pt; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#2DD6E8; margin-bottom:3mm;">Project Overview · Systems Lead · Strasbourg 2025–2026</div>
           <div style="font-family:var(--f-s); font-size:7.5pt; line-height:1.65; color:rgba(255,255,255,0.88);">Validated the UMBRELLA system architecture by simulating both Mobility and Communications subsystems in Mars-terrain conditions using a digital twin built from NASA MOLA heightmap data and AirSim physics — calibrating Martian gravity, surface friction, atmospheric density, and full sensor suites (RGB-D, IMU, LiDAR).<br><br>Designed the supervisory interface to display system architecture state in real-time, enabling operators to visualise robot task sequences, sensor degradation events, SLAM map state, and communication link health — and intervene via override commands through a closed-loop ROS 2 bridge.</div>
         </div>
         <!-- Right: bullets -->
@@ -2474,7 +2478,7 @@ body {
 
 
 
-      <!-- PAGE 28 · CHAPTER 07 CONTENT -->
+        <!-- PAGE 28 · CHAPTER 07 CONTENT -->
   <div class="page dark" style="position:relative; background:#000000;">
     <div class="rh" style="border-color:rgba(255,255,255,0.08);">
       <span class="rh-label" style="color:rgba(255,255,255,0.45);">Ch.07 &middot; Computational Design &amp; Resilience</span>
@@ -2483,49 +2487,30 @@ body {
     </div>
     <div class="ch-content" style="padding:6mm 14mm 4mm; display:flex; flex-direction:column; gap:4mm; flex:1; min-height:0;">
 
-      <!-- Row 1: 2-column text -->
+      <!-- 2-column text -->
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:6mm; flex-shrink:0;">
-
         <!-- Left: kicker + summary -->
         <div>
-          <div style="font-family:var(--f-m); font-size:6.5pt; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:3mm;">Mantis · Computational Resilience Design · Designer-in-the-Loop</div>
+          <div style="font-family:var(--f-m); font-size:6.5pt; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#2DD6E8; margin-bottom:3mm;">Mantis · Computational Resilience Design · Designer-in-the-Loop</div>
           <div style="font-family:var(--f-s); font-size:7.5pt; line-height:1.65; color:rgba(255,255,255,0.88);">While earlier projects address autonomous robotic systems with human supervisory control, computational design represents a different HRC paradigm: algorithms augmenting architect expertise in evidence-based decision-making.<br><br>Buildings face compounding climate risks — wildfire, flood, hurricane, seismic loading, extreme heat — that traditional design methods cannot address simultaneously. An architect optimising for wind resistance may inadvertently create seismic vulnerability; designing for fire defensibility may conflict with thermal performance. Manual processes evaluate three to five configurations; computational design explores hundreds simultaneously, identifying unintuitive resilient forms that human intuition alone would not reach.</div>
         </div>
-
-        <!-- Right: bullets + tags -->
-        <div style="display:flex; flex-direction:column; gap:3mm;">
+        <!-- Right: bullets -->
+        <div>
           <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:2.5mm;">
             <li style="font-family:var(--f-s); font-size:7pt; line-height:1.55; color:rgba(255,255,255,0.88); padding-left:4mm; position:relative;"><span style="position:absolute; left:0; color:rgba(255,255,255,0.35);">—</span>Developed Mantis to resolve the multi-hazard optimisation problem: integrating real-time geospatial risk feeds (wildfire, flood, hurricane, seismic, solar radiation) for any latitude/longitude input and computing a localized vulnerability index — replacing assumption-based design with evidence-based hazard profiling.</li>
-            <li style="font-family:var(--f-s); font-size:7pt; line-height:1.55; color:rgba(255,255,255,0.88); padding-left:4mm; position:relative;"><span style="position:absolute; left:0; color:rgba(255,255,255,0.35);">—</span>Implemented parametric optimization testing 500+ building dimension combinations per hazard profile: generating hazard-specific design modules including low-profile hip roofs for hurricane zones, reinforced cores for seismic areas, and intumescent timber treatments for wildfire defensible spaces — targeting SDG&nbsp;11 compliance.</li>
-            <li style="font-family:var(--f-s); font-size:7pt; line-height:1.55; color:rgba(255,255,255,0.88); padding-left:4mm; position:relative;"><span style="position:absolute; left:0; color:rgba(255,255,255,0.35);">—</span>Maintained designer-in-the-loop control: Mantis surfaces optimal configurations for architect review and approval, augmenting human design judgement rather than replacing it — computation identifies candidates, the architect contextualises and approves.</li>
-            <li style="font-family:var(--f-s); font-size:7pt; line-height:1.55; color:rgba(255,255,255,0.88); padding-left:4mm; position:relative;"><span style="position:absolute; left:0; color:rgba(255,255,255,0.35);">—</span>Integrated X-BIM real-time sensor dashboard to close the validation loop post-construction: structural health, environmental conditions, and resilience margin are monitored live against design predictions, feeding field data back into Mantis for improved future hazard modelling.</li>
+            <li style="font-family:var(--f-s); font-size:7pt; line-height:1.55; color:rgba(255,255,255,0.88); padding-left:4mm; position:relative;"><span style="position:absolute; left:0; color:rgba(255,255,255,0.35);">—</span>Implemented parametric optimization testing 500+ building dimension combinations per hazard profile: generating hazard-specific modules including low-profile hip roofs for hurricane zones, reinforced cores for seismic areas, and intumescent timber treatments for wildfire defensible spaces — targeting SDG&nbsp;11 compliance.</li>
+            <li style="font-family:var(--f-s); font-size:7pt; line-height:1.55; color:rgba(255,255,255,0.88); padding-left:4mm; position:relative;"><span style="position:absolute; left:0; color:rgba(255,255,255,0.35);">—</span>Maintained designer-in-the-loop control: Mantis surfaces optimal configurations for architect review and approval, augmenting human design judgement — computation identifies candidates, the architect contextualises and approves.</li>
+            <li style="font-family:var(--f-s); font-size:7pt; line-height:1.55; color:rgba(255,255,255,0.88); padding-left:4mm; position:relative;"><span style="position:absolute; left:0; color:rgba(255,255,255,0.35);">—</span>Integrated X-BIM real-time sensor dashboard to close the validation loop post-construction: structural health, environmental conditions, and resilience margin monitored live against design predictions, feeding field data back into Mantis.</li>
           </ul>
-          <div class="ch-tags">
-            <span class="ch-tag" style="border-color:rgba(255,255,255,0.22); color:rgba(255,255,255,0.85);">Climate Resilience</span>
-            <span class="ch-tag" style="border-color:rgba(255,255,255,0.22); color:rgba(255,255,255,0.85);">Parametric Optimization</span>
-            <span class="ch-tag" style="border-color:rgba(255,255,255,0.22); color:rgba(255,255,255,0.85);">Designer-in-the-Loop</span>
-            <span class="ch-tag" style="border-color:rgba(255,255,255,0.22); color:rgba(255,255,255,0.85);">SDG 11 Compliance</span>
-            <span class="ch-tag" style="border-color:rgba(255,255,255,0.22); color:rgba(255,255,255,0.85);">Digital Twin Validation</span>
-            <span class="ch-tag" style="border-color:rgba(255,255,255,0.22); color:rgba(255,255,255,0.85);">X-BIM Dashboard</span>
-          </div>
         </div>
       </div>
 
-      <!-- Row 2: Mantis interface screenshot -->
-      <div style="flex:1; min-height:0; position:relative; overflow:hidden; border-radius:2mm; border:0.3mm solid rgba(255,255,255,0.12);">
+      <!-- Mantis interface - full size, no crop -->
+      <div style="flex:1; min-height:0; position:relative; overflow:hidden; border-radius:2mm; border:0.3mm solid rgba(255,255,255,0.12); background:#000;">
         <img src="Stormcity/portfolio_assets/mantis_app_map.png" alt="Mantis Interface"
-             style="width:100%; height:100%; object-fit:cover; object-position:center top; display:block;">
-        <div style="position:absolute; bottom:0; left:0; right:0; padding:1.5mm 3mm; background:rgba(0,0,0,0.6); font-family:var(--f-m); font-size:6pt; color:rgba(255,255,255,0.65); letter-spacing:0.08em;">
+             style="width:100%; height:100%; object-fit:contain; object-position:center; display:block; background:#111;">
+        <div style="position:absolute; bottom:0; left:0; right:0; padding:1.5mm 3mm; background:rgba(0,0,0,0.7); font-family:var(--f-m); font-size:6pt; color:rgba(255,255,255,0.65); letter-spacing:0.08em;">
           FIG.07.A — Mantis Interface · Hazard Analysis &amp; Parameter Controls
-        </div>
-      </div>
-
-      <!-- Row 3: Form evolution diagram -->
-      <div style="flex-shrink:0; position:relative; overflow:hidden; border-radius:2mm; border:0.3mm solid rgba(255,255,255,0.12);">
-        <img src="Stormcity/portfolio_assets/IMG_3859.jpg" alt="Mantis Structural Form Evolution"
-             style="width:100%; height:auto; display:block;">
-        <div style="position:absolute; bottom:0; left:0; right:0; padding:1.5mm 3mm; background:rgba(0,0,0,0.6); font-family:var(--f-m); font-size:6pt; color:rgba(255,255,255,0.65); letter-spacing:0.08em;">
-          FIG.07.B — Mantis Structural Form Evolution Diagram · Parametric Hazard Optimisation
         </div>
       </div>
 
@@ -2544,28 +2529,37 @@ body {
       <div class="rh-line" style="background:rgba(255,255,255,0.1);"></div>
       <span class="rh-label" style="color:rgba(255,255,255,0.45);">29</span>
     </div>
-    <div class="ch-content" style="padding:6mm 14mm 4mm; display:flex; flex-direction:column; gap:5mm; flex:1; min-height:0;">
+    <div class="ch-content" style="padding:6mm 14mm 4mm; display:flex; flex-direction:column; gap:4mm; flex:1; min-height:0;">
 
       <!-- Section label -->
-      <div style="flex-shrink:0;">
-        <div style="font-family:var(--f-m); font-size:6.5pt; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:2mm;">Simulation &amp; Real-Time Monitoring · Validation Pipeline</div>
-        <div style="font-family:var(--f-s); font-size:7.5pt; line-height:1.65; color:rgba(255,255,255,0.85);">The Mantis design-to-monitoring pipeline closes the evidence loop: parametric designs are stress-tested through evolutionary simulation before construction, then validated post-occupancy through embedded sensor networks linked to the X-BIM digital twin dashboard — enabling facility managers to detect structural drift, environmental deviation, and resilience margin erosion in real time.</div>
+      <div style="font-family:var(--f-m); font-size:6.5pt; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#2DD6E8; margin-bottom:0; flex-shrink:0;">Simulation &amp; Real-Time Monitoring · Validation Pipeline</div>
+
+      <!-- Intro paragraph -->
+      <div style="font-family:var(--f-s); font-size:7.5pt; line-height:1.65; color:rgba(255,255,255,0.85); flex-shrink:0;">The Mantis design-to-monitoring pipeline closes the evidence loop: parametric designs are stress-tested through evolutionary simulation before construction, then validated post-occupancy through embedded sensor networks linked to the X-BIM digital twin dashboard — enabling facility managers to detect structural drift, environmental deviation, and resilience margin erosion in real time.</div>
+
+      <!-- Form evolution diagram - full natural width, no crop -->
+      <div style="flex-shrink:0; position:relative; border-radius:2mm; overflow:hidden; border:0.3mm solid rgba(255,255,255,0.12); background:#111;">
+        <img src="Stormcity/portfolio_assets/IMG_3859.jpg" alt="Mantis Structural Form Evolution"
+             style="width:100%; height:auto; display:block;">
+        <div style="position:absolute; bottom:0; left:0; right:0; padding:1.5mm 3mm; background:rgba(0,0,0,0.65); font-family:var(--f-m); font-size:6pt; color:rgba(255,255,255,0.65); letter-spacing:0.08em;">
+          FIG.07.B — Mantis Structural Form Evolution Diagram · Parametric Hazard Optimisation
+        </div>
       </div>
 
-      <!-- Simulation video -->
-      <div style="flex:1; min-height:0; position:relative; overflow:hidden; border-radius:2mm; border:0.3mm solid rgba(255,255,255,0.12);">
+      <!-- Simulation video - full size contain -->
+      <div style="flex:1; min-height:0; position:relative; border-radius:2mm; overflow:hidden; border:0.3mm solid rgba(255,255,255,0.12); background:#000;">
         <video src="Stormcity/portfolio_assets/mantis_simulation.mp4" autoplay loop muted playsinline
-               style="width:100%; height:100%; object-fit:cover; display:block;"></video>
-        <div style="position:absolute; bottom:0; left:0; right:0; padding:1.5mm 3mm; background:linear-gradient(transparent, rgba(0,0,0,0.75)); font-family:var(--f-m); font-size:6pt; color:rgba(255,255,255,0.65); letter-spacing:0.08em;">
+               style="width:100%; height:100%; object-fit:contain; display:block; background:#000;"></video>
+        <div style="position:absolute; bottom:0; left:0; right:0; padding:1.5mm 3mm; background:rgba(0,0,0,0.65); font-family:var(--f-m); font-size:6pt; color:rgba(255,255,255,0.65); letter-spacing:0.08em;">
           FIG.07.C — Mantis Evolutionary Simulation · Galapagos Solver · Multi-Hazard Form Optimisation
         </div>
       </div>
 
-      <!-- X-BIM Dashboard image -->
-      <div style="flex:1; min-height:0; position:relative; overflow:hidden; border-radius:2mm; border:0.3mm solid rgba(255,255,255,0.12);">
+      <!-- X-BIM dashboard - full size contain -->
+      <div style="flex:1; min-height:0; position:relative; border-radius:2mm; overflow:hidden; border:0.3mm solid rgba(255,255,255,0.12); background:#000;">
         <img src="Stormcity/portfolio_assets/IMG_3362.jpeg" alt="X-BIM Dashboard"
-             style="width:100%; height:100%; object-fit:cover; object-position:center; display:block;">
-        <div style="position:absolute; bottom:0; left:0; right:0; padding:1.5mm 3mm; background:linear-gradient(transparent, rgba(0,0,0,0.75)); font-family:var(--f-m); font-size:6pt; color:rgba(255,255,255,0.65); letter-spacing:0.08em;">
+             style="width:100%; height:100%; object-fit:contain; object-position:center; display:block; background:#000;">
+        <div style="position:absolute; bottom:0; left:0; right:0; padding:1.5mm 3mm; background:rgba(0,0,0,0.65); font-family:var(--f-m); font-size:6pt; color:rgba(255,255,255,0.65); letter-spacing:0.08em;">
           FIG.07.D — X-BIM Suite · Real-Time Sensor Tracking · Structural Health &amp; Resilience Margin
         </div>
       </div>
