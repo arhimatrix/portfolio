@@ -6,6 +6,10 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
+  <!-- portfolio-version: 20260708-1655 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <!-- portfolio-version: 20260708-1638 -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
@@ -1796,18 +1800,22 @@ body {
       <div class="rh-line"></div>
       <span class="rh-label">16</span>
     </div>
-    <div class="ch-content">
-      <div class="ch-content-top" style="margin-bottom: 3mm;">
-        <div class="ch-text-block">
-          <div class="ch-section-kicker">Interface Challenge &middot; Spatial HRC Design &middot; Supervisory Systems</div>
-          <div class="ch-summary"><strong>Spatial Architecture &amp; HRC Design for Automated Tunnel</strong><br>The underground stations were engineered as integrated HRC interface systems. <em>Operational mode signaling</em> used consistent architectural markers, material treatments, and lighting patterns to communicate automation state. <em>Platform screen doors</em> were validated through user studies to ensure reliable passenger interpretation of vehicle presence and boarding readiness. <em>Wayfinding</em> embedded spatial architecture itself as a navigation system &mdash; structural elements, material transitions, and floor patterns &mdash; reducing cognitive load without staff guidance. <em>Accessibility</em> compliance required redundant visual, acoustic, and tactile communication to ensure independence in automated stations.</div>
-          <ul class="ch-bullets">
+    <div class="ch-content" style="display: flex; flex-direction: column; padding: 4mm 14mm 0; gap: 0; flex: 1; min-height: 0;">
+
+      <!-- Top row: text left + 2 images right, stretching to same height -->
+      <div style="display: flex; flex-direction: row; gap: 5mm; flex: 1.4; min-height: 0; margin-bottom: 3mm;">
+
+        <!-- Left: text column -->
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 0; min-height: 0; padding-right: 1mm;">
+          <div class="ch-section-kicker">Spatial HRC Design &middot; Supervisory Systems</div>
+          <div class="ch-summary" style="margin-top: 2mm;"><strong>Spatial Architecture &amp; HRC Design for Automated Tunnel</strong><br>The underground stations were engineered as integrated HRC interface systems. <em>Operational mode signaling</em> used consistent architectural markers, material treatments, and lighting patterns to communicate automation state. <em>Platform screen doors</em> were validated through user studies to ensure reliable passenger interpretation of vehicle presence and boarding readiness. <em>Wayfinding</em> embedded spatial architecture itself as a navigation system &mdash; structural elements, material transitions, and floor patterns &mdash; reducing cognitive load without staff guidance. <em>Accessibility</em> compliance required redundant visual, acoustic, and tactile communication to ensure independence in automated stations.</div>
+          <ul class="ch-bullets" style="margin-top: 2mm;">
             <li>Specified human-in-the-loop control room layouts, CCTV camera matrices, and hardware interfaces adapted for hybrid manual/automated operations, enabling coordinated supervision across both operational modes.</li>
             <li>Developed structured asset databases mapping physical station components and vehicle systems to dynamic digital operation registries, translating BIM into active facility management.</li>
             <li>Implemented real-time state monitoring, mode transition tracking, predictive maintenance, and incident response capabilities across both manual and automated sections of the line.</li>
             <li>Conducted onsite commissioning and 1:1 scale validation of platform door tolerances, automated passenger communication systems, emergency protocols, and mode transition procedures under real passenger loads.</li>
           </ul>
-          <div class="ch-tags">
+          <div class="ch-tags" style="margin-top: 2mm;">
             <span class="ch-tag">Supervisory Control</span>
             <span class="ch-tag">Human-in-the-Loop</span>
             <span class="ch-tag">Digital Twin BIM</span>
@@ -1816,19 +1824,25 @@ body {
             <span class="ch-tag">1:1 Operational Validation</span>
           </div>
         </div>
-        <div style="display: flex; flex-direction: column; gap: 2mm; height: 110mm;">
-          <div style="flex: 1; min-height: 0; overflow: hidden; border-radius: 2mm; border: 0.3mm solid var(--border);">
+
+        <!-- Right: 2 images stacked, full height of the row -->
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 2mm; min-height: 0;">
+          <div style="flex: 1; min-height: 0; overflow: hidden; border-radius: 2mm;">
             <img src="Tel Aviv/portfolio_assets/station_img_1.jpeg" alt="Tel Aviv Station" style="width: 100%; height: 100%; object-fit: cover; display: block;">
           </div>
-          <div style="flex: 1; min-height: 0; overflow: hidden; border-radius: 2mm; border: 0.3mm solid var(--border);">
-            <img src="Tel Aviv/portfolio_assets/station_img_2.jpeg" alt="Tel Aviv Station Platform" style="width: 100%; height: 100%; object-fit: cover; display: block;">
-          </div>
-          <div style="flex: 1; min-height: 0; overflow: hidden; border-radius: 2mm; border: 0.3mm solid var(--border);">
-            <img src="Tel Aviv/portfolio_assets/station_img_3.jpeg" alt="Tel Aviv Station Interior" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+          <div style="flex: 1; min-height: 0; overflow: hidden; border-radius: 2mm;">
+            <img src="Tel Aviv/portfolio_assets/station_img_4.jpeg" alt="Tel Aviv Station Platform" style="width: 100%; height: 100%; object-fit: cover; display: block;">
           </div>
         </div>
+
       </div>
 
+      <!-- Bottom: full-width image taking remaining page height -->
+      <div style="flex: 1; min-height: 0; display: flex; flex-direction: column; margin-bottom: 2mm;">
+        <div style="flex: 1; min-height: 0; overflow: hidden; border-radius: 2mm;">
+          <img src="Tel Aviv/portfolio_assets/station_bottom.jpeg" alt="Tel Aviv Station Wide" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        </div>
+      </div>
 
     </div>
     <div class="pf">
