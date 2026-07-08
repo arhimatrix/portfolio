@@ -6,6 +6,10 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
+  <!-- portfolio-version: 20260708-1735 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <!-- portfolio-version: 20260708-1655 -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
@@ -1888,20 +1892,22 @@ body {
     <div class="ch-content">
       <div class="ch-content-top">
         <div class="ch-text-block">
-          <div class="ch-section-kicker">Project Overview · Project Lead & Simulation Lead</div>
-          <div class="ch-summary">Cooperative swarm of nine autonomous hybrid agents for Titan's prebiotic terrain mapping. Delivered full MBSE package, designed adaptive task-planning and leader-election algorithms, prototyped physical swarm hardware, and conducted structured user evaluation studies.</div>
+          <div class="ch-section-kicker">Project Overview &middot; Project Lead &amp; Simulation Lead</div>
+          <div class="ch-summary">A cooperative swarm of nine autonomous hybrid agents presents a distinct human-machine collaboration challenge: how do operators maintain situational awareness and supervisory control when communication is delayed or disrupted, agent behaviors are partially autonomous, and swarm state is distributed across nine independent systems?<br><br>Designed for Titan&rsquo;s prebiotic terrain mapping, this project required integrating three elements: (1) operator requirements research through structured user studies evaluating interface legibility and override protocols under simulated communication constraints, (2) computational architecture for human-supervised multi-agent coordination using MBSE, ROS 2, and consensus algorithms with human override capability, and (3) physical validation of operator interfaces and swarm HRC through CrazyFlie prototype testing.</div>
           <ul class="ch-bullets">
-            <li>Designed adaptive task-planning algorithms for real-time goal re-allocation between 9 agents — with human supervisory override capability.</li>
-            <li>Programmed consensus-coordination and leader-election protocols (delay-tolerant mesh) enabling cooperative swarm under communication disruption.</li>
-            <li>Conducted structured evaluation studies of the swarm coordination interface, testing operator-override protocols.</li>
-            <li>Delivered full MBSE package: 35 requirements, FMECA matrix, mass/power/data link budgets, DRL-trained agent behaviour models.</li>
+            <li>Conducted operator user studies evaluating situational awareness, decision time, and override success rate under high-latency and communication-disruption scenarios &mdash; findings directly drove interface design decisions for swarm state visualization and command feedback.</li>
+            <li>Designed supervisory interface enabling operators to monitor individual agent status, interpret swarm consensus state, and issue direct or collective override commands &mdash; validated through physical CrazyFlie prototype testing under real communication constraints.</li>
+            <li>Programmed adaptive task-planning and leader-election algorithms with human-interrupt capability: operators can inject override commands mid-consensus, with the delay-tolerant mesh ensuring command propagation even under disruption.</li>
+            <li>Applied MBSE to trace 35 operator requirements through FMECA, mass/power/data link budgets, and DRL agent behaviour models &mdash; ensuring supervisory control logic and override failure modes were explicitly designed and validated.</li>
           </ul>
           <div class="ch-tags">
-            <span class="ch-tag">Adaptive Task Planning</span>
-            <span class="ch-tag">Swarm HRC</span>
-            <span class="ch-tag">User Study</span>
+            <span class="ch-tag">Multi-Agent HRC</span>
+            <span class="ch-tag">Operator Studies</span>
+            <span class="ch-tag">Interface Design</span>
+            <span class="ch-tag">Supervisory Control</span>
+            <span class="ch-tag">Physical Validation</span>
             <span class="ch-tag">UE5 Digital Twin</span>
-            <span class="ch-tag">ROS · MBSE</span>
+            <span class="ch-tag">ROS &middot; MBSE</span>
           </div>
         </div>
         <div style="display: flex; flex-direction: column; gap: 4mm;">
