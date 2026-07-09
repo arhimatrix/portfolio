@@ -6,6 +6,10 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
+  <!-- portfolio-version: 20260709-2240 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <!-- portfolio-version: 20260709-2231 -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
@@ -2077,24 +2081,24 @@ body {
         <!-- Left col: kicker + summary -->
         <div>
           <div class="ch-section-kicker">Project Overview &middot; Project Lead &amp; Simulation Lead</div>
-          <div class="ch-summary" style="margin-top: 2mm;">A cooperative swarm of nine autonomous hybrid agents presents a distinct human-machine collaboration challenge: how do operators maintain situational awareness and supervisory control when communication is delayed or disrupted, agent behaviors are partially autonomous, and swarm state is distributed across nine independent systems?<br><br>Designed for Titan&rsquo;s prebiotic terrain mapping, this project required integrating three elements: (1) operator requirements research through structured user studies evaluating interface legibility and override protocols under simulated communication constraints, (2) computational architecture for human-supervised multi-agent coordination using MBSE, ROS&nbsp;2, and consensus algorithms with human override capability, and (3) physical validation of operator interfaces and swarm HRC through CrazyFlie prototype testing.</div>
+          <div class="ch-summary" style="margin-top: 2mm;">A cooperative swarm of nine autonomous hybrid agents presents a distinct human-machine collaboration challenge: how do operators maintain situational awareness and supervisory control when communication is delayed or disrupted, agent behaviors are partially autonomous, and swarm state is distributed across nine independent systems?<br><br>Designed for Titan&rsquo;s prebiotic terrain mapping, the project spanned the full development arc: (1) CAD design of a novel dual-mode robotic agent capable of both wheeled surface traversal and aerial flight, (2) systems architecture for human-supervised multi-agent coordination using MBSE, ROS&nbsp;2, and consensus algorithms with human override capability, and (3) high-fidelity swarm simulation in Unreal Engine 5, with coordination logic validated on physical CrazyFlie hardware.</div>
         </div>
 
         <!-- Right col: bullets + tags -->
         <div>
           <ul class="ch-bullets" style="margin-top: 0;">
-            <li>Conducted operator user studies evaluating situational awareness, decision time, and override success rate under high-latency and communication-disruption scenarios &mdash; findings directly drove interface design decisions for swarm state visualization and command feedback.</li>
-            <li>Designed supervisory interface enabling operators to monitor individual agent status, interpret swarm consensus state, and issue direct or collective override commands &mdash; validated through physical CrazyFlie prototype testing under real communication constraints.</li>
-            <li>Programmed adaptive task-planning and leader-election algorithms with human-interrupt capability: operators can inject override commands mid-consensus, with the delay-tolerant mesh ensuring command propagation even under disruption.</li>
-            <li>Applied MBSE to trace 35 operator requirements through FMECA, mass/power/data link budgets, and DRL agent behaviour models &mdash; ensuring supervisory control logic and override failure modes were explicitly designed and validated.</li>
+            <li>Designed the dual-mode hybrid agent in CAD &mdash; a single platform combining wheeled locomotion for surface science with rotor-based flight for terrain crossing and repositioning &mdash; resolving the mass, power, and mechanism trade-offs between the two mobility modes (see orthographic and exploded assemblies, FIG.04.C&ndash;D).</li>
+            <li>Built the full-swarm simulation in Unreal Engine 5: nine agents operating over Titan-analog terrain, testing mode-switching behavior, terrain-adaptive task allocation, and swarm coordination under simulated communication delay and disruption.</li>
+            <li>Programmed adaptive task-planning and leader-election algorithms with human-interrupt capability: operators can inject override commands mid-consensus, with the delay-tolerant mesh ensuring command propagation even under disruption &mdash; validated on physical CrazyFlie hardware under real communication constraints.</li>
+            <li>Applied MBSE to trace 35 system requirements through FMECA, mass/power/data link budgets, and agent behaviour models &mdash; ensuring coordination logic and override failure modes were explicitly designed and validated.</li>
           </ul>
           <div class="ch-tags" style="margin-top: 2mm;">
-            <span class="ch-tag">Multi-Agent HRC</span>
-            <span class="ch-tag">Operator Studies</span>
-            <span class="ch-tag">Interface Design</span>
+            <span class="ch-tag">Dual-Mode Hybrid Agent</span>
+            <span class="ch-tag">CAD Design</span>
+            <span class="ch-tag">UE5 Swarm Simulation</span>
             <span class="ch-tag">Supervisory Control</span>
+            <span class="ch-tag">Multi-Agent Coordination</span>
             <span class="ch-tag">Physical Validation</span>
-            <span class="ch-tag">UE5 Digital Twin</span>
             <span class="ch-tag">ROS &middot; MBSE</span>
           </div>
         </div>
