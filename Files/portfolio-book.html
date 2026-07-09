@@ -6,6 +6,10 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
+  <!-- portfolio-version: 20260709-2358 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <!-- portfolio-version: 20260709-2344 -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
@@ -1058,7 +1062,7 @@ body {
     margin: 0 !important;
     padding: 0 !important;
     width: 210mm !important;
-    height: 297mm !important;
+    height: auto !important;
     background: none !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
@@ -1070,6 +1074,7 @@ body {
     width: 210mm !important;
     gap: 0 !important;
     background: none !important;
+    display: block !important;
   }
   .page {
     margin: 0 !important;
@@ -1077,6 +1082,55 @@ body {
     box-shadow: none !important;
     page-break-after: always !important;
     break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    /* Override the overflow:hidden that clips print content */
+    overflow: visible !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+    display: flex !important;
+    flex-direction: column !important;
+    position: relative !important;
+  }
+  /* Fix flex children that have overflow:hidden — prevents collapse in print */
+  .profile-grid,
+  .profile-photo-col,
+  .profile-text-col,
+  .cv-layout,
+  .cv-grid,
+  .toc-layout,
+  .ch-content,
+  .ch-opener,
+  .ch-opener-img,
+  .rh,
+  .back-cover-inner {
+    overflow: visible !important;
+  }
+  /* Flex children with flex:1 — ensure they take up space in print */
+  .profile-grid {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+    display: grid !important;
+    grid-template-columns: 72mm 1fr !important;
+  }
+  .cv-layout {
+    flex: 1 1 auto !important;
+    min-height: 0 !important;
+  }
+  /* Images inside overflow:hidden containers */
+  .profile-photo-col img,
+  .ch-opener-img img,
+  .img-cell img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+  /* Footer always at bottom */
+  .pf {
+    margin-top: auto !important;
+    flex-shrink: 0 !important;
   }
   @page {
     size: A4 portrait;
