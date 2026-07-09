@@ -6,6 +6,10 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
+  <!-- portfolio-version: 20260710-0011 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <!-- portfolio-version: 20260710-0000 -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
@@ -1088,8 +1092,8 @@ body {
     break-after: page !important;
     page-break-inside: avoid !important;
     break-inside: avoid !important;
-    /* Override the overflow:hidden that clips print content */
-    overflow: visible !important;
+    /* Keep overflow:hidden so content never bleeds past 297mm */
+    overflow: hidden !important;
     width: 210mm !important;
     height: 297mm !important;
     min-height: 297mm !important;
@@ -1098,32 +1102,43 @@ body {
     flex-direction: column !important;
     position: relative !important;
   }
-  /* Fix flex children that have overflow:hidden — prevents collapse in print */
-  .profile-grid,
-  .profile-photo-col,
-  .profile-text-col,
-  .cv-layout,
-  .cv-grid,
+  /* Inner flex containers: allow content to render (not collapse to 0) */
+  .profile-grid {
+    flex: 1 1 auto !important;
+    overflow: hidden !important;
+    display: grid !important;
+    grid-template-columns: 72mm 1fr !important;
+    min-height: 0 !important;
+  }
+  .profile-photo-col {
+    overflow: hidden !important;
+    position: relative !important;
+  }
+  .profile-text-col {
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .cv-layout {
+    flex: 1 1 auto !important;
+    overflow: hidden !important;
+    min-height: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .cv-grid {
+    flex: 1 !important;
+    overflow: visible !important;
+    min-height: 0 !important;
+  }
   .toc-layout,
   .ch-content,
   .ch-opener,
   .ch-opener-img,
-  .rh,
   .back-cover-inner {
     overflow: visible !important;
   }
-  /* Flex children with flex:1 — ensure they take up space in print */
-  .profile-grid {
-    flex: 1 1 auto !important;
-    min-height: 0 !important;
-    display: grid !important;
-    grid-template-columns: 72mm 1fr !important;
-  }
-  .cv-layout {
-    flex: 1 1 auto !important;
-    min-height: 0 !important;
-  }
-  /* Images inside overflow:hidden containers */
+  /* Images fill their containers */
   .profile-photo-col img,
   .ch-opener-img img,
   .img-cell img {
@@ -1131,7 +1146,7 @@ body {
     height: 100% !important;
     object-fit: cover !important;
   }
-  /* Footer always at bottom */
+  /* Footer pinned to bottom */
   .pf {
     margin-top: auto !important;
     flex-shrink: 0 !important;
