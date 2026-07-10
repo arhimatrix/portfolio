@@ -6,6 +6,10 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
+  <!-- portfolio-version: 20260710-0910 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <!-- portfolio-version: 20260710-0905 -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
@@ -1099,11 +1103,9 @@ body {
     margin: 0 !important;
     border: none !important;
     box-shadow: none !important;
-    page-break-after: always !important;
-    break-after: page !important;
-    page-break-inside: avoid !important;
-    break-inside: avoid !important;
-    /* Keep overflow:hidden so content never bleeds past 297mm */
+    /* Use break-before on adjacent pages — avoids double-break from break-after */
+    page-break-after: auto !important;
+    break-after: auto !important;
     overflow: hidden !important;
     width: 210mm !important;
     height: 297mm !important;
@@ -1113,7 +1115,12 @@ body {
     flex-direction: column !important;
     position: relative !important;
   }
-  /* Inner flex containers: allow content to render (not collapse to 0) */
+  /* Every page after the first gets a break before it */
+  .page + .page {
+    page-break-before: always !important;
+    break-before: page !important;
+  }
+  /* Inner flex containers */
   .profile-grid {
     flex: 1 1 auto !important;
     overflow: hidden !important;
@@ -1139,7 +1146,7 @@ body {
   }
   .cv-grid {
     flex: 1 !important;
-    overflow: visible !important;
+    overflow: hidden !important;
     min-height: 0 !important;
   }
   .toc-layout,
