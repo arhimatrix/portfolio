@@ -6,6 +6,10 @@
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
+  <!-- portfolio-version: 20260710-1021 -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <!-- portfolio-version: 20260710-1012 -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
@@ -1588,7 +1592,7 @@ body {
       </div>
 
       <!-- Lunar Village Overview — no frame -->
-      <div style="flex:1; display:flex; flex-direction:column; min-height:0; margin-top:4mm;">
+      <div style="flex:1; max-height:100mm; display:flex; flex-direction:column; min-height:0; margin-top:4mm;">
         <div style="flex:1; overflow:hidden; min-height:0;">
           <img src="Horizon Protocol/portfolio_assets/lunar_base_overview.jpg" alt="Lunar Village Overview" style="width:100%; height:100%; object-fit:cover;">
         </div>
@@ -2282,26 +2286,18 @@ body {
         </div>
         <!-- Topology: 78mm, matches row height, full circle visible -->
         <div style="flex: 1; height: 78mm; display: flex; flex-direction: column; min-width: 0; overflow: hidden;">
-          <iframe
-            src="Swarm Titan/Diagrams/titan_topology_clean.html?v=7"
-            style="width: 100%; flex: 1; border: none; background: transparent;"
-            scrolling="no"
-            loading="lazy"
-            title="Swarm Titan — System Topology Diagram"
-          ></iframe>
+          <div style="flex:1; overflow:hidden; min-height:0;">
+            <img src="Swarm Titan/Diagrams/topology_print.png" alt="Swarm Communication Topology" style="width:100%; height:100%; object-fit:contain;">
+          </div>
           <div style="font-family: var(--f-m); font-size: 6.5pt; color: #64748B; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2mm; padding-left: 1mm;">Swarm Communication Topology</div>
         </div>
       </div>
 
       <!-- Row 3: PBS — frameless, fills all remaining page height -->
       <div style="flex: 1; min-height: 0; display: flex; flex-direction: column; margin-top: 3mm; background: #ffffff; overflow: hidden;">
-        <iframe
-          src="Swarm Titan/Diagrams/titan_pbs_clean.html?v=7"
-          style="width: 100%; flex: 1; min-height: 0; border: none; background: transparent;"
-          scrolling="no"
-          loading="lazy"
-          title="Swarm Titan — Product Breakdown Structure"
-        ></iframe>
+        <div style="flex:1; overflow:hidden; min-height:0;">
+          <img src="Swarm Titan/Diagrams/pbs_print.png" alt="Product Breakdown Structure" style="width:100%; height:100%; object-fit:contain;">
+        </div>
         <div style="font-family: var(--f-m); font-size: 6.5pt; color: #64748B; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2mm; padding-left: 1mm;">Product Breakdown Structure</div>
       </div>
 
@@ -2359,18 +2355,14 @@ body {
       <span class="rh-label">20</span>
     </div>
     <div style="flex:1; display:flex; flex-direction:column; padding:4mm 14mm; gap:6mm; min-height:0;">
-      <iframe
-        src="Swarm Titan/Diagrams/titan_parametric_clean.html?v=8"
-        style="width:100%; flex:1.1; border:none; background:#fff;"
-        scrolling="no"
-        loading="lazy"
-        title="Swarm Titan — Adaptive Task Planning"
-      ></iframe>
+      <div style="flex:1.1; overflow:hidden; min-height:0;">
+        <img src="Swarm Titan/Diagrams/parametric_print.png" alt="Parametric Agent Configuration" style="width:100%; height:100%; object-fit:contain; background:#fff;">
+      </div>
       <div style="font-family: var(--f-m); font-size: 6.5pt; color: #64748B; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2mm; padding-left: 1mm;">Parametric Agent Configuration</div>
       <!-- UE5 Simulation Video — no frame -->
       <div style="flex:0.9; display:flex; flex-direction:column; min-height:0;">
         <div style="flex:1; overflow:hidden; background:#000; min-height:0; border-radius: 2mm; border: 0.3mm solid var(--border);">
-          <video src="Swarm Titan/portfolio_assets/titan_swarm_sim.mp4" autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover; display:block; background:#000;"></video>
+          <img src="Swarm Titan/ue5_sim.jpg" alt="UE5 Exploration Simulation" style="width:100%; height:100%; object-fit:cover; display:block;">
         </div>
         <div style="font-family: var(--f-m); font-size: 6.5pt; color: #64748B; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2mm; padding-left: 1mm;">UE5 Exploration Simulation · Titan Prebiotic Terrain Mapping</div>
       </div>
