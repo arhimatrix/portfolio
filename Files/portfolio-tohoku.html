@@ -1232,6 +1232,9 @@ body {
 }
 
 </style>
+
+  <!-- Three.js for interactive 3D Moon -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
 </head>
 <body>
 
@@ -1260,9 +1263,26 @@ body {
       </div>
 
       <!-- Hero image fills remaining space BELOW the name -->
-      <div class="cover-fig">
-        <img src="Moonwalk/media/img/moon.jpg" alt="3D Moon - Lunar South Pole">
-        <div class="cover-fig-label">LUNAR SOUTH POLE &middot; TOPOLOGICAL INTERLOCKING REGOLITH INFRASTRUCTURE &middot; MOONWALK 2.0 &middot; TOHOKU UNIVERSITY</div>
+      <div class="cover-fig" style="position:relative; overflow:hidden;">
+        <canvas id="moon-cover" aria-label="3D interactive moon globe — lunar south pole, Moonwalk 2.0"
+        style="width:100%; height:100%; display:block; border-radius:inherit;"></canvas>
+      <div class="cover-fig-label" style="position:absolute; bottom:0; left:0; right:0; padding:2mm 6mm; background:linear-gradient(transparent, rgba(0,0,0,0.75)); font-family:var(--f-m); font-size:5.5pt; color:rgba(255,255,255,0.8); letter-spacing:0.1em; text-transform:uppercase;">
+        LUNAR SOUTH POLE &middot; CONNECTING RIDGE / DE GERLACHE RIM 2 &middot; MOONWALK 2.0 &middot; TOHOKU UNIVERSITY SRL
+      </div>
+      <script>
+      (function(){
+        var cvs = document.getElementById('moon-cover');
+        if (!cvs || !window.THREE) {
+          setTimeout(function(){
+            var cvs2 = document.getElementById('moon-cover');
+            if (!cvs2 || !window.THREE) return;
+            initMoon(cvs2);
+          }, 500);
+          return;
+        }
+        initMoon(cvs);
+      })();
+      </script>
       </div>
     </div>
     </div>
@@ -1313,7 +1333,7 @@ body {
           <span class="toc-num">02</span>
           <span class="toc-title-wrap">
             <span class="toc-title">UMBRELLA &middot; Real-Time Digital Twin</span>
-            <span class="toc-sub">Human-Robot Supervisory Interface &middot; UE5/AirSim</span>
+            <span class="toc-sub">Supervisory Control Architecture &middot; UE5/AirSim Digital Twin</span>
           </span>
           <span class="toc-page">p.08</span>
         </li>
@@ -1345,7 +1365,7 @@ body {
           <span class="toc-num">06</span>
           <span class="toc-title-wrap">
             <span class="toc-title">NEOM Multimodal Mobility Hubs</span>
-            <span class="toc-sub">Human-Machine Interface &middot; Zero-Carbon Transit &middot; Occupant Sensing</span>
+            <span class="toc-sub">Autonomous Interchange &middot; Zero-Carbon Transit &middot; Occupant Sensing</span>
           </span>
           <span class="toc-page">p.21</span>
         </li>
@@ -1392,7 +1412,7 @@ body {
             <div class="cv-role">Transit Architecture Lead &middot; Underground Infrastructure</div>
             <div class="cv-company">WSP &middot; International Transit Practice</div>
             <div class="cv-period">Apr 2016 &ndash; Aug 2022</div>
-            <div class="cv-desc">Led architectural design management of automated underground transit systems on behalf of the project management consultancy, directing and coordinating five architecture firms through design development, review, and approval. Ensured spatial consistency, regulatory compliance, platform screen doors, automated safety gates, and machine-to-human interface systems.</div>
+            <div class="cv-desc">Led architectural design management of automated underground transit systems on behalf of the project management consultancy, directing and coordinating five architecture firms through design development, review, and approval. Ensured spatial consistency, regulatory compliance, platform screen doors, automated safety gates, and autonomous transit control and wayfinding interface systems.</div>
           </div>
           <div class="cv-entry">
             <div class="cv-role">Architect &middot; 3D Clash Detection &amp; Roadway Design</div>
@@ -1485,11 +1505,22 @@ body {
        ========================================================================== -->
   <div class="page dark" style="position:relative;">
     <div class="ch-opener">
-      <div class="ch-opener-img">
-        <img src="Moonwalk/media/img/moon.jpg" alt="3D Moon - South Pole Elevation">
+      <div class="ch-opener-img" style="position:relative; overflow:hidden;">
+        <canvas id="moon-ch01" aria-label="3D Moon — South Pole — Moonwalk 2.0 chapter opener"
+          style="width:100%; height:100%; display:block;"></canvas>
+        <script>
+        (function(){
+          function tryInit(){
+            var cvs = document.getElementById('moon-ch01');
+            if(cvs && window.THREE){ initMoon(cvs); }
+            else { setTimeout(tryInit, 300); }
+          }
+          tryInit();
+        })();
+        </script>
       </div>
       <div class="ch-opener-content">
-        <div class="ch-kicker">Chapter 01 &middot; Planetary Robotics &amp; Autonomous In-Situ Construction</div>
+        <div class="ch-kicker">Chapter 01 &middot; Autonomous Robotic Assembly &amp; In-Situ Construction Automation</div>
         <div class="ch-title">Moonwalk 2.0</div>
         <div class="ch-subtitle">Autonomous In-Situ Lunar Construction &amp; Interlocking Regolith Structures</div>
         <div class="ch-theme-line"><strong>Tohoku University Space Robotics Laboratory &middot; Autonomous Multi-Robot Assembly &middot; Topological Interlocking Osteomorphic Blocks &middot; 4D BIM &amp; NVIDIA Isaac Sim Physics Validation</strong><br><br>An end-to-end cyber-physical construction framework for permanent lunar infrastructure at the lunar south pole: autonomous mobile robots (MoonBot Dragon) fabricating landing pads, vertical solar towers, and pressurized habitat vaults from dry-stacked interlocking regolith blocks before crew arrival.</div>
@@ -1516,7 +1547,7 @@ body {
       <div class="ch-content-top">
         <div class="ch-text-block">
           <div class="ch-section-kicker">Research Overview &middot; Space Robotics Laboratory, Tohoku University &middot; 2026</div>
-          <div class="ch-summary">Moonwalk 2.0 addresses the foundational challenge of permanent extraterrestrial habitation: enabling autonomous mobile robots to construct landing pads, vertical solar towers, and pressurized habitat vaults from unreinforced lunar regolith before human crew arrives. Conducted at Tohoku University Space Robotics Lab, the project establishes an end-to-end cyber-physical pipeline from south-pole site selection (Connecting Ridge / de Gerlache Rim 2 within ispace Mission 4's &ge;87&deg;S landing band) to parametric block generation, multi-robot cooperative scheduling, and dynamic physics simulation.</div>
+          <div class="ch-summary">Moonwalk 2.0 develops a fully autonomous in-situ construction pipeline for permanent lunar infrastructure — directly advancing ARCA Lab's core agenda of robotic construction automation applied to extreme environments. Conducted at Tohoku University Space Robotics Lab, the project addresses the full fabrication stack: south-pole site selection &amp; terrain analysis (Connecting Ridge / de Gerlache Rim 2 within ispace Mission 4's &ge;87&deg;S landing band), parametric design of a topologically interlocking regolith block family in Rhino 8 / Grasshopper, multi-robot cooperative task scheduling compiled to 8 atomic operation verbs, and closed-loop physics validation in NVIDIA Isaac Sim — producing a replicable, geometry-agnostic robotic assembly protocol for unreinforced granular material.</div>
           <ul class="ch-bullets">
             <li><strong>Topological Interlocking Block Family:</strong> Formulated parametric osteomorphic and 6-tilt hexagonal block families (Dyskin et al. 2003, 2005; Yong 2011). Non-planar contact faces (0&deg; to 35.3&deg; cube-corner tilt) lock adjacent elements purely in compression without mortar or adhesives, eliminating thermal fracture risks across extreme cryogenic diurnal cycles (&Delta;T &gt; 250 K).</li>
             <li><strong>Robot-Block Interface Architecture:</strong> Developed and evaluated three distinct end-effector interface modules: <em>Option 1 (Flush Side Handle)</em> matching the lab's C-jaw bar gripper; <em>Option 2 (Top Twist-Lock Slot)</em> using a T-key vertical entry with 90&deg; wrist form-lock; and <em>Option 3 (Top Pocket Grip)</em> utilizing linear slide fingers expanding against pocket walls. Top-gripping effectors leave all side faces free, enabling zero-clearance adjacent placement across pavements, walls, columns, and vaults.</li>
@@ -1527,7 +1558,7 @@ body {
           <!-- Dedicated Reports Hub -->
           <div style="background:rgba(0,0,0,0.03); border:0.3mm solid rgba(0,0,0,0.1); border-radius:2mm; padding:2.5mm 3mm;">
             <div style="font-family:var(--f-m); font-size:6pt; font-weight:700; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:1.5mm;">
-              Research Archive &middot; 6 Project Reports
+              Research Archive &middot; 6 Project Reports &amp; Final Presentation
             </div>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5mm 2.5mm; font-family:var(--f-s); font-size:6pt; line-height:1.4;">
               <div>&bull; <a href="https://arhimatrix.github.io/arhimatrix-moonwalk-2-rep_01/" target="_blank" style="color:var(--ink); text-decoration:none; font-weight:600;">Report 01 &mdash; Ground Work &amp; Block Family &rarr;</a></div>
@@ -1536,6 +1567,9 @@ body {
               <div>&bull; <a href="https://arhimatrix.github.io/arhimatrix-moonwalk-2-rep_04/" target="_blank" style="color:var(--ink); text-decoration:none; font-weight:600;">Report 04 &mdash; Plan to Robot &amp; ispace M4 &rarr;</a></div>
               <div>&bull; <a href="https://arhimatrix.github.io/arhimatrix-moonwalk-2-rep_05/" target="_blank" style="color:var(--ink); text-decoration:none; font-weight:600;">Report 05 &mdash; Physics Check in Isaac Sim &rarr;</a></div>
               <div>&bull; <a href="https://arhimatrix.github.io/arhimatrix-moonwalk-2-rep_06/" target="_blank" style="color:var(--ink); text-decoration:none; font-weight:600;">Report 06 &mdash; Multi-Robot Crews &amp; 4D BIM &rarr;</a></div>
+              <div style="grid-column: span 2; border-top: 0.2mm solid rgba(0,0,0,0.08); padding-top: 1.2mm; margin-top: 0.5mm;">
+                &bull; <a href="Moonwalk/Moonwalk%20Plugin%20%E2%80%94%20Final%20Presentation.pdf" target="_blank" style="color:#0a85ea; text-decoration:none; font-weight:700;">Final Presentation &mdash; Moonwalk Grasshopper Plugin &amp; Isaac Sim (PDF) &rarr;</a>
+              </div>
             </div>
           </div>
 
@@ -1586,64 +1620,80 @@ body {
       <span class="pf-left">Ch.01 &middot; Moonwalk 2.0 &middot; Tohoku University Space Robotics Lab</span>
       <span class="pf-right">p. 05</span>
     </div><div class="page dark" style="position:relative; background:#000000;">
-        <div class="rh" style="border-color:rgba(255,255,255,0.08);">
+    <div class="rh" style="border-color:rgba(255,255,255,0.08);">
       <span class="rh-label" style="color:rgba(255,255,255,0.45);">Ch.01 &middot; Moonwalk 2.0 &middot; Tohoku University Space Robotics Lab</span>
       <div class="rh-line" style="background:rgba(255,255,255,0.1);"></div>
       <span class="rh-label" style="color:rgba(255,255,255,0.45);">06</span>
     </div>
-    <div class="ch-content" style="padding:4mm 14mm 2mm; display:flex; flex-direction:column; gap:2.5mm; flex:1; min-height:0;">
+    <div class="ch-content" style="padding:3.5mm 14mm 2mm; display:flex; flex-direction:column; gap:2.5mm; flex:1; min-height:0;">
 
       <!-- Engineering Text Summary Row -->
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:6mm; flex-shrink:0;">
         <div>
-          <div style="font-family:var(--f-m); font-size:6.5pt; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#2DD6E8; margin-bottom:2mm;">
+          <div style="font-family:var(--f-m); font-size:6.5pt; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#2DD6E8; margin-bottom:1.5mm;">
             Multi-Robot Cooperative 4D BIM &middot; MoonBot Dragon Architecture
           </div>
-          <div style="font-family:var(--f-s); font-size:7.5pt; line-height:1.6; color:rgba(255,255,255,0.85);">
-            To construct large-scale lunar infrastructure without heavy Earth-imported equipment, Moonwalk 2.0 formulates an automated 4D BIM assembly pipeline executed by modular robotic fleets. The primary constructor is the <strong>MoonBot Dragon</strong> &mdash; a modular mobile rover developed at Tohoku University SRL featuring a 7-DOF articulated manipulator arm and holonomic mobility base.<br><br>
-            Every building component is assigned an <code>IfcBuildingElementPart</code> linked to chronological <code>IfcTask</code> schedules and robot resource allocations. Kinematic feasibility, reachability envelopes, and collision-free navigation lanes are computed directly within Grasshopper and handed off to ROS 2 Motion Stack middleware.
+          <div style="font-family:var(--f-s); font-size:7.2pt; line-height:1.55; color:rgba(255,255,255,0.85);">
+            To construct large-scale lunar infrastructure without heavy Earth-imported equipment, Moonwalk 2.0 formulates an automated 4D BIM assembly pipeline executed by modular robotic fleets. The primary constructor is the <strong>MoonBot Dragon</strong> &mdash; a modular mobile rover developed at Tohoku University Space Robotics Lab featuring a 7-DOF articulated manipulator arm and holonomic mobility base.<br><br>
+            Every building component is assigned an <code>IfcBuildingElementPart</code> linked to chronological <code>IfcTask</code> schedules and robot resource allocations. Kinematic reachability envelopes, stability margins, and collision-free navigation lanes are computed directly within Grasshopper and compiled into atomic operations for ROS 2 Motion Stack execution.
           </div>
         </div>
         <div>
-          <div style="font-family:var(--f-m); font-size:6.5pt; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#2DD6E8; margin-bottom:2mm;">
+          <div style="font-family:var(--f-m); font-size:6.5pt; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#2DD6E8; margin-bottom:1.5mm;">
             Constructability Benchmarks: Pad, Dome &amp; Power Columns
           </div>
-          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:2mm;">
-            <li style="font-family:var(--f-s); font-size:7pt; line-height:1.55; color:rgba(255,255,255,0.85); padding-left:3.5mm; position:relative;"><span style="position:absolute; left:0; color:#2DD6E8;">&bull;</span><strong>Landing Pad (283 Pavers):</strong> Laid centre-out along radial ring roads. Multi-robot tandem paving (2 placers) reduced build duration from 9.90h to 3.89h (2.5&times; speedup) with zero path interference.</li>
-            <li style="font-family:var(--f-s); font-size:7pt; line-height:1.55; color:rgba(255,255,255,0.85); padding-left:3.5mm; position:relative;"><span style="position:absolute; left:0; color:#2DD6E8;">&bull;</span><strong>Pressurized ShellA Dome (216 Blocks, 4.8m Span):</strong> Built entirely from the inside out through its own 0.95m airlock doorway opening &mdash; eliminating external falsework and scaffolding. Tandem execution achieves completion in 2.71h.</li>
-            <li style="font-family:var(--f-s); font-size:7pt; line-height:1.55; color:rgba(255,255,255,0.85); padding-left:3.5mm; position:relative;"><span style="position:absolute; left:0; color:#2DD6E8;">&bull;</span><strong>2.5m Lattice Power Columns:</strong> Vertical solar tracking towers assembled by tandem rovers reconfiguring for elevation reach without cranes, delivering continuous 1.4 kW per column (~26 kW per 18-column field).</li>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:1.6mm;">
+            <li style="font-family:var(--f-s); font-size:7pt; line-height:1.5; color:rgba(255,255,255,0.85); padding-left:3.5mm; position:relative;"><span style="position:absolute; left:0; color:#2DD6E8;">&bull;</span><strong>Landing Pad (283 Pavers):</strong> Laid centre-out along radial ring roads. Multi-robot tandem paving (2 placers) reduced build duration from 9.90h to 3.89h (2.5&times; speedup) across 10,942 planned operations with zero spatial collisions.</li>
+            <li style="font-family:var(--f-s); font-size:7pt; line-height:1.5; color:rgba(255,255,255,0.85); padding-left:3.5mm; position:relative;"><span style="position:absolute; left:0; color:#2DD6E8;">&bull;</span><strong>Pressurized ShellA Dome (194 Blocks, 4.8m Span):</strong> Built entirely from the inside out through its own 0.95m airlock doorway opening &mdash; eliminating external scaffolding. Hand-off from exterior Dragon hauler to interior Tricycle completes in 1.58h.</li>
+            <li style="font-family:var(--f-s); font-size:7pt; line-height:1.5; color:rgba(255,255,255,0.85); padding-left:3.5mm; position:relative;"><span style="position:absolute; left:0; color:#2DD6E8;">&bull;</span><strong>2.5m Lattice Power Columns:</strong> Vertical solar tracking towers assembled by tandem rovers reconfiguring into a tall-stance Tricycle (2.13m reach) without cranes, delivering continuous 1.3 kW per column (~26 kW per field).</li>
           </ul>
         </div>
       </div>
 
-      <!-- Middle: Real Autonomous Construction Videos -->
-      <div style="flex:1.2; display:grid; grid-template-columns:1fr 1fr; gap:3mm; min-height:0;">
-        <div style="position:relative; overflow:hidden; border-radius:2mm; border:0.3mm solid rgba(255,255,255,0.1); background:#000;">
-          <video src="Moonwalk/media/animation/moonwalk_r04_dome_720.mp4" autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover; display:block;"></video>
-          <div style="position:absolute; bottom:0; left:0; right:0; padding:1.5mm 3mm; background:rgba(0,0,0,0.8); font-family:var(--f-m); font-size:5.5pt; color:rgba(255,255,255,0.85); letter-spacing:0.06em; text-transform:uppercase;">
-            Autonomous Dome Construction Simulation &middot; Robot Stacking Inside Out Through Doorway
+      <!-- Middle: Visual Assembly Sequences (Pad, Dome, Column) - FULL, UNCLIPPED -->
+      <div style="flex:1.25; display:grid; grid-template-columns:1fr 1fr 1fr; gap:2.5mm; min-height:0;">
+        <div style="position:relative; display:flex; flex-direction:column; overflow:hidden; border-radius:1.5mm; border:0.3mm solid rgba(255,255,255,0.12); background:#06080d;">
+          <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:1mm; background:#06080d;">
+            <img src="Moonwalk/portfolio_assets/pad_assembly_sequence.jpg" alt="Pad Assembly Sequence" style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
+          </div>
+          <div style="flex-shrink:0; padding:1.2mm 2.5mm; background:rgba(12,16,24,0.95); border-top:0.3mm solid rgba(255,255,255,0.08); font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.85); letter-spacing:0.06em; text-transform:uppercase;">
+            Landing Pad Assembly &middot; 283 Pavers &middot; Centre-Out Tandem Paving (3.89 h)
           </div>
         </div>
-        <div style="position:relative; overflow:hidden; border-radius:2mm; border:0.3mm solid rgba(255,255,255,0.1); background:#000;">
-          <video src="Moonwalk/media/animation/moonwalk_r04_pad_720.mp4" autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover; display:block;"></video>
-          <div style="position:absolute; bottom:0; left:0; right:0; padding:1.5mm 3mm; background:rgba(0,0,0,0.8); font-family:var(--f-m); font-size:5.5pt; color:rgba(255,255,255,0.85); letter-spacing:0.06em; text-transform:uppercase;">
-            Landing Pad Assembly Simulation &middot; Centre-Out Multi-Robot Paving Execution
+        <div style="position:relative; display:flex; flex-direction:column; overflow:hidden; border-radius:1.5mm; border:0.3mm solid rgba(255,255,255,0.12); background:#06080d;">
+          <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:1mm; background:#06080d;">
+            <img src="Moonwalk/portfolio_assets/dome_assembly_sequence.jpg" alt="Dome Assembly Sequence" style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
+          </div>
+          <div style="flex-shrink:0; padding:1.2mm 2.5mm; background:rgba(12,16,24,0.95); border-top:0.3mm solid rgba(255,255,255,0.08); font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.85); letter-spacing:0.06em; text-transform:uppercase;">
+            ShellA Dome Assembly &middot; Internal Placement Through Airlock Opening (1.58 h)
+          </div>
+        </div>
+        <div style="position:relative; display:flex; flex-direction:column; overflow:hidden; border-radius:1.5mm; border:0.3mm solid rgba(255,255,255,0.12); background:#06080d;">
+          <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:1mm; background:#06080d;">
+            <img src="Moonwalk/portfolio_assets/column_assembly_sequence.jpg" alt="Column Assembly Sequence" style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
+          </div>
+          <div style="flex-shrink:0; padding:1.2mm 2.5mm; background:rgba(12,16,24,0.95); border-top:0.3mm solid rgba(255,255,255,0.08); font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.85); letter-spacing:0.06em; text-transform:uppercase;">
+            2.5m Power Column &middot; Tandem Multi-Robot Stacking (No Crane, 2.70 h)
           </div>
         </div>
       </div>
 
-      <!-- Bottom: Structural Rib Plan & Fleet Modules -->
-      <div style="flex:1; display:grid; grid-template-columns:1.2fr 1fr; gap:3mm; min-height:0;">
-        <div style="position:relative; overflow:hidden; border-radius:2mm; border:0.3mm solid rgba(255,255,255,0.1); background:#0c1017;">
-          <img src="Moonwalk/media/img/dome_ribs_plan.png" alt="Topological Dome Structural Rib Plan" style="width:100%; height:100%; object-fit:contain; padding:1mm;">
-          <div style="position:absolute; bottom:0; left:0; right:0; padding:1.5mm 3mm; background:rgba(0,0,0,0.85); font-family:var(--f-m); font-size:5.5pt; color:rgba(255,255,255,0.85); letter-spacing:0.06em; text-transform:uppercase;">
-            ShellA Topological Interlocking Dome Rib Layout &middot; Mathematical Formulation &amp; Thrust Plan
+      <!-- Bottom: Robot Modules & Kinematic Reach Envelope - FULL, UNCLIPPED -->
+      <div style="flex:1; display:grid; grid-template-columns:1.25fr 1fr; gap:2.5mm; min-height:0;">
+        <div style="position:relative; display:flex; flex-direction:column; overflow:hidden; border-radius:1.5mm; border:0.3mm solid rgba(255,255,255,0.12); background:#0c1017;">
+          <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:1mm; background:#0c1017;">
+            <img src="Moonwalk/portfolio_assets/robots_modules.png" alt="MoonBot Dragon Modular Fleet" style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
+          </div>
+          <div style="flex-shrink:0; padding:1.2mm 2.5mm; background:rgba(12,16,24,0.95); border-top:0.3mm solid rgba(255,255,255,0.08); font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.85); letter-spacing:0.06em; text-transform:uppercase;">
+            MoonBot Dragon Modular Robotics Architecture &middot; 7-DOF Arm &amp; Mobility Configurations
           </div>
         </div>
-        <div style="position:relative; overflow:hidden; border-radius:2mm; border:0.3mm solid rgba(255,255,255,0.1); background:#0c1017;">
-          <img src="Moonwalk/portfolio_assets/robots_modules.png" alt="MoonBot Dragon Modular Fleet" style="width:100%; height:100%; object-fit:contain; padding:1mm;">
-          <div style="position:absolute; bottom:0; left:0; right:0; padding:1.5mm 3mm; background:rgba(0,0,0,0.85); font-family:var(--f-m); font-size:5.5pt; color:rgba(255,255,255,0.85); letter-spacing:0.06em; text-transform:uppercase;">
-            MoonBot Dragon Modular Fleet Architecture &middot; 7-DOF Arm &amp; Mobility Stance
+        <div style="position:relative; display:flex; flex-direction:column; overflow:hidden; border-radius:1.5mm; border:0.3mm solid rgba(255,255,255,0.12); background:#0c1017;">
+          <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:1mm; background:#0c1017;">
+            <img src="Moonwalk/portfolio_assets/col_reach_study.png" alt="Manipulator Reach Envelope Study" style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
+          </div>
+          <div style="flex-shrink:0; padding:1.2mm 2.5mm; background:rgba(12,16,24,0.95); border-top:0.3mm solid rgba(255,255,255,0.08); font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.85); letter-spacing:0.06em; text-transform:uppercase;">
+            7-DOF Manipulator Inverse Kinematics &amp; Vertical Reach Analysis (Dragon 1.1m &rarr; Tricycle 2.13m)
           </div>
         </div>
       </div>
@@ -1652,60 +1702,78 @@ body {
     <div class="pf" style="border-color:rgba(255,255,255,0.08);">
       <span class="pf-left" style="color:rgba(255,255,255,0.45);">Ch.01 &middot; Moonwalk 2.0 &middot; Tohoku University Space Robotics Lab</span>
       <span class="pf-right" style="color:rgba(255,255,255,0.45);">p. 06</span>
-    </div><div class="page dark" style="position:relative; background:#000000;">
-        <div class="rh" style="border-color:rgba(255,255,255,0.08);">
+    </div>
+  </div><div class="page dark" style="position:relative; background:#000000;">
+    <div class="rh" style="border-color:rgba(255,255,255,0.08);">
       <span class="rh-label" style="color:rgba(255,255,255,0.45);">Ch.01 &middot; Moonwalk 2.0 &middot; Tohoku University Space Robotics Lab</span>
       <div class="rh-line" style="background:rgba(255,255,255,0.1);"></div>
       <span class="rh-label" style="color:rgba(255,255,255,0.45);">07</span>
     </div>
-    <div class="ch-content" style="padding:4mm 14mm 2mm; display:flex; flex-direction:column; gap:2.5mm; flex:1; min-height:0;">
+    <div class="ch-content" style="padding:3.5mm 14mm 2mm; display:flex; flex-direction:column; gap:2.5mm; flex:1; min-height:0;">
 
-      <!-- Text Row: Isaac Sim Validation + Grasshopper Plugin -->
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:6mm; flex-shrink:0;">
+      <!-- Text Row: Plugin Architecture + Closed Loop Physics -->
+      <div style="display:grid; grid-template-columns:1.05fr 0.95fr; gap:6mm; flex-shrink:0;">
         <div>
-          <div style="font-family:var(--f-m); font-size:6.5pt; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#2DD6E8; margin-bottom:2mm;">
-            Dynamic Physics Validation &middot; NVIDIA Isaac Sim (PhysX 6.1)
+          <div style="font-family:var(--f-m); font-size:6.5pt; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#2DD6E8; margin-bottom:1.5mm;">
+            Moonwalk Plugin Architecture &middot; Five Layers &amp; The Plan File "Waist"
           </div>
-          <div style="font-family:var(--f-s); font-size:7.5pt; line-height:1.6; color:rgba(255,255,255,0.85);">
-            Kinematic plans are validated under the physical realities of the lunar surface. Every placement stage was simulated dynamically in <strong>NVIDIA Isaac Sim (PhysX 6.1)</strong> under 1/6th gravity (1.62 m/s&sup2;), dry contact friction (&mu; = 0.6), and 1 mm joint tolerances.<br><br>
-            <strong>Pad Verification:</strong> All 283 placement stages proved intrinsically stable with zero temporary support &mdash; maximum transient movement was &lt;5 mm and final cumulative drift settled under <strong>0.5 mm</strong>.<br>
-            <strong>Dome Verification &amp; Stabilization:</strong> Simulation revealed that free dry-stacked dome courses undergo inward rotational overturning during intermediate rings. Introducing lightweight temporary locking staples arrested overturning, enabling the dry dome to self-lock upon ring closure.
+          <div style="font-family:var(--f-s); font-size:7.2pt; line-height:1.55; color:rgba(255,255,255,0.85);">
+            The <strong>Moonwalk Grasshopper Plugin</strong> operationalizes the construction compiler as a native Rhino 8 / Grasshopper workflow — directly relevant to ARCA Lab's digital fabrication research agenda. Five decoupled layers connect parametric geometry to physical robot execution:<br>
+            &bull; <strong>L1 Canvas:</strong> Native components (<code>MW Site</code>, <code>MW Blocks</code>, <code>MW Dome</code>, <code>MW Column</code>, <code>MW Plan Preview</code>, <code>MW Isaac Export</code>, <code>MW Physics</code>, <code>MW Plan Job</code>).<br>
+            &bull; <strong>L2 Core &amp; L3 Compiler:</strong> Transforms spatial geometry into <strong>8 atomic operation verbs</strong> (<code>DRIVE</code>, <code>TURN</code>, <code>ARM_JOINTS</code>, <code>ARM_LINE</code>, <code>GRIP</code>, <code>HOLD</code>, <code>WAIT</code>, <code>SIGNAL</code>).<br>
+            &bull; <strong>WAIST &mdash; The Plan File:</strong> The single shared contract between Grasshopper, simulation, and real hardware. Robots synchronize via decentralized signals (e.g. <em>&ldquo;block 37 set&rdquo;</em>), eliminating brittle shared clocks.
           </div>
         </div>
         <div>
-          <div style="font-family:var(--f-m); font-size:6.5pt; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#2DD6E8; margin-bottom:2mm;">
-            Moonwalk Rhino 8 / Grasshopper Computational Plugin
+          <div style="font-family:var(--f-m); font-size:6.5pt; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#2DD6E8; margin-bottom:1.5mm;">
+            Closed-Loop Discovery &middot; Isaac Sim Physics Feedback (1/6th g)
           </div>
-          <div style="font-family:var(--f-s); font-size:7.5pt; line-height:1.6; color:rgba(255,255,255,0.85);">
-            To operationalize the workflow, I developed the <strong>Moonwalk Grasshopper Plugin (v0.2)</strong> for Rhino 8, creating an integrated computational bridge between parametric architecture and autonomous robotics:<br><br>
-            &bull; <code>MW Site</code> &amp; <code>MW Blocks</code>: Polar slope analysis, terrain zoning, and osteomorphic block mesh generator.<br>
-            &bull; <code>MW Sequence</code> &amp; <code>MW Plan Job</code>: 4D BIM topological task sequencing and background multi-agent pathfinding.<br>
-            &bull; <code>MW Isaac Export</code> &amp; <code>MW Physics</code>: One-click export of USD physics scenes, ROS 2 trajectories, and live colour-coded stability telemetry directly back to the CAD canvas.
+          <div style="font-family:var(--f-s); font-size:7.2pt; line-height:1.55; color:rgba(255,255,255,0.85);">
+            Plans compile to USD scenes executed in <strong>NVIDIA Isaac Sim (PhysX 6.1)</strong> under 1.62 m/s&sup2; lunar gravity, friction &mu; = 0.7, and regolith density 1,900 kg/m&sup3;. Physics telemetry streams directly back to colour-code the Grasshopper model (green &lt;5mm, yellow &lt;2cm, red &gt;10cm/fell):<br>
+            &bull; <strong>Dome Doorway Failure Mode:</strong> Dry-stacked simulation revealed that the airlock opening breaks the continuous compression hoop &mdash; causing 73 of 194 blocks to collapse on the door side when temporary staples were released.<br>
+            &bull; <strong>Iterative Redesign:</strong> Ingesting this failure guided adding a stiffened door frame arch and targeted locking pins, achieving <strong>100% stability (194/194 held within 5mm, 0 fell)</strong>.<br>
+            &bull; <strong>Power Column Validation:</strong> 450 elements (230 frames + 220 PV panels) verified fully stable with pins (450/450 within 5mm).
           </div>
         </div>
       </div>
 
-      <!-- Middle: Habitat Typologies & Subterranean Interior -->
-      <div style="flex:1.1; display:grid; grid-template-columns:1fr 1fr; gap:3mm; min-height:0;">
-        <div style="position:relative; overflow:hidden; border-radius:2mm; border:0.3mm solid rgba(255,255,255,0.1);">
-          <img src="Moonwalk/media/img/hab5.jpg" alt="Ring Settlement Masterplan" style="width:100%; height:100%; object-fit:cover;">
-          <div style="position:absolute; bottom:0; left:0; right:0; padding:1.5mm 3mm; background:rgba(0,0,0,0.8); font-family:var(--f-m); font-size:6pt; color:rgba(255,255,255,0.85); letter-spacing:0.08em; text-transform:uppercase;">
-            Ring Settlement Masterplan &middot; Integrated Regolith Vaults &amp; Surface Transit Corridors
+      <!-- Middle: Plugin Architecture Diagram + Operations Compiler -->
+      <div style="flex:1.15; display:grid; grid-template-columns:1.3fr 1fr; gap:2.5mm; min-height:0;">
+        <div style="position:relative; display:flex; flex-direction:column; overflow:hidden; border-radius:1.5mm; border:0.3mm solid rgba(255,255,255,0.12); background:#06080d;">
+          <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:1mm; background:#06080d;">
+            <img src="Moonwalk/presentation_slides/slide_04.png" alt="Moonwalk Plugin 5-Layer Architecture" style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
+          </div>
+          <div style="flex-shrink:0; padding:1.2mm 2.5mm; background:rgba(12,16,24,0.95); border-top:0.3mm solid rgba(255,255,255,0.08); font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.85); letter-spacing:0.06em; text-transform:uppercase;">
+            Five-Layer Plugin Architecture &middot; The Central Plan File &ldquo;Waist&rdquo; Decoupling CAD, Isaac Sim &amp; ROS 2
           </div>
         </div>
-        <div style="position:relative; overflow:hidden; border-radius:2mm; border:0.3mm solid rgba(255,255,255,0.1);">
-          <img src="Moonwalk/media/img/int4.jpg" alt="Earth Observation Commons" style="width:100%; height:100%; object-fit:cover;">
-          <div style="position:absolute; bottom:0; left:0; right:0; padding:1.5mm 3mm; background:rgba(0,0,0,0.8); font-family:var(--f-m); font-size:6pt; color:rgba(255,255,255,0.85); letter-spacing:0.08em; text-transform:uppercase;">
-            Subterranean Observation Commons &middot; Earth Viewing Port &amp; Crew Gathering Vault
+        <div style="position:relative; display:flex; flex-direction:column; overflow:hidden; border-radius:1.5mm; border:0.3mm solid rgba(255,255,255,0.12); background:#06080d;">
+          <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:1mm; background:#06080d;">
+            <img src="Moonwalk/presentation_slides/slide_13.png" alt="Operations Compiler & Background Job Solver" style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
+          </div>
+          <div style="flex-shrink:0; padding:1.2mm 2.5mm; background:rgba(12,16,24,0.95); border-top:0.3mm solid rgba(255,255,255,0.08); font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.85); letter-spacing:0.06em; text-transform:uppercase;">
+            Operations Compiler &middot; 8 Atomic Verbs &middot; Background MW Plan Job (10,942 Ops, 0 Clashes)
           </div>
         </div>
       </div>
 
-      <!-- Bottom: Full Grasshopper Plugin Canvas -->
-      <div style="flex:1; position:relative; overflow:hidden; border-radius:2mm; border:0.3mm solid rgba(255,255,255,0.1); background:#0c1017;">
-        <img src="Moonwalk/portfolio_assets/full_grasshopper_canvas.png" alt="Moonwalk Grasshopper Computational Canvas" style="width:100%; height:100%; object-fit:contain; padding:1mm;">
-        <div style="position:absolute; bottom:0; left:0; right:0; padding:1.5mm 3mm; background:rgba(0,0,0,0.85); font-family:var(--f-m); font-size:6pt; color:rgba(255,255,255,0.85); letter-spacing:0.08em; text-transform:uppercase;">
-          Moonwalk Plugin Architecture &middot; Rhino 8 Python 3 Pipeline Connecting Generative BIM to Isaac Sim &amp; ROS 2
+      <!-- Bottom: Closed-Loop Read-Back Telemetry & Structural Revision -->
+      <div style="flex:1; display:grid; grid-template-columns:1fr 1fr; gap:2.5mm; min-height:0;">
+        <div style="position:relative; display:flex; flex-direction:column; overflow:hidden; border-radius:1.5mm; border:0.3mm solid rgba(255,255,255,0.12); background:#06080d;">
+          <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:1mm; background:#06080d;">
+            <img src="Moonwalk/presentation_slides/slide_17.png" alt="Isaac Sim Telemetry Colours Grasshopper Design" style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
+          </div>
+          <div style="flex-shrink:0; padding:1.2mm 2.5mm; background:rgba(12,16,24,0.95); border-top:0.3mm solid rgba(255,255,255,0.08); font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.85); letter-spacing:0.06em; text-transform:uppercase;">
+            Telemetry Read-Back &middot; Isaac Sim Displacements Colouring Viewports (Door Opening Failure Diagnosed)
+          </div>
+        </div>
+        <div style="position:relative; display:flex; flex-direction:column; overflow:hidden; border-radius:1.5mm; border:0.3mm solid rgba(255,255,255,0.12); background:#06080d;">
+          <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:1mm; background:#06080d;">
+            <img src="Moonwalk/presentation_slides/slide_19.png" alt="Iterative Structural Revision" style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
+          </div>
+          <div style="flex-shrink:0; padding:1.2mm 2.5mm; background:rgba(12,16,24,0.95); border-top:0.3mm solid rgba(255,255,255,0.08); font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.85); letter-spacing:0.06em; text-transform:uppercase;">
+            Iterative Design Revision &middot; Temporary Staples (73 Fell) vs Permanent Pins (194/194 Held, 0 Fell)
+          </div>
         </div>
       </div>
 
@@ -1713,7 +1781,8 @@ body {
     <div class="pf" style="border-color:rgba(255,255,255,0.08);">
       <span class="pf-left" style="color:rgba(255,255,255,0.45);">Ch.01 &middot; Moonwalk 2.0 &middot; Tohoku University Space Robotics Lab</span>
       <span class="pf-right" style="color:rgba(255,255,255,0.45);">p. 07</span>
-    </div><div class="page dark" style="position:relative;">
+    </div>
+  </div><div class="page dark" style="position:relative;">
     <div class="ch-opener" style="flex:1; position:relative;">
       <div class="ch-num">02</div>
       <!-- Lava Tubes hero image — Mars terrain context -->
@@ -1724,10 +1793,10 @@ body {
         <!-- Warm-to-dark gradient vignette -->
         <div style="position:absolute; inset:0; background: linear-gradient(to bottom, rgba(5,15,26,0.35) 0%, rgba(5,15,26,0.05) 35%, rgba(5,15,26,0.82) 80%, rgba(5,15,26,0.96) 100%);"></div>
       </div>
-      <div class="ch-opener-content">        <div class="ch-kicker" style="color: rgba(45,214,232,0.5);">Chapter 02 &middot; Human-Robot Interaction &amp; Digital Twin &amp; Digital Twin</div>
+      <div class="ch-opener-content">        <div class="ch-kicker" style="color: rgba(45,214,232,0.5);">Chapter 02 &middot; Supervisory Digital Twin &amp; Autonomous Field Robotics</div>
         <div class="ch-title">UMBRELLA · Real-Time<br>Digital Twin</div>
-        <div class="ch-subtitle">Human-Robot Supervisory Interface · UE5/AirSim</div>
-        <div class="ch-theme-line">Real-time digital twin framework for human-robot collaborative mapping, supervisory interface design, and closed-loop sensor feedback on Mars-terrain simulation.</div>
+        <div class="ch-subtitle">Supervisory Control Architecture &middot; UE5/AirSim Digital Twin</div>
+        <div class="ch-theme-line">Real-time digital twin framework for autonomous multi-robot field coordination, supervisory monitoring architecture, and closed-loop sensor feedback validated on Mars-analogue terrain simulation.</div>
       </div>
     </div>
     <div class="pf">
@@ -1757,12 +1826,12 @@ body {
 
       <!-- Section title -->
       <div style="font-family:var(--f-m); font-size:8.5pt; font-weight:700; color:#2DD6E8; letter-spacing:0.18em; text-transform:uppercase; flex-shrink:0;">
-        System Architecture · Human-Robot Collaborative Mapping
+        System Architecture &middot; Multi-Robot Autonomous Field Mapping
       </div>
 
       <!-- Intro text -->
       <div style="font-family:var(--f-s); font-size:7.5pt; line-height:1.6; color:rgba(255,255,255,0.65); max-width:160mm; flex-shrink:0;">
-        Human-robot collaborative mapping on Mars-analogue terrain introduces a core supervisory control problem: a six-wheeled rover and an autonomous aerial drone must coordinate semi-autonomously across complex terrain while an Earth-based operator maintains situational awareness of both systems under communication lag. The operator must track robot position, coordination state, and sensor health — and retain the ability to issue override commands at any point in the mission.<br><br>The UMBRELLA system architecture addresses this challenge through two formally defined subsystems. The <span style="color:#2DD6E8; font-weight:500;">Mobility Subsystem</span> governs localisation, path planning, and actuator control — providing the real-time telemetry stream the supervisory interface uses to display robot state. The <span style="color:#2DD6E8; font-weight:500;">Communications System</span> manages inter-vehicle data-link, science data relay, and ground-segment uplink — ensuring the operator retains command authority and can monitor link health at all times. Both subsystems were formally defined in the MBSE framework so they could be validated in digital twin simulation before deployment.
+        Autonomous multi-robot mapping on Mars-analogue terrain introduces a core distributed coordination problem: a six-wheeled rover and an autonomous aerial drone must coordinate semi-autonomously across complex terrain while an Earth-based operator maintains situational awareness of both systems under communication lag. The operator must track robot position, coordination state, and sensor health — and retain the ability to issue override commands at any point in the mission.<br><br>The UMBRELLA system architecture addresses this challenge through two formally defined subsystems. The <span style="color:#2DD6E8; font-weight:500;">Mobility Subsystem</span> governs localisation, path planning, and actuator control — providing the real-time telemetry stream the supervisory interface uses to display robot state. The <span style="color:#2DD6E8; font-weight:500;">Communications System</span> manages inter-vehicle data-link, science data relay, and ground-segment uplink — ensuring the operator retains command authority and can monitor link health at all times. Both subsystems were formally defined in the MBSE framework so they could be validated in digital twin simulation before deployment.
       </div>
 
       <!-- Two diagram cells stacked vertically -->
@@ -1858,7 +1927,7 @@ body {
         <div style="background:rgba(45,214,232,0.08); border:0.3mm solid rgba(45,214,232,0.3); border-radius:2mm; padding:2.5mm; text-align:center;">
           <div style="font-family:var(--f-m); font-size:5.5pt; color:#2DD6E8; letter-spacing:0.1em; margin-bottom:1mm;">SUPERVISOR HMI</div>
           <div style="font-size:7pt; font-weight:600; color:rgba(255,255,255,0.9);">Override Interface</div>
-          <div style="font-size:5.5pt; color:rgba(255,255,255,0.45); margin-top:0.8mm;">Human-in-the-loop</div>
+          <div style="font-size:5.5pt; color:rgba(255,255,255,0.45); margin-top:0.8mm;">Supervisory Override</div>
         </div>
       </div>
 
@@ -1905,7 +1974,7 @@ body {
         <div class="ch-kicker">Chapter 03 &middot; Planetary Robotics &amp; Autonomous Systems &amp; Autonomous Systems</div>
         <div class="ch-title" style="font-size:18pt; margin-bottom:2mm;">Distributed Exploration of Titan's<br>Organic Chemistry</div>
         <div class="ch-subtitle" style="font-size:9.5pt; letter-spacing:0.04em;">A Cooperative Hybrid-Agent Swarm Mission</div>
-        <div class="ch-theme-line">Multi-agent coordination, adaptive task planning, human-supervisory interfaces, and high-fidelity swarm simulation for Titan's prebiotic terrain mapping.</div>
+        <div class="ch-theme-line">Multi-agent coordination, adaptive task planning, decentralized consensus protocols, and high-fidelity swarm simulation for Titan&rsquo;s prebiotic terrain mapping.</div>
       </div>
     </div>
     <div class="ch-num">03</div>
@@ -1936,7 +2005,7 @@ body {
         <!-- Left col: kicker + summary -->
         <div>
           <div class="ch-section-kicker">Project Overview &middot; Project Lead &amp; Simulation Lead</div>
-          <div class="ch-summary" style="margin-top: 2mm;">A cooperative swarm of nine autonomous hybrid agents presents a distinct human-machine collaboration challenge: how do operators maintain situational awareness and supervisory control when communication is delayed or disrupted, agent behaviors are partially autonomous, and swarm state is distributed across nine independent systems?<br><br>Designed for Titan&rsquo;s prebiotic terrain mapping, the project spanned the full development arc: (1) CAD design of a novel dual-mode robotic agent capable of both wheeled surface traversal and aerial flight, (2) systems architecture for human-supervised multi-agent coordination using MBSE, ROS&nbsp;2, and consensus algorithms with human override capability, and (3) high-fidelity swarm simulation in Unreal Engine 5, with coordination logic validated on physical CrazyFlie hardware.</div>
+          <div class="ch-summary" style="margin-top: 2mm;">A cooperative swarm of nine autonomous hybrid agents addresses a core distributed-autonomy coordination problem: how does a multi-robot system maintain coherent task execution when communication is delayed or disrupted, agent behaviors are partially decoupled, and swarm state is distributed across nine independent platforms? Designed for Titan&rsquo;s&rsquo;s prebiotic terrain mapping, the project spanned the full development arc: (1) CAD design of a novel dual-mode robotic agent capable of both wheeled surface traversal and aerial flight, (2) systems architecture for decentralized multi-agent coordination using MBSE, ROS&nbsp;2, and consensus algorithms with supervisory override capability, and (3) high-fidelity swarm simulation in Unreal Engine 5, with coordination logic validated on physical CrazyFlie hardware.</div>
         </div>
 
         <!-- Right col: bullets + tags -->
@@ -1944,7 +2013,7 @@ body {
           <ul class="ch-bullets" style="margin-top: 0;">
             <li>Designed the dual-mode hybrid agent in CAD &mdash; a single platform combining wheeled locomotion for surface science with rotor-based flight for terrain crossing and repositioning &mdash; resolving the mass, power, and mechanism trade-offs between the two mobility modes (see orthographic and exploded assemblies, FIG.04.C&ndash;D).</li>
             <li>Built the full-swarm simulation in Unreal Engine 5: nine agents operating over Titan-analog terrain, testing mode-switching behavior, terrain-adaptive task allocation, and swarm coordination under simulated communication delay and disruption.</li>
-            <li>Programmed adaptive task-planning and leader-election algorithms with human-interrupt capability: operators can inject override commands mid-consensus, with the delay-tolerant mesh ensuring command propagation even under disruption &mdash; validated on physical CrazyFlie hardware under real communication constraints.</li>
+            <li>Programmed adaptive task-planning and leader-election algorithms with human-interrupt capability: supervisory operators can inject override commands mid-consensus, with the delay-tolerant mesh ensuring command propagation even under disruption &mdash; validated on physical CrazyFlie hardware under real communication constraints.</li>
             <li>Applied MBSE to trace 35 system requirements through FMECA, mass/power/data link budgets, and agent behaviour models &mdash; ensuring coordination logic and override failure modes were explicitly designed and validated.</li>
           </ul>
           <div class="ch-tags" style="margin-top: 2mm;">
@@ -1974,7 +2043,7 @@ body {
         task = leader.<span class="fn">allocate_task</span>(
             agent.sensors, state)
         <span class="kw">if</span> <span class="fn">human_override_active</span>():
-            task = <span class="fn">apply_human_command</span>(task)
+            task = <span class="fn">apply_override_command</span>(task)
         agent.<span class="fn">execute</span>(task)</div>
         </div>
         <!-- Topology: 78mm, matches row height, full circle visible -->
@@ -2111,7 +2180,7 @@ body {
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:6mm; flex-shrink:0;">
         <div>
           <div style="font-family:var(--f-m); font-size:6.5pt; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#2DD6E8; margin-bottom:3mm;">Mantis · Computational Resilience Design · Designer-in-the-Loop</div>
-          <div style="font-family:var(--f-s); font-size:7.5pt; line-height:1.65; color:rgba(255,255,255,0.88);">While earlier projects address autonomous robotic systems with human supervisory control, computational design represents a different HRC paradigm: algorithms augmenting architect expertise in evidence-based decision-making.<br><br>Buildings face compounding climate risks — wildfire, flood, hurricane, seismic loading, extreme heat — that traditional design methods cannot address simultaneously. Computational design explores hundreds of configurations simultaneously, identifying unintuitive resilient forms that human intuition alone would not reach.</div>
+          <div style="font-family:var(--f-s); font-size:7.5pt; line-height:1.65; color:rgba(255,255,255,0.88);">While earlier projects address autonomous robotic systems with supervisory control protocols, computational design represents a complementary automation paradigm: algorithms augmenting design expertise by simultaneously evaluating hundreds of configurations for multi-hazard resilience — producing unintuitive optimised forms that manual search cannot reach.<br><br>Buildings face compounding climate risks — wildfire, flood, hurricane, seismic loading, extreme heat — that traditional design methods cannot address simultaneously. Computational design explores hundreds of configurations simultaneously, identifying unintuitive resilient forms that human intuition alone would not reach.</div>
         </div>
         <div>
           <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:2.5mm;">
@@ -2241,15 +2310,15 @@ body {
         <!-- Left col: kicker + condensed summary -->
         <div class="ch-text-block">
           <div class="ch-section-kicker">Project Overview &middot; Systems Architecture Lead</div>
-          <div class="ch-summary">Robotic in-orbit assembly of complex spacecraft at the Lunar Gateway presents a fundamental human-machine collaboration challenge: modules manufactured by distributed contractors must be assembled by coordinated robot teams under <em>human supervisory control</em> &mdash; with no margin for error in microgravity.<br><br>The design strategy centred on <em>standardized modular interfaces</em>: defining exact mechanical, electrical, and informational specifications enabling <em>distributed fabrication with standardized specifications</em> across independent manufacturing chains. The work integrated interface design (docking geometry, electrical handshakes, capture mechanisms), computational algorithms for robotic assembly coordination (sequencing, tolerance budgeting, multi-robot consensus), and supervisory protocols enabling operators to monitor progress, recognise deviations, and intervene at contingency points.</div>
+          <div class="ch-summary">Robotic in-orbit assembly of complex spacecraft at the Lunar Gateway presents a fundamental autonomous coordination challenge: modules manufactured by distributed contractors must be assembled by coordinated robot teams under supervisory oversight &mdash; with no margin for error in microgravity.<br><br>The design strategy centred on <em>standardized modular interfaces</em>: defining exact mechanical, electrical, and informational specifications enabling <em>distributed fabrication with standardized specifications</em> across independent manufacturing chains. The work integrated interface design (docking geometry, electrical handshakes, capture mechanisms), computational algorithms for robotic assembly coordination (sequencing, tolerance budgeting, multi-robot consensus), and supervisory protocols enabling operators to monitor progress, recognise deviations, and intervene at contingency points.</div>
         </div>
 
         <!-- Right col: bullets + tags + code snippet -->
         <div>
           <ul class="ch-bullets">
-            <li>Designed standardized modular interfaces specifying docking geometry, electrical connections, and informational handshakes &mdash; enabling distributed fabrication across independent contractors without custom fit-up, and making assembly state legible to human supervisory operators.</li>
+            <li>Designed standardized modular interfaces specifying docking geometry, electrical connections, and informational handshakes &mdash; enabling distributed fabrication across independent contractors without custom fit-up, and making assembly state legible to supervisory operators.</li>
             <li>Applied evolutionary solvers optimising interface tolerances across distributed manufacturing, simulating worst-case cumulative stack-up to ensure capture mechanisms succeed and structural margins are preserved under all tolerance scenarios.</li>
-            <li>Programmed consensus-coordination algorithms for multi-robot assembly sequencing &mdash; leader election, human override protocols, anomaly recovery &mdash; validated through digital twin simulation of microgravity dynamics and docking loads.</li>
+            <li>Programmed consensus-coordination algorithms for multi-robot assembly sequencing &mdash; leader election, supervisory override protocols, anomaly recovery &mdash; validated through digital twin simulation of microgravity dynamics and docking loads.</li>
             <li>Built real-time data pipelines exporting live fabrication tolerances and assembly states to digital twin dashboards, supporting user evaluation of supervisory interface legibility and contingency decision timelines.</li>
           </ul>
           <div class="ch-tags" style="margin-top: 2mm;">
@@ -2377,15 +2446,15 @@ body {
       <div class="ch-content-top">
         <div class="ch-text-block">
           <div class="ch-section-kicker" style="color:#2DD6E8;">Project Overview &middot; NEOM &middot; Saudi Arabia &middot; 2022&ndash;2025</div>
-          <div class="ch-summary">NEOM&rsquo;s 170km mobility network presents a core human-machine collaboration challenge: thousands of daily occupants must navigate driverless interchange hubs where autonomous vehicles, robotic maintenance systems, and human pedestrians share dynamic space. The design task required a three-stage methodology: (1) behavioral mapping through occupant sensing and user studies, (2) synthesis of interface logic to communicate robot intent and safety states, and (3) computational form-finding to scale responsive spatial and visual systems across multiple hub typologies.</div>
+          <div class="ch-summary">NEOM&rsquo;s 170km mobility network presents a core autonomous systems integration challenge: thousands of daily occupants must navigate driverless interchange hubs where autonomous vehicles, robotic maintenance systems, and pedestrians dynamically share constrained public space. The design task required a three-stage methodology: (1) behavioral mapping through occupant sensing and user studies, (2) synthesis of interface logic to communicate robot intent and safety states, and (3) computational form-finding to scale responsive spatial and visual systems across multiple hub typologies.</div>
           <ul class="ch-bullets">
             <li>Conducted user study methods and spatial behavioral mapping to evaluate interface legibility: how occupants perceive vehicle approach state, understand safety zones, and navigate without human operators or signage.</li>
             <li>Designed integrated sensor networks for real-time occupant flow monitoring and autonomous vehicle routing, feeding live data into adaptive wayfinding systems.</li>
-            <li>Developed the human-machine interface layer: visual, spatial, and acoustic cues communicating robot operational intent &mdash; differentiating active vehicle zones from pedestrian concourses.</li>
+            <li>Developed the autonomous-system communication layer: visual, spatial, and acoustic cues communicating robot operational intent &mdash; differentiating active vehicle zones from pedestrian concourses.</li>
             <li>Transitioned from system-level masterplanning to parametric exploration: using behavioral feedback to drive computational form-finding for adaptive canopy structures and dynamic wayfinding elements.</li>
           </ul>
           <div class="ch-tags">
-            <span class="ch-tag">Human-Machine Interface</span>
+            <span class="ch-tag">Autonomous System Interface</span>
             <span class="ch-tag">Real-Time Occupant Sensing</span>
             <span class="ch-tag">User Study Methods</span>
             <span class="ch-tag">Behavioral Mapping</span>
@@ -2447,7 +2516,7 @@ body {
           
           <div>
             <div class="ch-section-title" style="margin-bottom: 1mm;">The Central Problem: Behavioral Legibility in Autonomous Hubs</div>
-            <p style="margin-bottom: 1mm;">A fully autonomous hub removes the human operator layer entirely &mdash; occupants must infer system state and vehicle behavior from spatial and architectural cues alone. The design methodology began with behavioral mapping: occupant trace studies and user studies evaluating different interface configurations, informing a multi-layered digital and spatial system:</p>
+            <p style="margin-bottom: 1mm;">A fully autonomous hub removes the on-site operator layer entirely &mdash; occupants must infer system state and vehicle behavior from spatial and architectural cues alone. The design methodology began with behavioral mapping: occupant trace studies and user studies evaluating different interface configurations, informing a multi-layered digital and spatial system:</p>
           </div>
           
           <div>
@@ -2726,6 +2795,73 @@ if (window.location.search.includes('print=true')) {
   });
 }
 </script>
+
+  <script>
+  /* ---- 3D Moon Globe ---- */
+  window.initMoon = window.initMoon || function(canvas) {
+    var scene = new THREE.Scene();
+    var W = canvas.parentElement ? canvas.parentElement.clientWidth : 600;
+    var H = canvas.parentElement ? canvas.parentElement.clientHeight : 400;
+    var camera = new THREE.PerspectiveCamera(32, W / Math.max(H, 1), 0.01, 200);
+    camera.position.z = 4.6;
+
+    var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setSize(W, H, false);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.05;
+
+    // Lights — single directional sun + dim ambient
+    scene.add(new THREE.AmbientLight(0x1a2030, 0.55));
+    var sun = new THREE.DirectionalLight(0xfff8e7, 2.4);
+    sun.position.set(5, 1.5, 3);
+    scene.add(sun);
+
+    // Sphere
+    var loader = new THREE.TextureLoader();
+    var geom = new THREE.SphereGeometry(1.65, 96, 96);
+    var mat = new THREE.MeshStandardMaterial({
+      map:         loader.load('Moonwalk/media/img/moon.jpg'),
+      normalMap:   loader.load('Moonwalk/media/img/moon_n.jpg'),
+      normalScale: new THREE.Vector2(1.0, 1.0),
+      roughness:   0.93,
+      metalness:   0.04
+    });
+    var moon = new THREE.Mesh(geom, mat);
+    // Tilt so south pole (Connecting Ridge) faces viewer
+    moon.rotation.x = 1.22;
+    moon.rotation.y = -0.4;
+    scene.add(moon);
+
+    // Slow spin
+    var raf;
+    function animate() {
+      raf = requestAnimationFrame(animate);
+      moon.rotation.y += 0.0012;
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // Resize observer
+    if (window.ResizeObserver) {
+      new ResizeObserver(function(){
+        var w = canvas.parentElement ? canvas.parentElement.clientWidth : W;
+        var h = canvas.parentElement ? canvas.parentElement.clientHeight : H;
+        camera.aspect = w / Math.max(h, 1);
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h, false);
+      }).observe(canvas.parentElement || canvas);
+    }
+  };
+
+  /* Fire initMoon for all canvases once Three.js is ready */
+  document.addEventListener('DOMContentLoaded', function(){
+    ['moon-cover', 'moon-ch01'].forEach(function(id){
+      var cvs = document.getElementById(id);
+      if (cvs && window.THREE) initMoon(cvs);
+    });
+  });
+  </script>
 </body>
 </html>
 
