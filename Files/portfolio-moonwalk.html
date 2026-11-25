@@ -1606,22 +1606,35 @@ body {
         </div>
       </div>
 
-      <!-- Row 1: Pad & Dome Geometry Models -->
-      <div style="flex:1.1; display:grid; grid-template-columns:1fr 1fr; gap:3mm; min-height:0;">
-        <div style="display:flex; flex-direction:column; min-height:0;">
-          <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center;">
-            <img src="Moonwalk/portfolio_assets/pad_detail.jpg" alt="Graded Pad Interlocking Rings" style="width:100%; height:100%; object-fit:contain; display:block;">
+      <!-- Row 1: Interactive 3D Pad & Dome Build Animations (Report 02) -->
+      <div style="flex:1.15; display:grid; grid-template-columns:1fr 1fr; gap:3mm; min-height:0;">
+        <!-- Pad Build Animation -->
+        <div style="display:flex; flex-direction:column; min-height:0; background:#0e131b; border-radius:1.2mm; overflow:hidden;">
+          <div style="padding:1mm 2.5mm; display:flex; justify-content:space-between; align-items:center; background:#121822; flex-shrink:0;">
+            <span style="font-family:var(--f-m); font-size:4.8pt; color:#e67e51; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;">Graded Pad &middot; 169 Blocks (0&deg;&rarr;35.3&deg;)</span>
+            <div style="display:flex; align-items:center; gap:1.5mm;">
+              <button type="button" id="pad-anim-toggle" style="padding:0.4mm 1.5mm; font-family:var(--f-m); font-size:4.6pt; background:#eceae4; color:#0b0f16; border:none; border-radius:0.8mm; font-weight:700; cursor:pointer;">Pause</button>
+              <span id="pad-anim-label" style="font-family:var(--f-m); font-size:4.6pt; color:rgba(255,255,255,0.7);">169 / 169</span>
+            </div>
           </div>
-          <div style="flex-shrink:0; padding-top:0.8mm; font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.6); letter-spacing:0.06em; text-transform:uppercase;">
-            Graded Pad &middot; 0&deg; Flat Core to 35.3&deg; Interlocking Edge &amp; Dust Pockets
+          <div style="flex:1; position:relative; min-height:0;">
+            <canvas id="pad-anim-canvas" style="width:100%; height:100%; display:block;"></canvas>
+            <input type="range" id="pad-anim-slider" min="1" max="169" value="145" style="position:absolute; bottom:1.2mm; left:2.5mm; right:2.5mm; width:calc(100% - 5mm); accent-color:#e67e51; height:2px; cursor:pointer;">
           </div>
         </div>
-        <div style="display:flex; flex-direction:column; min-height:0;">
-          <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center;">
-            <img src="Moonwalk/portfolio_assets/dome_detail.jpg" alt="Horizon Shell Dome Conformal Geometry" style="width:100%; height:100%; object-fit:contain; display:block;">
+
+        <!-- Dome Build Animation -->
+        <div style="display:flex; flex-direction:column; min-height:0; background:#0e131b; border-radius:1.2mm; overflow:hidden;">
+          <div style="padding:1mm 2.5mm; display:flex; justify-content:space-between; align-items:center; background:#121822; flex-shrink:0;">
+            <span style="font-family:var(--f-m); font-size:4.8pt; color:#e67e51; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;">Horizon Shell &middot; 194 Blocks (No Centering)</span>
+            <div style="display:flex; align-items:center; gap:1.5mm;">
+              <button type="button" id="dome-anim-toggle" style="padding:0.4mm 1.5mm; font-family:var(--f-m); font-size:4.6pt; background:#eceae4; color:#0b0f16; border:none; border-radius:0.8mm; font-weight:700; cursor:pointer;">Pause</button>
+              <span id="dome-anim-label" style="font-family:var(--f-m); font-size:4.6pt; color:rgba(255,255,255,0.7);">194 / 194</span>
+            </div>
           </div>
-          <div style="flex-shrink:0; padding-top:0.8mm; font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.6); letter-spacing:0.06em; text-transform:uppercase;">
-            Horizon Shell / Dome &middot; Conformal Hexagonal Shell Without Centering
+          <div style="flex:1; position:relative; min-height:0;">
+            <canvas id="dome-anim-canvas" style="width:100%; height:100%; display:block;"></canvas>
+            <input type="range" id="dome-anim-slider" min="1" max="194" value="156" style="position:absolute; bottom:1.2mm; left:2.5mm; right:2.5mm; width:calc(100% - 5mm); accent-color:#e67e51; height:2px; cursor:pointer;">
           </div>
         </div>
       </div>
@@ -3140,6 +3153,303 @@ if (window.location.search.includes('print=true')) {
   window.addEventListener('load', window.initBlock3D);
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
     window.initBlock3D();
+  }
+  </script>
+
+  <script>
+  /* ---- Report 02 Interactive 3D Pad & Dome Build Animations ---- */
+  window.initReport02Animations = function() {
+    if (!window.THREE) return;
+
+    function buildHexBlock(R, h, tiltDeg) {
+      var halfH = h / 2;
+      var d = R * Math.cos(Math.PI / 6);
+      var rad = tiltDeg * Math.PI / 180;
+      var shift = halfH * Math.tan(rad);
+
+      function intersectLines(a1, b1, c1, a2, b2, c2) {
+        var det = a1 * b2 - a2 * b1;
+        return [(c1 * b2 - c2 * b1) / det, (a1 * c2 - a2 * c1) / det];
+      }
+
+      function ringVerts(yVal, signY) {
+        var lines = [];
+        for (var k = 0; k < 6; k++) {
+          var phiK = (k + 0.5) * Math.PI / 3;
+          var sk = (k % 2 === 0) ? 1 : -1;
+          var dist = d + sk * signY * shift;
+          lines.push([Math.cos(phiK), Math.sin(phiK), dist]);
+        }
+        var pts = [];
+        for (var k = 0; k < 6; k++) {
+          var L1 = lines[(k + 5) % 6];
+          var L2 = lines[k];
+          var p = intersectLines(L1[0], L1[1], L1[2], L2[0], L2[1], L2[2]);
+          pts.push(new THREE.Vector3(p[0], yVal, p[1]));
+        }
+        return pts;
+      }
+
+      var topPts = ringVerts(halfH, 1);
+      var botPts = ringVerts(-halfH, -1);
+      var positions = [];
+      function pushTri(a, b, c) {
+        positions.push(a.x, a.y, a.z, b.x, b.y, b.z, c.x, c.y, c.z);
+      }
+      var topC = new THREE.Vector3(0, halfH, 0);
+      for (var k = 0; k < 6; k++) pushTri(topC, topPts[(k + 1) % 6], topPts[k]);
+      var botC = new THREE.Vector3(0, -halfH, 0);
+      for (var k = 0; k < 6; k++) pushTri(botC, botPts[k], botPts[(k + 1) % 6]);
+      for (var k = 0; k < 6; k++) {
+        var kn = (k + 1) % 6;
+        pushTri(topPts[k], topPts[kn], botPts[kn]);
+        pushTri(topPts[k], botPts[kn], botPts[k]);
+      }
+      var geom = new THREE.BufferGeometry();
+      geom.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+      geom.computeVertexNormals();
+      return geom;
+    }
+
+    function setupOrbit(canvas, camera, radius, theta0, phi0, onMove) {
+      var dragging = false, px = 0, py = 0, theta = theta0, phi = phi0;
+      function updateCam() {
+        camera.position.x = radius * Math.sin(phi) * Math.sin(theta);
+        camera.position.y = radius * Math.cos(phi);
+        camera.position.z = radius * Math.sin(phi) * Math.cos(theta);
+        camera.lookAt(0, 0, 0);
+      }
+      updateCam();
+      canvas.style.cursor = 'grab';
+      canvas.addEventListener('pointerdown', function(e) {
+        dragging = true; px = e.clientX; py = e.clientY; canvas.style.cursor = 'grabbing';
+      });
+      window.addEventListener('pointermove', function(e) {
+        if (!dragging) return;
+        theta -= (e.clientX - px) * 0.008;
+        phi = Math.max(0.25, Math.min(1.45, phi - (e.clientY - py) * 0.008));
+        px = e.clientX; py = e.clientY;
+        updateCam();
+        if (onMove) onMove();
+      });
+      window.addEventListener('pointerup', function() {
+        dragging = false; canvas.style.cursor = 'grab';
+      });
+    }
+
+    // 1. PAD ANIMATION (169 blocks, rings 0..7)
+    (function() {
+      var canvas = document.getElementById('pad-anim-canvas');
+      if (!canvas || canvas.dataset.init) return;
+      var parent = canvas.parentElement;
+      var W = parent ? parent.clientWidth : 400, H = parent ? parent.clientHeight : 250;
+      if (W === 0 || H === 0) { setTimeout(window.initReport02Animations, 200); return; }
+      canvas.dataset.init = '1';
+
+      var scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x0e131b);
+      var camera = new THREE.PerspectiveCamera(34, W / H, 0.1, 100);
+      var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setSize(W, H, false);
+
+      scene.add(new THREE.GridHelper(14, 42, 0x242e3e, 0x161d28));
+      scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+      var sun = new THREE.DirectionalLight(0xfff5eb, 1.1);
+      sun.position.set(5, 8, 5);
+      scene.add(sun);
+
+      var R = 0.28, h = 0.14;
+      var spacing = R * Math.sqrt(3);
+      var dirs = [
+        [1, 0], [0.5, Math.sqrt(3)/2], [-0.5, Math.sqrt(3)/2],
+        [-1, 0], [-0.5, -Math.sqrt(3)/2], [0.5, -Math.sqrt(3)/2]
+      ];
+      var geoms = {
+        0: buildHexBlock(R, h, 0),
+        1: buildHexBlock(R, h, 8.8),
+        2: buildHexBlock(R, h, 17.6),
+        3: buildHexBlock(R, h, 26.4),
+        4: buildHexBlock(R, h, 35.3)
+      };
+      var mats = {
+        0: new THREE.MeshStandardMaterial({ color: 0xeceae4, roughness: 0.78, flatShading: true }),
+        1: new THREE.MeshStandardMaterial({ color: 0xebd0b9, roughness: 0.78, flatShading: true }),
+        2: new THREE.MeshStandardMaterial({ color: 0xe4ad87, roughness: 0.78, flatShading: true }),
+        3: new THREE.MeshStandardMaterial({ color: 0xdc8b5e, roughness: 0.78, flatShading: true }),
+        4: new THREE.MeshStandardMaterial({ color: 0xd87042, roughness: 0.78, flatShading: true })
+      };
+
+      var padMeshes = [];
+      function addBlock(x, z, ring) {
+        var step = ring <= 4 ? 0 : (ring === 5 ? 2 : (ring === 6 ? 3 : 4));
+        var m = new THREE.Mesh(geoms[step], mats[step]);
+        m.position.set(x, h / 2, z);
+        scene.add(m);
+        padMeshes.push(m);
+      }
+
+      addBlock(0, 0, 0);
+      for (var ring = 1; ring <= 7; ring++) {
+        var cx = ring * spacing * dirs[4][0];
+        var cz = ring * spacing * dirs[4][1];
+        for (var side = 0; side < 6; side++) {
+          for (var step = 0; step < ring; step++) {
+            addBlock(cx, cz, ring);
+            cx += spacing * dirs[side][0];
+            cz += spacing * dirs[side][1];
+          }
+        }
+      }
+
+      var slider = document.getElementById('pad-anim-slider');
+      var label = document.getElementById('pad-anim-label');
+      var btn = document.getElementById('pad-anim-toggle');
+      var playing = true;
+      var count = 145;
+
+      function applyCount(n) {
+        for (var i = 0; i < padMeshes.length; i++) padMeshes[i].visible = (i < n);
+        if (slider) slider.value = n;
+        if (label) label.textContent = n + ' / ' + padMeshes.length;
+      }
+      applyCount(count);
+
+      if (slider) slider.addEventListener('input', function() {
+        playing = false; if (btn) btn.textContent = 'Play';
+        count = parseInt(slider.value, 10); applyCount(count);
+      });
+      if (btn) btn.addEventListener('click', function() {
+        playing = !playing; btn.textContent = playing ? 'Pause' : 'Play';
+      });
+
+      setupOrbit(canvas, camera, 6.2, 0.7, 0.92);
+
+      var tick = 0;
+      function animate() {
+        requestAnimationFrame(animate);
+        if (playing) {
+          tick++;
+          if (tick % 3 === 0) {
+            count = (count >= padMeshes.length) ? 1 : count + 1;
+            applyCount(count);
+          }
+        }
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      if (window.ResizeObserver && parent) {
+        new ResizeObserver(function() {
+          var w = parent.clientWidth, h2 = parent.clientHeight;
+          if (w > 0 && h2 > 0) {
+            camera.aspect = w / h2; camera.updateProjectionMatrix(); renderer.setSize(w, h2, false);
+          }
+        }).observe(parent);
+      }
+    })();
+
+    // 2. DOME ANIMATION (Horizon Shell built rim-up, 194 blocks)
+    (function() {
+      var canvas = document.getElementById('dome-anim-canvas');
+      if (!canvas || canvas.dataset.init) return;
+      var parent = canvas.parentElement;
+      var W = parent ? parent.clientWidth : 400, H = parent ? parent.clientHeight : 250;
+      if (W === 0 || H === 0) { setTimeout(window.initReport02Animations, 200); return; }
+      canvas.dataset.init = '1';
+
+      var scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x0e131b);
+      var camera = new THREE.PerspectiveCamera(34, W / H, 0.1, 100);
+      var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setSize(W, H, false);
+
+      scene.add(new THREE.GridHelper(14, 42, 0x242e3e, 0x161d28));
+      scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+      var sun = new THREE.DirectionalLight(0xfff5eb, 1.1);
+      sun.position.set(5, 8, 5);
+      scene.add(sun);
+
+      var blockGeom = buildHexBlock(0.21, 0.18, 25);
+      var rimMat = new THREE.MeshStandardMaterial({ color: 0xdec3a6, roughness: 0.78, flatShading: true });
+      var shellMat = new THREE.MeshStandardMaterial({ color: 0xf4f2ee, roughness: 0.75, flatShading: true });
+
+      var domeMeshes = [];
+      var R_cap = 2.4;
+      var rings = 7;
+      for (var r = rings; r >= 0; r--) {
+        var lat = (r / rings) * 0.98; // radians from crown
+        var ringRadius = R_cap * Math.sin(lat);
+        var y = R_cap * Math.cos(lat) - R_cap * Math.cos(0.98);
+        var nBlocks = r === 0 ? 1 : Math.max(6, Math.round((2 * Math.PI * ringRadius) / 0.34));
+        for (var i = 0; i < nBlocks; i++) {
+          if (domeMeshes.length >= 194) break;
+          var ang = (i / nBlocks) * Math.PI * 2 + (r * 0.2);
+          var x = ringRadius * Math.cos(ang);
+          var z = ringRadius * Math.sin(ang);
+          var m = new THREE.Mesh(blockGeom, r >= rings - 1 ? rimMat : shellMat);
+          m.position.set(x, y + 0.08, z);
+          // Orient along sphere normal
+          var normal = new THREE.Vector3(x, R_cap * Math.cos(lat), z).normalize();
+          m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), normal);
+          scene.add(m);
+          domeMeshes.push(m);
+        }
+      }
+
+      var slider = document.getElementById('dome-anim-slider');
+      var label = document.getElementById('dome-anim-label');
+      var btn = document.getElementById('dome-anim-toggle');
+      if (slider) slider.max = domeMeshes.length;
+      var playing = true;
+      var count = Math.min(156, domeMeshes.length);
+
+      function applyCount(n) {
+        for (var i = 0; i < domeMeshes.length; i++) domeMeshes[i].visible = (i < n);
+        if (slider) slider.value = n;
+        if (label) label.textContent = n + ' / ' + domeMeshes.length;
+      }
+      applyCount(count);
+
+      if (slider) slider.addEventListener('input', function() {
+        playing = false; if (btn) btn.textContent = 'Play';
+        count = parseInt(slider.value, 10); applyCount(count);
+      });
+      if (btn) btn.addEventListener('click', function() {
+        playing = !playing; btn.textContent = playing ? 'Pause' : 'Play';
+      });
+
+      setupOrbit(canvas, camera, 5.4, 0.65, 1.08);
+
+      var tick = 0;
+      function animate() {
+        requestAnimationFrame(animate);
+        if (playing) {
+          tick++;
+          if (tick % 3 === 0) {
+            count = (count >= domeMeshes.length) ? 1 : count + 1;
+            applyCount(count);
+          }
+        }
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      if (window.ResizeObserver && parent) {
+        new ResizeObserver(function() {
+          var w = parent.clientWidth, h2 = parent.clientHeight;
+          if (w > 0 && h2 > 0) {
+            camera.aspect = w / h2; camera.updateProjectionMatrix(); renderer.setSize(w, h2, false);
+          }
+        }).observe(parent);
+      }
+    })();
+  };
+  document.addEventListener('DOMContentLoaded', window.initReport02Animations);
+  window.addEventListener('load', window.initReport02Animations);
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    window.initReport02Animations();
   }
   </script>
 </body>
