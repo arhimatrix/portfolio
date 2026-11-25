@@ -1718,12 +1718,12 @@ body {
       <div class="rh-line" style="background:rgba(255,255,255,0.1);"></div>
       <span class="rh-label" style="color:rgba(255,255,255,0.45);">08</span>
     </div>
-    <div class="ch-content" style="padding:2.5mm 8mm 1.5mm; display:flex; flex-direction:column; gap:1.5mm; flex:1; min-height:0;">
+    <div class="ch-content" style="padding:2.5mm 6mm 1.5mm; display:flex; flex-direction:column; gap:2mm; flex:1; min-height:0;">
 
-      <!-- Compact Engineering Text Summary Row -->
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:5mm; flex-shrink:0;">
+      <!-- Compact Engineering Text Summary Row (Pad & Dome only) -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:5mm; padding:0 4mm; flex-shrink:0;">
         <div>
-          <div style="font-family:var(--f-m); font-size:6pt; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:#2DD6E8; margin-bottom:1mm;">
+          <div style="font-family:var(--f-m); font-size:6pt; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:#2DD6E8; margin-bottom:0.8mm;">
             Multi-Robot Cooperative 4D BIM &middot; Construction Compiler
           </div>
           <div style="font-family:var(--f-s); font-size:6.8pt; line-height:1.45; color:rgba(255,255,255,0.85);">
@@ -1731,44 +1731,33 @@ body {
           </div>
         </div>
         <div>
-          <div style="font-family:var(--f-m); font-size:6pt; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:#2DD6E8; margin-bottom:1mm;">
+          <div style="font-family:var(--f-m); font-size:6pt; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:#2DD6E8; margin-bottom:0.8mm;">
             Constructability Benchmarks
           </div>
-          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.8mm;">
-            <li style="font-family:var(--f-s); font-size:6.6pt; line-height:1.4; color:rgba(255,255,255,0.85); padding-left:2.5mm; position:relative;"><span style="position:absolute; left:0; color:#2DD6E8;">&bull;</span><strong>Pad (283 Pavers):</strong> Centre-out tandem paving (2 Dragons) &mdash; 3.89h, 10,942 ops, 0 clashes.</li>
-            <li style="font-family:var(--f-s); font-size:6.6pt; line-height:1.4; color:rgba(255,255,255,0.85); padding-left:2.5mm; position:relative;"><span style="position:absolute; left:0; color:#2DD6E8;">&bull;</span><strong>Dome (194 Blocks):</strong> Inside-out via 0.95m door, Dragon outside + Tricycle inside &mdash; 1.58h.</li>
-            <li style="font-family:var(--f-s); font-size:6.6pt; line-height:1.4; color:rgba(255,255,255,0.85); padding-left:2.5mm; position:relative;"><span style="position:absolute; left:0; color:#2DD6E8;">&bull;</span><strong>Power Column (450 Elements):</strong> Tandem rovers in tall-stance Tricycle (2.13m reach) &mdash; 2.70h.</li>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:1mm;">
+            <li style="font-family:var(--f-s); font-size:6.8pt; line-height:1.45; color:rgba(255,255,255,0.85); padding-left:2.5mm; position:relative;"><span style="position:absolute; left:0; color:#2DD6E8;">&bull;</span><strong>Pad (283 Pavers):</strong> Centre-out tandem paving (2 Dragons) &mdash; 3.89h, 10,942 ops, 0 clashes.</li>
+            <li style="font-family:var(--f-s); font-size:6.8pt; line-height:1.45; color:rgba(255,255,255,0.85); padding-left:2.5mm; position:relative;"><span style="position:absolute; left:0; color:#2DD6E8;">&bull;</span><strong>Dome (194 Blocks):</strong> Inside-out via 0.95m door, Dragon outside + Tricycle inside &mdash; 1.58h.</li>
           </ul>
         </div>
       </div>
 
-      <!-- 1. Full-Width Pad Planning Diagram -->
-      <div style="flex:1.15; display:flex; flex-direction:column; min-height:0;">
+      <!-- 1. Full-Width Expanded Pad Planning Diagram -->
+      <div style="flex:1; display:flex; flex-direction:column; min-height:0;">
         <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center;">
           <img src="Moonwalk/portfolio_assets/pad_assembly_sequence.jpg" alt="Landing Pad Assembly Sequence" style="width:100%; height:100%; object-fit:contain; display:block;">
         </div>
-        <div style="flex-shrink:0; font-family:var(--f-m); font-size:4.8pt; color:rgba(255,255,255,0.6); letter-spacing:0.06em; text-transform:uppercase;">
+        <div style="flex-shrink:0; padding:0 4mm; font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.65); letter-spacing:0.06em; text-transform:uppercase;">
           01 &middot; Landing Pad Planning &middot; 283 Pavers &middot; Centre-Out Tandem Paving (3.89 h)
         </div>
       </div>
 
-      <!-- 2. Full-Width Dome Planning Diagram -->
+      <!-- 2. Full-Width Expanded Dome Planning Diagram -->
       <div style="flex:1; display:flex; flex-direction:column; min-height:0;">
         <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center;">
           <img src="Moonwalk/portfolio_assets/dome_assembly_sequence.jpg" alt="ShellA Dome Assembly Sequence" style="width:100%; height:100%; object-fit:contain; display:block;">
         </div>
-        <div style="flex-shrink:0; font-family:var(--f-m); font-size:4.8pt; color:rgba(255,255,255,0.6); letter-spacing:0.06em; text-transform:uppercase;">
+        <div style="flex-shrink:0; padding:0 4mm; font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.65); letter-spacing:0.06em; text-transform:uppercase;">
           02 &middot; ShellA Dome Planning &middot; 194 Blocks &middot; Exterior Dragon + Interior Tricycle Hand-Over (1.58 h)
-        </div>
-      </div>
-
-      <!-- 3. Full-Width Power Column Planning Diagram -->
-      <div style="flex:1; display:flex; flex-direction:column; min-height:0;">
-        <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center;">
-          <img src="Moonwalk/portfolio_assets/column_assembly_sequence.jpg" alt="Power Column Assembly Sequence" style="width:100%; height:100%; object-fit:contain; display:block;">
-        </div>
-        <div style="flex-shrink:0; font-family:var(--f-m); font-size:4.8pt; color:rgba(255,255,255,0.6); letter-spacing:0.06em; text-transform:uppercase;">
-          03 &middot; 2.5m Power Column Planning &middot; 450 Elements &middot; Tandem Multi-Robot Stacking Without Crane (2.70 h)
         </div>
       </div>
 
