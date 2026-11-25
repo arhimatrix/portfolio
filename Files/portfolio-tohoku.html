@@ -3212,8 +3212,8 @@ if (window.location.search.includes('print=true')) {
       renderer.setSize(W, H, false);
 
       scene.add(new THREE.GridHelper(14, 42, 0x242e3e, 0x161d28));
-      scene.add(new THREE.AmbientLight(0xffffff, 0.6));
-      var sun = new THREE.DirectionalLight(0xfff5eb, 1.1);
+      scene.add(new THREE.AmbientLight(0xffffff, 0.42));
+      var sun = new THREE.DirectionalLight(0xfff5eb, 0.72);
       sun.position.set(5, 8, 5);
       scene.add(sun);
 
@@ -3231,11 +3231,11 @@ if (window.location.search.includes('print=true')) {
         4: buildHexBlock(R, h, 35.3)
       };
       var mats = {
-        0: new THREE.MeshStandardMaterial({ color: 0xeceae4, roughness: 0.78, flatShading: true }),
-        1: new THREE.MeshStandardMaterial({ color: 0xebd0b9, roughness: 0.78, flatShading: true }),
-        2: new THREE.MeshStandardMaterial({ color: 0xe4ad87, roughness: 0.78, flatShading: true }),
-        3: new THREE.MeshStandardMaterial({ color: 0xdc8b5e, roughness: 0.78, flatShading: true }),
-        4: new THREE.MeshStandardMaterial({ color: 0xd87042, roughness: 0.78, flatShading: true })
+        0: new THREE.MeshStandardMaterial({ color: 0xd6d3cc, roughness: 0.96, metalness: 0.0, flatShading: true }),
+        1: new THREE.MeshStandardMaterial({ color: 0xd2b79f, roughness: 0.96, metalness: 0.0, flatShading: true }),
+        2: new THREE.MeshStandardMaterial({ color: 0xc99672, roughness: 0.96, metalness: 0.0, flatShading: true }),
+        3: new THREE.MeshStandardMaterial({ color: 0xbd7c54, roughness: 0.96, metalness: 0.0, flatShading: true }),
+        4: new THREE.MeshStandardMaterial({ color: 0xb0623c, roughness: 0.96, metalness: 0.0, flatShading: true })
       };
 
       var padMeshes = [];
@@ -3281,7 +3281,7 @@ if (window.location.search.includes('print=true')) {
         playing = !playing; btn.textContent = playing ? 'Pause' : 'Play';
       });
 
-      setupOrbit(canvas, camera, 6.2, 0.7, 0.92);
+      setupOrbit(canvas, camera, 9.2, 0.7, 0.90);
 
       var tick = 0;
       function animate() {
@@ -3324,14 +3324,14 @@ if (window.location.search.includes('print=true')) {
       renderer.setSize(W, H, false);
 
       scene.add(new THREE.GridHelper(14, 42, 0x242e3e, 0x161d28));
-      scene.add(new THREE.AmbientLight(0xffffff, 0.6));
-      var sun = new THREE.DirectionalLight(0xfff5eb, 1.1);
+      scene.add(new THREE.AmbientLight(0xffffff, 0.42));
+      var sun = new THREE.DirectionalLight(0xfff5eb, 0.72);
       sun.position.set(5, 8, 5);
       scene.add(sun);
 
       var blockGeom = buildHexBlock(0.21, 0.18, 25);
-      var rimMat = new THREE.MeshStandardMaterial({ color: 0xdec3a6, roughness: 0.78, flatShading: true });
-      var shellMat = new THREE.MeshStandardMaterial({ color: 0xf4f2ee, roughness: 0.75, flatShading: true });
+      var rimMat = new THREE.MeshStandardMaterial({ color: 0xc9ae92, roughness: 0.96, metalness: 0.0, flatShading: true });
+      var shellMat = new THREE.MeshStandardMaterial({ color: 0xdad7d0, roughness: 0.96, metalness: 0.0, flatShading: true });
 
       var domeMeshes = [];
       var R_cap = 2.4;
@@ -3378,7 +3378,7 @@ if (window.location.search.includes('print=true')) {
         playing = !playing; btn.textContent = playing ? 'Pause' : 'Play';
       });
 
-      setupOrbit(canvas, camera, 5.4, 0.65, 1.08);
+      setupOrbit(canvas, camera, 7.4, 0.65, 1.05);
 
       var tick = 0;
       function animate() {
