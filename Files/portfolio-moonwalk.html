@@ -1261,9 +1261,10 @@ body {
 
       <!-- Hero image fills remaining space BELOW the name -->
       <div class="cover-fig">
-        <img src="Moonwalk/media/img/tw_field.jpg" alt="Moonwalk 2.0 Solar Tower Field">
-        <div class="cover-fig-label">LUNAR POLAR SETTLEMENT &middot; SOLAR LATTICE FIELD &amp; TOPOLOGICAL HABITAT VAULTS &middot; MOONWALK 2.0 &middot; TOHOKU UNIVERSITY</div>
+        <img src="Moonwalk/media/img/moon.jpg" alt="3D Moon - Lunar South Pole">
+        <div class="cover-fig-label">LUNAR SOUTH POLE &middot; TOPOLOGICAL INTERLOCKING REGOLITH INFRASTRUCTURE &middot; MOONWALK 2.0 &middot; TOHOKU UNIVERSITY</div>
       </div>
+    </div>
     </div>
     </div>
 
@@ -1485,7 +1486,7 @@ body {
   <div class="page dark" style="position:relative;">
     <div class="ch-opener">
       <div class="ch-opener-img">
-        <img src="Moonwalk/media/img/vault_port.jpg" alt="Moonwalk 2.0 Habitat Vault & Airlock Port">
+        <img src="Moonwalk/media/img/moon.jpg" alt="3D Moon - South Pole Elevation">
       </div>
       <div class="ch-opener-content">
         <div class="ch-kicker">Chapter 01 &middot; Planetary Robotics &amp; Autonomous In-Situ Construction</div>
@@ -1506,7 +1507,7 @@ body {
        PAGE 05 · CHAPTER 01 CONTENT
        ========================================================================== -->
   <div class="page light">
-    <div class="rh">
+        <div class="rh">
       <span class="rh-label">Ch.01 &middot; Moonwalk 2.0 &middot; Tohoku University Space Robotics Lab</span>
       <div class="rh-line"></div>
       <span class="rh-label">05</span>
@@ -1515,30 +1516,41 @@ body {
       <div class="ch-content-top">
         <div class="ch-text-block">
           <div class="ch-section-kicker">Research Overview &middot; Space Robotics Laboratory, Tohoku University &middot; 2026</div>
-          <div class="ch-summary">Moonwalk 2.0 addresses the core challenge of establishing permanent extraterrestrial infrastructure: enabling autonomous mobile robots to build landing pads, power stations, and pressurized habitat shells from unreinforced lunar regolith before crew arrives. Conducted at Tohoku University Space Robotics Lab, the project couples south-pole site selection (Connecting Ridge / de Gerlache Rim 2 inside ispace Mission 4's &ge;87&deg;S landing band) with topological interlocking structural geometry, multi-robot cooperative scheduling, and dynamic physics simulation in NVIDIA Isaac Sim.</div>
+          <div class="ch-summary">Moonwalk 2.0 addresses the foundational challenge of permanent extraterrestrial habitation: enabling autonomous mobile robots to construct landing pads, vertical solar towers, and pressurized habitat vaults from unreinforced lunar regolith before human crew arrives. Conducted at Tohoku University Space Robotics Lab, the project establishes an end-to-end cyber-physical pipeline from south-pole site selection (Connecting Ridge / de Gerlache Rim 2 within ispace Mission 4's &ge;87&deg;S landing band) to parametric block generation, multi-robot cooperative scheduling, and dynamic physics simulation.</div>
           <ul class="ch-bullets">
-            <li><strong>Topological Interlocking Block Families:</strong> Implemented osteomorphic and 6-tilt hexagonal block families (Dyskin et al. 2003, 2005; Yong 2011). Alternating non-planar contact faces (0&deg; to 35.3&deg; cube corner tilt) lock adjacent blocks without mortar or adhesive, transferring loads purely in compression and eliminating thermal cracking across extreme cryogenic diurnal cycles (&Delta;T &gt; 250 K).</li>
-            <li><strong>Self-Aligning Assembly:</strong> Concave-convex interface geometry guides slightly misplaced blocks into equilibrium as they seat, absorbing placement tolerances and compensating for robot manipulation inaccuracies under 1/6th gravity.</li>
-            <li><strong>Robot-Block Interface Architecture:</strong> Engineered three distinct end-effector interfaces &mdash; top twist-lock (T-key 90&deg; form-lock), top pocket-spreading grip, and a flush side-handle compatible with the lab's C-jaw. Gripping from above frees block side faces for zero-clearance adjacent placement across pavements, walls, columns, and vaults.</li>
+            <li><strong>Topological Interlocking Block Family:</strong> Formulated parametric osteomorphic and 6-tilt hexagonal block families (Dyskin et al. 2003, 2005; Yong 2011). Non-planar contact faces (0&deg; to 35.3&deg; cube-corner tilt) lock adjacent elements purely in compression without mortar or adhesives, eliminating thermal fracture risks across extreme cryogenic diurnal cycles (&Delta;T &gt; 250 K).</li>
+            <li><strong>Robot-Block Interface Architecture:</strong> Developed and evaluated three distinct end-effector interface modules: <em>Option 1 (Flush Side Handle)</em> matching the lab's C-jaw bar gripper; <em>Option 2 (Top Twist-Lock Slot)</em> using a T-key vertical entry with 90&deg; wrist form-lock; and <em>Option 3 (Top Pocket Grip)</em> utilizing linear slide fingers expanding against pocket walls. Top-gripping effectors leave all side faces free, enabling zero-clearance adjacent placement across pavements, walls, columns, and vaults.</li>
+            <li><strong>Self-Aligning Assembly:</strong> Concave-convex geometry guides misplaced blocks into equilibrium as they seat, compensating for robot manipulation inaccuracies under 1/6th gravity.</li>
           </ul>
         </div>
-        <div style="display:flex; flex-direction:column; gap:3.5mm; min-height:0;">
-          <ul class="ch-bullets" style="margin:0;">
-            <li><strong>Polar Zoned Masterplan:</strong> Masterplan geometry configured to the extreme low-angle solar trajectory (Sun &le; 1.5&deg; above horizon). Landing pad situated downrange on flat ground with ejecta-deflecting sintered berms; vertical solar columns placed along permanently illuminated ridges (92&ndash;96% yearly light); habitat vaults sheltered behind natural crater topography.</li>
-            <li><strong>Settlement Program Architecture:</strong> Developed habitat envelopes incorporating radiation-shielded sleeping cells, bio-regenerative greenhouse rings, and pressurized gathering commons with Earth-facing viewing ports.</li>
-            <li><strong>Closed-Loop Telemetry:</strong> Every block maintains three discrete digital twin states &mdash; <em>Planned</em>, <em>Set</em>, and <em>Measured</em> &mdash; feeding real-time camera and fiducial vision feedback into the planner.</li>
-          </ul>
+        <div style="display:flex; flex-direction:column; gap:3mm; min-height:0;">
+          <!-- Dedicated Reports Hub -->
+          <div style="background:rgba(0,0,0,0.03); border:0.3mm solid rgba(0,0,0,0.1); border-radius:2mm; padding:2.5mm 3mm;">
+            <div style="font-family:var(--f-m); font-size:6pt; font-weight:700; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:1.5mm;">
+              Research Archive &middot; 6 Project Reports
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5mm 2.5mm; font-family:var(--f-s); font-size:6pt; line-height:1.4;">
+              <div>&bull; <a href="https://arhimatrix.github.io/arhimatrix-moonwalk-2-rep_01/" target="_blank" style="color:var(--ink); text-decoration:none; font-weight:600;">Report 01 &mdash; Ground Work &amp; Block Family &rarr;</a></div>
+              <div>&bull; <a href="https://arhimatrix.github.io/arhimatrix-moonwalk-2-rep_02/" target="_blank" style="color:var(--ink); text-decoration:none; font-weight:600;">Report 02 &mdash; Site to Pavement &amp; Wall A &rarr;</a></div>
+              <div>&bull; <a href="https://arhimatrix.github.io/arhimatrix-moonwalk-2-rep_03/" target="_blank" style="color:var(--ink); text-decoration:none; font-weight:600;">Report 03 &mdash; One Block to a Settlement &rarr;</a></div>
+              <div>&bull; <a href="https://arhimatrix.github.io/arhimatrix-moonwalk-2-rep_04/" target="_blank" style="color:var(--ink); text-decoration:none; font-weight:600;">Report 04 &mdash; Plan to Robot &amp; ispace M4 &rarr;</a></div>
+              <div>&bull; <a href="https://arhimatrix.github.io/arhimatrix-moonwalk-2-rep_05/" target="_blank" style="color:var(--ink); text-decoration:none; font-weight:600;">Report 05 &mdash; Physics Check in Isaac Sim &rarr;</a></div>
+              <div>&bull; <a href="https://arhimatrix.github.io/arhimatrix-moonwalk-2-rep_06/" target="_blank" style="color:var(--ink); text-decoration:none; font-weight:600;">Report 06 &mdash; Multi-Robot Crews &amp; 4D BIM &rarr;</a></div>
+            </div>
+          </div>
+
           <div class="ch-tags" style="margin:0;">
             <span class="ch-tag">Tohoku University SRL</span>
             <span class="ch-tag">Moonwalk 2.0</span>
             <span class="ch-tag">Topological Interlocking</span>
-            <span class="ch-tag">Osteomorphic Blocks</span>
-            <span class="ch-tag">Autonomous Construction</span>
+            <span class="ch-tag">Robot-Block Interface</span>
+            <span class="ch-tag">Rhino 8 / Grasshopper</span>
             <span class="ch-tag">NVIDIA Isaac Sim</span>
             <span class="ch-tag">4D BIM / IFC 4</span>
             <span class="ch-tag">ispace Mission 4</span>
           </div>
-          <div class="ch-code-box">
+
+          <div class="ch-code-box" style="margin-top:0.5mm;">
             <div class="ch-code-header">
               <span>MOONWALK / TOPOLOGICAL_BLOCK.PY</span>
               <span>Python 3.11</span>
@@ -1554,18 +1566,18 @@ body {
         </div>
       </div>
 
-      <!-- Bottom Images: Masterplan + Interior View -->
+      <!-- Bottom Images: Rhino Definition for Block Family + Topological Settlement -->
       <div style="flex:1; display:grid; grid-template-columns:1.2fr 1fr; gap:3mm; min-height:0; margin-top:2mm;">
-        <div style="position:relative; overflow:hidden; border-radius:2mm;">
-          <img src="Moonwalk/media/img/hab_multi.jpg" alt="Topological Lunar Habitat Cluster" style="width:100%; height:100%; object-fit:cover;">
-          <div style="position:absolute; bottom:0; left:0; right:0; padding:1.5mm 3mm; background:rgba(0,0,0,0.7); font-family:var(--f-m); font-size:6pt; color:rgba(255,255,255,0.75); letter-spacing:0.08em; text-transform:uppercase;">
-            Topological Lunar Settlement Cluster &middot; Connecting Ridge Sintered Regolith Domes
+        <div style="position:relative; overflow:hidden; border-radius:2mm; border:0.3mm solid rgba(0,0,0,0.1); background:#fcfcfc;">
+          <img src="Moonwalk/portfolio_assets/block_grasshopper_definition.png" alt="Rhino 8 / Grasshopper Block Family Definition" style="width:100%; height:100%; object-fit:contain; padding:1mm;">
+          <div style="position:absolute; bottom:0; left:0; right:0; padding:1.5mm 3mm; background:rgba(0,0,0,0.75); font-family:var(--f-m); font-size:5.5pt; color:rgba(255,255,255,0.85); letter-spacing:0.08em; text-transform:uppercase;">
+            Rhino 8 / Grasshopper Parametric Definition &middot; Osteomorphic &amp; 6-Tilt Block Family Generator
           </div>
         </div>
-        <div style="position:relative; overflow:hidden; border-radius:2mm;">
-          <img src="Moonwalk/media/img/int1.jpg" alt="Pressurized Habitat Bio-Regenerative Commons" style="width:100%; height:100%; object-fit:cover;">
-          <div style="position:absolute; bottom:0; left:0; right:0; padding:1.5mm 3mm; background:rgba(0,0,0,0.7); font-family:var(--f-m); font-size:6pt; color:rgba(255,255,255,0.75); letter-spacing:0.08em; text-transform:uppercase;">
-            Pressurized Habitat Vault &middot; Bio-Regenerative Garden &amp; Research Workspace
+        <div style="position:relative; overflow:hidden; border-radius:2mm; border:0.3mm solid rgba(0,0,0,0.1);">
+          <img src="Moonwalk/media/img/hab_multi.jpg" alt="Topological Settlement Cluster" style="width:100%; height:100%; object-fit:cover;">
+          <div style="position:absolute; bottom:0; left:0; right:0; padding:1.5mm 3mm; background:rgba(0,0,0,0.75); font-family:var(--f-m); font-size:5.5pt; color:rgba(255,255,255,0.85); letter-spacing:0.08em; text-transform:uppercase;">
+            Topological Settlement Cluster &middot; Sintered Regolith Domes &amp; In-Situ Infrastructure
           </div>
         </div>
       </div>
@@ -1573,14 +1585,7 @@ body {
     <div class="pf">
       <span class="pf-left">Ch.01 &middot; Moonwalk 2.0 &middot; Tohoku University Space Robotics Lab</span>
       <span class="pf-right">p. 05</span>
-    </div>
-  </div>
-
-
-  <!-- ==========================================================================
-       PAGE 06 · CHAPTER 01 DEEP ENGINEERING
-       ========================================================================== -->
-  <div class="page dark" style="position:relative; background:#000000;">
+    </div><div class="page dark" style="position:relative; background:#000000;">
         <div class="rh" style="border-color:rgba(255,255,255,0.08);">
       <span class="rh-label" style="color:rgba(255,255,255,0.45);">Ch.01 &middot; Moonwalk 2.0 &middot; Tohoku University Space Robotics Lab</span>
       <div class="rh-line" style="background:rgba(255,255,255,0.1);"></div>
