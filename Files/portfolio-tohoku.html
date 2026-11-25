@@ -1373,119 +1373,123 @@ body {
       <div class="rh-line"></div>
       <span class="rh-label">03</span>
     </div>
-    <div class="cv-layout" style="padding-bottom:18mm;">
-      <div class="cv-grid">
-        <!-- Left: Experience -->
+    <div class="cv-layout" style="padding:3mm 12mm 14mm;">
+      <div class="cv-grid" style="grid-template-columns:1.15fr 0.85fr; gap:6mm;">
+
+        <!-- Left Column: Research Experience & Professional Practice -->
         <div>
-          <div class="cv-section-title">Professional Experience</div>
-          <div class="cv-entry">
-            <div class="cv-role">Visiting Researcher &amp; Space Systems Architect</div>
-            <div class="cv-company">Tohoku University Space Robotics Laboratory &middot; Sendai, Japan</div>
-            <div class="cv-period">2026</div>
-            <div class="cv-desc">Lead architectural and computational researcher on Moonwalk 2.0: autonomous robotic in-situ lunar construction utilizing topologically interlocking regolith block families (Dyskin/Yong osteomorphic geometry). Formulated 4D BIM multi-robot task planners for MoonBot Dragon fleets, automated kinematics verification, and end-to-end physics validation in NVIDIA Isaac Sim under lunar gravity.</div>
+          <div class="cv-section-title" style="margin-bottom:1.5mm;">Research Experience</div>
+          <div class="cv-entry" style="padding-bottom:1.8mm; margin-bottom:1.8mm;">
+            <div class="cv-role">Visiting Researcher &mdash; Space Robotics Laboratory</div>
+            <div class="cv-company">Tohoku University, Sendai &middot; Prof. Kazuya Yoshida</div>
+            <div class="cv-period">Sep 2026 &ndash; Current</div>
+            <div class="cv-desc" style="font-size:6.3pt; line-height:1.42;">
+              <em>Moonwalk 2.0: digital twin and BIM framework for multi-robot construction of a lunar base.</em><br>
+              &bull; Redesigned the lab's robot-handled block as a dry-jointed, topologically interlocking block family (pads, walls, domes, columns); tested with 3D-printed prototypes.<br>
+              &bull; Developed multi-robot planning in Grasshopper &amp; Python exported as 4D IFC; packaged as the <strong>Moonwalk Planner</strong> plugin running in Isaac Sim &amp; ROS 2 Motion Stack.<br>
+              &bull; Verified constructibility in Isaac Sim (dome temporary staples, column pins); supervised two students; seven research reports, journal paper in preparation.
+            </div>
           </div>
-          <div class="cv-entry">
-            <div class="cv-role">Mobility Hubs & Urban Masterplanning Manager</div>
-            <div class="cv-company">NEOM · Saudi Arabia</div>
-            <div class="cv-period">Sep 2022 – Sep 2025</div>
-            <div class="cv-desc">Designed architectural and digital systems for zero-carbon automated mobility networks. Embedded digital infrastructure and sensors for passenger flow optimisation and autonomous vehicle routing. Directed human-flow logic and interface legibility in complex multi-level automated interchange hubs.</div>
-          </div>
-          <div class="cv-entry">
-            <div class="cv-role">Transit Architecture Lead &middot; Underground Infrastructure</div>
-            <div class="cv-company">WSP &middot; International Transit Practice</div>
-            <div class="cv-period">Apr 2016 &ndash; Aug 2022</div>
-            <div class="cv-desc">Led architectural design management of automated underground transit systems on behalf of the project management consultancy, directing and coordinating five architecture firms through design development, review, and approval. Ensured spatial consistency, regulatory compliance, platform screen doors, automated safety gates, and autonomous transit control and wayfinding interface systems.</div>
-          </div>
-          <div class="cv-entry">
-            <div class="cv-role">Architect &middot; 3D Clash Detection &amp; Roadway Design</div>
-            <div class="cv-company">WSP / Middle East &middot; Doha, Qatar</div>
-            <div class="cv-period">Jan 2015 &ndash; Jan 2016</div>
-            <div class="cv-desc">Developed 3D underground utility simulations and spatial clash coordination for Qatar's Expressway programme.</div>
-          </div>
-          <div class="cv-entry" style="border-bottom:none;">
-            <div class="cv-role">Architect &amp; 3D Designer</div>
-            <div class="cv-company">Foster + Partners / MJL &middot; London, UK</div>
-            <div class="cv-period">Jan 2014 &ndash; Jan 2015</div>
-            <div class="cv-desc">BIM coordinator on Bloomberg's $50M European HQ designed by Foster + Partners.</div>
+          <div class="cv-entry" style="padding-bottom:1.8mm; margin-bottom:2.2mm;">
+            <div class="cv-role">Academic Research Projects</div>
+            <div class="cv-company">International Space University, Strasbourg</div>
+            <div class="cv-period">2025 &ndash; Current</div>
+            <div class="cv-desc" style="font-size:6.3pt; line-height:1.42;">
+              &bull; <strong>UMBRELLA (Systems Lead):</strong> Real-time rover&ndash;drone digital twin on Mars terrain (UE5, AirSim, SLAM, ROS 2).<br>
+              &bull; <strong>Titan Swarm (Project &amp; Sim Lead):</strong> Nine-agent exploration swarm in UE5, ROS 2 &amp; Python on Crazyflie hardware.<br>
+              &bull; <strong>Orbital Gateway (Systems Arch. Lead):</strong> Multi-robot in-orbit assembly sequencing with evolutionary tolerance optimisation.<br>
+              &bull; <strong>MANTIS &amp; LogiRhein (Founder):</strong> Earth-observation hazard app (Galapagos 500+ configs) &amp; Rhine freight forecasting (Port of Strasbourg pilot).
+            </div>
           </div>
 
-          <!-- QR Code: Interactive Portfolio -->
-          <div style="margin-top: 9mm; display: flex; align-items: center; gap: 3.5mm;">
-            <img src="qr_portfolio_navy.png"
-                 alt="Scan for interactive portfolio"
-                 style="width: 22mm; height: 22mm; flex-shrink: 0; border: 0.2mm solid rgba(0,0,0,0.08);">
-            <div style="display: flex; flex-direction: column; gap: 1.5mm;">
-              <div style="font-family: var(--f-m); font-size: 5.5pt; color: var(--teal); letter-spacing: 0.15em; text-transform: uppercase; line-height: 1.3;">Scan for Interactive Portfolio</div>
-              <div style="font-family: var(--f-m); font-size: 4.8pt; color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; line-height: 1.5;">Simulations · Live Dashboards · Digital Twins</div>
-              <div style="font-family: var(--f-s); font-size: 5.5pt; color: var(--ink); opacity: 0.55; margin-top: 0.5mm;">arhimatrix.github.io/portfolio</div>
+          <div class="cv-section-title" style="margin-bottom:1.5mm;">Professional Practice</div>
+          <div class="cv-entry" style="padding-bottom:1.4mm; margin-bottom:1.4mm;">
+            <div class="cv-role">Mobility Hubs &amp; Urban Mobility Masterplanning Manager</div>
+            <div class="cv-company">NEOM &middot; Saudi Arabia</div>
+            <div class="cv-period">Sep 2022 &ndash; Sep 2025</div>
+            <div class="cv-desc" style="font-size:6.2pt; line-height:1.4;">Directed a consortium of four consulting firms developing multimodal mobility requirements across land, water, and air. Led concept design of hubs linking THE LINE, Oxagon, Trojena, and Gulf of Aqaba; parametric form-finding in Grasshopper with CNC/additive manufacturing export.</div>
+          </div>
+          <div class="cv-entry" style="padding-bottom:1.4mm; margin-bottom:1.4mm;">
+            <div class="cv-role">Transit Architect, Tel Aviv Red Line</div>
+            <div class="cv-company">WSP Israel &middot; Tel Aviv</div>
+            <div class="cv-period">Apr 2016 &ndash; Jul 2022</div>
+            <div class="cv-desc" style="font-size:6.2pt; line-height:1.4;">23 km light-rail ($5B, 10 underground civil-defence stations): authored system-wide architectural design requirements, coordinated 5 architecture firms, led branding/system equipment approvals, and integrated as-built scan data into BIM/GIS/MMIS at handover.</div>
+          </div>
+          <div class="cv-entry" style="padding-bottom:1.4mm; margin-bottom:1.4mm;">
+            <div class="cv-role">Architect, Roadway Design &amp; 3D Clash Detection</div>
+            <div class="cv-company">WSP Middle East &middot; Doha</div>
+            <div class="cv-period">2015</div>
+            <div class="cv-desc" style="font-size:6.2pt; line-height:1.4;">Expressway Programme P008 ($3B, 26 km): led 4 km Mesaimeer Road upgrade and 3D underground utility coordination in Navisworks &amp; Civil 3D.</div>
+          </div>
+          <div class="cv-entry" style="padding-bottom:1.4mm; margin-bottom:1.4mm;">
+            <div class="cv-role">Architect / 3D Designer &middot; Bloomberg European HQ</div>
+            <div class="cv-company">Foster + Partners with MJL &middot; London</div>
+            <div class="cv-period">2014 &ndash; 2015</div>
+            <div class="cv-desc" style="font-size:6.2pt; line-height:1.4;">Developed and maintained the combined-services (MEP) 3D coordination model for the ten-storey headquarters.</div>
+          </div>
+          <div class="cv-entry" style="border-bottom:none; padding-bottom:0; margin-bottom:0;">
+            <div class="cv-role">Architect &middot; CAD/BIM Specialist</div>
+            <div class="cv-company">AABCO Doha (2013&ndash;2014) &middot; Elektroprivreda Srbije (2008&ndash;2012)</div>
+            <div class="cv-desc" style="font-size:6.2pt; line-height:1.4;">Fit-out &amp; shop drawings for Mall of Qatar (387,963 m&sup2;) &amp; Workers Hospital; regional power-grid CAD/BIM asset digitalisation.</div>
+          </div>
+        </div>
+
+        <!-- Right Column: Profile, Education, Skills, Contact -->
+        <div style="display:flex; flex-direction:column; gap:2mm;">
+          <div style="background:rgba(0,0,0,0.025); border-left:0.6mm solid var(--teal); padding:2mm 2.5mm;">
+            <div style="font-family:var(--f-m); font-size:5.2pt; font-weight:700; color:var(--teal); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.8mm;">About Me</div>
+            <div style="font-family:var(--f-s); font-size:6.2pt; line-height:1.42; color:var(--ink);">
+              Systems architect and spatial designer bridging large-scale terrestrial infrastructure and off-world construction robotics. Combining parametric design, MBSE, digital twins, and agentic AI workflows to turn physical constraints into buildable robotic systems validated in NVIDIA Isaac Sim and ROS 2.
+            </div>
+          </div>
+
+          <div>
+            <div class="cv-section-title" style="margin-bottom:1mm;">Education</div>
+            <div class="edu-card" style="padding:1.5mm 2mm; margin-bottom:1.2mm;">
+              <div class="edu-degree" style="font-size:6.8pt;">Master of Space Studies (MSc), Space Engineering</div>
+              <div class="edu-school" style="font-size:5.8pt;">International Space University, Strasbourg &middot; 2025 &ndash; 2026</div>
+            </div>
+            <div class="edu-card" style="padding:1.5mm 2mm; margin-bottom:1.2mm;">
+              <div class="edu-degree" style="font-size:6.8pt;">Integrated Master of Architecture &amp; Urban Planning (305 ECTS)</div>
+              <div class="edu-school" style="font-size:5.8pt;">Faculty of Technical Sciences, Univ. of Novi Sad &middot; 2001 &ndash; 2010</div>
+            </div>
+            <div style="font-family:var(--f-s); font-size:5.9pt; color:var(--muted); line-height:1.4; padding-left:1mm;">
+              <strong>Courses:</strong> The Walkable City (Harvard GSD, 2024) &middot; Beyond Smart Cities (MIT Media Lab, 2023&ndash;24) &middot; Satellite Comms (Univ. of Oxford, 2023) &middot; Space Arch. Elective (ISU, 2022) &middot; System Architecture (MIT, 2017)
+            </div>
+          </div>
+
+          <div>
+            <div class="cv-section-title" style="margin-bottom:0.8mm;">Technical Skills &amp; Languages</div>
+            <div style="display:grid; grid-template-columns:1fr auto; gap:0.1mm 2mm; font-size:6pt; line-height:1.65;">
+              <div style="color:var(--ink);">Rhino 8 + Grasshopper / Parametric Design</div><div style="font-family:var(--f-m); font-size:5.5pt; color:var(--teal); text-align:right;">Expert</div>
+              <div style="color:var(--ink);">Revit / Navisworks / AutoCAD / Civil 3D</div><div style="font-family:var(--f-m); font-size:5.5pt; color:var(--teal); text-align:right;">Expert</div>
+              <div style="color:var(--ink);">4D BIM / IFC &middot; 3ds Max &middot; ArcGIS / EO Data</div><div style="font-family:var(--f-m); font-size:5.5pt; color:var(--teal); text-align:right;">Advanced</div>
+              <div style="color:var(--ink);">Isaac Sim / OpenUSD &middot; Unreal Engine 5</div><div style="font-family:var(--f-m); font-size:5.5pt; color:var(--teal); text-align:right;">Advanced</div>
+              <div style="color:var(--ink);">Python</div><div style="font-family:var(--f-m); font-size:5.5pt; color:var(--teal); text-align:right;">Upper-Int.</div>
+              <div style="color:var(--ink);">ROS 2 &middot; SolidWorks &middot; FreeCAD &middot; TouchDesigner &middot; 3D Print</div><div style="font-family:var(--f-m); font-size:5.5pt; color:var(--teal); text-align:right;">Intermediate</div>
+              <div style="color:var(--ink);">Serbian (Native) &middot; English (Fluent) &middot; Hebrew (Basic)</div><div style="font-family:var(--f-m); font-size:5.5pt; color:var(--muted); text-align:right;">Languages</div>
+            </div>
+          </div>
+
+          <!-- Contact & QR -->
+          <div style="margin-top:auto; padding-top:1.5mm; border-top:0.25mm solid rgba(0,0,0,0.08); display:flex; align-items:center; gap:3mm;">
+            <img src="qr_portfolio_navy.png" alt="QR Portfolio" style="width:17mm; height:17mm; flex-shrink:0; border:0.2mm solid rgba(0,0,0,0.08);">
+            <div style="font-family:var(--f-s); font-size:5.8pt; line-height:1.45; color:var(--ink);">
+              <div style="font-family:var(--f-m); font-size:5pt; color:var(--teal); font-weight:700; letter-spacing:0.1em; text-transform:uppercase;">Contact</div>
+              <div>+381 69 290 4811 &middot; archimatrix@proton.me</div>
+              <div>linkedin.com/in/archimatrix &middot; github.com/arhimatrix</div>
+              <div style="color:var(--muted);">arhimatrix.github.io/portfolio</div>
             </div>
           </div>
         </div>
 
-        <!-- Right: Education + Skills + Affiliations -->
-        <div>
-          <div class="cv-section-title">Education</div>
-          <div class="edu-card">
-            <div class="edu-degree">MSc Architecture &amp; Urban Planning</div>
-            <div class="edu-school">University of Novi Sad, Faculty of Technical Sciences · Serbia</div>
-            <div class="edu-focus">Computational geometry, architectural theory, and urban systems.</div>
-          </div>
-          <div class="edu-card">
-            <div class="edu-degree">MSS Space Engineering &amp; Applications</div>
-            <div class="edu-school">International Space University · Strasbourg, France · 2025–2026</div>
-            <div class="edu-focus">Space architecture, space systems, planetary robotics.</div>
-          </div>
-          <div class="edu-card">
-            <div class="edu-degree">Executive Education: The Walkable City</div>
-            <div class="edu-school">Harvard Graduate School of Design · 2024</div>
-            <div class="edu-focus">Urban design, walkable networks, micro-mobility integration.</div>
-          </div>
-          <div class="edu-card">
-            <div class="edu-degree">Emerging Design & Technology: Beyond Smart Cities</div>
-            <div class="edu-school">MIT · 2023</div>
-            <div class="edu-focus">Sensor networks, responsive materials, computational design at urban scales.</div>
-          </div>
-          <div class="edu-card">
-            <div class="edu-degree">Professional Specialization: System Architecture</div>
-            <div class="edu-school">MIT · 2017</div>
-            <div class="edu-focus">Model-Based Systems Engineering, dynamic system modeling, lifecycle design.</div>
-          </div>
-
-          <div style="margin-top:3mm;">
-            <div class="cv-section-title">Computational Skills</div>
-            <div style="display:grid; grid-template-columns:1fr auto; gap:0.2mm 3mm; margin-top:1mm;">
-              <div style="font-family:var(--f-s); font-size:6.5pt; color:var(--ink); line-height:1.9;">Python</div><div style="font-family:var(--f-m); font-size:6pt; color:var(--teal); text-align:right;">Advanced</div>
-              <div style="font-family:var(--f-s); font-size:6.5pt; color:var(--ink); line-height:1.9;">Agentic AI (Claude API / Gemini API)</div><div style="font-family:var(--f-m); font-size:6pt; color:var(--teal); text-align:right;">Advanced</div>
-              <div style="font-family:var(--f-s); font-size:6.5pt; color:var(--ink); line-height:1.9;">UE5 / AirSim</div><div style="font-family:var(--f-m); font-size:6pt; color:var(--teal); text-align:right;">Advanced</div>
-              <div style="font-family:var(--f-s); font-size:6.5pt; color:var(--ink); line-height:1.9;">Grasshopper / Rhino 8</div><div style="font-family:var(--f-m); font-size:6pt; color:var(--teal); text-align:right;">Advanced</div>
-              <div style="font-family:var(--f-s); font-size:6.5pt; color:var(--ink); line-height:1.9;">3ds Max</div><div style="font-family:var(--f-m); font-size:6pt; color:var(--teal); text-align:right;">Advanced</div>
-              <div style="font-family:var(--f-s); font-size:6.5pt; color:var(--ink); line-height:1.9;">AutoCAD</div><div style="font-family:var(--f-m); font-size:6pt; color:var(--teal); text-align:right;">Advanced</div>
-              <div style="font-family:var(--f-s); font-size:6.5pt; color:var(--ink); line-height:1.9;">MBSE</div><div style="font-family:var(--f-m); font-size:6pt; color:var(--teal); text-align:right;">Advanced</div>
-              <div style="font-family:var(--f-s); font-size:6.5pt; color:var(--ink); line-height:1.9;">Revit / BIM / Navisworks</div><div style="font-family:var(--f-m); font-size:6pt; color:var(--teal); text-align:right;">Advanced</div>
-              <div style="font-family:var(--f-s); font-size:6.5pt; color:var(--ink); line-height:1.9;">ROS 2</div><div style="font-family:var(--f-m); font-size:6pt; color:var(--teal); text-align:right;">Proficient</div>
-              <div style="font-family:var(--f-s); font-size:6.5pt; color:var(--ink); line-height:1.9;">EEG / Human Performance Analysis</div><div style="font-family:var(--f-m); font-size:6pt; color:var(--teal); text-align:right;">Proficient</div>
-              <div style="font-family:var(--f-s); font-size:6.5pt; color:var(--ink); line-height:1.9;">STK</div><div style="font-family:var(--f-m); font-size:6pt; color:var(--teal); text-align:right;">Proficient</div>
-              <div style="font-family:var(--f-s); font-size:6.5pt; color:var(--ink); line-height:1.9;">C# / .NET</div><div style="font-family:var(--f-m); font-size:6pt; color:var(--teal); text-align:right;">Proficient</div>
-            </div>
-          </div>
-
-        </div>
       </div>
     </div>
     <div class="pf" style="position:absolute;bottom:0;left:0;right:0;background:white;">
-      <span class="pf-left">Nina Velimirovic — Portfolio 2026</span>
+      <span class="pf-left">Nina Velimirovi&#263; &mdash; Portfolio 2026</span>
       <span class="pf-right">p. 03</span>
     </div>
-  </div>
-
-
-  
-  
-
-  <!-- ==========================================================================
-       PAGE 04 · CHAPTER 01 OPENER
-       ========================================================================== -->
-  <div class="page dark" style="position:relative;">
+  </div><div class="page dark" style="position:relative;">
     <div class="ch-opener">
       <div class="ch-opener-img">
         <canvas id="moon-ch01" aria-label="3D Moon — South Pole — Moonwalk 2.0 chapter opener" style="width:100%; height:100%; display:block; opacity:0.65;"></canvas>
@@ -2821,7 +2825,7 @@ body {
         <div class="bc-contact-grid">
           <div class="bc-contact-item">
             <div class="bc-label">Email</div>
-            <div class="bc-val">nina_velimirovic@yahoo.com</div>
+            <div class="bc-val">archimatrix@proton.me</div>
           </div>
           <div class="bc-contact-item">
             <div class="bc-label">Portfolio</div>
@@ -2829,11 +2833,11 @@ body {
           </div>
           <div class="bc-contact-item">
             <div class="bc-label">Location</div>
-            <div class="bc-val">Strasbourg, France</div>
+            <div class="bc-val">Sendai, Japan / Strasbourg</div>
           </div>
           <div class="bc-contact-item">
             <div class="bc-label">LinkedIn</div>
-            <div class="bc-val">linkedin.com/in/nina-v-6b03715</div>
+            <div class="bc-val">linkedin.com/in/archimatrix</div>
           </div>
         </div>
         <div style="margin-top:10mm; font-family:var(--f-m); font-size:6.5pt; color:rgba(255,255,255,0.15); text-align:center; letter-spacing:0.1em;">
