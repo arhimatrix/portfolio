@@ -1234,7 +1234,7 @@ body {
 </style>
 
   <!-- Three.js for interactive 3D Moon -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
 
@@ -1264,28 +1264,10 @@ body {
 
       <!-- Hero image fills remaining space BELOW the name -->
       <div class="cover-fig" style="position:relative; overflow:hidden;">
-        <canvas id="moon-cover" aria-label="3D interactive moon globe — lunar south pole, Moonwalk 2.0"
-        style="width:100%; height:100%; display:block; border-radius:inherit;"></canvas>
-      <div class="cover-fig-label" style="position:absolute; bottom:0; left:0; right:0; padding:2mm 6mm; background:linear-gradient(transparent, rgba(0,0,0,0.75)); font-family:var(--f-m); font-size:5.5pt; color:rgba(255,255,255,0.8); letter-spacing:0.1em; text-transform:uppercase;">
+        <canvas id="moon-cover" aria-label="3D interactive moon globe — lunar south pole, Moonwalk 2.0" style="width:100%; height:100%; display:block; border-radius:inherit;"></canvas>
+      <div class="cover-fig-label" style="position:absolute; bottom:0; left:0; right:0; padding:2mm 6mm; background:linear-gradient(transparent, rgba(0,0,0,0.75)); font-family:var(--f-m); font-size:5.5pt; color:rgba(255,255,255,0.8); letter-spacing:0.1em; text-transform:uppercase; pointer-events:none;">
         LUNAR SOUTH POLE &middot; CONNECTING RIDGE / DE GERLACHE RIM 2 &middot; MOONWALK 2.0 &middot; TOHOKU UNIVERSITY SRL
       </div>
-      <script>
-      (function(){
-        var cvs = document.getElementById('moon-cover');
-        if (!cvs || !window.THREE) {
-          setTimeout(function(){
-            var cvs2 = document.getElementById('moon-cover');
-            if (!cvs2 || !window.THREE) return;
-            initMoon(cvs2);
-          }, 500);
-          return;
-        }
-        initMoon(cvs);
-      })();
-      </script>
-      </div>
-    </div>
-    </div>
     </div>
 
       <!-- Spacer below image -->
@@ -1505,25 +1487,14 @@ body {
        ========================================================================== -->
   <div class="page dark" style="position:relative;">
     <div class="ch-opener">
-      <div class="ch-opener-img" style="position:relative; overflow:hidden;">
-        <canvas id="moon-ch01" aria-label="3D Moon — South Pole — Moonwalk 2.0 chapter opener"
-          style="width:100%; height:100%; display:block;"></canvas>
-        <script>
-        (function(){
-          function tryInit(){
-            var cvs = document.getElementById('moon-ch01');
-            if(cvs && window.THREE){ initMoon(cvs); }
-            else { setTimeout(tryInit, 300); }
-          }
-          tryInit();
-        })();
-        </script>
+      <div class="ch-opener-img">
+        <canvas id="moon-ch01" aria-label="3D Moon — South Pole — Moonwalk 2.0 chapter opener" style="width:100%; height:100%; display:block; opacity:0.65;"></canvas>
       </div>
       <div class="ch-opener-content">
         <div class="ch-kicker">Chapter 01 &middot; Autonomous Robotic Assembly &amp; In-Situ Construction Automation</div>
         <div class="ch-title">Moonwalk 2.0</div>
         <div class="ch-subtitle">Autonomous In-Situ Lunar Construction &amp; Interlocking Regolith Structures</div>
-        <div class="ch-theme-line"><strong>Tohoku University Space Robotics Laboratory &middot; Autonomous Multi-Robot Assembly &middot; Topological Interlocking Osteomorphic Blocks &middot; 4D BIM &amp; NVIDIA Isaac Sim Physics Validation</strong><br><br>An end-to-end cyber-physical construction framework for permanent lunar infrastructure at the lunar south pole: autonomous mobile robots (MoonBot Dragon) fabricating landing pads, vertical solar towers, and pressurized habitat vaults from dry-stacked interlocking regolith blocks before crew arrival.</div>
+        <div class="ch-theme-line"><strong>Tohoku University Space Robotics Laboratory &middot; Autonomous Multi-Robot Assembly &middot; Topological Interlocking Osteomorphic Blocks &middot; 4D BIM &amp; NVIDIA Isaac Sim Physics Validation</strong><br><br>An end-to-end cyber-physical construction framework for permanent lunar infrastructure at the lunar south pole: autonomous mobile robots (MoonBot Dragon) fabricating landing pads, vertical solar towers, and pressurized habitat vaults from dry-stacked interlocking regolith blocks without on-site human presence.</div>
       </div>
     </div>
     <div class="ch-num">01</div>
@@ -1619,7 +1590,10 @@ body {
     <div class="pf">
       <span class="pf-left">Ch.01 &middot; Moonwalk 2.0 &middot; Tohoku University Space Robotics Lab</span>
       <span class="pf-right">p. 05</span>
-    </div><div class="page dark" style="position:relative; background:#000000;">
+    </div>
+  </div>
+
+  <div class="page dark" style="position:relative; background:#000000;">
     <div class="rh" style="border-color:rgba(255,255,255,0.08);">
       <span class="rh-label" style="color:rgba(255,255,255,0.45);">Ch.01 &middot; Moonwalk 2.0 &middot; Tohoku University Space Robotics Lab</span>
       <div class="rh-line" style="background:rgba(255,255,255,0.1);"></div>
@@ -2798,69 +2772,97 @@ if (window.location.search.includes('print=true')) {
 
   <script>
   /* ---- 3D Moon Globe ---- */
-  window.initMoon = window.initMoon || function(canvas) {
+  window.initMoon = function(canvas) {
+    if (!canvas || !window.THREE || canvas.dataset.moonInit) return;
+    var parent = canvas.parentElement;
+    var W = parent ? parent.clientWidth : 600;
+    var H = parent ? parent.clientHeight : 400;
+    if (W === 0 || H === 0) {
+      setTimeout(function() { window.initMoon(canvas); }, 200);
+      return;
+    }
+    canvas.dataset.moonInit = '1';
+
     var scene = new THREE.Scene();
-    var W = canvas.parentElement ? canvas.parentElement.clientWidth : 600;
-    var H = canvas.parentElement ? canvas.parentElement.clientHeight : 400;
-    var camera = new THREE.PerspectiveCamera(32, W / Math.max(H, 1), 0.01, 200);
-    camera.position.z = 4.6;
+    var camera = new THREE.PerspectiveCamera(32, W / H, 0.01, 200);
+    camera.position.z = 4.4;
 
     var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     renderer.setSize(W, H, false);
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.05;
+    renderer.toneMappingExposure = 1.1;
 
-    // Lights — single directional sun + dim ambient
-    scene.add(new THREE.AmbientLight(0x1a2030, 0.55));
-    var sun = new THREE.DirectionalLight(0xfff8e7, 2.4);
+    // Lights — single grazing directional sun + ambient
+    scene.add(new THREE.AmbientLight(0x222a3a, 0.55));
+    var sun = new THREE.DirectionalLight(0xfff8e7, 2.5);
     sun.position.set(5, 1.5, 3);
     scene.add(sun);
 
-    // Sphere
+    // Moon Sphere
     var loader = new THREE.TextureLoader();
     var geom = new THREE.SphereGeometry(1.65, 96, 96);
     var mat = new THREE.MeshStandardMaterial({
       map:         loader.load('Moonwalk/media/img/moon.jpg'),
       normalMap:   loader.load('Moonwalk/media/img/moon_n.jpg'),
       normalScale: new THREE.Vector2(1.0, 1.0),
-      roughness:   0.93,
+      roughness:   0.92,
       metalness:   0.04
     });
     var moon = new THREE.Mesh(geom, mat);
-    // Tilt so south pole (Connecting Ridge) faces viewer
-    moon.rotation.x = 1.22;
+    moon.rotation.x = 1.22; // Tilt toward South Pole
     moon.rotation.y = -0.4;
     scene.add(moon);
 
-    // Slow spin
-    var raf;
+    // Interactive drag to rotate
+    var isDragging = false, prevX = 0, prevY = 0;
+    canvas.style.cursor = 'grab';
+    canvas.addEventListener('pointerdown', function(e) {
+      isDragging = true; prevX = e.clientX; prevY = e.clientY;
+      canvas.style.cursor = 'grabbing';
+    });
+    window.addEventListener('pointermove', function(e) {
+      if (!isDragging) return;
+      moon.rotation.y += (e.clientX - prevX) * 0.005;
+      moon.rotation.x += (e.clientY - prevY) * 0.005;
+      prevX = e.clientX; prevY = e.clientY;
+    });
+    window.addEventListener('pointerup', function() {
+      isDragging = false;
+      canvas.style.cursor = 'grab';
+    });
+
     function animate() {
-      raf = requestAnimationFrame(animate);
-      moon.rotation.y += 0.0012;
+      requestAnimationFrame(animate);
+      if (!isDragging) moon.rotation.y += 0.0012;
       renderer.render(scene, camera);
     }
     animate();
 
-    // Resize observer
-    if (window.ResizeObserver) {
-      new ResizeObserver(function(){
-        var w = canvas.parentElement ? canvas.parentElement.clientWidth : W;
-        var h = canvas.parentElement ? canvas.parentElement.clientHeight : H;
-        camera.aspect = w / Math.max(h, 1);
-        camera.updateProjectionMatrix();
-        renderer.setSize(w, h, false);
-      }).observe(canvas.parentElement || canvas);
+    if (window.ResizeObserver && parent) {
+      new ResizeObserver(function() {
+        var w = parent.clientWidth;
+        var h = parent.clientHeight;
+        if (w > 0 && h > 0) {
+          camera.aspect = w / h;
+          camera.updateProjectionMatrix();
+          renderer.setSize(w, h, false);
+        }
+      }).observe(parent);
     }
   };
 
-  /* Fire initMoon for all canvases once Three.js is ready */
-  document.addEventListener('DOMContentLoaded', function(){
-    ['moon-cover', 'moon-ch01'].forEach(function(id){
+  function bootMoons() {
+    ['moon-cover', 'moon-ch01'].forEach(function(id) {
       var cvs = document.getElementById(id);
-      if (cvs && window.THREE) initMoon(cvs);
+      if (cvs) window.initMoon(cvs);
     });
-  });
+  }
+  document.addEventListener('DOMContentLoaded', bootMoons);
+  window.addEventListener('load', bootMoons);
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    bootMoons();
+  }
   </script>
 </body>
 </html>
