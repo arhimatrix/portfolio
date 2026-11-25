@@ -1514,8 +1514,8 @@ body {
       <div class="rh-line"></div>
       <span class="rh-label">05</span>
     </div>
-    <div class="ch-content" style="gap:2.5mm;">
-      <div class="ch-content-top" style="grid-template-columns:1.05fr 0.95fr; gap:5mm;">
+    <div class="ch-content" style="padding:3mm 10mm 2mm; gap:2mm;">
+      <div class="ch-content-top" style="grid-template-columns:1.18fr 0.82fr; gap:5mm;">
         <div class="ch-text-block">
           <div class="ch-section-kicker">Research Overview &middot; Space Robotics Laboratory, Tohoku University &middot; 2026</div>
           <div class="ch-summary">Moonwalk 2.0 develops a fully autonomous in-situ construction pipeline for permanent lunar infrastructure &mdash; directly advancing ARCA Lab's core agenda of robotic construction automation applied to extreme environments. Conducted at Tohoku University Space Robotics Lab, the project addresses the full fabrication stack: south-pole site selection &amp; terrain analysis (Connecting Ridge / de Gerlache Rim 2 within ispace Mission 4's &ge;87&deg;S landing band), parametric design of a topologically interlocking regolith block family in Rhino 8 / Grasshopper, multi-robot cooperative task scheduling compiled to 8 atomic operation verbs, and closed-loop physics validation in NVIDIA Isaac Sim &mdash; producing a replicable, geometry-agnostic robotic assembly protocol for unreinforced granular material.</div>
@@ -1534,37 +1534,35 @@ body {
           </div>
         </div>
 
-        <!-- Right Side: Interactive 3D Block Geometry from Report 02 / Report 03 -->
-        <div style="display:flex; flex-direction:column; border-radius:2mm; overflow:hidden; border:0.3mm solid rgba(0,0,0,0.15); background:#0c1118; min-height:0;">
-          <div style="padding:1.8mm 3mm; background:#111722; border-bottom:0.3mm solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center; flex-shrink:0;">
-            <div>
-              <div style="font-family:var(--f-m); font-size:5.5pt; font-weight:700; color:#e67e51; letter-spacing:0.12em; text-transform:uppercase;">02 &middot; The Block Geometry &middot; Report 02 / 03</div>
-              <div style="font-family:var(--f-s); font-size:7pt; font-weight:600; color:#fff;">One Hexagon, Five Tilts (0&deg; &rarr; 35.3&deg;)</div>
-            </div>
-            <div id="block-tilt-btns" style="display:flex; gap:1mm;">
-              <button type="button" data-tilt="0" style="padding:0.8mm 1.6mm; font-family:var(--f-m); font-size:5pt; border:0.25mm solid rgba(255,255,255,0.2); background:transparent; color:rgba(255,255,255,0.75); border-radius:1mm; cursor:pointer;">0&deg;</button>
-              <button type="button" data-tilt="9" style="padding:0.8mm 1.6mm; font-family:var(--f-m); font-size:5pt; border:0.25mm solid rgba(255,255,255,0.2); background:transparent; color:rgba(255,255,255,0.75); border-radius:1mm; cursor:pointer;">9&deg;</button>
-              <button type="button" data-tilt="16.7" style="padding:0.8mm 1.6mm; font-family:var(--f-m); font-size:5pt; border:0.25mm solid #e67e51; background:#e67e51; color:#0c1118; font-weight:700; border-radius:1mm; cursor:pointer;">16.7&deg;</button>
-              <button type="button" data-tilt="26" style="padding:0.8mm 1.6mm; font-family:var(--f-m); font-size:5pt; border:0.25mm solid rgba(255,255,255,0.2); background:transparent; color:rgba(255,255,255,0.75); border-radius:1mm; cursor:pointer;">26&deg;</button>
-              <button type="button" data-tilt="35.3" style="padding:0.8mm 1.6mm; font-family:var(--f-m); font-size:5pt; border:0.25mm solid rgba(255,255,255,0.2); background:transparent; color:rgba(255,255,255,0.75); border-radius:1mm; cursor:pointer;">35.3&deg;</button>
-            </div>
+        <!-- Right Side: Full 5-Member Block Family Stacked Vertically (0 deg -> 35.3 deg), Zoomed Out -->
+        <div style="display:flex; flex-direction:column; min-height:0; background:#0b0f16; border-radius:1.5mm; overflow:hidden;">
+          <div style="padding:1.5mm 3mm; display:flex; justify-content:space-between; align-items:center; flex-shrink:0; border-bottom:0.25mm solid rgba(255,255,255,0.08);">
+            <span style="font-family:var(--f-m); font-size:5.2pt; font-weight:700; color:#e67e51; letter-spacing:0.1em; text-transform:uppercase;">Block Family &middot; Report 02 / 03</span>
+            <span style="font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.65);">0&deg; &rarr; 35.3&deg; Progression</span>
           </div>
-          <div style="flex:1; position:relative; min-height:0; background:#0b0f16;">
-            <canvas id="moonwalk-block-3d" aria-label="Interactive 3D Hexagonal Tilted Block from Report 02 and 03" style="width:100%; height:100%; display:block;"></canvas>
-            <div style="position:absolute; bottom:1.5mm; left:2.5mm; right:2.5mm; display:flex; justify-content:space-between; pointer-events:none; font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.65);">
-              <span>200 mm cube edge &middot; 283 mm across &middot; 100 mm thick</span>
-              <span id="block-tilt-readout">Side tilt: 16.7&deg; &middot; Drag to orbit</span>
+          <div style="flex:1; position:relative; min-height:0;">
+            <canvas id="moonwalk-block-3d" aria-label="Interactive 3D Block Family 0 to 35.3 degrees" style="width:100%; height:100%; display:block;"></canvas>
+            <!-- Angle labels stacked vertically beside blocks -->
+            <div style="position:absolute; top:4%; bottom:4%; left:3mm; display:flex; flex-direction:column; justify-content:space-between; pointer-events:none; font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.7);">
+              <span>0.0&deg; <span style="color:rgba(255,255,255,0.4);">Prism</span></span>
+              <span>9.0&deg; <span style="color:rgba(255,255,255,0.4);">Step 1</span></span>
+              <span>18.0&deg; <span style="color:rgba(255,255,255,0.4);">Step 2</span></span>
+              <span>26.0&deg; <span style="color:rgba(255,255,255,0.4);">Step 3</span></span>
+              <span style="color:#e67e51; font-weight:700;">35.3&deg; <span style="color:rgba(230,126,81,0.75);">Cube Corner</span></span>
+            </div>
+            <div style="position:absolute; bottom:1.2mm; right:2.5mm; pointer-events:none; font-family:var(--f-m); font-size:4.8pt; color:rgba(255,255,255,0.5);">
+              200 mm edge &middot; 100 mm thick &middot; Drag to orbit
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Bottom: Grasshopper Definition for Block Family Expanded Full Width -->
-      <div style="flex:1.15; display:flex; flex-direction:column; min-height:0; margin-top:1mm; border-radius:2mm; overflow:hidden; border:0.3mm solid rgba(0,0,0,0.12); background:#fcfcfc;">
-        <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:1.5mm 2mm; background:#fcfcfc;">
+      <!-- Bottom: Grasshopper Definition Expanded As Wide As Possible, NO Framing -->
+      <div style="flex:1.25; display:flex; flex-direction:column; min-height:0; margin-top:1mm;">
+        <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center;">
           <img src="Moonwalk/portfolio_assets/block_grasshopper_definition.png" alt="Rhino 8 / Grasshopper Block Family Definition" style="width:100%; height:100%; object-fit:contain; display:block;">
         </div>
-        <div style="flex-shrink:0; padding:1.3mm 3mm; background:rgba(15,20,28,0.92); font-family:var(--f-m); font-size:5.5pt; color:rgba(255,255,255,0.88); letter-spacing:0.08em; text-transform:uppercase;">
+        <div style="flex-shrink:0; padding-top:0.8mm; font-family:var(--f-m); font-size:5.2pt; color:var(--muted); letter-spacing:0.08em; text-transform:uppercase;">
           Rhino 8 / Grasshopper Parametric Definition &middot; Inputs &rarr; Hexagon &rarr; Alternating Side Tilt (0&deg;&ndash;35.3&deg;) &rarr; Block Family Generator
         </div>
       </div>
@@ -1579,75 +1577,76 @@ body {
       <div class="rh-line" style="background:rgba(255,255,255,0.1);"></div>
       <span class="rh-label" style="color:rgba(255,255,255,0.45);">06</span>
     </div>
-    <div class="ch-content" style="padding:3.5mm 14mm 2mm; display:flex; flex-direction:column; gap:2.5mm; flex:1; min-height:0;">
+    <div class="ch-content" style="padding:3mm 10mm 2mm; display:flex; flex-direction:column; gap:2mm; flex:1; min-height:0;">
 
       <!-- Engineering Text Summary Row -->
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:6mm; flex-shrink:0;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:5mm; flex-shrink:0;">
         <div>
-          <div style="font-family:var(--f-m); font-size:6.5pt; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#2DD6E8; margin-bottom:1.5mm;">
+          <div style="font-family:var(--f-m); font-size:6.2pt; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:#2DD6E8; margin-bottom:1.2mm;">
             Multi-Robot Cooperative 4D BIM &middot; MoonBot Dragon Architecture
           </div>
-          <div style="font-family:var(--f-s); font-size:7.2pt; line-height:1.55; color:rgba(255,255,255,0.85);">
-            To construct large-scale lunar infrastructure without heavy Earth-imported equipment, Moonwalk 2.0 formulates an automated 4D BIM assembly pipeline executed by modular robotic fleets. The primary constructor is the <strong>MoonBot Dragon</strong> &mdash; a modular mobile rover developed at Tohoku University Space Robotics Lab featuring a 7-DOF articulated manipulator arm and holonomic mobility base.<br><br>
-            Every building component is assigned an <code>IfcBuildingElementPart</code> linked to chronological <code>IfcTask</code> schedules and robot resource allocations. Kinematic reachability envelopes, stability margins, and collision-free navigation lanes are computed directly within Grasshopper and compiled into atomic operations for ROS 2 Motion Stack execution.
+          <div style="font-family:var(--f-s); font-size:7pt; line-height:1.5; color:rgba(255,255,255,0.85);">
+            The core contribution is a geometry-agnostic robotic construction compiler. Each building element is encoded as an <code>IfcBuildingElementPart</code> linked to <code>IfcTask</code> schedules and robot resource allocations, then compiled into 8 atomic operation verbs. The primary constructor is the <strong>MoonBot Dragon</strong> &mdash; a modular rover developed at Tohoku University SRL featuring a 7-DOF articulated manipulator and holonomic base. Kinematic reachability, collision-free lanes, and stability margins are computed in Grasshopper and handed off to ROS 2 Motion Stack &mdash; requiring zero human presence on-site.
           </div>
         </div>
         <div>
-          <div style="font-family:var(--f-m); font-size:6.5pt; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#2DD6E8; margin-bottom:1.5mm;">
+          <div style="font-family:var(--f-m); font-size:6.2pt; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:#2DD6E8; margin-bottom:1.2mm;">
             Constructability Benchmarks: Pad, Dome &amp; Power Columns
           </div>
-          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:1.6mm;">
-            <li style="font-family:var(--f-s); font-size:7pt; line-height:1.5; color:rgba(255,255,255,0.85); padding-left:3.5mm; position:relative;"><span style="position:absolute; left:0; color:#2DD6E8;">&bull;</span><strong>Landing Pad (283 Pavers):</strong> Laid centre-out along radial ring roads. Multi-robot tandem paving (2 placers) reduced build duration from 9.90h to 3.89h (2.5&times; speedup) across 10,942 planned operations with zero spatial collisions.</li>
-            <li style="font-family:var(--f-s); font-size:7pt; line-height:1.5; color:rgba(255,255,255,0.85); padding-left:3.5mm; position:relative;"><span style="position:absolute; left:0; color:#2DD6E8;">&bull;</span><strong>Pressurized ShellA Dome (194 Blocks, 4.8m Span):</strong> Built entirely from the inside out through its own 0.95m airlock doorway opening &mdash; eliminating external scaffolding. Hand-off from exterior Dragon hauler to interior Tricycle completes in 1.58h.</li>
-            <li style="font-family:var(--f-s); font-size:7pt; line-height:1.5; color:rgba(255,255,255,0.85); padding-left:3.5mm; position:relative;"><span style="position:absolute; left:0; color:#2DD6E8;">&bull;</span><strong>2.5m Lattice Power Columns:</strong> Vertical solar tracking towers assembled by tandem rovers reconfiguring into a tall-stance Tricycle (2.13m reach) without cranes, delivering continuous 1.3 kW per column (~26 kW per field).</li>
+          <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:1.2mm;">
+            <li style="font-family:var(--f-s); font-size:6.8pt; line-height:1.45; color:rgba(255,255,255,0.85); padding-left:3mm; position:relative;"><span style="position:absolute; left:0; color:#2DD6E8;">&bull;</span><strong>Landing Pad (283 Pavers):</strong> Laid centre-out along radial ring roads. Tandem paving (2 placers) cut build time from 9.90h to 3.89h (2.5&times; speedup) across 10,942 planned operations with zero clashes.</li>
+            <li style="font-family:var(--f-s); font-size:6.8pt; line-height:1.45; color:rgba(255,255,255,0.85); padding-left:3mm; position:relative;"><span style="position:absolute; left:0; color:#2DD6E8;">&bull;</span><strong>ShellA Dome (194 Blocks, 4.8m Span):</strong> Built inside-out through its own 0.95m airlock opening without scaffolding; exterior Dragon hauler hands off to interior Tricycle (1.58h).</li>
+            <li style="font-family:var(--f-s); font-size:6.8pt; line-height:1.45; color:rgba(255,255,255,0.85); padding-left:3mm; position:relative;"><span style="position:absolute; left:0; color:#2DD6E8;">&bull;</span><strong>2.5m Power Columns (450 Elements):</strong> Tandem rovers reconfigure into tall-stance Tricycle (2.13m reach) without cranes, delivering ~1.3 kW per column.</li>
           </ul>
         </div>
       </div>
 
-      <!-- Middle: Visual Assembly Sequences (Pad, Dome, Column) - FULL, UNCLIPPED -->
-      <div style="flex:1.25; display:grid; grid-template-columns:1fr 1fr 1fr; gap:2.5mm; min-height:0;">
-        <div style="position:relative; display:flex; flex-direction:column; overflow:hidden; border-radius:1.5mm; border:0.3mm solid rgba(255,255,255,0.12); background:#06080d;">
-          <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:1mm; background:#06080d;">
-            <img src="Moonwalk/portfolio_assets/pad_assembly_sequence.jpg" alt="Pad Assembly Sequence" style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
+      <!-- Full-Width Pad Planning Diagram (Report 06 style, NO framing/borders) -->
+      <div style="flex:1.45; display:flex; flex-direction:column; min-height:0;">
+        <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center;">
+          <img src="Moonwalk/portfolio_assets/pad_assembly_sequence.jpg" alt="Landing Pad Assembly Sequence - Full Width" style="width:100%; height:100%; object-fit:contain; display:block;">
+        </div>
+        <div style="flex-shrink:0; padding-top:0.8mm; font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.65); letter-spacing:0.06em; text-transform:uppercase;">
+          Landing Pad Assembly Sequence &middot; 283 Pavers &middot; Two Dragons Start Together, Centre-Out Tandem Paving (3.89 h, 10,942 Ops)
+        </div>
+      </div>
+
+      <!-- Middle Row: Dome & Column Planning Diagrams (NO framing/borders) -->
+      <div style="flex:0.95; display:grid; grid-template-columns:1fr 1fr; gap:3mm; min-height:0;">
+        <div style="display:flex; flex-direction:column; min-height:0;">
+          <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center;">
+            <img src="Moonwalk/portfolio_assets/dome_assembly_sequence.jpg" alt="Dome Assembly Sequence" style="width:100%; height:100%; object-fit:contain; display:block;">
           </div>
-          <div style="flex-shrink:0; padding:1.2mm 2.5mm; background:rgba(12,16,24,0.95); border-top:0.3mm solid rgba(255,255,255,0.08); font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.85); letter-spacing:0.06em; text-transform:uppercase;">
-            Landing Pad Assembly &middot; 283 Pavers &middot; Centre-Out Tandem Paving (3.89 h)
+          <div style="flex-shrink:0; padding-top:0.6mm; font-family:var(--f-m); font-size:4.8pt; color:rgba(255,255,255,0.65); letter-spacing:0.05em; text-transform:uppercase;">
+            ShellA Dome Assembly &middot; Dragon Outside + Tricycle Inside (1.58 h)
           </div>
         </div>
-        <div style="position:relative; display:flex; flex-direction:column; overflow:hidden; border-radius:1.5mm; border:0.3mm solid rgba(255,255,255,0.12); background:#06080d;">
-          <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:1mm; background:#06080d;">
-            <img src="Moonwalk/portfolio_assets/dome_assembly_sequence.jpg" alt="Dome Assembly Sequence" style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
+        <div style="display:flex; flex-direction:column; min-height:0;">
+          <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center;">
+            <img src="Moonwalk/portfolio_assets/column_assembly_sequence.jpg" alt="Column Assembly Sequence" style="width:100%; height:100%; object-fit:contain; display:block;">
           </div>
-          <div style="flex-shrink:0; padding:1.2mm 2.5mm; background:rgba(12,16,24,0.95); border-top:0.3mm solid rgba(255,255,255,0.08); font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.85); letter-spacing:0.06em; text-transform:uppercase;">
-            ShellA Dome Assembly &middot; Internal Placement Through Airlock Opening (1.58 h)
-          </div>
-        </div>
-        <div style="position:relative; display:flex; flex-direction:column; overflow:hidden; border-radius:1.5mm; border:0.3mm solid rgba(255,255,255,0.12); background:#06080d;">
-          <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:1mm; background:#06080d;">
-            <img src="Moonwalk/portfolio_assets/column_assembly_sequence.jpg" alt="Column Assembly Sequence" style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
-          </div>
-          <div style="flex-shrink:0; padding:1.2mm 2.5mm; background:rgba(12,16,24,0.95); border-top:0.3mm solid rgba(255,255,255,0.08); font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.85); letter-spacing:0.06em; text-transform:uppercase;">
-            2.5m Power Column &middot; Tandem Multi-Robot Stacking (No Crane, 2.70 h)
+          <div style="flex-shrink:0; padding-top:0.6mm; font-family:var(--f-m); font-size:4.8pt; color:rgba(255,255,255,0.65); letter-spacing:0.05em; text-transform:uppercase;">
+            2.5m Power Column &middot; Tandem Multi-Robot Stacking (2.70 h)
           </div>
         </div>
       </div>
 
-      <!-- Bottom: Robot Modules & Kinematic Reach Envelope - FULL, UNCLIPPED -->
-      <div style="flex:1; display:grid; grid-template-columns:1.25fr 1fr; gap:2.5mm; min-height:0;">
-        <div style="position:relative; display:flex; flex-direction:column; overflow:hidden; border-radius:1.5mm; border:0.3mm solid rgba(255,255,255,0.12); background:#0c1017;">
-          <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:1mm; background:#0c1017;">
-            <img src="Moonwalk/portfolio_assets/robots_modules.png" alt="MoonBot Dragon Modular Fleet" style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
+      <!-- Bottom Row: Robot Modules & Reach Study (NO framing/borders) -->
+      <div style="flex:0.85; display:grid; grid-template-columns:1.25fr 1fr; gap:3mm; min-height:0;">
+        <div style="display:flex; flex-direction:column; min-height:0;">
+          <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center;">
+            <img src="Moonwalk/portfolio_assets/robots_modules.png" alt="MoonBot Dragon Modular Fleet" style="width:100%; height:100%; object-fit:contain; display:block;">
           </div>
-          <div style="flex-shrink:0; padding:1.2mm 2.5mm; background:rgba(12,16,24,0.95); border-top:0.3mm solid rgba(255,255,255,0.08); font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.85); letter-spacing:0.06em; text-transform:uppercase;">
-            MoonBot Dragon Modular Robotics Architecture &middot; 7-DOF Arm &amp; Mobility Configurations
+          <div style="flex-shrink:0; padding-top:0.6mm; font-family:var(--f-m); font-size:4.8pt; color:rgba(255,255,255,0.65); letter-spacing:0.05em; text-transform:uppercase;">
+            MoonBot Dragon Modular Robotics Architecture &middot; 7-DOF Arm &amp; Stances
           </div>
         </div>
-        <div style="position:relative; display:flex; flex-direction:column; overflow:hidden; border-radius:1.5mm; border:0.3mm solid rgba(255,255,255,0.12); background:#0c1017;">
-          <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:1mm; background:#0c1017;">
-            <img src="Moonwalk/portfolio_assets/col_reach_study.png" alt="Manipulator Reach Envelope Study" style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
+        <div style="display:flex; flex-direction:column; min-height:0;">
+          <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center;">
+            <img src="Moonwalk/portfolio_assets/col_reach_study.png" alt="Manipulator Reach Envelope Study" style="width:100%; height:100%; object-fit:contain; display:block;">
           </div>
-          <div style="flex-shrink:0; padding:1.2mm 2.5mm; background:rgba(12,16,24,0.95); border-top:0.3mm solid rgba(255,255,255,0.08); font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.85); letter-spacing:0.06em; text-transform:uppercase;">
-            7-DOF Manipulator Inverse Kinematics &amp; Vertical Reach Analysis (Dragon 1.1m &rarr; Tricycle 2.13m)
+          <div style="flex-shrink:0; padding-top:0.6mm; font-family:var(--f-m); font-size:4.8pt; color:rgba(255,255,255,0.65); letter-spacing:0.05em; text-transform:uppercase;">
+            7-DOF Manipulator Inverse Kinematics &amp; Vertical Reach (1.1m &rarr; 2.13m)
           </div>
         </div>
       </div>
@@ -1663,71 +1662,87 @@ body {
       <div class="rh-line" style="background:rgba(255,255,255,0.1);"></div>
       <span class="rh-label" style="color:rgba(255,255,255,0.45);">07</span>
     </div>
-    <div class="ch-content" style="padding:3.5mm 14mm 2mm; display:flex; flex-direction:column; gap:2.5mm; flex:1; min-height:0;">
+    <div class="ch-content" style="padding:3mm 10mm 2mm; display:flex; flex-direction:column; gap:2.5mm; flex:1; min-height:0;">
 
-      <!-- Text Row: Plugin Architecture + Closed Loop Physics -->
-      <div style="display:grid; grid-template-columns:1.05fr 0.95fr; gap:6mm; flex-shrink:0;">
+      <!-- Top Text: Plugin & Closed Loop Validation -->
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:5mm; flex-shrink:0;">
         <div>
-          <div style="font-family:var(--f-m); font-size:6.5pt; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#2DD6E8; margin-bottom:1.5mm;">
-            Moonwalk Plugin Architecture &middot; Five Layers &amp; The Plan File "Waist"
+          <div style="font-family:var(--f-m); font-size:6.2pt; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:#2DD6E8; margin-bottom:1.2mm;">
+            The Moonwalk Grasshopper Plugin &middot; Construction Automation Pipeline
           </div>
-          <div style="font-family:var(--f-s); font-size:7.2pt; line-height:1.55; color:rgba(255,255,255,0.85);">
-            The <strong>Moonwalk Grasshopper Plugin</strong> operationalizes the construction compiler as a native Rhino 8 / Grasshopper workflow — directly relevant to ARCA Lab's digital fabrication research agenda. Five decoupled layers connect parametric geometry to physical robot execution:<br>
-            &bull; <strong>L1 Canvas:</strong> Native components (<code>MW Site</code>, <code>MW Blocks</code>, <code>MW Dome</code>, <code>MW Column</code>, <code>MW Plan Preview</code>, <code>MW Isaac Export</code>, <code>MW Physics</code>, <code>MW Plan Job</code>).<br>
-            &bull; <strong>L2 Core &amp; L3 Compiler:</strong> Transforms spatial geometry into <strong>8 atomic operation verbs</strong> (<code>DRIVE</code>, <code>TURN</code>, <code>ARM_JOINTS</code>, <code>ARM_LINE</code>, <code>GRIP</code>, <code>HOLD</code>, <code>WAIT</code>, <code>SIGNAL</code>).<br>
-            &bull; <strong>WAIST &mdash; The Plan File:</strong> The single shared contract between Grasshopper, simulation, and real hardware. Robots synchronize via decentralized signals (e.g. <em>&ldquo;block 37 set&rdquo;</em>), eliminating brittle shared clocks.
+          <div style="font-family:var(--f-s); font-size:7pt; line-height:1.5; color:rgba(255,255,255,0.85);">
+            The <strong>Moonwalk Grasshopper Plugin</strong> operationalizes the construction compiler as a native Rhino 8 / Grasshopper workflow &mdash; directly relevant to ARCA Lab's digital fabrication and robotics research agenda. Architects define site parameters (<code>MW Site</code>), block geometry (<code>MW Blocks</code>), and structural typologies (<code>MW Dome</code>, <code>MW Column</code>), then launch background multi-robot scheduling (<code>MW Plan Job</code>), preview 4D robot states on a time slider (<code>MW Plan Preview</code>), export USD scenes (<code>MW Isaac Export</code>), and ingest physics displacements directly back to the canvas (<code>MW Physics</code>).
           </div>
         </div>
         <div>
-          <div style="font-family:var(--f-m); font-size:6.5pt; font-weight:700; letter-spacing:0.18em; text-transform:uppercase; color:#2DD6E8; margin-bottom:1.5mm;">
-            Closed-Loop Discovery &middot; Isaac Sim Physics Feedback (1/6th g)
+          <div style="font-family:var(--f-m); font-size:6.2pt; font-weight:700; letter-spacing:0.16em; text-transform:uppercase; color:#2DD6E8; margin-bottom:1.2mm;">
+            Closed-Loop Discovery &middot; Isaac Sim Physics Validation (1/6th g)
           </div>
-          <div style="font-family:var(--f-s); font-size:7.2pt; line-height:1.55; color:rgba(255,255,255,0.85);">
-            Plans compile to USD scenes executed in <strong>NVIDIA Isaac Sim (PhysX 6.1)</strong> under 1.62 m/s&sup2; lunar gravity, friction &mu; = 0.7, and regolith density 1,900 kg/m&sup3;. Physics telemetry streams directly back to colour-code the Grasshopper model (green &lt;5mm, yellow &lt;2cm, red &gt;10cm/fell):<br>
-            &bull; <strong>Dome Doorway Failure Mode:</strong> Dry-stacked simulation revealed that the airlock opening breaks the continuous compression hoop &mdash; causing 73 of 194 blocks to collapse on the door side when temporary staples were released.<br>
-            &bull; <strong>Iterative Redesign:</strong> Ingesting this failure guided adding a stiffened door frame arch and targeted locking pins, achieving <strong>100% stability (194/194 held within 5mm, 0 fell)</strong>.<br>
-            &bull; <strong>Power Column Validation:</strong> 450 elements (230 frames + 220 PV panels) verified fully stable with pins (450/450 within 5mm).
+          <div style="font-family:var(--f-s); font-size:7pt; line-height:1.5; color:rgba(255,255,255,0.85);">
+            Plans execute in <strong>NVIDIA Isaac Sim (PhysX 6.1)</strong> under 1.62 m/s&sup2; lunar gravity, friction &mu;&nbsp;=&nbsp;0.7, and 1,900 kg/m&sup3; regolith density. Displacement telemetry colours every block in Grasshopper in real time:<br>
+            &bull; <strong>Dome Door Failure Discovery:</strong> Dry-stacked simulation revealed that the airlock opening breaks the compression hoop, causing 73 of 194 blocks to collapse when staples were removed. Adding an arch frame and locking pins achieved <strong>194/194 held within 5 mm (0 fell)</strong>.<br>
+            &bull; <strong>Power Column:</strong> 450/450 elements verified stable within 5 mm; zero physical trials required.
           </div>
         </div>
       </div>
 
-      <!-- Middle: Plugin Architecture Diagram + Operations Compiler -->
-      <div style="flex:1.15; display:grid; grid-template-columns:1.3fr 1fr; gap:2.5mm; min-height:0;">
-        <div style="position:relative; display:flex; flex-direction:column; overflow:hidden; border-radius:1.5mm; border:0.3mm solid rgba(255,255,255,0.12); background:#06080d;">
-          <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:1mm; background:#06080d;">
-            <img src="Moonwalk/presentation_slides/slide_04.png" alt="Moonwalk Plugin 5-Layer Architecture" style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
+      <!-- Middle: Natively Embedded 5-Layer Architecture Definition ("The Waist") -->
+      <div style="flex-shrink:0; padding:2.5mm 3mm; background:#080c12; border-radius:1.5mm;">
+        <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:2mm;">
+          <div>
+            <span style="font-family:var(--f-m); font-size:5.2pt; font-weight:700; color:#e67e51; letter-spacing:0.12em; text-transform:uppercase;">02 &middot; Plugin Architecture</span>
+            <span style="font-family:var(--f-s); font-size:9pt; font-weight:700; color:#fff; margin-left:2mm;">Five layers, one plan file in the middle</span>
           </div>
-          <div style="flex-shrink:0; padding:1.2mm 2.5mm; background:rgba(12,16,24,0.95); border-top:0.3mm solid rgba(255,255,255,0.08); font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.85); letter-spacing:0.06em; text-transform:uppercase;">
-            Five-Layer Plugin Architecture &middot; The Central Plan File &ldquo;Waist&rdquo; Decoupling CAD, Isaac Sim &amp; ROS 2
-          </div>
+          <span style="font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.5);">Grasshopper plans &rarr; Motion Stack moves &rarr; Isaac Sim validates &rarr; results come back</span>
         </div>
-        <div style="position:relative; display:flex; flex-direction:column; overflow:hidden; border-radius:1.5mm; border:0.3mm solid rgba(255,255,255,0.12); background:#06080d;">
-          <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:1mm; background:#06080d;">
-            <img src="Moonwalk/presentation_slides/slide_13.png" alt="Operations Compiler & Background Job Solver" style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
+
+        <div style="display:grid; grid-template-columns:repeat(6, 1fr); gap:2mm;">
+          <!-- L1 -->
+          <div style="background:#0d131c; border:0.25mm solid rgba(255,255,255,0.1); border-radius:1.2mm; padding:2mm;">
+            <div style="font-family:var(--f-m); font-size:5pt; color:#e67e51; font-weight:700; margin-bottom:0.8mm;">L1</div>
+            <div style="font-family:var(--f-s); font-size:7.5pt; font-weight:700; color:#fff; margin-bottom:1mm;">Canvas</div>
+            <div style="font-family:var(--f-s); font-size:6pt; line-height:1.4; color:rgba(255,255,255,0.7);">Grasshopper components the architect works with (<code>MW Site</code>, <code>MW Dome</code>, <code>MW Column</code>)</div>
           </div>
-          <div style="flex-shrink:0; padding:1.2mm 2.5mm; background:rgba(12,16,24,0.95); border-top:0.3mm solid rgba(255,255,255,0.08); font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.85); letter-spacing:0.06em; text-transform:uppercase;">
-            Operations Compiler &middot; 8 Atomic Verbs &middot; Background MW Plan Job (10,942 Ops, 0 Clashes)
+          <!-- L2 -->
+          <div style="background:#0d131c; border:0.25mm solid rgba(255,255,255,0.1); border-radius:1.2mm; padding:2mm;">
+            <div style="font-family:var(--f-m); font-size:5pt; color:#e67e51; font-weight:700; margin-bottom:0.8mm;">L2</div>
+            <div style="font-family:var(--f-s); font-size:7.5pt; font-weight:700; color:#fff; margin-bottom:1mm;">Core library</div>
+            <div style="font-family:var(--f-s); font-size:6pt; line-height:1.4; color:rgba(255,255,255,0.7);">Parametric design, multi-robot kinematics (Dragon, Tricycle) &amp; scheduling</div>
+          </div>
+          <!-- L3 -->
+          <div style="background:#0d131c; border:0.25mm solid rgba(255,255,255,0.1); border-radius:1.2mm; padding:2mm;">
+            <div style="font-family:var(--f-m); font-size:5pt; color:#e67e51; font-weight:700; margin-bottom:0.8mm;">L3</div>
+            <div style="font-family:var(--f-s); font-size:7.5pt; font-weight:700; color:#fff; margin-bottom:1mm;">Compiler</div>
+            <div style="font-family:var(--f-s); font-size:6pt; line-height:1.4; color:rgba(255,255,255,0.7);">Turns architectural geometry into atomic robotic operations</div>
+          </div>
+          <!-- WAIST (Highlighted) -->
+          <div style="background:#e67e51; border-radius:1.2mm; padding:2mm; color:#0b0f16;">
+            <div style="font-family:var(--f-m); font-size:5pt; font-weight:700; letter-spacing:0.08em; margin-bottom:0.8mm;">WAIST</div>
+            <div style="font-family:var(--f-s); font-size:7.5pt; font-weight:700; margin-bottom:1mm;">Plan file</div>
+            <div style="font-family:var(--f-s); font-size:6pt; line-height:1.4; font-weight:500;">8 operation verbs (<code>DRIVE</code>, <code>TURN</code>, <code>ARM_JOINTS</code>, <code>GRIP</code>, <code>SIGNAL</code>), robots synced by signals</div>
+          </div>
+          <!-- L4 -->
+          <div style="background:#0d131c; border:0.25mm solid rgba(255,255,255,0.1); border-radius:1.2mm; padding:2mm;">
+            <div style="font-family:var(--f-m); font-size:5pt; color:#e67e51; font-weight:700; margin-bottom:0.8mm;">L4</div>
+            <div style="font-family:var(--f-s); font-size:7.5pt; font-weight:700; color:#fff; margin-bottom:1mm;">Executors</div>
+            <div style="font-family:var(--f-s); font-size:6pt; line-height:1.4; color:rgba(255,255,255,0.7);">Isaac Sim validates physics &middot; ROS 2 Motion Stack moves real hardware</div>
+          </div>
+          <!-- L5 -->
+          <div style="background:#0d131c; border:0.25mm solid rgba(255,255,255,0.1); border-radius:1.2mm; padding:2mm;">
+            <div style="font-family:var(--f-m); font-size:5pt; color:#e67e51; font-weight:700; margin-bottom:0.8mm;">L5</div>
+            <div style="font-family:var(--f-s); font-size:7.5pt; font-weight:700; color:#fff; margin-bottom:1mm;">Read-back</div>
+            <div style="font-family:var(--f-s); font-size:6pt; line-height:1.4; color:rgba(255,255,255,0.7);">Displacement results colour the design directly in Grasshopper</div>
           </div>
         </div>
       </div>
 
-      <!-- Bottom: Closed-Loop Read-Back Telemetry & Structural Revision -->
-      <div style="flex:1; display:grid; grid-template-columns:1fr 1fr; gap:2.5mm; min-height:0;">
-        <div style="position:relative; display:flex; flex-direction:column; overflow:hidden; border-radius:1.5mm; border:0.3mm solid rgba(255,255,255,0.12); background:#06080d;">
-          <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:1mm; background:#06080d;">
-            <img src="Moonwalk/presentation_slides/slide_17.png" alt="Isaac Sim Telemetry Colours Grasshopper Design" style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
-          </div>
-          <div style="flex-shrink:0; padding:1.2mm 2.5mm; background:rgba(12,16,24,0.95); border-top:0.3mm solid rgba(255,255,255,0.08); font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.85); letter-spacing:0.06em; text-transform:uppercase;">
-            Telemetry Read-Back &middot; Isaac Sim Displacements Colouring Viewports (Door Opening Failure Diagnosed)
-          </div>
+      <!-- Bottom: Full Grasshopper Plugin Canvas Definition (Unframed, Full Width) -->
+      <div style="flex:1.3; display:flex; flex-direction:column; min-height:0;">
+        <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center;">
+          <img src="Moonwalk/portfolio_assets/full_grasshopper_canvas.png" alt="Moonwalk Grasshopper Plugin Canvas" style="width:100%; height:100%; object-fit:contain; display:block;">
         </div>
-        <div style="position:relative; display:flex; flex-direction:column; overflow:hidden; border-radius:1.5mm; border:0.3mm solid rgba(255,255,255,0.12); background:#06080d;">
-          <div style="flex:1; min-height:0; display:flex; align-items:center; justify-content:center; padding:1mm; background:#06080d;">
-            <img src="Moonwalk/presentation_slides/slide_19.png" alt="Iterative Structural Revision" style="max-width:100%; max-height:100%; object-fit:contain; display:block;">
-          </div>
-          <div style="flex-shrink:0; padding:1.2mm 2.5mm; background:rgba(12,16,24,0.95); border-top:0.3mm solid rgba(255,255,255,0.08); font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.85); letter-spacing:0.06em; text-transform:uppercase;">
-            Iterative Design Revision &middot; Temporary Staples (73 Fell) vs Permanent Pins (194/194 Held, 0 Fell)
-          </div>
+        <div style="flex-shrink:0; padding-top:0.8mm; font-family:var(--f-m); font-size:5.2pt; color:rgba(255,255,255,0.65); letter-spacing:0.08em; text-transform:uppercase;">
+          Moonwalk Rhino 8 / Grasshopper Canvas &middot; MW Load Plan &middot; MW Plan Preview &middot; MW Isaac Export &middot; MW Physics &middot; MW Plan Job
         </div>
       </div>
 
@@ -2846,13 +2861,13 @@ if (window.location.search.includes('print=true')) {
   </script>
 
   <script>
-  /* ---- 3D Hexagonal Tilted Block (Report 02 / Report 03) ---- */
+  /* ---- 3D Hexagonal Tilted Block Family (Vertical Stack 0 -> 35.3 deg, Zoomed Out) ---- */
   window.initBlock3D = function() {
     var canvas = document.getElementById('moonwalk-block-3d');
     if (!canvas || !window.THREE || canvas.dataset.blockInit) return;
     var parent = canvas.parentElement;
-    var W = parent ? parent.clientWidth : 400;
-    var H = parent ? parent.clientHeight : 250;
+    var W = parent ? parent.clientWidth : 350;
+    var H = parent ? parent.clientHeight : 320;
     if (W === 0 || H === 0) {
       setTimeout(window.initBlock3D, 200);
       return;
@@ -2862,51 +2877,41 @@ if (window.location.search.includes('print=true')) {
     var scene = new THREE.Scene();
     scene.background = new THREE.Color(0x0b0f16);
 
-    var camera = new THREE.PerspectiveCamera(34, W / H, 0.05, 50);
-    camera.position.set(1.9, 1.45, 2.3);
+    // Zoomed out so all 5 blocks fit completely inside the vertical frame!
+    var camera = new THREE.PerspectiveCamera(32, W / H, 0.1, 100);
+    camera.position.set(5.2, 2.2, 7.6);
     camera.lookAt(0, 0, 0);
 
     var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     renderer.setSize(W, H, false);
 
-    // Subtle dark grid matching Report 02/03
-    var grid = new THREE.GridHelper(6, 24, 0x222c3c, 0x151c27);
-    grid.position.y = -0.35;
-    scene.add(grid);
-
     // Lighting
     scene.add(new THREE.AmbientLight(0xffffff, 0.55));
-    var key = new THREE.DirectionalLight(0xfff5eb, 1.2);
-    key.position.set(3, 5, 4);
+    var key = new THREE.DirectionalLight(0xfff5eb, 1.25);
+    key.position.set(5, 8, 6);
     scene.add(key);
     var fill = new THREE.DirectionalLight(0x88b4e8, 0.45);
-    fill.position.set(-4, 2, -3);
+    fill.position.set(-5, 3, -4);
     scene.add(fill);
 
-    var blockGroup = new THREE.Group();
-    scene.add(blockGroup);
+    var familyGroup = new THREE.Group();
+    scene.add(familyGroup);
 
-    // Exact 6-tilt hexagonal block builder (intersection of 6 tilted planes with y = +/- h/2)
     function buildTiltedHexGeometry(tiltDeg) {
-      var R = 0.85;
-      var h = 0.44; // thickness
+      var R = 0.72;
+      var h = 0.36;
       var halfH = h / 2;
-      var d = R * Math.cos(Math.PI / 6); // apothem
+      var d = R * Math.cos(Math.PI / 6);
       var rad = tiltDeg * Math.PI / 180;
       var shift = halfH * Math.tan(rad);
 
       function intersectLines(a1, b1, c1, a2, b2, c2) {
         var det = a1 * b2 - a2 * b1;
-        return [
-          (c1 * b2 - c2 * b1) / det,
-          (a1 * c2 - a2 * c1) / det
-        ];
+        return [(c1 * b2 - c2 * b1) / det, (a1 * c2 - a2 * c1) / det];
       }
 
       function ringVerts(yVal, signY) {
-        // Face k normal: (cos(phi_k), sin(phi_k)) where phi_k = (k + 0.5) * PI / 3
-        // Offset at yVal: d + s_k * signY * shift, where s_k = (k % 2 === 0 ? 1 : -1)
         var lines = [];
         for (var k = 0; k < 6; k++) {
           var phi = (k + 0.5) * Math.PI / 3;
@@ -2926,23 +2931,15 @@ if (window.location.search.includes('print=true')) {
 
       var topPts = ringVerts(halfH, 1);
       var botPts = ringVerts(-halfH, -1);
-
       var positions = [];
       function pushTri(a, b, c) {
         positions.push(a.x, a.y, a.z, b.x, b.y, b.z, c.x, c.y, c.z);
       }
 
-      // Top face (fan)
       var topCenter = new THREE.Vector3(0, halfH, 0);
-      for (var k = 0; k < 6; k++) {
-        pushTri(topCenter, topPts[(k + 1) % 6], topPts[k]);
-      }
-      // Bottom face (fan)
+      for (var k = 0; k < 6; k++) pushTri(topCenter, topPts[(k + 1) % 6], topPts[k]);
       var botCenter = new THREE.Vector3(0, -halfH, 0);
-      for (var k = 0; k < 6; k++) {
-        pushTri(botCenter, botPts[k], botPts[(k + 1) % 6]);
-      }
-      // Side faces (6 quads)
+      for (var k = 0; k < 6; k++) pushTri(botCenter, botPts[k], botPts[(k + 1) % 6]);
       for (var k = 0; k < 6; k++) {
         var kNext = (k + 1) % 6;
         pushTri(topPts[k], topPts[kNext], botPts[kNext]);
@@ -2955,61 +2952,32 @@ if (window.location.search.includes('print=true')) {
       return geom;
     }
 
-    var meshMat = new THREE.MeshStandardMaterial({
-      color: 0xdca082,
-      roughness: 0.72,
-      metalness: 0.05,
-      flatShading: true
-    });
-    var edgeMat = new THREE.LineBasicMaterial({ color: 0x1a1a1a, transparent: true, opacity: 0.65 });
+    var tilts = [0, 9, 18, 26, 35.3];
+    var spacingY = 0.92;
+    var startY = ((tilts.length - 1) * spacingY) / 2;
+    var edgeMat = new THREE.LineBasicMaterial({ color: 0x11151d, transparent: true, opacity: 0.7 });
 
-    var currentMesh = null;
-    var currentEdges = null;
-
-    function setTilt(deg) {
-      if (currentMesh) { blockGroup.remove(currentMesh); currentMesh.geometry.dispose(); }
-      if (currentEdges) { blockGroup.remove(currentEdges); currentEdges.geometry.dispose(); }
-
+    tilts.forEach(function(deg, idx) {
       var g = buildTiltedHexGeometry(deg);
-      // Color shifts from light bone (0 deg) to terracotta (35.3 deg) like Report 02/03
       var t = deg / 35.3;
       var col = new THREE.Color().setRGB(
-        0.92 - 0.12 * t,
-        0.90 - 0.36 * t,
-        0.87 - 0.45 * t
+        0.93 - 0.11 * t,
+        0.91 - 0.39 * t,
+        0.88 - 0.50 * t
       );
-      meshMat.color = col;
-
-      currentMesh = new THREE.Mesh(g, meshMat);
-      var edgesGeom = new THREE.EdgesGeometry(g, 15);
-      currentEdges = new THREE.LineSegments(edgesGeom, edgeMat);
-
-      blockGroup.add(currentMesh);
-      blockGroup.add(currentEdges);
-
-      var ro = document.getElementById('block-tilt-readout');
-      if (ro) ro.textContent = 'Side tilt: ' + deg + '\u00B0 \u00B7 Drag to orbit';
-    }
-
-    setTilt(16.7);
-
-    // Wire buttons
-    var btns = document.querySelectorAll('#block-tilt-btns button');
-    btns.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var deg = parseFloat(btn.getAttribute('data-tilt'));
-        setTilt(deg);
-        btns.forEach(function(b) {
-          b.style.background = 'transparent';
-          b.style.borderColor = 'rgba(255,255,255,0.2)';
-          b.style.color = 'rgba(255,255,255,0.75)';
-          b.style.fontWeight = '400';
-        });
-        btn.style.background = '#e67e51';
-        btn.style.borderColor = '#e67e51';
-        btn.style.color = '#0c1118';
-        btn.style.fontWeight = '700';
+      var mat = new THREE.MeshStandardMaterial({
+        color: col,
+        roughness: 0.72,
+        metalness: 0.05,
+        flatShading: true
       });
+      var mesh = new THREE.Mesh(g, mat);
+      var edges = new THREE.LineSegments(new THREE.EdgesGeometry(g, 15), edgeMat);
+      var itemGroup = new THREE.Group();
+      itemGroup.add(mesh);
+      itemGroup.add(edges);
+      itemGroup.position.set(0.25, startY - idx * spacingY, 0);
+      familyGroup.add(itemGroup);
     });
 
     // Drag to orbit
@@ -3021,8 +2989,8 @@ if (window.location.search.includes('print=true')) {
     });
     window.addEventListener('pointermove', function(e) {
       if (!dragging) return;
-      blockGroup.rotation.y += (e.clientX - px) * 0.01;
-      blockGroup.rotation.x += (e.clientY - py) * 0.01;
+      familyGroup.rotation.y += (e.clientX - px) * 0.01;
+      familyGroup.rotation.x += (e.clientY - py) * 0.005;
       px = e.clientX; py = e.clientY;
     });
     window.addEventListener('pointerup', function() {
@@ -3032,7 +3000,11 @@ if (window.location.search.includes('print=true')) {
 
     function animate() {
       requestAnimationFrame(animate);
-      if (!dragging) blockGroup.rotation.y += 0.004;
+      if (!dragging) {
+        familyGroup.children.forEach(function(child) {
+          child.rotation.y += 0.005;
+        });
+      }
       renderer.render(scene, camera);
     }
     animate();
