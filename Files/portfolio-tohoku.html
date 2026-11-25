@@ -1784,7 +1784,7 @@ body {
             On-Site Lunar Physics Simulation &middot; NVIDIA Isaac Sim (PhysX 6.1)
           </div>
           <div style="font-family:var(--f-s); font-size:6.8pt; line-height:1.45; color:rgba(255,255,255,0.85);">
-            Before physical deployment, every assembly plan is exported as a USD scene and executed dynamically in <strong>NVIDIA Isaac Sim</strong> on NASA LOLA lunar south-pole terrain under 1.62 m/s&sup2; gravity, dry contact friction (&mu; = 0.7), and 1,900 kg/m&sup3; regolith density. Each block follows its robotic placement trajectory and is released one by one to verify static equilibrium during and after construction.
+            Before hardware deployment, every assembly plan exports as a USD scene and executes dynamically in <strong>NVIDIA Isaac Sim</strong> on NASA LOLA lunar south-pole terrain under 1.62 m/s&sup2; gravity, dry contact friction (&mu; = 0.7), and 1,900 kg/m&sup3; regolith density. Each block follows its planned robotic path and releases into gravity to verify structural equilibrium during and after assembly.
           </div>
         </div>
         <div>
@@ -1794,47 +1794,43 @@ body {
           <div style="display:flex; flex-direction:column; gap:0.8mm; font-family:var(--f-s); font-size:6.7pt; line-height:1.42; color:rgba(255,255,255,0.85);">
             <div>&bull; <strong>Graded Pad (283 Blocks):</strong> Intrinsically stable dry-stacked; cumulative drift settled under 0.5 mm.</div>
             <div>&bull; <strong>Sheltered Dome (194 Blocks):</strong> Simulation isolated inward unseating at the airlock doorway when temporary staples were removed (73 fell); adding an arch frame and permanent pins stabilized 194 of 194 blocks within 5 mm.</div>
-            <div>&bull; <strong>Power Column (450 Elements, 2.2 m):</strong> Simulated with permanent connector pins: 450 of 450 elements held within 5 mm (0 fell); physical hardware trials on MoonBot Dragon are the next planned step.</div>
+            <div>&bull; <strong>Power Column (450 Elements, 2.2 m):</strong> Simulated with permanent connector pins: 450 of 450 elements held within 5 mm (0 fell); physical execution on MoonBot Dragon hardware is the next planned validation step.</div>
           </div>
         </div>
       </div>
 
-      <!-- Middle Row: Live Isaac Sim On-Site Construction Videos (Dome & Pad) -->
-      <div style="flex:1.15; display:grid; grid-template-columns:1fr 1fr; gap:3mm; min-height:0;">
+      <!-- 2x2 Grid of Real Isaac Sim Assembly Animations -->
+      <div style="flex:1; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr; gap:3mm; min-height:0;">
         <div style="display:flex; flex-direction:column; min-height:0;">
           <div style="flex:1; min-height:0; overflow:hidden; background:#05070a;">
-            <video src="Moonwalk/media/animation/moonwalk_r04_dome_720.mp4" autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover; display:block;"></video>
+            <video src="Moonwalk/isaac_videos/pad_isaac_720.mp4" autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover; display:block;"></video>
           </div>
-          <div style="flex-shrink:0; padding-top:0.8mm; font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.65); letter-spacing:0.06em; text-transform:uppercase;">
-            Isaac Sim Lunar Terrain &middot; Autonomous Dome Assembly Simulation
+          <div style="flex-shrink:0; padding-top:0.8mm; font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.7); letter-spacing:0.06em; text-transform:uppercase;">
+            01 &middot; Graded Pad &middot; Two Dragons Centre-Out Tandem Paving
           </div>
         </div>
         <div style="display:flex; flex-direction:column; min-height:0;">
           <div style="flex:1; min-height:0; overflow:hidden; background:#05070a;">
-            <video src="Moonwalk/media/animation/moonwalk_r04_pad_720.mp4" autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover; display:block;"></video>
+            <video src="Moonwalk/isaac_videos/dome_isaac_720.mp4" autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover; display:block;"></video>
           </div>
-          <div style="flex-shrink:0; padding-top:0.8mm; font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.65); letter-spacing:0.06em; text-transform:uppercase;">
-            Isaac Sim Lunar Terrain &middot; Tandem Landing Pad Paving Simulation
-          </div>
-        </div>
-      </div>
-
-      <!-- Bottom Row: Structural Physics Tests (Shell & Column in Isaac Sim) -->
-      <div style="flex:0.95; display:grid; grid-template-columns:1fr 1fr; gap:3mm; min-height:0;">
-        <div style="display:flex; flex-direction:column; min-height:0;">
-          <div style="flex:1; min-height:0; overflow:hidden; background:#05070a;">
-            <img src="Moonwalk/portfolio_assets/shell_isaac.jpg" alt="Horizon Shell Physics Test in Isaac Sim" style="width:100%; height:100%; object-fit:cover; display:block;">
-          </div>
-          <div style="flex-shrink:0; padding-top:0.8mm; font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.65); letter-spacing:0.06em; text-transform:uppercase;">
-            Horizon Shell &middot; PhysX 6.1 Gravity &amp; Doorway Stability Check
+          <div style="flex-shrink:0; padding-top:0.8mm; font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.7); letter-spacing:0.06em; text-transform:uppercase;">
+            02 &middot; Sheltered Dome &middot; Two-Dragon Coordinated Assembly
           </div>
         </div>
         <div style="display:flex; flex-direction:column; min-height:0;">
           <div style="flex:1; min-height:0; overflow:hidden; background:#05070a;">
-            <img src="Moonwalk/portfolio_assets/colA_isaac.jpg" alt="Power Column Physics Test in Isaac Sim" style="width:100%; height:100%; object-fit:cover; display:block;">
+            <video src="Moonwalk/isaac_videos/tricycle_dragon_dome_720.mp4" autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover; display:block;"></video>
           </div>
-          <div style="flex-shrink:0; padding-top:0.8mm; font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.65); letter-spacing:0.06em; text-transform:uppercase;">
-            Power Column &middot; 450-Element Stability Test Under 1.62 m/s&sup2;
+          <div style="flex-shrink:0; padding-top:0.8mm; font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.7); letter-spacing:0.06em; text-transform:uppercase;">
+            03 &middot; Sheltered Dome &middot; Dragon Hauler + Interior Tricycle Hand-Over
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column; min-height:0;">
+          <div style="flex:1; min-height:0; overflow:hidden; background:#05070a;">
+            <video src="Moonwalk/isaac_videos/power_column_isaac_720.mp4" autoplay loop muted playsinline style="width:100%; height:100%; object-fit:cover; display:block;"></video>
+          </div>
+          <div style="flex-shrink:0; padding-top:0.8mm; font-family:var(--f-m); font-size:5pt; color:rgba(255,255,255,0.7); letter-spacing:0.06em; text-transform:uppercase;">
+            04 &middot; 2.2m Lattice Power Column &middot; Dragon + Tall-Stance Tricycle (450 Elements)
           </div>
         </div>
       </div>
