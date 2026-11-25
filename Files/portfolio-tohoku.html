@@ -1572,37 +1572,28 @@ body {
             <li><strong>Topological Interlocking Block Family:</strong> Formulated parametric osteomorphic and 6-tilt hexagonal block families (Dyskin et al. 2003, 2005; Yong 2011). Alternating non-planar contact faces (0&deg; to 35.3&deg; cube-corner tilt) lock adjacent elements purely in compression without mortar or adhesives, preventing thermal fracture across cryogenic diurnal cycles (&Delta;T &gt; 250 K).</li>
             <li><strong>Robot-Block Interface Architecture:</strong> Engineered three distinct end-effector modules (flush side-handle C-jaw, top twist-lock T-key slot, and top pocket-spreading grip). Top-gripping interfaces leave all side faces unobstructed for zero-clearance placement across pavements, walls, columns, and vaults.</li>
           </ul>
-          <!-- 3 End-Effector Interface Diagrams -->
+          <!-- 3 Realistic 3D End-Effector Interface Diagrams -->
           <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:2mm; margin-top:1.5mm;">
-            <div style="background:#f5f6f8; border:0.25mm solid rgba(0,0,0,0.1); border-radius:1mm; padding:1.2mm; text-align:center;">
-              <svg viewBox="0 0 100 52" style="width:100%; height:13mm; display:block;">
-                <polygon points="30,22 70,22 76,34 24,34" fill="#d6d3cc" stroke="#333" stroke-width="1.2"/>
-                <rect x="20" y="25" width="4" height="6" fill="#0d9488"/>
-                <path d="M12,18 L20,18 L20,38 L12,38" fill="none" stroke="#e67e51" stroke-width="2"/>
-                <line x1="6" y1="28" x2="12" y2="28" stroke="#e67e51" stroke-width="2"/>
-              </svg>
-              <div style="font-family:var(--f-m); font-size:4.6pt; font-weight:700; color:#111;">Option 1: Side C-Jaw</div>
-              <div style="font-family:var(--f-s); font-size:4.5pt; color:#666;">Flush side-handle bar</div>
+            <div style="background:#f4f6f9; border:0.25mm solid rgba(0,0,0,0.1); border-radius:1.2mm; overflow:hidden; display:flex; flex-direction:column;">
+              <canvas id="ee-opt-1" style="width:100%; height:19mm; display:block;"></canvas>
+              <div style="padding:0.8mm 1.2mm; text-align:center; background:#fff; border-top:0.2mm solid rgba(0,0,0,0.06);">
+                <div style="font-family:var(--f-m); font-size:4.6pt; font-weight:700; color:#111;">Option 1: Side C-Jaw</div>
+                <div style="font-family:var(--f-s); font-size:4.4pt; color:#666;">Flush side-handle bar</div>
+              </div>
             </div>
-            <div style="background:#f5f6f8; border:0.25mm solid rgba(0,0,0,0.1); border-radius:1mm; padding:1.2mm; text-align:center;">
-              <svg viewBox="0 0 100 52" style="width:100%; height:13mm; display:block;">
-                <polygon points="30,24 70,24 76,36 24,36" fill="#d6d3cc" stroke="#333" stroke-width="1.2"/>
-                <rect x="44" y="24" width="12" height="5" fill="#1e293b"/>
-                <path d="M50,6 L50,26 M43,26 L57,26" stroke="#e67e51" stroke-width="2.2" fill="none"/>
-                <path d="M40,12 A10,6 0 0,1 60,12" fill="none" stroke="#0d9488" stroke-width="1.2" stroke-dasharray="2,1"/>
-              </svg>
-              <div style="font-family:var(--f-m); font-size:4.6pt; font-weight:700; color:#111;">Option 2: Top Twist-Lock</div>
-              <div style="font-family:var(--f-s); font-size:4.5pt; color:#666;">T-key 90&deg; form-lock</div>
+            <div style="background:#f4f6f9; border:0.25mm solid rgba(0,0,0,0.1); border-radius:1.2mm; overflow:hidden; display:flex; flex-direction:column;">
+              <canvas id="ee-opt-2" style="width:100%; height:19mm; display:block;"></canvas>
+              <div style="padding:0.8mm 1.2mm; text-align:center; background:#fff; border-top:0.2mm solid rgba(0,0,0,0.06);">
+                <div style="font-family:var(--f-m); font-size:4.6pt; font-weight:700; color:#111;">Option 2: Top Twist-Lock</div>
+                <div style="font-family:var(--f-s); font-size:4.4pt; color:#666;">T-key 90&deg; form-lock</div>
+              </div>
             </div>
-            <div style="background:#f5f6f8; border:0.25mm solid rgba(0,0,0,0.1); border-radius:1mm; padding:1.2mm; text-align:center;">
-              <svg viewBox="0 0 100 52" style="width:100%; height:13mm; display:block;">
-                <polygon points="30,24 70,24 76,36 24,36" fill="#d6d3cc" stroke="#333" stroke-width="1.2"/>
-                <rect x="40" y="24" width="20" height="6" fill="#1e293b"/>
-                <path d="M44,8 L44,28 M56,8 L56,28" stroke="#e67e51" stroke-width="2" fill="none"/>
-                <path d="M44,26 L41,26 M56,26 L59,26" stroke="#0d9488" stroke-width="1.8"/>
-              </svg>
-              <div style="font-family:var(--f-m); font-size:4.6pt; font-weight:700; color:#111;">Option 3: Top Pocket</div>
-              <div style="font-family:var(--f-s); font-size:4.5pt; color:#666;">Expanding slide fingers</div>
+            <div style="background:#f4f6f9; border:0.25mm solid rgba(0,0,0,0.1); border-radius:1.2mm; overflow:hidden; display:flex; flex-direction:column;">
+              <canvas id="ee-opt-3" style="width:100%; height:19mm; display:block;"></canvas>
+              <div style="padding:0.8mm 1.2mm; text-align:center; background:#fff; border-top:0.2mm solid rgba(0,0,0,0.06);">
+                <div style="font-family:var(--f-m); font-size:4.6pt; font-weight:700; color:#111;">Option 3: Top Pocket</div>
+                <div style="font-family:var(--f-s); font-size:4.4pt; color:#666;">Expanding slide fingers</div>
+              </div>
             </div>
           </div>
         </div>
@@ -3572,6 +3563,162 @@ if (window.location.search.includes('print=true')) {
   window.addEventListener('load', window.initReport02Animations);
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
     window.initReport02Animations();
+  }
+  </script>
+
+  <script>
+  /* ---- 3D Realistic End-Effector CAD Renders (Page 05) ---- */
+  window.initEndEffectors3D = function() {
+    if (!window.THREE) return;
+
+    function renderEE(canvasId, type) {
+      var canvas = document.getElementById(canvasId);
+      if (!canvas || canvas.dataset.eeInit) return;
+      var W = canvas.clientWidth || 180;
+      var H = canvas.clientHeight || 95;
+      if (W === 0 || H === 0) { setTimeout(function(){ renderEE(canvasId, type); }, 200); return; }
+      canvas.dataset.eeInit = '1';
+
+      var scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xf4f6f9);
+
+      var camera = new THREE.PerspectiveCamera(30, W / H, 0.1, 50);
+      camera.position.set(2.35, 1.85, 2.75);
+      camera.lookAt(0, 0.18, 0);
+
+      var renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, preserveDrawingBuffer: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setSize(W, H, false);
+
+      // Studio lighting
+      scene.add(new THREE.AmbientLight(0xffffff, 0.65));
+      var key = new THREE.DirectionalLight(0xfffaf2, 1.15);
+      key.position.set(4, 6, 5);
+      scene.add(key);
+      var rim = new THREE.DirectionalLight(0x93c5fd, 0.55);
+      rim.position.set(-4, 3, -3);
+      scene.add(rim);
+
+      // Materials
+      var blockMat = new THREE.MeshStandardMaterial({ color: 0xd4b69f, roughness: 0.88, metalness: 0.04, flatShading: true });
+      var slotMat  = new THREE.MeshStandardMaterial({ color: 0x334155, roughness: 0.65, metalness: 0.25 });
+      var steelMat = new THREE.MeshStandardMaterial({ color: 0x94a3b8, roughness: 0.28, metalness: 0.82 });
+      var darkMetal = new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.35, metalness: 0.78 });
+      var accentMat = new THREE.MeshStandardMaterial({ color: 0xd95e2b, roughness: 0.35, metalness: 0.45 });
+
+      // Tilted Hexagonal Block base
+      var block = new THREE.Mesh(new THREE.CylinderGeometry(0.88, 0.78, 0.44, 6), blockMat);
+      block.position.y = -0.05;
+      scene.add(block);
+      var blockEdges = new THREE.LineSegments(
+        new THREE.EdgesGeometry(block.geometry, 15),
+        new THREE.LineBasicMaterial({ color: 0x475569, transparent: true, opacity: 0.45 })
+      );
+      blockEdges.position.copy(block.position);
+      scene.add(blockEdges);
+
+      if (type === 1) {
+        // Option 1: Side C-Jaw gripping flush side handle
+        var pocket = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.24, 0.46), slotMat);
+        pocket.position.set(0.75, -0.05, 0);
+        scene.add(pocket);
+
+        var bar = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 0.40, 16), steelMat);
+        bar.rotation.x = Math.PI / 2;
+        bar.position.set(0.78, -0.05, 0);
+        scene.add(bar);
+
+        // C-Jaw Arm coming from right
+        var arm = new THREE.Group();
+        arm.position.set(0.82, -0.05, 0);
+        var wrist = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.14, 0.35, 20), darkMetal);
+        wrist.rotation.z = Math.PI / 2;
+        wrist.position.x = 0.55;
+        arm.add(wrist);
+
+        var flange = new THREE.Mesh(new THREE.CylinderGeometry(0.17, 0.17, 0.08, 20), accentMat);
+        flange.rotation.z = Math.PI / 2;
+        flange.position.x = 0.35;
+        arm.add(flange);
+
+        var spine = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.42, 0.18), steelMat);
+        spine.position.x = 0.26;
+        arm.add(spine);
+
+        var upperJaw = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.09, 0.16), steelMat);
+        upperJaw.position.set(0.12, 0.16, 0);
+        arm.add(upperJaw);
+
+        var lowerJaw = new THREE.Mesh(new THREE.BoxGeometry(0.32, 0.09, 0.16), steelMat);
+        lowerJaw.position.set(0.12, -0.16, 0);
+        arm.add(lowerJaw);
+
+        scene.add(arm);
+      } else if (type === 2) {
+        // Option 2: Top Twist-Lock (T-Key 90 deg)
+        var tSlot = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.06, 0.20), slotMat);
+        tSlot.position.set(0, 0.15, 0);
+        scene.add(tSlot);
+
+        var effector = new THREE.Group();
+        effector.position.set(0, 0.22, 0);
+
+        var collar = new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.22, 0.26, 24), darkMetal);
+        collar.position.y = 0.48;
+        effector.add(collar);
+
+        var ring = new THREE.Mesh(new THREE.CylinderGeometry(0.26, 0.26, 0.06, 24), accentMat);
+        ring.position.y = 0.36;
+        effector.add(ring);
+
+        var shaft = new THREE.Mesh(new THREE.CylinderGeometry(0.065, 0.065, 0.40, 20), steelMat);
+        shaft.position.y = 0.16;
+        effector.add(shaft);
+
+        var tKey = new THREE.Mesh(new THREE.BoxGeometry(0.11, 0.08, 0.36), steelMat);
+        tKey.position.y = -0.04;
+        effector.add(tKey);
+
+        scene.add(effector);
+      } else {
+        // Option 3: Top Pocket-Spreading Grip
+        var pocket = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.26, 0.06, 16), slotMat);
+        pocket.position.set(0, 0.15, 0);
+        scene.add(pocket);
+
+        var effector = new THREE.Group();
+        effector.position.set(0, 0.20, 0);
+
+        var housing = new THREE.Mesh(new THREE.BoxGeometry(0.56, 0.22, 0.28), darkMetal);
+        housing.position.y = 0.42;
+        effector.add(housing);
+
+        var servo = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 0.24, 20), accentMat);
+        servo.position.y = 0.62;
+        effector.add(servo);
+
+        var fingerL = new THREE.Mesh(new THREE.BoxGeometry(0.09, 0.38, 0.14), steelMat);
+        fingerL.position.set(-0.18, 0.14, 0);
+        effector.add(fingerL);
+
+        var fingerR = new THREE.Mesh(new THREE.BoxGeometry(0.09, 0.38, 0.14), steelMat);
+        fingerR.position.set(0.18, 0.14, 0);
+        effector.add(fingerR);
+
+        scene.add(effector);
+      }
+
+      renderer.render(scene, camera);
+    }
+
+    renderEE('ee-opt-1', 1);
+    renderEE('ee-opt-2', 2);
+    renderEE('ee-opt-3', 3);
+  };
+  document.addEventListener('DOMContentLoaded', window.initEndEffectors3D);
+  window.addEventListener('load', window.initEndEffectors3D);
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    window.initEndEffectors3D();
   }
   </script>
 </body>
